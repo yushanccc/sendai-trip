@@ -3,56 +3,64 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-<title>仙台皮卡丘旅行 App ⚡</title>
+<title>2026初夏仙台散策 ⚡</title>
 
 <script src="https://cdn.tailwindcss.com"></script>
 <script src="https://cdn.jsdelivr.net/npm/sortablejs@1.15.2/Sortable.min.js"></script>
 
 <style>
-body {
+body{
   font-family: Arial;
-  background: #fffdf2;
+  background: linear-gradient(#fff7c2,#fffdf5);
 }
 
-.card {
-  background: white;
-  border-radius: 20px;
-  padding: 16px;
-  box-shadow: 0 6px 18px rgba(0,0,0,0.08);
+.card{
+  background:white;
+  border-radius:20px;
+  padding:16px;
+  box-shadow:0 6px 18px rgba(0,0,0,.08);
 }
 
-.btn {
-  background: #ffd84d;
-  padding: 8px 12px;
-  border-radius: 10px;
-  font-weight: bold;
-  cursor: pointer;
+.btn{
+  background:#ffd84d;
+  padding:6px 10px;
+  border-radius:10px;
+  font-weight:bold;
+  cursor:pointer;
 }
 
-.btn:hover { background: #ffcc00; }
-
-.tab {
-  padding: 6px 10px;
-  border-radius: 999px;
-  border: 1px solid #ddd;
-  cursor: pointer;
+.tab{
+  padding:6px 10px;
+  border-radius:999px;
+  border:1px solid #ddd;
+  cursor:pointer;
 }
 
-.tab.active {
-  background: #ffd84d;
-  font-weight: bold;
+.tab.active{background:#ffd84d;font-weight:bold;}
+
+textarea,input,select{
+  width:100%;
+  padding:8px;
+  border-radius:10px;
+  border:1px solid #ddd;
 }
 </style>
 </head>
 
 <body>
 
-<div class="max-w-5xl mx-auto p-4 space-y-4">
+<div class="max-w-6xl mx-auto p-4 space-y-4">
 
 <!-- HEADER -->
 <div class="card">
-  <h1 class="text-2xl font-black">⚡ 仙台皮卡丘旅行 App</h1>
-  <div>2026/05/21 - 2026/05/25</div>
+  <h1 class="text-2xl font-black">⚡ 2026初夏仙台散策</h1>
+  <p>Pokémon × 仙台旅行計畫</p>
+</div>
+
+<!-- MODE SWITCH -->
+<div class="flex gap-2">
+<button class="btn" onclick="mode='single';renderAll()">📅 分頁模式</button>
+<button class="btn" onclick="mode='all';renderAll()">📖 總覽模式</button>
 </div>
 
 <!-- TABS -->
@@ -60,48 +68,47 @@ body {
 
 <!-- ITINERARY -->
 <div class="card">
-  <h2 class="font-bold text-lg mb-2">📅 行程</h2>
+<h2 class="font-bold mb-2">📅 行程</h2>
 
-  <button class="btn mb-3" onclick="openFullRoute()">
-    🗺 一鍵整天路線導航
-  </button>
+<button class="btn mb-3" onclick="openFullRoute()">
+🗺 一鍵整天路線
+</button>
 
-  <div id="itineraryList" class="space-y-2"></div>
+<div id="itinerary" class="space-y-2"></div>
+</div>
+
+<!-- TODO -->
+<div class="card">
+<h2 class="font-bold">📝 待辦事項</h2>
+<input id="todoInput" placeholder="新增待辦">
+<button class="btn mt-2" onclick="addTodo()">新增</button>
+<div id="todoList"></div>
+</div>
+
+<!-- SHOPPING -->
+<div class="card">
+<h2 class="font-bold">🛍 購物清單</h2>
+<input id="shopInput" placeholder="新增購物">
+<button class="btn mt-2" onclick="addShop()">新增</button>
+<div id="shopList"></div>
 </div>
 
 <!-- NOTES -->
 <div class="card">
-  <h2 class="font-bold text-lg mb-2">📝 旅遊備註</h2>
-
-  <textarea id="noteBox"
-    class="w-full border p-2 rounded"
-    rows="4"
-    placeholder="寫下今天的旅遊心得..."></textarea>
-
-  <button class="btn mt-2" onclick="saveNote()">儲存備註</button>
-
-  <div id="savedNote" class="mt-3 text-gray-700"></div>
-</div>
-
-<!-- PHOTO -->
-<div class="card">
-  <h2 class="font-bold text-lg mb-2">📷 照片記錄</h2>
-
-  <input type="file" accept="image/*" onchange="uploadPhoto(event)" />
-
-  <div id="photoArea" class="grid grid-cols-2 gap-2 mt-3"></div>
+<h2 class="font-bold">📝 每日備註</h2>
+<textarea id="noteBox" rows="4"></textarea>
+<button class="btn mt-2" onclick="saveNote()">儲存</button>
 </div>
 
 <!-- EXPENSE -->
 <div class="card">
-  <h2 class="font-bold text-lg mb-2">💰 記帳</h2>
+<h2 class="font-bold">💰 記帳</h2>
 
-  <input id="name" placeholder="項目" class="border p-2 w-full mb-2"/>
-  <input id="amount" type="number" placeholder="金額" class="border p-2 w-full mb-2"/>
+<input id="expName" placeholder="項目">
+<input id="expAmt" type="number" placeholder="金額">
+<button class="btn mt-2" onclick="addExpense()">新增</button>
 
-  <button class="btn w-full" onclick="addExpense()">新增</button>
-
-  <div id="expenseList" class="mt-3 space-y-2"></div>
+<div id="expList" class="mt-2"></div>
 </div>
 
 </div>
@@ -109,200 +116,232 @@ body {
 <script>
 
 /* =========================
-   行程資料
+  行程（已更新你提供版本）
 ========================= */
 let itineraries = JSON.parse(localStorage.getItem("plan")) || {
+
 "2026/05/21":[
-  {name:"抵達仙台",lat:38.26,lng:140.88},
-  {name:"仙台站",lat:38.26,lng:140.88}
+{name:"仙台空港 Access 線",lat:38.26,lng:140.88},
+{name:"Almont Hotel Sendai",lat:38.26,lng:140.88},
+{name:"AER 展望台",lat:38.26,lng:140.88},
+{name:"伊達牛舌本店",lat:38.26,lng:140.88}
 ],
+
 "2026/05/22":[
-  {name:"仙台朝市",lat:38.26,lng:140.88},
-  {name:"瑞鳳殿",lat:38.25,lng:140.86}
+{name:"仙台朝市",lat:38.26,lng:140.88},
+{name:"地底の森博物館",lat:38.21,lng:140.78},
+{name:"梅の花",lat:38.26,lng:140.88},
+{name:"瑞鳳殿",lat:38.25,lng:140.86},
+{name:"寶可夢中心",lat:38.26,lng:140.88}
 ],
+
 "2026/05/23":[
-  {name:"金蛇水神社",lat:38.06,lng:140.85},
-  {name:"松島",lat:38.37,lng:141.06}
+{name:"金蛇水神社",lat:38.06,lng:140.85},
+{name:"松島",lat:38.37,lng:141.06}
 ],
+
 "2026/05/24":[
-  {name:"一ノ関",lat:38.93,lng:141.13},
-  {name:"猊鼻渓",lat:38.98,lng:141.29}
+{name:"一ノ關站",lat:38.93,lng:141.13},
+{name:"猊鼻渓",lat:38.98,lng:141.29}
 ],
+
 "2026/05/25":[
-  {name:"仙台購物",lat:38.26,lng:140.88},
-  {name:"機場",lat:38.14,lng:140.92}
+{name:"仙台朝市",lat:38.26,lng:140.88},
+{name:"S-PAL",lat:38.26,lng:140.88},
+{name:"仙台空港",lat:38.14,lng:140.92}
 ]
+
 };
 
-let currentDay = Object.keys(itineraries)[0];
+let currentDay=Object.keys(itineraries)[0];
+let mode="single";
 
 function savePlan(){
 localStorage.setItem("plan",JSON.stringify(itineraries));
 }
 
 /* =========================
-   Tabs
+ Tabs
 ========================= */
 function renderTabs(){
-const tabs=document.getElementById("tabs");
-tabs.innerHTML="";
+const t=document.getElementById("tabs");
+t.innerHTML="";
+
+if(mode==="all") return;
 
 Object.keys(itineraries).forEach(d=>{
-tabs.innerHTML+=`
-<div class="tab ${d===currentDay?'active':''}" onclick="switchDay('${d}')">
+t.innerHTML+=`
+<div class="tab ${d===currentDay?'active':''}"
+onclick="currentDay='${d}';renderAll()">
 ${d}
 </div>`;
 });
 }
 
-function switchDay(d){
-currentDay=d;
-renderAll();
-}
-
 /* =========================
-   行程
+ 行程
 ========================= */
 function renderItinerary(){
-const box=document.getElementById("itineraryList");
+
+const box=document.getElementById("itinerary");
 box.innerHTML="";
+
+if(mode==="all"){
+Object.keys(itineraries).forEach(day=>{
+box.innerHTML+=`<div class="font-bold mt-3">${day}</div>`;
+itineraries[day].forEach(p=>{
+box.innerHTML+=`<div class="card">${p.name}</div>`;
+});
+});
+return;
+}
 
 itineraries[currentDay].forEach((p,i)=>{
 box.innerHTML+=`
-<div class="card flex justify-between items-center" data-index="${i}">
+<div class="card flex justify-between">
 <div>${p.name}</div>
-
-<div class="flex gap-2">
 <button class="btn" onclick="openMap(${p.lat},${p.lng})">導航</button>
-</div>
 </div>`;
 });
 
 enableDrag();
 }
 
-/* Google Maps */
+/* =========================
+ Google Maps
+========================= */
 function openMap(lat,lng){
 window.open(
 `https://www.google.com/maps/dir/?api=1&destination=${lat},${lng}&travelmode=transit`,
 "_blank");
 }
 
-/* 一鍵整天路線 */
 function openFullRoute(){
-let points=itineraries[currentDay];
-if(points.length<2)return;
+let arr=itineraries[currentDay];
+let o=arr[0], d=arr[arr.length-1];
+let w=arr.slice(1,-1).map(p=>p.lat+","+p.lng).join("|");
 
-let origin=`${points[0].lat},${points[0].lng}`;
-let dest=`${points[points.length-1].lat},${points[points.length-1].lng}`;
-
-let waypoints=points.slice(1,-1)
-.map(p=>`${p.lat},${p.lng}`).join("|");
-
-let url=`https://www.google.com/maps/dir/?api=1&origin=${origin}&destination=${dest}&travelmode=transit&waypoints=${waypoints}`;
-
-window.open(url,"_blank");
+window.open(
+`https://www.google.com/maps/dir/?api=1&origin=${o.lat},${o.lng}&destination=${d.lat},${d.lng}&waypoints=${w}`,
+"_blank");
 }
 
-/* 拖拉 */
+/* =========================
+ drag
+========================= */
 function enableDrag(){
-new Sortable(document.getElementById("itineraryList"),{
+new Sortable(document.getElementById("itinerary"),{
 animation:150,
 onEnd:()=>{
-let arr=[];
-document.querySelectorAll("[data-index]").forEach(el=>{
-arr.push(itineraries[currentDay][el.dataset.index]);
+let newArr=[];
+document.querySelectorAll(".card").forEach((el,i)=>{
+if(itineraries[currentDay][i]){
+newArr.push(itineraries[currentDay][i]);
+}
 });
-itineraries[currentDay]=arr;
+itineraries[currentDay]=newArr;
 savePlan();
-renderItinerary();
 }
 });
 }
 
 /* =========================
-   備註
+ TODO
+========================= */
+let todos=JSON.parse(localStorage.getItem("todo"))||[];
+
+function addTodo(){
+let v=document.getElementById("todoInput").value;
+if(!v)return;
+todos.push(v);
+localStorage.setItem("todo",JSON.stringify(todos));
+renderTodo();
+}
+
+function renderTodo(){
+let box=document.getElementById("todoList");
+box.innerHTML="";
+todos.forEach((t,i)=>{
+box.innerHTML+=`<div>${t}<button onclick="delTodo(${i})">❌</button></div>`;
+});
+}
+
+function delTodo(i){
+todos.splice(i,1);
+localStorage.setItem("todo",JSON.stringify(todos));
+renderTodo();
+}
+
+/* =========================
+ SHOP
+========================= */
+let shops=JSON.parse(localStorage.getItem("shop"))||[];
+
+function addShop(){
+let v=document.getElementById("shopInput").value;
+if(!v)return;
+shops.push(v);
+localStorage.setItem("shop",JSON.stringify(shops));
+renderShop();
+}
+
+function renderShop(){
+let box=document.getElementById("shopList");
+box.innerHTML="";
+shops.forEach((s,i)=>{
+box.innerHTML+=`<div>${s}<button onclick="delShop(${i})">❌</button></div>`;
+});
+}
+
+function delShop(i){
+shops.splice(i,1);
+localStorage.setItem("shop",JSON.stringify(shops));
+renderShop();
+}
+
+/* =========================
+ NOTE
 ========================= */
 function saveNote(){
 localStorage.setItem("note-"+currentDay,
 document.getElementById("noteBox").value);
-
-loadNote();
-}
-
-function loadNote(){
-document.getElementById("noteBox").value=
-localStorage.getItem("note-"+currentDay)||"";
-
-document.getElementById("savedNote").innerText=
-localStorage.getItem("note-"+currentDay)||"";
 }
 
 /* =========================
-   照片
+ EXPENSE
 ========================= */
-function uploadPhoto(e){
-let file=e.target.files[0];
-let reader=new FileReader();
-
-reader.onload=function(){
-let photos=JSON.parse(localStorage.getItem("photo-"+currentDay)||"[]");
-photos.push(reader.result);
-localStorage.setItem("photo-"+currentDay,JSON.stringify(photos));
-renderPhotos();
-};
-
-reader.readAsDataURL(file);
-}
-
-function renderPhotos(){
-let photos=JSON.parse(localStorage.getItem("photo-"+currentDay)||"[]");
-let box=document.getElementById("photoArea");
-box.innerHTML="";
-
-photos.forEach(p=>{
-box.innerHTML+=`<img src="${p}" class="rounded-xl"/>`;
-});
-}
-
-/* =========================
-   記帳
-========================= */
-let expenses=[];
+let exp=[];
 
 function addExpense(){
-let n=document.getElementById("name").value;
-let a=parseInt(document.getElementById("amount").value);
-
+let n=document.getElementById("expName").value;
+let a=parseInt(document.getElementById("expAmt").value);
 if(!n||!a)return;
-
-expenses.push({n,a});
-
-renderExpense();
+exp.push({n,a});
+renderExp();
 }
 
-function renderExpense(){
-let box=document.getElementById("expenseList");
+function renderExp(){
+let box=document.getElementById("expList");
 box.innerHTML="";
-let total=0;
+let t=0;
 
-expenses.forEach(e=>{
-total+=e.a;
-box.innerHTML+=`<div>${e.n} - ¥${e.a}</div>`;
+exp.forEach(e=>{
+t+=e.a;
+box.innerHTML+=`<div>${e.n} ¥${e.a}</div>`;
 });
 
-box.innerHTML+=`<div class="font-bold">總計 ¥${total}</div>`;
+box.innerHTML+=`<div class="font-bold">總計 ¥${t}</div>`;
 }
 
 /* =========================
-   init
+ init
 ========================= */
 function renderAll(){
 renderTabs();
 renderItinerary();
-loadNote();
-renderPhotos();
-renderExpense();
+renderTodo();
+renderShop();
+renderExp();
 }
 
 renderAll();
