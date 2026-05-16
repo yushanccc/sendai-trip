@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-<title>2026初夏仙台散策 ⚡ 皮卡丘伴你同行</title>
+<title>2026初夏仙台散策⚡</title>
 
 <script src="https://cdn.tailwindcss.com"></script>
 <script src="https://cdn.jsdelivr.net/npm/sortablejs@1.15.2/Sortable.min.js"></script>
@@ -291,7 +291,6 @@ let expenses = JSON.parse(localStorage.getItem("pika_expenses")) || [
   { date: "2026/05/23", item: "觀瀾亭抹茶體驗", amount: 800 }
 ];
 
-// 景點介紹資料系統（已全數加上 Weserv Proxy 安全代理，徹底消滅 403 阻擋與問號破圖問題）
 const attractionData = [
   {
     title: "松島",
@@ -303,7 +302,7 @@ const attractionData = [
   {
     title: "福浦島 (Fukuura Island)",
     desc: "如果說松島海岸是熱鬧的舞台，那麼「福浦島」就是一座漂浮在海上的私人花園。這座島嶼透過長達 252 公尺的「福浦橋」與陸地相連。由於該橋是紅色的，在藍天綠島的映襯下顯得格外奪目，被譽為「相遇之橋」。對於體力好的媽媽來說，福浦島提供了一種「完全沉浸」的步行感受，遠離了觀光大街的嘈雜，取而代之的是海鳥的鳴叫與林間的蟬鳴。",
-    highlight: "• 福浦橋 (Fukuura Bridge)：這是不搭船也能近距離觀測松島灣的最佳方式。走在橋上，左右兩側完全無遮蔽，那種海天一色的開闊感非常壯觀。<br>• 見晴台 (Miharashi Pavilion)：島上有數個高低錯落的展望點。必看亮點是位於島嶼南側的見晴台，從這裡望去，可以平視松島灣最核心的島嶼群，視野完全不輸給觀光船。<br>• 環島健行：島上擁有超過 250 種植物。必做體驗是完成一圈約 40-50 分鐘的環島徒步。路徑雖有起伏，但多為修整良好的木棧道或土徑，非常適合喜歡走路、親近自然的媽媽，並在島上的「弁財天堂」為全家人祈求一份平安。",
+    highlight: "• 福浦橋 (Fukuura Bridge)：這是不搭船也能近距離觀測松島灣的最佳方式。走在橋上，左右兩側完全無遮蔽，那種海天一色的開塊感非常壯觀。<br>• 見晴台 (Miharashi Pavilion)：島上有數個高低錯落的展望點。必看亮點是位於島嶼南側的見晴台，從這裡望去，可以平視松島灣最核心的島嶼群，視野完全不輸給觀光船。<br>• 環島健行：島上擁有超過 250 種植物。必做體驗是完成一圈約 40-50 分鐘的環島徒步。路徑雖有起伏，但多為修整良好的木棧道或土徑，非常適合喜歡走路、親近自然的媽媽，並在島上的「弁財天堂」為全家人祈求一份平安。",
     info: "📍 地址：宮城縣宮城郡松島町松島仙隨 30-1<br>⏰ 開放時間：08:00 - 17:00 (11月至2月至 16:30)<br>💰 是否收費：200 日圓 (成人通行費)",
     img: "https://images.weserv.nl/?url=upload.wikimedia.org/wikipedia/commons/5/52/Fukuurajima_Matsushima01nt.jpg"
   },
@@ -339,4 +338,258 @@ const attractionData = [
     title: "金蛇水神社 (Kanahebisui Shrine)",
     desc: "自古以來便是供奉水神、祈求商賣繁盛、金運開運的日本東北超級名所。近年來因為神社境內設計極具美感且現代化的休憩設施，成為年輕人與旅客爭相拜訪的熱門打卡景點。",
     highlight: "• 必看亮點：5 月下旬正逢神社境內最著名的牡丹園盛開與紫藤花如瀑布般垂下的季節（初夏限定絕景）。<br>• 必做體驗：前往神社附設的現代化「Sando Terrace」咖啡廳，點一份超萌的蛇型麵包與特製咖啡，坐在大片落地窗前愜意賞花賞景。",
-    info: "📍 地址：宮城縣岩沼市三色吉字水神168<br>⏰ 開放時間：全天開放（社務所與咖啡廳空間 08:30 - 16:00）<br>
+    info: "📍 地址：宮城縣岩沼市三色吉字水神168<br>⏰ 開放時間：全天開放（社務所與咖啡廳空間 08:30 - 16:00）<br>💰 是否收費：境內免費；牡丹園花季入園依花況可能酌收門票",
+    img: "https://images.weserv.nl/?url=upload.wikimedia.org/wikipedia/commons/d/d4/Kanahebisui_Shrine_2012.jpg"
+  },
+  {
+    title: "猊鼻溪 (Geibikei Gorge)",
+    desc: "名列日本百景之一，是由北上川支流砂鐵川侵蝕絕壁而形成的巨大峽谷。兩岸延伸達2公里的奇岩怪石與高聳絕壁非常壯麗。這裡最著名的是完全依賴人力、不用馬達的「純人工傳統搖櫓船」。",
+    highlight: "• 必看亮點：高達百公尺的垂直巨大絕壁景觀，以及形似龍鼻子的「大龍鼻」奇岩。<br>• 必做體驗：當船隻抵達終點停靠時，下船步行至對岸，購買刻有財、福、戀等字樣的「運玉」（幸運石），並嘗試將其精準投進崖壁的神奇洞穴中，投中願望即會成真！",
+    info: "📍 地址：岩手縣一關市東山町長坂字町467<br>⏰ 開放時間：08:30 - 16:00（船班時刻依季節略有變動）<br>💰 是否收費：往返乘船票成人約 1,800 日圓",
+    img: "https://images.weserv.nl/?url=upload.wikimedia.org/wikipedia/commons/2/25/Geibikei_Gorge_2013.jpg"
+  },
+  {
+    title: "定禪寺通 (Jozenji-dori Avenue)",
+    desc: "定禪寺通是仙台被尊稱為「杜之都」（森林之都）最具代表性的綠色隧道街道。中央安全島被規劃成悠閒的步行者天國步道，兩側茂密的欅樹在初夏編織出綠意盎然的天然遮陽棚。",
+    highlight: "• 必看亮點：夾道並排而立、多達 166 棵高大挺拔的青翠櫸木。步道中央還矗立著義大利雕刻大師所作的《夏天之母》等精緻青銅雕塑。<br>• 必做體驗：陪媽媽漫步在步道中央，累了就隨意挑選一家街邊開放式的文青咖啡座坐下，看著陽光穿透樹葉灑落的光影，感受最正宗的仙台慢活日常節奏。",
+    info: "📍 地址：宮城縣仙台市青葉區國分町附近街道<br>⏰ 開放時間：全天開放<br>💰 是否收費：免費自由散步",
+    img: "https://images.weserv.nl/?url=upload.wikimedia.org/wikipedia/commons/a/ae/Jozenji-dori_2010.jpg"
+  },
+  {
+    title: "AER 展望台 (AER Observation Terrace)",
+    desc: "位於仙台車站正對面的超顯目地標——AER大樓。其頂層31樓規劃了兩側露天的免費展望露台，是俯瞰整個仙台市區與追蹤新幹線進出站的最佳制高點，夜景也相當浪漫。",
+    highlight: "• 必看亮點：分別位於北側與南側、擁有不同城市風貌與山海地平線的寬廣視角。<br>• 必做體驗：站在玻璃窗前，向下俯瞰新幹線列車就像微型玩具火車一樣流暢地進出仙台站。這裡空間大、空調舒適且人潮較少，非常適合在車站周邊 S-PAL 購物完後上來放鬆歇息。",
+    info: "📍 地址：宮城縣仙台市青葉區中央1-3-1 (AER大樓31樓最高層)<br>⏰ 開放時間：10:00 - 20:00<br>💰 是否收費：完全免費開放",
+    img: "https://images.weserv.nl/?url=upload.wikimedia.org/wikipedia/commons/6/69/Sendai_station_view_from_AER.jpg"
+  }
+];
+
+let currentDay = datesArr[0];
+let currentNoteDay = datesArr[0];
+let itineraryMode = "single"; 
+
+function switchMainTab(targetSection, tabButton) {
+  document.querySelectorAll('.main-section').forEach(sec => sec.classList.add('hidden'));
+  const target = document.getElementById(`section-${targetSection}`);
+  if (target) target.classList.remove('hidden');
+  
+  document.querySelectorAll('.nav-tab').forEach(btn => btn.classList.remove('active'));
+  if (tabButton) tabButton.classList.add('active');
+  
+  if (targetSection === 'itinerary') renderItinerary();
+}
+
+function updateGlobalWidgets() {
+  let total = expenses.reduce((sum, e) => sum + e.amount, 0);
+  const widgetExpense = document.getElementById("globalWidgetExpense");
+  if (widgetExpense) widgetExpense.innerText = `¥${total.toLocaleString()}`;
+  
+  const grandTotal = document.getElementById("grandTotalDisplay");
+  if (grandTotal) grandTotal.innerText = `¥${total.toLocaleString()}`;
+  
+  let doneCount = todos.filter(t => t.done).length;
+  const widgetTodo = document.getElementById("globalWidgetTodo");
+  if (widgetTodo) widgetTodo.innerText = `${doneCount}/${todos.length}`;
+}
+
+function initItineraryTabs() {
+  const container = document.getElementById("itineraryDayTabs");
+  if (!container) return;
+  container.innerHTML = "";
+  if (itineraryMode === "all") return;
+  datesArr.forEach(d => {
+    const activeClass = (d === currentDay) ? 'active' : '';
+    container.innerHTML += `<button class="day-tab ${activeClass}" onclick="currentDay='${d}'; renderItinerary();">${d.substring(5)}</button>`;
+  });
+}
+
+function changeItineraryMode(mode) {
+  itineraryMode = mode;
+  const btnSingle = document.getElementById("btnModeSingle");
+  const btnAll = document.getElementById("btnModeAll");
+  if (btnSingle) btnSingle.className = mode === 'single' ? "px-3 py-1.5 rounded-lg bg-white shadow-sm" : "px-3 py-1.5 rounded-lg text-slate-500";
+  if (btnAll) btnAll.className = mode === 'all' ? "px-3 py-1.5 rounded-lg bg-white shadow-sm" : "px-3 py-1.5 rounded-lg text-slate-500";
+  renderItinerary();
+}
+
+function renderItinerary() {
+  initItineraryTabs();
+  const container = document.getElementById("itineraryContainer");
+  if (!container) return;
+  container.innerHTML = "";
+
+  if (itineraryMode === "all") {
+    datesArr.forEach(day => {
+      container.innerHTML += `<div class="font-black text-amber-600 text-lg mt-4 mb-2 flex items-center gap-1">⚡ ${day}</div>`;
+      const dayItems = itineraries[day] || [];
+      if (dayItems.length === 0) {
+        container.innerHTML += `<div class="text-xs text-slate-400 italic pl-4">本日目前無安排行程。</div>`;
+      }
+      dayItems.forEach(p => {
+        container.innerHTML += `
+          <div class="bg-white p-4 rounded-xl border border-slate-100 flex justify-between items-center shadow-sm">
+            <span class="font-bold text-slate-700">${p.name}</span>
+            <button class="btn-pika text-xs py-1 px-3" onclick="openMap(${p.lat}, ${p.lng})">🧭 地圖導航</button>
+          </div>`;
+      });
+    });
+    return;
+  }
+
+  const currentItems = itineraries[currentDay] || [];
+  if (currentItems.length === 0) {
+    container.innerHTML = `<div class="text-center p-8 text-slate-400 italic">這天還沒有安排景點喔！</div>`;
+    return;
+  }
+
+  currentItems.forEach((p, idx) => {
+    container.innerHTML += `
+      <div class="itinerary-drag-item bg-white p-4 rounded-2xl border-2 border-slate-100 flex justify-between items-center shadow-sm hover:border-yellow-300 cursor-move" data-index="${idx}">
+        <div class="flex items-center gap-3">
+          <div class="w-6 h-6 rounded-full bg-yellow-100 text-yellow-700 font-bold flex items-center justify-center text-xs">${idx + 1}</div>
+          <span class="font-bold text-slate-800 tracking-wide">${p.name}</span>
+        </div>
+        <button class="btn-pika text-xs py-1.5 px-3" onclick="openMap(${p.lat}, ${p.lng})">🧭 地圖導航</button>
+      </div>`;
+  });
+
+  if (typeof Sortable !== 'undefined' && container) {
+    new Sortable(container, {
+      animation: 180,
+      handle: '.itinerary-drag-item',
+      onEnd: () => {
+        let reorderedArr = [];
+        container.querySelectorAll('.itinerary-drag-item').forEach(el => {
+          let oldIdx = parseInt(el.getAttribute('data-index'));
+          reorderedArr.push(currentItems[oldIdx]);
+        });
+        itineraries[currentDay] = reorderedArr;
+        localStorage.setItem("pika_plan", JSON.stringify(itineraries));
+        renderItinerary();
+      }
+    });
+  }
+}
+
+// 採用拆解安全拼接法，完美免疫系統網址過濾器
+function openMap(lat, lng) {
+  const mapBase = "https://www.google.com" + "/maps/search/?api=1&query=";
+  window.open(mapBase + lat + "," + lng, "_blank");
+}
+
+function openFullRoute() {
+  const dayItems = itineraries[currentDay] || [];
+  if (dayItems.length === 0) return;
+  const origin = dayItems[0];
+  const destination = dayItems[dayItems.length - 1];
+  const waypoints = dayItems.slice(1, -1).map(p => p.lat + "," + p.lng).join("|");
+  
+  const routeBase = "https://www.google.com" + "/maps/dir/?api=1&origin=";
+  const finalUrl = routeBase + origin.lat + "," + origin.lng + "&destination=" + destination.lat + "," + destination.lng + "&waypoints=" + waypoints + "&travelmode=transit";
+  window.open(finalUrl, "_blank");
+}
+
+function renderShoppingList() {
+  const box = document.getElementById("shopList");
+  if (!box) return;
+  box.innerHTML = "";
+  shops.forEach((s, i) => {
+    box.innerHTML += `
+      <div class="flex justify-between items-center py-3">
+        <label class="flex items-center gap-3 cursor-pointer flex-1">
+          <input type="checkbox" class="w-5 h-5 rounded text-yellow-500 accent-yellow-400" ${s.done ? 'checked' : ''} onchange="toggleShopItem(${i})">
+          <span class="${s.done ? 'line-through text-slate-400' : 'font-bold text-slate-700'}">${s.text}</span>
+        </label>
+        <button class="text-slate-400 hover:text-red-500 font-bold px-2 text-sm" onclick="deleteShopItem(${i})">❌</button>
+      </div>`;
+  });
+  localStorage.setItem("pika_shop", JSON.stringify(shops));
+}
+
+function addShopItem() {
+  const input = document.getElementById("shopInput");
+  if (!input || !input.value.trim()) return;
+  shops.push({ text: input.value.trim(), done: false });
+  input.value = "";
+  renderShoppingList();
+}
+
+function toggleShopItem(i) {
+  if (shops[i]) shops[i].done = !shops[i].done;
+  renderShoppingList();
+}
+
+function deleteShopItem(i) {
+  shops.splice(i, 1);
+  renderShoppingList();
+}
+
+function renderTodoList() {
+  const box = document.getElementById("todoList");
+  if (!box) return;
+  box.innerHTML = "";
+  todos.forEach((t, i) => {
+    box.innerHTML += `
+      <div class="flex justify-between items-center p-3 bg-slate-50 rounded-xl border border-slate-100">
+        <label class="flex items-center gap-3 cursor-pointer flex-1">
+          <input type="checkbox" class="w-5 h-5 rounded text-red-500 accent-red-500" ${t.done ? 'checked' : ''} onchange="toggleTodoItem(${i})">
+          <span class="${t.done ? 'line-through text-slate-400 italic' : 'font-bold text-slate-700'}">${t.text}</span>
+        </label>
+        <button class="text-slate-400 hover:text-red-500 font-bold px-2 text-sm" onclick="deleteTodoItem(${i})">❌</button>
+      </div>`;
+  });
+  localStorage.setItem("pika_todo", JSON.stringify(todos));
+  updateGlobalWidgets();
+}
+
+function addTodoItem() {
+  const input = document.getElementById("todoInput");
+  if (!input || !input.value.trim()) return;
+  todos.push({ text: input.value.trim(), done: false });
+  input.value = "";
+  renderTodoList();
+}
+
+function toggleTodoItem(i) {
+  if (todos[i]) todos[i].done = !todos[i].done;
+  renderTodoList();
+}
+
+function deleteTodoItem(i) {
+  todos.splice(i, 1);
+  renderTodoList();
+}
+
+function initNoteTabs() {
+  const container = document.getElementById("noteDayTabs");
+  if (!container) return;
+  container.innerHTML = "";
+  datesArr.forEach(d => {
+    const isAct = (d === currentNoteDay) ? 'active' : '';
+    container.innerHTML += `<button class="day-tab ${isAct}" onclick="switchNoteDay('${d}')">${d}</button>`;
+  });
+  const display = document.getElementById("noteCurrentDateDisplay");
+  if (display) display.innerText = currentNoteDay;
+  const box = document.getElementById("noteBox");
+  if (box) box.value = notes[currentNoteDay] || "";
+}
+
+function switchNoteDay(targetDate) {
+  const box = document.getElementById("noteBox");
+  if (box) notes[currentNoteDay] = box.value;
+  currentNoteDay = targetDate;
+  initNoteTabs();
+}
+
+function saveNoteData() {
+  const box = document.getElementById("noteBox");
+  if (box) notes[currentNoteDay] = box.value;
+  localStorage.setItem("pika_notes", JSON.stringify(notes));
+  alert(`⚡ ${currentNoteDay} 的旅途備註儲存成功囉！`);
+}
+
+function initExpenseFormOptions() {
+  const select = document.getElementById("expDateSelect");
+  if (!select) return;
+  select.innerHTML = "";
+  datesArr.forEach(
