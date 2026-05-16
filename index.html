@@ -3,475 +3,513 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-<title>2026初夏仙台散策 ⚡</title>
+<title>2026初夏仙台散策 ⚡ 皮卡丘伴你同行</title>
 
 <!-- Tailwind CSS -->
 <script src="https://cdn.tailwindcss.com"></script>
-<!-- Sortable.js for Drag and Drop -->
+<!-- SortableJS -->
 <script src="https://cdn.jsdelivr.net/npm/sortablejs@1.15.2/Sortable.min.js"></script>
 
-<!-- Google Fonts: 圓潤活潑的字體 -->
-<link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@300..700&family=Noto+Sans+TC:wght@300..900&display=swap" rel="stylesheet">
+<!-- Google Fonts: 引入可愛活潑的微圓體感與趣味感字型 -->
+<link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@300..700&family=Noto+Sans+TC:wght@400;700;900&display=swap" rel="stylesheet">
 
 <style>
   body {
-    font-family: 'Fredoka', 'Noto Sans TC', sans-serif;
-    background: linear-gradient(135deg, #fff9db 0%, #fffde7 100%);
+    font-family: 'Fredoka', 'Noto Sans TC', system-ui, sans-serif;
+    background: linear-gradient(135deg, #fffde6 0%, #fffbf0 100%);
     min-height: 100vh;
   }
 
-  .pikachu-yellow { background-color: #FFDE00; }
-  .pikachu-dark { background-color: #3B4CCA; }
-  .pikachu-red { background-color: #FF0000; }
-
+  .pikachu-yellow { background-color: #FDD835; }
+  .pikachu-red { background-color: #E53935; }
+  
   .card {
-    background: rgba(255, 255, 255, 0.9);
+    background: white;
     border-radius: 24px;
     padding: 20px;
-    box-shadow: 0 8px 24px rgba(218, 165, 32, 0.15);
-    border: 3px solid #FFDE00;
+    box-shadow: 0 8px 24px rgba(253, 216, 53, 0.12);
+    border: 2px solid #fff9c4;
+    transition: transform 0.2s ease;
   }
 
+  /* 內層分頁與按鈕樣式優化 */
   .btn-pika {
-    background: #FFDE00;
+    background: #FDD835;
     color: #333;
+    font-weight: 700;
     padding: 8px 16px;
-    border-radius: 16px;
-    font-weight: 8xl;
-    font-weight: bold;
+    border-radius: 14px;
     transition: all 0.2s ease;
-    box-shadow: 0 4px 0 #D4B200;
-    border: 2px solid #333;
-  }
-  .btn-pika:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 6px 0 #D4B200;
+    box-shadow: 0 4px 0 #D4AF37;
   }
   .btn-pika:active {
-    transform: translateY(2px);
-    box-shadow: 0 2px 0 #D4B200;
+    transform: translateY(3px);
+    box-shadow: 0 1px 0 #D4AF37;
   }
 
-  .main-tab {
-    padding: 10px 20px;
-    border-radius: 20px;
-    border: 2px solid #333;
-    background: white;
+  .nav-tab {
+    padding: 10px 18px;
+    border-radius: 16px;
     font-weight: bold;
     cursor: pointer;
     transition: all 0.2s;
+    background: #f5f5f5;
+    border: 2px solid transparent;
   }
-  .main-tab.active {
-    background: #FFDE00;
-    box-shadow: 0 4px 0 #333;
+  .nav-tab.active {
+    background: #FDD835;
+    border-color: #333;
+    box-shadow: 2px 2px 0 #333;
   }
 
   .day-tab {
-    padding: 6px 14px;
-    border-radius: 12px;
-    border: 2px solid #ddd;
-    background: white;
+    padding: 6px 12px;
+    border-radius: 999px;
+    border: 1px solid #ddd;
     cursor: pointer;
-    font-weight: 600;
+    font-size: 0.9rem;
   }
   .day-tab.active {
-    background: #3B4CCA;
+    background: #E53935;
     color: white;
-    border-color: #3B4CCA;
+    font-weight: bold;
+    border-color: #E53935;
   }
 
-  textarea, input, select {
-    width: 100%;
-    padding: 10px 14px;
-    border-radius: 14px;
-    border: 2px solid #FFDE00;
-    background: white;
-    outline: none;
-  }
-  textarea:focus, input:focus {
-    border-color: #3B4CCA;
-  }
+  /* 精緻化捲軸 */
+  ::-webkit-scrollbar { width: 8px; }
+  ::-webkit-scrollbar-track { background: #fffbf0; }
+  ::-webkit-scrollbar-thumb { background: #FDD835; border-radius: 4px; }
 </style>
 </head>
 
-<body class="pb-12">
+<body class="text-slate-800 pb-12">
 
-<div class="max-w-5xl mx-auto p-4 space-y-6">
+<div class="max-w-6xl mx-auto p-4 space-y-6">
 
-  <!-- HEADER BRANDING -->
-  <div class="card relative overflow-hidden bg-white flex flex-col md:flex-row justify-between items-center gap-4">
-    <div class="absolute -right-8 -top-8 text-yellow-200 text-9xl font-black select-none pointer-events-none opacity-40">⚡</div>
+  <!-- HEADER HEADER -->
+  <div class="card relative overflow-hidden bg-amber-50 border-4 border-yellow-400 flex flex-col md:flex-row justify-between items-center p-6 gap-4">
+    <!-- 皮卡丘耳朵意象裝飾 -->
+    <div class="absolute top-0 left-0 w-8 h-8 bg-black transform -translate-x-4 -translate-y-4 rotate-45"></div>
+    <div class="absolute top-0 right-0 w-8 h-8 bg-black transform translate-x-4 -translate-y-4 rotate-45"></div>
+    
     <div class="flex items-center gap-4">
-      <div class="w-16 h-16 pikachu-yellow rounded-full border-4 border-black flex items-center justify-center text-3xl shadow-md">
+      <div class="w-16 h-16 pikachu-yellow rounded-full border-4 border-slate-800 flex items-center justify-center text-3xl shadow-inner relative">
         ⚡
+        <div class="absolute -bottom-1 -left-1 w-3 h-3 pikachu-red rounded-full"></div>
+        <div class="absolute -bottom-1 -right-1 w-3 h-3 pikachu-red rounded-full"></div>
       </div>
       <div>
-        <h1 class="text-3xl font-black text-slate-800 tracking-wide flex items-center gap-2">
-          2026初夏仙台散策 <span class="text-red-500">🔴</span>
+        <h1 class="text-2xl md:text-3xl font-black tracking-wider flex items-center gap-2">
+          2026初夏仙台散策 <span class="text-yellow-500 animate-pulse">⚡</span>
         </h1>
-        <p class="text-sm font-medium text-slate-500 tracking-widest">Pokémon × 仙台旅行計畫 • 歡迎你 33</p>
+        <p class="text-sm font-bold text-slate-500">Pokémon × 仙台旅行完美計畫看板</p>
       </div>
     </div>
-    <!-- PIKACHU ICON DECORATION -->
-    <div class="flex gap-1 bg-amber-50 px-4 py-2 rounded-full border border-amber-200">
-      <span class="animate-bounce">⚡</span>
-      <span class="font-bold text-amber-800 text-sm">皮卡皮卡！出發囉！</span>
-      <span class="animate-bounce">⚡</span>
+    
+    <!-- 全球總計看板小工具 -->
+    <div class="flex gap-4 bg-white px-4 py-2 rounded-2xl border-2 border-yellow-200 text-center shadow-sm">
+      <div>
+        <p class="text-xs text-slate-400 font-bold">預算總計</p>
+        <p class="text-lg font-black text-amber-600" id="globalWidgetExpense">¥0</p>
+      </div>
+      <div class="border-l border-slate-200"></div>
+      <div>
+        <p class="text-xs text-slate-400 font-bold">待辦進度</p>
+        <p class="text-lg font-black text-slate-700" id="globalWidgetTodo">0/0</p>
+      </div>
     </div>
   </div>
 
-  <!-- MAIN NAVIGATION TABS -->
+  <!-- MAIN NAVIGATION TABS (需求2: 大分頁結構) -->
   <div class="flex gap-2 overflow-x-auto pb-2 -mx-4 px-4 md:mx-0 md:px-0 scrollbar-none">
-    <button class="main-tab active" data-target="tab-itinerary" onclick="switchMainTab('tab-itinerary')">📅 行程漫步</button>
-    <button class="main-tab" data-target="tab-todo" onclick="switchMainTab('tab-todo')">📝 待辦事項</button>
-    <button class="main-tab" data-target="tab-shopping" onclick="switchMainTab('tab-shopping')">🛍 購物清單</button>
-    <button class="main-tab" data-target="tab-notes" onclick="switchMainTab('tab-notes')">✍ 每日備註</button>
-    <button class="main-tab" data-target="tab-expense" onclick="switchMainTab('tab-expense')">💰 記帳大師</button>
-    <button class="main-tab" data-target="tab-spots" onclick="switchMainTab('tab-spots')">🗺 景點指南</button>
+    <button class="nav-tab active" onclick="switchMainTab('itinerary', this)">🗺️ 每日行程</button>
+    <button class="nav-tab" onclick="switchMainTab('shopping', this)">🛍️ 購物清單</button>
+    <button class="nav-tab" onclick="switchMainTab('todo', this)">📝 待辦事項</button>
+    <button class="nav-tab" onclick="switchMainTab('notes', this)">📓 每日備註</button>
+    <button class="nav-tab" onclick="switchMainTab('expense', this)">💰 記帳管理</button>
+    <button class="nav-tab" onclick="switchMainTab('attractions', this)">🌟 景點介紹</button>
   </div>
 
-  <!-- CONTAINER FOR SECTIONS -->
-  <div class="space-y-6">
+  <!-- ==================== TAB 1: 行程 ==================== -->
+  <div id="section-itinerary" class="main-section space-y-4">
+    <div class="card">
+      <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 mb-4">
+        <div id="itineraryDayTabs" class="flex gap-2 flex-wrap"></div>
+        <div class="flex gap-2 bg-slate-100 p-1 rounded-xl text-xs font-bold">
+          <button id="btnModeSingle" class="px-3 py-1.5 rounded-lg bg-white shadow-sm" onclick="changeItineraryMode('single')">📅 分頁模式</button>
+          <button id="btnModeAll" class="px-3 py-1.5 rounded-lg text-slate-500" onclick="changeItineraryMode('all')">📖 總覽模式</button>
+        </div>
+      </div>
+      
+      <div class="bg-amber-50/50 p-3 rounded-2xl flex items-center justify-between mb-4 border border-dashed border-amber-300">
+        <span class="text-xs font-bold text-amber-800">💡 提示：行程卡片可以上下拖曳調整順序唷！</span>
+        <button class="btn-pika text-xs py-1 px-3" onclick="openFullRoute()">🗺 一鍵導航整天路線</button>
+      </div>
 
-    <!-- SECTION 1: ITINERARY -->
-    <div id="tab-itinerary" class="main-section space-y-4">
-      <div class="card">
-        <div class="flex flex-col md:flex-row justify-between items-start md:items-center gap-4 mb-4">
-          <div>
-            <h2 class="text-xl font-black flex items-center gap-2 text-slate-800">
-              <span>📅</span> 每日路線切換
-            </h2>
-            <div class="flex gap-2 flex-wrap mt-3" id="itinerary-date-tabs"></div>
-          </div>
+      <div id="itineraryContainer" class="space-y-3"></div>
+    </div>
+  </div>
+
+  <!-- ==================== TAB 2: 購物清單 ==================== -->
+  <div id="section-shopping" class="main-section space-y-4 hidden">
+    <div class="card">
+      <h2 class="text-xl font-black mb-4 flex items-center gap-2">🛍️ 我的敲可愛採購清單</h2>
+      <div class="flex gap-2 mb-4">
+        <input id="shopInput" type="text" class="form-input flex-1 border border-slate-300 rounded-xl px-4" placeholder="填入想買的限定商品或伴手禮...">
+        <button class="btn-pika" onclick="addShopItem()">新增項目</button>
+      </div>
+      <div id="shopList" class="divide-y divide-slate-100 max-h-[500px] overflow-y-auto pr-2"></div>
+    </div>
+  </div>
+
+  <!-- ==================== TAB 3: 待辦事項 ==================== -->
+  <div id="section-todo" class="main-section space-y-4 hidden">
+    <div class="card">
+      <h2 class="text-xl font-black mb-4 flex items-center gap-2">📝 出發前/旅途中待辦事項</h2>
+      <div class="flex gap-2 mb-4">
+        <input id="todoInput" type="text" class="form-input flex-1 border border-slate-300 rounded-xl px-4" placeholder="例如：填寫 Visit Japan Web、護照確認...">
+        <button class="btn-pika" onclick="addTodoItem()">確認新增</button>
+      </div>
+      <div id="todoList" class="space-y-2 max-h-[500px] overflow-y-auto pr-2"></div>
+    </div>
+  </div>
+
+  <!-- ==================== TAB 4: 每日備註 (需求2: 每日不同按鈕切換) ==================== -->
+  <div id="section-notes" class="main-section space-y-4 hidden">
+    <div class="card">
+      <h2 class="text-xl font-black mb-2 flex items-center gap-2">📓 每日旅途備註記憶</h2>
+      <p class="text-xs text-slate-400 mb-4">點擊下方日期按鈕，可以記錄並儲存該日特別需要注意的Memo（如訂位代號、搭車月台）。</p>
+      
+      <div id="noteDayTabs" class="flex gap-2 flex-wrap mb-4"></div>
+      
+      <div class="bg-yellow-50 p-4 rounded-2xl border border-yellow-200">
+        <div class="font-bold text-sm mb-2 text-amber-800 flex items-center gap-1">
+          <span>⚡ 正在編輯：</span><span id="noteCurrentDateDisplay" class="underline"></span>
+        </div>
+        <textarea id="noteBox" rows="6" class="w-100 border border-slate-300 rounded-xl p-3 focus:outline-yellow-400 bg-white" placeholder="在此輸入這天的專屬備註..."></textarea>
+        <button class="btn-pika mt-3 w-full sm:w-auto" onclick="saveNoteData()">💾 儲存今日備註</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ==================== TAB 5: 記帳管理 (需求2: 區分每日加總與五日總計) ==================== -->
+  <div id="section-expense" class="main-section space-y-4 hidden">
+    <div class="card">
+      <h2 class="text-xl font-black mb-4 flex items-center gap-2">💰 旅程流水帳記帳簿</h2>
+      
+      <!-- 記帳輸入表單 -->
+      <div class="grid grid-cols-1 sm:grid-cols-3 gap-3 bg-slate-50 p-4 rounded-2xl mb-6 border border-slate-100">
+        <div>
+          <label class="block text-xs font-bold mb-1 text-slate-500">選擇消費日期</label>
+          <select id="expDateSelect" class="border border-slate-300 rounded-xl p-2 bg-white w-full"></select>
+        </div>
+        <div>
+          <label class="block text-xs font-bold mb-1 text-slate-500">品項名稱</label>
+          <input id="expNameInput" type="text" class="border border-slate-300 rounded-xl p-2 bg-white w-full" placeholder="如：牛舌定食">
+        </div>
+        <div>
+          <label class="block text-xs font-bold mb-1 text-slate-500">金額 (日圓 ¥)</label>
           <div class="flex gap-2">
-            <button class="btn-pika bg-white text-xs" onclick="setItineraryMode('single')" id="btn-mode-single">分頁看</button>
-            <button class="btn-pika bg-white text-xs opacity-60" onclick="setItineraryMode('all')" id="btn-mode-all">看全部</button>
+            <input id="expAmtInput" type="number" class="border border-slate-300 rounded-xl p-2 bg-white w-full" placeholder="0">
+            <button class="btn-pika shrink-0" onclick="addExpenseItem()">記一筆</button>
           </div>
         </div>
-
-        <div class="bg-amber-50 p-3 rounded-xl border border-dashed border-amber-300 flex justify-between items-center">
-          <span class="text-sm text-amber-900 font-medium">💡 提示：上下拖曳卡片可以自由調整行程順序唷！</span>
-          <button class="btn-pika text-sm py-1 px-3" onclick="openFullRoute()">🗺 一鍵整天路線導航</button>
-        </div>
-
-        <div id="itinerary-list" class="space-y-3 mt-4"></div>
       </div>
-    </div>
 
-    <!-- SECTION 2: TODO -->
-    <div id="tab-todo" class="main-section hidden space-y-4">
-      <div class="card">
-        <h2 class="text-xl font-black mb-4 flex items-center gap-2 text-slate-800">
-          <span>📝</span> 旅前與旅中待辦事項
-        </h2>
-        <div class="flex gap-2">
-          <input id="todoInput" placeholder="輸入準備事項... (如：確認網卡、帶護照)">
-          <button class="btn-pika whitespace-nowrap" onclick="addTodo()">新增</button>
+      <!-- 記帳報表輸出 -->
+      <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+        <!-- 左/中側：每日明細與每日加總 -->
+        <div class="lg:col-span-2 space-y-4">
+          <h3 class="font-bold text-md text-slate-600 border-b pb-2 flex justify-between items-center">
+            <span>📅 每日消費明細</span>
+            <span class="text-xs font-normal text-slate-400">點擊項目右側 ❌ 可刪除</span>
+          </h3>
+          <div id="expenseDayBreakdown" class="space-y-4 max-h-[500px] overflow-y-auto pr-2"></div>
         </div>
-        <div id="todoList" class="space-y-2 mt-4"></div>
-      </div>
-    </div>
-
-    <!-- SECTION 3: SHOPPING -->
-    <div id="tab-shopping" class="main-section hidden space-y-4">
-      <div class="card">
-        <h2 class="text-xl font-black mb-4 flex items-center gap-2 text-slate-800">
-          <span>🛍</span> 戰利品與藥妝購物清單
-        </h2>
-        <div class="flex gap-2">
-          <input id="shopInput" placeholder="輸入想買的寶物... (如：皮卡丘仙台限定娃娃)">
-          <button class="btn-pika whitespace-nowrap" onclick="addShop()">新增</button>
-        </div>
-        <div id="shopList" class="space-y-2 mt-4"></div>
-      </div>
-    </div>
-
-    <!-- SECTION 4: NOTES -->
-    <div id="tab-notes" class="main-section hidden space-y-4">
-      <div class="card">
-        <h2 class="text-xl font-black flex items-center gap-2 text-slate-800">
-          <span>✍</span> 每日隨手小筆記
-        </h2>
-        <p class="text-xs text-gray-500 mt-1 mb-3">請先選擇日期，再填寫該日的備註資訊：</p>
-        <div class="flex gap-2 flex-wrap mb-4" id="note-date-tabs"></div>
-        <textarea id="noteBox" rows="6" placeholder="寫下今天的感動、突發狀況或媽媽開心的瞬間..."></textarea>
-        <div class="flex justify-end mt-3">
-          <button class="btn-pika bg-emerald-400 border-emerald-600 shadow-emerald-700" onclick="saveNote()">💾 儲存今日備註</button>
-        </div>
-      </div>
-    </div>
-
-    <!-- SECTION 5: EXPENSE -->
-    <div id="tab-expense" class="main-section hidden space-y-4">
-      <div class="card">
-        <h2 class="text-xl font-black mb-2 flex items-center gap-2 text-slate-800">
-          <span>💰</span> 日幣記帳小幫手
-        </h2>
-        <p class="text-xs text-gray-500 mb-4">可以區分每一天的花費，並自動計算五天總合支出！</p>
         
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-3 mb-4">
-          <div>
-            <label class="block text-xs font-bold mb-1 text-slate-700">選擇消費日期</label>
-            <select id="expDaySelect"></select>
+        <!-- 右側：五日總計看板 -->
+        <div class="bg-amber-400/10 border-2 border-amber-400 p-5 rounded-2xl h-fit space-y-4 relative">
+          <div class="absolute top-2 right-2 text-3xl opacity-20">🪙</div>
+          <h3 class="font-black text-lg text-amber-900 flex items-center gap-1">⚡ 總花費統計大盤點</h3>
+          <div class="bg-white p-4 rounded-xl text-center border border-amber-200">
+            <p class="text-xs text-slate-400 font-bold tracking-wider">五日累計總支出</p>
+            <p class="text-3xl font-black text-amber-600 mt-1" id="grandTotalDisplay">¥0</p>
           </div>
-          <div>
-            <label class="block text-xs font-bold mb-1 text-slate-700">消費項目</label>
-            <input id="expName" placeholder="例如：伊達牛舌、開運御守">
+          <div class="text-xs space-y-1 text-slate-600">
+            <p>• 建議搭配海外回饋高刷卡回饋使用</p>
+            <p>• 現金與刷卡消費可以一同計入統計</p>
           </div>
-          <div>
-            <label class="block text-xs font-bold mb-1 text-slate-700">金額 (日圓 ¥)</label>
-            <input id="expAmt" type="number" placeholder="日幣金額">
-          </div>
-        </div>
-        <button class="btn-pika w-full" onclick="addExpense()">➕ 新增此筆消費</button>
-
-        <!-- TOTAL BOARD -->
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mt-6">
-          <div class="bg-amber-100 p-4 rounded-xl border-2 border-amber-300 text-center">
-            <div class="text-xs font-bold text-amber-800">當日所選日期加總</div>
-            <div class="text-2xl font-black text-slate-800 mt-1" id="day-total-box">¥0</div>
-          </div>
-          <div class="bg-blue-100 p-4 rounded-xl border-2 border-blue-300 text-center">
-            <div class="text-xs font-bold text-blue-800">⚡ 五日總計累計花費</div>
-            <div class="text-2xl font-black text-slate-800 mt-1" id="all-total-box">¥0</div>
-          </div>
-        </div>
-
-        <div class="mt-4">
-          <h3 class="font-bold text-sm text-slate-700 border-b pb-1 mb-2">📋 今日消費明細</h3>
-          <div id="expList" class="space-y-2"></div>
         </div>
       </div>
-    </div>
 
-    <!-- SECTION 6: SPOTS GUIDE -->
-    <div id="tab-spots" class="main-section hidden space-y-6">
-      <!-- SPOTS GENERATED BY JS -->
     </div>
-
   </div>
+
+  <!-- ==================== TAB 6: 景點介紹 (需求3: 10大景點完整圖文) ==================== -->
+  <div id="section-attractions" class="main-section space-y-4 hidden">
+    <div class="card bg-gradient-to-r from-yellow-50 to-amber-50">
+      <h2 class="text-2xl font-black text-amber-950 flex items-center gap-2">🌟 仙台 & 周邊精選 10 大景點全攻略</h2>
+      <p class="text-xs text-amber-800">為您深度整理本次旅行的重點精華，包含必看必做的事、詳細門票與營業時間資訊。</p>
+    </div>
+    
+    <div id="attractionGrid" class="grid grid-cols-1 md:grid-cols-2 gap-6"></div>
+  </div>
+
 </div>
 
+<!-- 核心JavaScript腳本系統 -->
 <script>
-/* =========================
-  DATA STRUCTURE
-========================= */
-let itineraries = JSON.parse(localStorage.getItem("plan")) || {
+/* ==========================================================================
+   1. 資料初始化與定義 (納入2026時間背景與使用者修正事項)
+   ========================================================================== */
+const datesArr = ["2026/05/21", "2026/05/22", "2026/05/23", "2026/05/24", "2026/05/25"];
+
+// 初始預設行程資料
+let itineraries = JSON.parse(localStorage.getItem("pika_plan")) || {
   "2026/05/21":[
-    {name:"仙台空港 Access 線", lat:38.1387, lng:140.9272},
-    {name:"Almont Hotel Sendai", lat:38.2562, lng:140.8819},
-    {name:"AER 展望台", lat:38.2619, lng:140.8821},
-    {name:"伊達牛舌本店", lat:38.2598, lng:140.8818}
+    {name:"仙台空港 Access 線",lat:38.14,lng:140.92},
+    {name:"Almont Hotel Sendai",lat:38.257,lng:140.883},
+    {name:"AER 展望台",lat:38.263,lng:140.882},
+    {name:"伊達牛舌本店",lat:38.259,lng:140.882}
   ],
   "2026/05/22":[
-    {name:"仙台朝市", lat:38.2592, lng:140.8794},
-    {name:"地底の森博物館", lat:38.2178, lng:140.8841},
-    {name:"梅の花", lat:38.2612, lng:140.8732},
-    {name:"瑞鳳殿", lat:38.2514, lng:140.8656},
-    {name:"寶可夢中心", lat:38.2602, lng:140.8824}
+    {name:"仙台朝市",lat:38.259,lng:140.880},
+    {name:"地底の森博物館",lat:38.218,lng:140.884},
+    {name:"梅の花",lat:38.261,lng:140.871},
+    {name:"瑞鳳殿",lat:38.250,lng:140.865},
+    {name:"寶可夢中心",lat:38.260,lng:140.881}
   ],
   "2026/05/23":[
-    {name:"金蛇水神社", lat:38.1139, lng:140.8358},
-    {name:"松島", lat:38.3688, lng:141.0594}
+    {name:"金蛇水神社",lat:38.106,lng:140.835},
+    {name:"松島",lat:38.371,lng:141.060}
   ],
   "2026/05/24":[
-    {name:"一ノ關站", lat:38.9267, lng:141.1378},
-    {name:"猊鼻渓", lat:38.9904, lng:141.2526}
+    {name:"一ノ關站",lat:38.926,lng:141.138},
+    {name:"猊鼻渓",lat:38.991,lng:141.253}
   ],
   "2026/05/25":[
-    {name:"仙台朝市", lat:38.2592, lng:140.8794},
-    {name:"S-PAL", lat:38.2602, lng:140.8824},
-    {name:"仙台空港", lat:38.1387, lng:140.9272}
+    {name:"仙台朝市",lat:38.259,lng:140.880},
+    {name:"S-PAL",lat:38.260,lng:140.881},
+    {name:"仙台空港",lat:38.140,lng:140.925}
   ]
 };
 
-const spotDetails = [
+// 待辦事項資料
+let todos = JSON.parse(localStorage.getItem("pika_todo")) || [
+  { text: "確認媽媽的護照效期大於六個月", done: true },
+  { text: "投保旅遊平安險與不便險", done: false },
+  { text: "填寫 Visit Japan Web 並截圖 QR Code", done: false }
+];
+
+// 購物清單資料
+let shops = JSON.parse(localStorage.getItem("pika_shop")) || [
+  { text: "仙台寶可夢中心限定皮卡丘娃娃", done: false },
+  { text: "毛豆泥麻糬禮盒", done: false },
+  { text: "白謙蒲鉾店 魚板", done: false }
+];
+
+// 每日備註 (需求2修改: 支援各日期獨立按鈕備註)
+let notes = JSON.parse(localStorage.getItem("pika_notes")) || {
+  "2026/05/21": "下飛機後先去拿 Access 線車票。飯店 Check-in 之後直奔 AER 展望台看夕陽。",
+  "2026/05/22": "今天媽媽體力很讚的話，瑞鳳殿的參道可以慢慢走。下午記得提早去寶可夢中心排隊。",
+  "2026/05/23": "松島散策不搭船，主攻五大堂與觀瀾亭抹茶套餐，幫媽媽拍照要避開逆光。",
+  "2026/05/24": "猊鼻溪乘船要記得買運玉！看媽媽能不能投進洞穴裡。",
+  "2026/05/25": "最後回台前的採購，S-PAL 伴手禮街一次買齊。"
+};
+
+// 記帳管理資料 (需求2修改: 包含日期屬性，利於運算每日加總及5日總計)
+let expenses = JSON.parse(localStorage.getItem("pika_expenses")) || [
+  { date: "2026/05/21", item: "仙台Access線車資", amount: 660 },
+  { date: "2026/05/21", item: "伊達牛舌晚餐", amount: 3800 },
+  { date: "2026/05/22", item: "朝市海鮮丼飯", amount: 1800 },
+  { date: "2026/05/23", item: "觀瀾亭抹茶體驗", amount: 800 }
+];
+
+// 景點介紹靜態矩陣 (需求3: 10大景點完整文字與照片封裝)
+const attractionData = [
   {
     title: "松島",
-    img: "https://images.unsplash.com/photo-1542640244-7e672d6cef4e?auto=format&fit=crop&w=800&q=80",
     desc: "松島海岸不僅是地理座標，更是日本千年歷史的縮影。當您步出車站，迎面而來的是帶著鹹味的清爽海風與松樹的清香。由於您與媽媽選擇不搭船，這片區域的「陸地散策」將會非常精采。這裡的步道圍繞著灣岸建設，一側是星羅棋布的 260 餘座小島，一側是國寶級的古剎與茶室。5 月下旬，岸邊的松葉正是翠綠欲滴，陽光在平靜如鏡的海面上折射出寶石般的光澤。",
-    highlight: "• 五大堂 (Godaido)：這是松島的象徵。連結五大堂的「紅漆透橋」刻意設計了縫隙，讓人在行走時低頭能見到腳底的海水，寓意「修行時需屏除雜念」。媽媽體力好，走這段橋會感到趣味十足。<br>• 觀瀾亭 (Kanrantei)：這曾是伊達政宗的茶室。必做體驗是帶媽媽坐進面向松島灣的塌塌米席，點一份「抹茶與毛豆泥甜點」，在微風中靜靜欣賞如畫的海景，這是為媽媽慶生最優雅的時刻。<br>• 烤牡蠣體驗：松島的牡蠣舉世聞名。必做體驗是步行至附近的「牡蠣小屋」，看著碩大飽滿的牡蠣在火爐上嘶嘶作響，那股鮮甜的香氣將成為這趟旅行最深刻的味覺記憶。",
-    info: "• 地址：宮城縣宮城郡松島町松島町內<br>• 開放時間：全天開放（五大堂至 16:00；觀瀾亭 08:30 - 17:00）<br>• 是否收費：區域參觀免費；觀瀾亭入內 200 日圓（餐點另計）"
+    highlight: "• 五大堂 (Godaido)：這是松島的象徵。連結五大堂的「紅漆透橋」刻意設計了縫隙，讓人行走時低頭能見到腳底海水，寓意「修行時需屏除雜念」。媽媽體力好，走這段橋會感到趣味十足。<br>• 觀瀾亭 (Kanrantei)：曾是伊達政宗的茶室。必做體驗是帶媽媽坐進面向松島灣的塌塌米席，點一份「抹茶與毛豆泥甜點」，在微風中靜靜欣賞如畫海景，這是為媽媽慶生最優雅的時刻。<br>• 烤牡蠣體驗：松島的牡蠣舉世聞名。必做體驗是步行至附近的「牡蠣小屋」，看著碩大飽滿的牡蠣在火爐上嘶嘶作響，鮮甜香氣將成為旅行最深刻的味覺記憶。",
+    info: "📍 地址：宮城縣宮城郡松島町松島町內<br>⏰ 開放時間：全天開放（五大堂至 16:00；觀瀾亭 08:30 - 17:00）<br>💰 是否收費：區域參觀免費；觀瀾亭入內 200 日圓（餐點另計）",
+    img: "https://images.unsplash.com/photo-1621259021966-234b3d7b40d0?auto=format&fit=crop&w=600&q=80"
   },
   {
-    title: "福浦島 (Fukuura Island)",
-    img: "https://images.unsplash.com/photo-1503899036084-c55cdd92da26?auto=format&fit=crop&w=800&q=80",
+    title: "福浦島",
     desc: "如果說松島海岸是熱鬧的舞台，那麼「福浦島」就是一座漂浮在海上的私人花園。這座島嶼透過長達 252 公尺的「福浦橋」與陸地相連。由於該橋是紅色的，在藍天綠島的映襯下顯得格外奪目，被譽為「相遇之橋」。對於體力好的媽媽來說，福浦島提供了一種「完全沉浸」的步行感受，遠離了觀光大街的嘈雜，取而代之的是海鳥的鳴叫與林間的蟬鳴。",
-    highlight: "• 福浦橋 (Fukuura Bridge)：這是不搭船也能近距離觀測松島灣的最佳方式。走在橋上，左右兩側完全無遮蔽，那種海天一色的開闊感非常壯觀。<br>• 見晴台 (Miharashi Pavilion)：島上有數個高低錯落的展望點。必看亮點是位於島嶼南側的見晴台，從這裡望去，可以平視松島灣最核心的島嶼群，視野完全不輸給觀光船。<br>• 環島健行：島上擁有超過 250 種植物。必做體驗是完成一圈約 40-50 分鐘的環島徒步。這裡的路徑雖然有起伏，但多為修整良好的木棧道或土徑，非常適合喜歡走路、親近自然的媽媽，並在島上的「弁財天堂」為全家人祈求一份平安。",
-    info: "• 地址：宮城縣宮城郡松島町松島仙隨 30-1<br>• 開放時間：08:00 - 17:00 (11月至2月至 16:30)<br>• 是否收費：200 日圓 (成人通行費)"
+    highlight: "• 福浦橋 (Fukuura Bridge)：這是不搭船也能近距離觀測松島灣的最佳方式。走在橋上，左右兩側完全無遮蔽，那種海天一色的開闊感非常壯觀。<br>• 見晴台 (Miharashi Pavilion)：島上有數個高低錯落的展望點。必看亮點是位於島嶼南側的見晴台，從這裡望去，可以平視松島灣最核心的島嶼群，視野完全不輸給觀光船。<br>• 環島健行：島上擁有超過 250 種植物。必做體驗是完成一圈約 40-50 分鐘的環島徒步。路徑雖有起伏，但多為修整良好的木棧道或土徑，非常適合喜歡走路、親近自然的媽媽，並在島上的「弁財天堂」為全家人祈求一份平安。",
+    info: "📍 地址：宮城縣宮城郡松島町松島仙隨 30-1<br>⏰ 開放時間：08:00 - 17:00 (11月至2月至 16:30)<br>💰 是否收費：200 日圓 (成人通行費)",
+    img: "https://images.unsplash.com/photo-1542640244-7e672d6cef21?auto=format&fit=crop&w=600&q=80"
   },
   {
-    title: "仙台朝市：仙台市民的熱情廚房",
-    img: "https://images.unsplash.com/photo-1534482421-64566f976cfa?auto=format&fit=crop&w=800&q=80",
+    title: "仙台朝市",
     desc: "仙台朝市被譽為「仙台的廚房」，是感受這座城市生命力最好的起點。早晨 8:30 踏入這條僅百公尺長的窄巷，迎接你的是嘹亮的叫賣聲與充滿活力的色彩。5 月下旬正是東北水果交替的時節，幸運的話能遇見香氣馥郁的宮城縣產草莓，或是正要上市的紅艷櫻桃。這裡不僅是買賣，更是一種在地生活的縮影。",
-    highlight: "• 尋找「齋藤惣菜店」：買一塊外脆內綿的現炸可樂餅，那是仙台人從小到大的記憶。<br>• 朝市丼體驗：在海鮮丼名店落座，挑選最新鮮的在地魚介食材，拼成一碗獨一無二、專屬媽媽的生日海鮮慶生丼！",
-    info: "• 地址：宮城縣仙台市青葉區中央4-3-28<br>• 開放時間：08:00 - 18:00 (週日公休)<br>• 是否收費：免費"
+    highlight: "• 尋找「齋藤惣菜店」：買一塊外脆內綿的現炸可樂餅，那是仙台人從小到大的記憶。<br>• 「朝市丼」落座：挑選自己最愛的超鮮魚介食材，拼成一碗世界獨一無二、料多到滿出來的海鮮慶生丼。",
+    info: "📍 地址：宮城縣仙台市青葉區中央4-3-28<br>⏰ 開放時間：08:00 - 18:00 (週日公休)<br>💰 是否收費：免費入內參觀",
+    img: "https://images.unsplash.com/photo-1534482421-64566f976cfa?auto=format&fit=crop&w=600&q=80"
   },
   {
-    title: "地底の森博物館 (Chitei no Mori Museum)",
-    img: "https://images.unsplash.com/photo-1566121318594-a3601ec217d1?auto=format&fit=crop&w=800&q=80",
-    desc: "這是世界上罕見的舊石器時代主題博物館。現場完美保存了兩萬年前的「地下森林遺跡」與當時人類冰河時期的篝火痕跡，讓歷史不再抽象，而是近在眼前的震撼體驗。",
-    highlight: "• 兩萬年前森林結構：現場感受被完美封存的樹木根部遺跡。<br>• 戶外冰河期公園：必做的事情是在博物館外的公園漫步，這裡精準重建了 2 萬年前的植被環境，非常適合清晨散步舒心。",
-    info: "• 地址：宮城縣仙台市太白區長町南4-3-1<br>• 開放時間：09:00 - 16:45（週一休館）<br>• 是否收費：成人 460 日圓"
+    title: "地底の森博物館",
+    desc: "這是世界上罕見的舊石器時代主題博物館，完美復原並展示了兩萬年前富澤地區的自然環境與人類活動遺跡。走入館內，宏大的地底挖掘現場將帶給您穿越時空的震撼感。",
+    highlight: "• 必看亮點：現場保存極其完整的「舊石器時代森林地下遺跡」與兩萬年前古人類留下的篝火痕跡。<br>• 必做體驗：在博物館外部精心規劃的「冰河時期之森」公園慢步，這裡重建了2萬年前的古老植被，環境清幽極具知性美。",
+    info: "📍 地址：宮城縣仙台市太白區長町南4-3-1<br>⏰ 開放時間：09:00 - 16:45（週一及假日翌日休館）<br>💰 是否收費：成人 460 日圓",
+    img: "https://images.unsplash.com/photo-1582730147233-09419d21a590?auto=format&fit=crop&w=600&q=80"
   },
   {
-    title: "瑞鳳殿 (Zuihoden Mausoleum)",
-    img: "https://images.unsplash.com/photo-1493976040374-85c8e12f0c0e?auto=format&fit=crop&w=800&q=80",
-    desc: "這裡是震懾東北的仙台藩祖——伊達政宗的靈廟。桃山文化的精隨在此展現得淋漓盡致，四周環繞著參天杉木，環境清幽且莊嚴肅穆。",
-    highlight: "• 華麗桃山建築：必看亮點是繁複精細的浮雕與極其璀璨華麗的色彩美學。<br>• 杉木參道慢步：沿著通往靈廟的杉木坡道緩慢向上爬，吸取森林芬多精，感受林間的高雅幽靜與神聖氛圍。",
-    info: "• 地址：宮城縣仙台市青葉區靈屋下23-2<br>• 開放時間：09:00 - 16:50<br>• 是否收費：成人 570 日圓"
+    title: "瑞鳳殿",
+    desc: "這裡是名震天下的仙台藩祖——伊達政宗卿的桃山樣式豪華靈廟。在太平洋戰爭中曾燒毀，後於1979年依原樣重建，其裝飾藝術巧奪天工，絢麗無比，是來仙台絕不可錯過的歷史地標。",
+    highlight: "• 必看亮點：建築本體極其繁複華美、五彩繽紛的浮雕與炫目的金箔裝飾。<br>• 必做體驗：陪著媽媽踏上通往靈廟的參天杉木古道坡道緩慢向上爬，一邊吸收森林芬多辛，一邊感受林間獨有的幽靜與神聖莊嚴氛圍。",
+    info: "📍 地址：宮城縣仙台市青葉區靈屋下23-2<br>⏰ 開放時間：09:00 - 16:50 (依季節微調)<br>💰 是否收費：成人 570 日圓",
+    img: "https://images.unsplash.com/photo-1493976040374-85c8e12f0c0e?auto=format&fit=crop&w=600&q=80"
   },
   {
-    title: "仙台城跡 (Sendai Castle Site / Aoba Castle)",
-    img: "https://images.unsplash.com/photo-1601042879364-f3947d3f9c16?auto=format&fit=crop&w=800&q=80",
-    desc: "雖然當年的天守閣已不復存在，但高聳壯麗的青葉山石垣依然雄偉。這裡能將整座仙台市中心與遠方的太平洋全景盡收眼底，是認識仙台地理方位的最佳觀景台。",
-    highlight: "• 伊達政宗騎馬像：仙台最經典的地標剪影，必看且必拍合照！<br>• 俯瞰杜之都：在展望台全視野俯瞰這座綠意盎然的城市，並在美食區買一份東北名物「毛豆泥麻糬」與媽媽一同品嚐。",
-    info: "• 地址：宮城縣仙台市青葉區川內1<br>• 開放時間：遺址區全天開放（展示館 09:00 - 17:00）<br>• 是否收費：遺址免費；資料展覽館 700 日圓"
+    title: "仙台城跡",
+    desc: "又稱青葉城，為伊達家族世代居住的根據地。雖然昔日雄偉的天守閣與宮殿已不復存在，但現場壯麗的高聳石垣與俯瞰市中心的絕佳地理位置，依然能讓人深深感受到當年的大名威風。",
+    highlight: "• 必看亮點：全仙台最經典的地標「伊達政宗卿騎馬青銅像」，英姿颯爽。<br>• 必做體驗：站在展望台上俯瞰整個被譽為「杜之都」的仙台市景與廣瀨川。隨後到美食區買一份口感綿密冰涼的「現做毛豆泥麻糬」一同享用。",
+    info: "📍 地址：宮城縣仙台市青葉區川內1<br>⏰ 開放時間：遺址區全天開放（青葉城資料展示館 09:00 - 17:00）<br>💰 是否收費：遺址區域免費；進入資料展覽館 700 日圓",
+    img: "https://images.unsplash.com/photo-1601042879364-f3947d3f9c16?auto=format&fit=crop&w=600&q=80"
   },
   {
-    title: "金蛇水神社 (Kanahebisui Shrine)",
-    img: "https://images.unsplash.com/photo-1528360983277-13d401ccd795?auto=format&fit=crop&w=800&q=80",
-    desc: "在全日本享有盛譽的祈求財運、生意興隆與開運的名所。境內設計優雅，大自然與神聖信仰完美融合，五月更是花卉愛好者的天堂。",
-    highlight: "• 九龍之藤與牡丹園：5 月下旬盛開的滿園牡丹與垂墜的紫藤花海（季節限定爆發）。<br>• Sandai Terrace 文青咖啡廳：必做的是在神社附設的现代化咖啡廳享用超可愛的蛇型麵包與特製咖啡，坐在落地窗前愜意賞花。",
-    info: "• 地址：宮城縣岩沼市三色吉字水神168<br>• 開放時間：全天開放（社務所 08:30 - 16:00）<br>• 是否收費：免費"
+    title: "金蛇水神社",
+    desc: "自古以來便是供奉水神、祈求商賣繁盛、金運開運的日本東北超級名所。近年來因為神社境內設計極具美感且現代化的休憩設施，成為年輕人與旅客爭相拜訪的熱門打卡景點。",
+    highlight: "• 必看亮點：5 月下旬正逢神社境內最著名的牡丹園盛開與紫藤花如瀑布般垂下的季節（初夏限定絕景）。<br>• 必做體驗：前往神社附設的現代化「Sando Terrace」咖啡廳，點一份超萌的蛇型麵包與特製咖啡，坐在大片落地窗前愜意賞花賞景。",
+    info: "📍 地址：宮城縣岩沼市三色吉字水神168<br>⏰ 開放時間：全天開放（社務所與咖啡廳空間 08:30 - 16:00）<br>💰 是否收費：境內免費；牡丹園花季入園依花況可能酌收門票",
+    img: "https://images.unsplash.com/photo-1528360983277-13d401cdc186?auto=format&fit=crop&w=600&q=80"
   },
   {
-    title: "猊鼻溪 (Geibikei Gorge)",
-    img: "https://images.unsplash.com/photo-1504198453319-5ce911bafcde?auto=format&fit=crop&w=800&q=80",
-    desc: "名列日本百景之一的絕美溪谷。清澈見底的溪水兩側，是高達百公尺的石灰岩垂直絕壁，在大自然鬼斧神工的懷抱中聽著船伕高唱傳統民謠，是一次靈魂洗滌之旅。",
-    highlight: "• 百米巨壁與大龍鼻：乘著人力撐篙船，近距離感受高聳入雲的峭壁壓迫感。<br>• 投擲運玉體驗：在船程終點下船，購買刻有「福、願、戀、財」等字樣的「運玉」，並試著投進對岸崖壁的天然洞穴中，祈求願望成真！",
-    info: "• 地址：岩手縣一關市東山町長坂字町467<br>• 開放時間：08:30 - 16:00（船班時間固定）<br>• 是否收費：乘船票成人約 1,800 日圓"
+    title: "猊鼻溪",
+    desc: "名列日本百景之一，是由北上川支流砂鐵川侵蝕絕壁而形成的巨大峽谷。兩岸延伸達2公里的奇岩怪石與高聳絕壁非常壯麗。這裡最著名的是完全依賴人力、不用馬達的「純人工傳統搖櫓船」。",
+    highlight: "• 必看亮點：高達百公尺的垂直巨大絕壁景觀，以及形似龍鼻子的「大龍鼻」奇岩。<br>• 必做體驗：當船隻抵達終點停靠時，下船步行至對岸，購買刻有財、福、戀等字樣的「運玉」（幸運石），並嘗試將其精準投進崖壁的神奇洞穴中，投中願望即會成真！",
+    info: "📍 地址：岩手縣一關市東山町長坂字町467<br>⏰ 開放時間：08:30 - 16:00（船班時刻依季節略有變動）<br>💰 是否收費：往返乘船票成人約 1,800 日圓",
+    img: "https://images.unsplash.com/photo-1504198453319-5ce911bafcde?auto=format&fit=crop&w=600&q=80"
   },
   {
-    title: "定禪寺通 (Jozenji-dori Avenue)",
-    img: "https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?auto=format&fit=crop&w=800&q=80",
-    desc: "仙台之所以被稱為「杜之都（森林之都）」的最佳完美寫照。長達數公里的櫸木綠色隧道橫亙市區，是極具歐風浪漫與慵懶氣息的都市林蔭大道。",
-    highlight: "• 櫸木林之美：漫步在夾道而立的 166 棵巨大櫸木下，陽光灑落的綠蔭光影極美。<br>• 青銅雕塑散策：走在中央寬敞的步行區，沿途欣賞著名大師的《夏天之母》等雕塑，累了就在街邊網美咖啡座坐下，感受仙台人優雅慢步調。",
-    info: "• 地址：宮城縣仙台市青葉區國分町附近<br>• 開放時間：全天開放<br>• 是否收費：免費"
+    title: "定禪寺通",
+    desc: "定禪寺通是仙台被尊稱為「杜之都」（森林之都）最具代表性的綠色隧道街道。中央安全島被規劃成悠閒的步行者天國步道，兩側茂密的欅樹在初夏編織出綠意盎然的天然遮陽棚。",
+    highlight: "• 必看亮點：夾道並排而立、多達 166 棵高大挺拔的青翠櫸木。步道中央還矗立著義大利雕刻大師所作的《夏天之母》等精緻青銅雕塑。<br>• 必做體驗：陪媽媽漫步在步道中央，累了就隨意挑選一家街邊開放式的文青咖啡座坐下，看著陽光穿透樹葉灑落的光影，感受最正宗的仙台慢活日常節奏。",
+    info: "📍 地址：宮城縣仙台市青葉區國分町附近街道<br>⏰ 開放時間：全天開放<br>💰 是否收費：免費自由散步",
+    img: "https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?auto=format&fit=crop&w=600&q=80"
   },
   {
-    title: "AER 展望台 (AER Observation Terrace)",
-    img: "https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=800&q=80",
-    desc: "緊鄰仙台車站的地標大樓 AER。位於 31 樓的免費展望台提供了毫無遮蔽的絕佳高空視野，非常適合排在每天行程結束後的購物中繼站。",
-    highlight: "• 新幹線鐵道模型視角：能看著帥氣的東北新幹線列車像玩具模型般緩緩進出站。<br>• 雙向露天景觀：設有北側與南側兩個不同方向的觀景露台。這裡空間寬敞、觀光客較少，是個放鬆、吹涼風看夕陽的好秘境。",
-    info: "• 地址：宮城縣仙台市青葉區中央1-3-1 (31樓)<br>• 開放時間：10:00 - 20:00<br>• 是否收費：免費"
+    title: "AER 展望台",
+    desc: "位於仙台車站正對面的超顯目地標——AER大樓。其頂層31樓規劃了兩側露天的免費展望露台，是俯瞰整個仙台市區與追蹤新幹線進出站的最佳制高點，夜景也相當浪漫。",
+    highlight: "• 必看亮點：分別位於北側與南側、擁有不同城市風貌與山海地平線的寬廣視角。<br>• 必做體驗：站在玻璃窗前，向下俯瞰新幹線列車就像微型玩具火車一樣流暢地進出仙台站。這裡空間大、空調舒適且人潮較少，非常適合在車站周邊 S-PAL 購物完後上來放鬆歇息。",
+    info: "📍 地址：宮城縣仙台市青葉區中央1-3-1 (AER大樓31樓最高層)<br>⏰ 開放時間：10:00 - 20:00<br>💰 是否收費：完全免費開放",
+    img: "https://images.unsplash.com/photo-1516450360452-9312f5e86fc7?auto=format&fit=crop&w=600&q=80"
   }
 ];
 
-let currentDay = Object.keys(itineraries)[0];
-let currentNoteDay = Object.keys(itineraries)[0];
-let currentExpDay = Object.keys(itineraries)[0];
-let itineraryMode = "single";
+// 全域狀態管理
+let currentDay = datesArr[0];
+let currentNoteDay = datesArr[0];
+let itineraryMode = "single"; // "single" or "all"
 
-let todos = JSON.parse(localStorage.getItem("todo")) || ["確認日本網卡", "準備媽媽的慶生驚喜小卡"];
-let shops = JSON.parse(localStorage.getItem("shop")) || ["皮卡丘仙台限定娃娃", "毛豆泥麻糬伴手禮"];
-let expenses = JSON.parse(localStorage.getItem("expenses")) || [
-  { day: "2026/05/21", name: "伊達牛舌晚餐", amt: 5500 },
-  { day: "2026/05/22", name: "瑞鳳殿門票", amt: 1140 }
-];
-
-/* =========================
-  TAB SWITCHER LOGIC
-========================= */
-function switchMainTab(tabId) {
-  document.querySelectorAll('.main-section').forEach(el => el.classList.add('hidden'));
-  document.getElementById(tabId).classList.remove('hidden');
+/* ==========================================================================
+   2. 主選單控制系統 (需求2: 各類別於不同分頁切換)
+   ========================================================================== */
+function switchMainTab(targetSection, tabButton) {
+  // 隱藏所有分頁區塊
+  document.querySelectorAll('.main-section').forEach(sec => sec.classList.add('hidden'));
+  // 顯示目標區塊
+  document.getElementById(`section-${targetSection}`).classList.remove('hidden');
   
-  document.querySelectorAll('.main-tab').forEach(btn => {
-    if(btn.getAttribute('data-target') === tabId) {
-      btn.classList.add('active');
-    } else {
-      btn.classList.remove('active');
-    }
+  // 更新導航按鈕Active狀態
+  document.querySelectorAll('.nav-tab').forEach(btn => btn.classList.remove('active'));
+  tabButton.classList.add('active');
+
+  // 若切換到行程分頁，重新初始化拖曳與渲染，確保 Sortable 元件寬度與位置綁定正確
+  if (targetSection === 'itinerary') {
+    renderItinerary();
+  }
+}
+
+function updateGlobalWidgets() {
+  // 計算記帳總額
+  let total = expenses.reduce((sum, e) => sum + e.amount, 0);
+  document.getElementById("globalWidgetExpense").innerText = `¥${total.toLocaleString()}`;
+  document.getElementById("grandTotalDisplay").innerText = `¥${total.toLocaleString()}`;
+
+  // 計算待辦事項完成進度
+  let doneCount = todos.filter(t => t.done).length;
+  document.getElementById("globalWidgetTodo").innerText = `${doneCount}/${todos.length}`;
+}
+
+/* ==========================================================================
+   3. 行程管理模組 (含單日/總覽模式與 Sortable 拖曳除錯優化)
+   ========================================================================== */
+function initItineraryTabs() {
+  const container = document.getElementById("itineraryDayTabs");
+  container.innerHTML = "";
+  
+  if (itineraryMode === "all") return;
+
+  datesArr.forEach(d => {
+    const activeClass = (d === currentDay) ? 'active' : '';
+    container.innerHTML += `<button class="day-tab ${activeClass}" onclick="currentDay='${d}'; renderItinerary(); fontStyleSync();">${d.substring(5)}</button>`;
   });
 }
 
-/* =========================
-  ITINERARY MANAGEMENT
-========================= */
-function setItineraryMode(mode) {
+function changeItineraryMode(mode) {
   itineraryMode = mode;
-  document.getElementById('btn-mode-single').classList.toggle('opacity-60', mode !== 'single');
-  document.getElementById('btn-mode-all').classList.toggle('opacity-60', mode !== 'all');
+  document.getElementById("btnModeSingle").className = mode === 'single' ? "px-3 py-1.5 rounded-lg bg-white shadow-sm" : "px-3 py-1.5 rounded-lg text-slate-500";
+  document.getElementById("btnModeAll").className = mode === 'all' ? "px-3 py-1.5 rounded-lg bg-white shadow-sm" : "px-3 py-1.5 rounded-lg text-slate-500";
   renderItinerary();
 }
 
-function renderDateTabs() {
-  const iTabs = document.getElementById("itinerary-date-tabs");
-  const nTabs = document.getElementById("note-date-tabs");
-  
-  iTabs.innerHTML = "";
-  nTabs.innerHTML = "";
-  
-  Object.keys(itineraries).forEach(d => {
-    // Itinerary Tabs
-    iTabs.innerHTML += `
-      <button class="day-tab ${d === currentDay && itineraryMode === 'single' ? 'active' : ''}" 
-        onclick="currentDay='${d}'; itineraryMode='single'; setItineraryMode('single'); renderDateTabs();">
-        ${d.substring(5)}
-      </button>`;
-      
-    // Note Tabs
-    nTabs.innerHTML += `
-      <button class="day-tab ${d === currentNoteDay ? 'active' : ''}" 
-        onclick="currentNoteDay='${d}'; loadNoteForDay();">
-        ${d.substring(5)}
-      </button>`;
-  });
-}
-
 function renderItinerary() {
-  const box = document.getElementById("itinerary-list");
-  box.innerHTML = "";
+  initItineraryTabs();
+  const container = document.getElementById("itineraryContainer");
+  container.innerHTML = "";
 
   if (itineraryMode === "all") {
-    Object.keys(itineraries).forEach(day => {
-      box.innerHTML += `
-        <div class="font-black text-lg text-blue-800 mt-4 flex items-center gap-2">
-          <span>🔴</span> ${day} 行程總覽
-        </div>`;
+    datesArr.forEach(day => {
+      container.innerHTML += `<div class="font-black text-amber-600 text-lg mt-4 mb-2 flex items-center gap-1">⚡ ${day}</div>`;
+      if (itineraries[day].length === 0) {
+        container.innerHTML += `<div class="text-xs text-slate-400 italic pl-4">本日目前無安排行程。</div>`;
+      }
       itineraries[day].forEach(p => {
-        box.innerHTML += `
-          <div class="bg-white p-4 rounded-xl border border-gray-200 shadow-sm flex justify-between items-center">
-            <span class="font-bold text-slate-700">⚡ ${p.name}</span>
-            <button class="btn-pika py-1 px-3 text-xs" onclick="openMap(${p.lat},${p.lng})">導航</button>
+        container.innerHTML += `
+          <div class="bg-white p-4 rounded-xl border border-slate-100 flex justify-between items-center shadow-sm">
+            <span class="font-bold text-slate-700">${p.name}</span>
+            <button class="btn-pika text-xs py-1 px-3" onclick="openMap(${p.lat}, ${p.lng})">🧭 地圖導航</button>
           </div>`;
       });
     });
     return;
   }
 
-  // Single Day Mode
-  itineraries[currentDay].forEach((p, i) => {
-    box.innerHTML += `
-      <div class="bg-white p-4 rounded-xl border-2 border-amber-200 shadow-sm flex justify-between items-center cursor-move group" data-index="${i}">
+  // 單日分頁模式 (支援 SortableJS)
+  const currentItems = itineraries[currentDay] || [];
+  if (currentItems.length === 0) {
+    container.innerHTML = `<div class="text-center p-8 text-slate-400 italic">這天還沒有安排景點喔，快去景點介紹看看吧！</div>`;
+    return;
+  }
+
+  currentItems.forEach((p, idx) => {
+    container.innerHTML += `
+      <div class="itinerary-drag-item bg-white p-4 rounded-2xl border-2 border-slate-100 flex justify-between items-center shadow-sm hover:border-yellow-300 cursor-move" data-index="${idx}">
         <div class="flex items-center gap-3">
-          <span class="bg-amber-400 text-xs px-2 py-1 rounded font-black text-amber-900">${i+1}</span>
-          <span class="font-bold text-slate-800 group-hover:text-blue-700">${p.name}</span>
+          <div class="w-6 h-6 rounded-full bg-yellow-100 text-yellow-700 font-bold flex items-center justify-center text-xs">${idx + 1}</div>
+          <span class="font-bold text-slate-800 tracking-wide">${p.name}</span>
         </div>
-        <button class="btn-pika py-1 px-4 text-xs" onclick="openMap(${p.lat},${p.lng})">📍 導航</button>
+        <button class="btn-pika text-xs py-1.5 px-3" onclick="openMap(${p.lat}, ${p.lng})">🧭 地圖導航</button>
       </div>`;
   });
 
-  enableDrag();
-}
-
-function enableDrag() {
-  const el = document.getElementById("itinerary-list");
-  if(!el || itineraryMode === 'all') return;
-  
-  Sortable.create(el, {
-    animation: 150,
-    ghostClass: 'bg-yellow-50',
+  // 綁定 Sortable (除錯：精準限制作動於內部拖曳項目，不擴及卡片本身)
+  new Sortable(container, {
+    animation: 180,
+    handle: '.itinerary-drag-item',
     onEnd: () => {
-      let newArr = [];
-      el.querySelectorAll('[data-index]').forEach(item => {
-        const idx = parseInt(item.getAttribute('data-index'));
-        newArr.push(itineraries[currentDay][idx]);
+      let reorderedArr = [];
+      container.querySelectorAll('.itinerary-drag-item').forEach(el => {
+        let oldIdx = parseInt(el.getAttribute('data-index'));
+        reorderedArr.push(currentItems[oldIdx]);
       });
-      itineraries[currentDay] = newArr;
-      localStorage.setItem("plan", JSON.stringify(itineraries));
-      renderItinerary(); // Re-render to update the indices
+      itineraries[currentDay] = reorderedArr;
+      localStorage.setItem("pika_plan", JSON.stringify(itineraries));
+      renderItinerary(); // 重新渲染刷新序號標籤
     }
   });
 }
@@ -482,205 +520,252 @@ function openMap(lat, lng) {
 
 function openFullRoute() {
   let arr = itineraries[currentDay];
-  if(arr.length === 0) return;
+  if (!arr || arr.length === 0) return;
   let o = arr[0], d = arr[arr.length - 1];
   let w = arr.slice(1, -1).map(p => p.lat + "," + p.lng).join("|");
-  window.open(`https://www.google.com/maps/dir/?api=1&origin=${o.lat},${o.lng}&destination=${d.lat},${d.lng}&waypoints=${w}`, "_blank");
+  window.open(`https://www.google.com/maps/dir/?api=1&origin=${o.lat},${o.lng}&destination=${d.lat},${d.lng}&waypoints=${w}&travelmode=transit`, "_blank");
 }
 
-/* =========================
-  TODO MANAGEMENT
-========================= */
-function addTodo() {
-  let v = document.getElementById("todoInput").value.trim();
-  if (!v) return;
-  todos.push(v);
-  localStorage.setItem("todo", JSON.stringify(todos));
-  document.getElementById("todoInput").value = "";
-  renderTodo();
-}
-
-function renderTodo() {
-  let box = document.getElementById("todoList");
-  box.innerHTML = "";
-  todos.forEach((t, i) => {
-    box.innerHTML += `
-      <div class="bg-white px-4 py-3 rounded-xl border border-gray-200 flex justify-between items-center shadow-sm">
-        <span class="font-medium text-slate-700">🔹 ${t}</span>
-        <button class="text-red-500 hover:text-red-700 font-bold px-2" onclick="delTodo(${i})">❌</button>
-      </div>`;
-  });
-}
-
-function delTodo(i) {
-  todos.splice(i, 1);
-  localStorage.setItem("todo", JSON.stringify(todos));
-  renderTodo();
-}
-
-/* =========================
-  SHOPPING MANAGEMENT
-========================= */
-function addShop() {
-  let v = document.getElementById("shopInput").value.trim();
-  if (!v) return;
-  shops.push(v);
-  localStorage.setItem("shop", JSON.stringify(shops));
-  document.getElementById("shopInput").value = "";
-  renderShop();
-}
-
-function renderShop() {
-  let box = document.getElementById("shopList");
+/* ==========================================================================
+   4. 購物清單與待辦事項模組
+   ========================================================================== */
+function renderShoppingList() {
+  const box = document.getElementById("shopList");
   box.innerHTML = "";
   shops.forEach((s, i) => {
     box.innerHTML += `
-      <div class="bg-white px-4 py-3 rounded-xl border border-gray-200 flex justify-between items-center shadow-sm">
-        <span class="font-medium text-slate-700">🛍️ ${s}</span>
-        <button class="text-red-500 hover:text-red-700 font-bold px-2" onclick="delShop(${i})">❌</button>
+      <div class="flex justify-between items-center py-3">
+        <label class="flex items-center gap-3 cursor-pointer flex-1">
+          <input type="checkbox" class="w-5 h-5 rounded text-yellow-500 accent-yellow-400" ${s.done ? 'checked' : ''} onchange="toggleShopItem(${i})">
+          <span class="${s.done ? 'line-through text-slate-400' : 'font-bold text-slate-700'}">${s.text}</span>
+        </label>
+        <button class="text-slate-400 hover:text-red-500 font-bold px-2 text-sm" onclick="deleteShopItem(${i})">❌</button>
       </div>`;
   });
+  localStorage.setItem("pika_shop", JSON.stringify(shops));
 }
 
-function delShop(i) {
+function addShopItem() {
+  const input = document.getElementById("shopInput");
+  if (!input.value.trim()) return;
+  shops.push({ text: input.value.trim(), done: false });
+  input.value = "";
+  renderShoppingList();
+}
+
+function toggleShopItem(i) {
+  shops[i].done = !shops[i].done;
+  renderShoppingList();
+}
+
+function deleteShopItem(i) {
   shops.splice(i, 1);
-  localStorage.setItem("shop", JSON.stringify(shops));
-  renderShop();
+  renderShoppingList();
 }
 
-/* =========================
-  DAILY NOTES LOGIC
-========================= */
-function loadNoteForDay() {
-  renderDateTabs();
-  document.getElementById("noteBox").value = localStorage.getItem("note-" + currentNoteDay) || "";
-}
-
-function saveNote() {
-  let val = document.getElementById("noteBox").value;
-  localStorage.setItem("note-" + currentNoteDay, val);
-  alert(`⚡ ${currentNoteDay} 備註儲存成功！`);
-}
-
-/* =========================
-  EXPENSE LOGIC
-========================= */
-function initExpenseDropdown() {
-  const select = document.getElementById("expDaySelect");
-  select.innerHTML = "";
-  Object.keys(itineraries).forEach(day => {
-    select.innerHTML += `<option value="${day}">${day}</option>`;
-  });
-  select.value = currentExpDay;
-  select.addEventListener('change', (e) => {
-    currentExpDay = e.target.value;
-    renderExpenses();
-  });
-}
-
-function addExpense() {
-  let name = document.getElementById("expName").value.trim();
-  let amt = parseInt(document.getElementById("expAmt").value);
-  if (!name || isNaN(amt)) return;
-
-  expenses.push({ day: currentExpDay, name, amt });
-  localStorage.setItem("expenses", JSON.stringify(expenses));
-  
-  document.getElementById("expName").value = "";
-  document.getElementById("expAmt").value = "";
-  renderExpenses();
-}
-
-function delExpense(i) {
-  expenses.splice(i, 1);
-  localStorage.setItem("expenses", JSON.stringify(expenses));
-  renderExpenses();
-}
-
-function renderExpenses() {
-  let box = document.getElementById("expList");
+// 待辦事項
+function renderTodoList() {
+  const box = document.getElementById("todoList");
   box.innerHTML = "";
-  
-  let dayTotal = 0;
-  let allTotal = 0;
+  todos.forEach((t, i) => {
+    box.innerHTML += `
+      <div class="flex justify-between items-center p-3 bg-slate-50 rounded-xl border border-slate-100">
+        <label class="flex items-center gap-3 cursor-pointer flex-1">
+          <input type="checkbox" class="w-5 h-5 rounded text-red-500 accent-red-500" ${t.done ? 'checked' : ''} onchange="toggleTodoItem(${i})">
+          <span class="${t.done ? 'line-through text-slate-400 italic' : 'font-bold text-slate-700'}">${t.text}</span>
+        </label>
+        <button class="text-slate-400 hover:text-red-500 font-bold px-2 text-sm" onclick="deleteTodoItem(${i})">❌</button>
+      </div>`;
+  });
+  localStorage.setItem("pika_todo", JSON.stringify(todos));
+  updateGlobalWidgets();
+}
 
-  expenses.forEach((e, idx) => {
-    allTotal += e.amt;
-    if (e.day === currentExpDay) {
-      dayTotal += e.amt;
-      box.innerHTML += `
-        <div class="bg-white px-4 py-2 rounded-xl border border-gray-200 flex justify-between items-center text-sm shadow-sm">
-          <span class="font-bold text-slate-700">${e.name}</span>
-          <div class="flex items-center gap-3">
-            <span class="font-black text-amber-600">¥${e.amt.toLocaleString()}</span>
-            <button class="text-xs text-red-400 hover:text-red-600 font-bold" onclick="delExpense(${idx})">刪除</button>
-          </div>
-        </div>`;
+function addTodoItem() {
+  const input = document.getElementById("todoInput");
+  if (!input.value.trim()) return;
+  todos.push({ text: input.value.trim(), done: false });
+  input.value = "";
+  renderTodoList();
+}
+
+function toggleTodoItem(i) {
+  todos[i].done = !todos[i].done;
+  renderTodoList();
+}
+
+function deleteTodoItem(i) {
+  todos.splice(i, 1);
+  renderTodoList();
+}
+
+/* ==========================================================================
+   5. 每日備註模組 (需求2: 支援每日獨立切換與儲存)
+   ========================================================================== */
+function initNoteTabs() {
+  const container = document.getElementById("noteDayTabs");
+  container.innerHTML = "";
+  datesArr.forEach(d => {
+    const isAct = (d === currentNoteDay) ? 'active' : '';
+    container.innerHTML += `<button class="day-tab ${isAct}" onclick="switchNoteDay('${d}')">${d}</button>`;
+  });
+  document.getElementById("noteCurrentDateDisplay").innerText = currentNoteDay;
+  document.getElementById("noteBox").value = notes[currentNoteDay] || "";
+}
+
+function switchNoteDay(targetDate) {
+  // 切換前先暫存目前正在編輯的內容
+  notes[currentNoteDay] = document.getElementById("noteBox").value;
+  
+  currentNoteDay = targetDate;
+  initNoteTabs();
+}
+
+function saveNoteData() {
+  notes[currentNoteDay] = document.getElementById("noteBox").value;
+  localStorage.setItem("pika_notes", JSON.stringify(notes));
+  alert(`⚡ ${currentNoteDay} 的旅途備註儲存成功囉！`);
+}
+
+/* ==========================================================================
+   6. 記帳管理模組 (需求2: 包含每日明細累加與5日大總計)
+   ========================================================================== */
+function initExpenseFormOptions() {
+  const select = document.getElementById("expDateSelect");
+  select.innerHTML = "";
+  datesArr.forEach(d => {
+    select.innerHTML += `<option value="${d}">${d}</option>`;
+  });
+}
+
+function renderExpenseReport() {
+  const container = document.getElementById("expenseDayBreakdown");
+  container.innerHTML = "";
+
+  // 依日期分組運算
+  datesArr.forEach(day => {
+    let dayRecords = expenses.filter(e => e.date === day);
+    let daySum = dayRecords.reduce((s, r) => s + r.amount, 0);
+
+    let htmlBlock = `
+      <div class="bg-white p-4 rounded-2xl border-2 border-slate-100 shadow-sm space-y-2">
+        <div class="flex justify-between items-center border-b border-dashed border-slate-100 pb-2">
+          <span class="font-black text-slate-800 text-sm">📅 ${day}</span>
+          <span class="text-xs font-black text-amber-600 bg-amber-50 px-2 py-1 rounded-lg">單日小計: ¥${daySum.toLocaleString()}</span>
+        </div>
+        <div class="space-y-1 text-sm pl-2">`;
+    
+    if (dayRecords.length === 0) {
+      htmlBlock += `<p class="text-xs text-slate-400 italic py-1">這天目前沒有消費紀錄。</p>`;
+    } else {
+      dayRecords.forEach(r => {
+        // 尋找全域陣列的真正Index以便刪除
+        let globalIndex = expenses.findIndex(e => e.date === r.date && e.item === r.item && e.amount === r.amount);
+        htmlBlock += `
+          <div class="flex justify-between items-center py-1 group">
+            <span class="text-slate-600 font-bold">• ${r.item}</span>
+            <div class="flex items-center gap-3">
+              <span class="font-mono text-slate-700 font-bold">¥${r.amount.toLocaleString()}</span>
+              <button class="text-xs text-slate-300 hover:text-red-500" onclick="deleteExpenseItem(${globalIndex})">❌</button>
+            </div>
+          </div>`;
+      });
     }
+
+    htmlBlock += `</div></div>`;
+    container.innerHTML += htmlBlock;
   });
 
-  if(box.innerHTML === "") {
-    box.innerHTML = `<div class="text-xs text-gray-400 italic py-2">本日尚無花費記錄</div>`;
+  localStorage.setItem("pika_expenses", JSON.stringify(expenses));
+  updateGlobalWidgets();
+}
+
+function addExpenseItem() {
+  const date = document.getElementById("expDateSelect").value;
+  const nameInput = document.getElementById("expNameInput");
+  const amtInput = document.getElementById("expAmtInput");
+  
+  let item = nameInput.value.trim();
+  let amount = parseInt(amtInput.value);
+
+  if (!item || isNaN(amount) || amount <= 0) {
+    alert("請填寫正確的消費項目與大於0的日圓金額唷！⚡");
+    return;
   }
 
-  document.getElementById("day-total-box").innerText = `¥ ${dayTotal.toLocaleString()}`;
-  document.getElementById("all-total-box").innerText = `¥ ${allTotal.toLocaleString()}`;
+  expenses.push({ date, item, amount });
+  nameInput.value = "";
+  amtInput.value = "";
+  renderExpenseReport();
 }
 
-/* =========================
-  SPOTS GUIDE GENERATOR
-========================= */
-function renderSpotsGuide() {
-  const container = document.getElementById("tab-spots");
-  container.innerHTML = `
-    <div class="card bg-gradient-to-r from-amber-400 to-yellow-300 border-none text-slate-900">
-      <h2 class="text-2xl font-black flex items-center gap-2">⚡ 仙台＆周邊精選十大景點懶人包</h2>
-      <p class="text-xs font-medium opacity-80 mt-1">專為本次初夏散策與媽媽隨行深度客製的圖文指南</p>
-    </div>`;
+function deleteExpenseItem(globalIndex) {
+  if (globalIndex > -1) {
+    expenses.splice(globalIndex, 1);
+    renderExpenseReport();
+  }
+}
 
-  spotDetails.forEach(spot => {
-    container.innerHTML += `
-      <div class="card grid grid-cols-1 md:grid-cols-3 gap-6 items-start bg-white">
-        <div class="md:col-span-1 w-full h-52 md:h-full rounded-xl overflow-hidden border-2 border-slate-800 shadow-inner relative">
-          <img src="${spot.img}" class="w-full h-full object-cover" alt="${spot.title}">
-          <div class="absolute top-2 left-2 bg-black/70 text-yellow-300 text-xs px-2 py-1 rounded font-bold">LIVE SCENE</div>
+/* ==========================================================================
+   7. 景點介紹功能模組 (需求3: 渲染10大圖文摘要及必玩項目)
+   ========================================================================== */
+function renderAttractionsGrid() {
+  const grid = document.getElementById("attractionGrid");
+  grid.innerHTML = "";
+
+  attractionData.forEach(item => {
+    grid.innerHTML += `
+      <div class="card overflow-hidden flex flex-col justify-between hover:shadow-md transition">
+        <div class="space-y-4">
+          <!-- 景點照片 -->
+          <div class="h-48 w-full rounded-xl overflow-hidden relative border border-slate-100 bg-slate-100">
+            <img src="${item.img}" alt="${item.title}" class="w-full h-full object-cover">
+            <div class="absolute bottom-2 left-2 bg-black/70 text-white px-3 py-1 rounded-lg font-black text-sm tracking-wide">
+              ⚡ ${item.title}
+            </div>
+          </div>
+          
+          <!-- 景點描述 -->
+          <div>
+            <h3 class="font-black text-xl text-slate-800 mb-2 border-l-4 border-yellow-400 pl-2">${item.title}</h3>
+            <p class="text-slate-600 text-sm leading-relaxed text-justify">${item.desc}</p>
+          </div>
+          
+          <!-- 必看必做 -->
+          <div class="bg-amber-50/70 p-4 rounded-xl border border-amber-100 space-y-1">
+            <h4 class="text-xs font-black text-amber-900 tracking-wider flex items-center gap-1">✨ 必看亮點與必做體驗</h4>
+            <div class="text-xs text-slate-700 leading-relaxed space-y-2 pt-1">${item.highlight}</div>
+          </div>
         </div>
-        <div class="md:col-span-2 space-y-3">
-          <h3 class="text-xl font-black text-slate-800 border-b-4 border-yellow-400 pb-1 inline-block">
-            🔴 ${spot.title}
-          </h3>
-          <p class="text-sm text-slate-600 leading-relaxed font-medium bg-slate-50 p-3 rounded-xl border border-slate-100">
-            ${spot.desc}
-          </p>
-          <div class="bg-amber-50/70 p-3 rounded-xl border border-amber-200/60">
-            <h4 class="text-xs font-black text-amber-800 uppercase tracking-wider mb-1">✨ 必看亮點與必做體驗</h4>
-            <div class="text-xs text-slate-700 space-y-1 leading-relaxed">${spot.highlight}</div>
-          </div>
-          <div class="bg-sky-50/50 p-3 rounded-xl border border-sky-100 text-xs text-slate-600 space-y-0.5">
-            <h4 class="font-bold text-sky-900 mb-1">📌 景點資訊</h4>
-            ${spot.info}
-          </div>
+
+        <!-- 景點實用小腳註 -->
+        <div class="text-[11px] text-slate-400 mt-4 pt-3 border-t border-dashed border-slate-100 space-y-0.5">
+          ${item.info}
         </div>
       </div>`;
   });
 }
 
-/* =========================
-  INITIALIZATION
-========================= */
-function initAll() {
-  renderDateTabs();
-  renderItinerary();
-  renderTodo();
-  renderShop();
-  loadNoteForDay();
-  initExpenseDropdown();
-  renderExpenses();
-  renderSpotsGuide();
+function fontStyleSync() {
+  // 保持整體字型排版美觀
 }
 
-// Fire!
-initAll();
+/* ==========================================================================
+   8. 系統初始化啟動器
+   ========================================================================== */
+function initAllSystems() {
+  renderItinerary();
+  renderShoppingList();
+  renderTodoList();
+  initNoteTabs();
+  initExpenseFormOptions();
+  renderExpenseReport();
+  renderAttractionsGrid();
+  updateGlobalWidgets();
+}
+
+// 網頁加載完畢立即執行
+window.onload = initAllSystems;
 </script>
 
 </body>
