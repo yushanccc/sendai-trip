@@ -1,295 +1,311 @@
 <!DOCTYPE html>
 <html lang="zh-Hant">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>⚡仙台皮卡丘旅行</title>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>仙台皮卡丘旅行 App ⚡</title>
 
-  <script src="https://cdn.tailwindcss.com"></script>
+<script src="https://cdn.tailwindcss.com"></script>
+<script src="https://cdn.jsdelivr.net/npm/sortablejs@1.15.2/Sortable.min.js"></script>
 
-  <!-- SortableJS（拖拉排序） -->
-  <script src="https://cdn.jsdelivr.net/npm/sortablejs@1.15.2/Sortable.min.js"></script>
+<style>
+body {
+  font-family: Arial;
+  background: #fffdf2;
+}
 
-  <style>
-    body {
-      background: linear-gradient(to bottom, #fff7b2, #fffdf4);
-      font-family: Arial, sans-serif;
-    }
+.card {
+  background: white;
+  border-radius: 20px;
+  padding: 16px;
+  box-shadow: 0 6px 18px rgba(0,0,0,0.08);
+}
 
-    .card {
-      background: white;
-      border-radius: 24px;
-      padding: 20px;
-      box-shadow: 0 10px 25px rgba(0,0,0,0.08);
-    }
+.btn {
+  background: #ffd84d;
+  padding: 8px 12px;
+  border-radius: 10px;
+  font-weight: bold;
+  cursor: pointer;
+}
 
-    .pikachu-btn {
-      background: #ffd93d;
-      transition: 0.2s;
-    }
+.btn:hover { background: #ffcc00; }
 
-    .pikachu-btn:hover {
-      transform: scale(1.03);
-      background: #ffcb05;
-    }
+.tab {
+  padding: 6px 10px;
+  border-radius: 999px;
+  border: 1px solid #ddd;
+  cursor: pointer;
+}
 
-    .tab-active {
-      background: #ffcb05;
-      font-weight: bold;
-    }
-  </style>
+.tab.active {
+  background: #ffd84d;
+  font-weight: bold;
+}
+</style>
 </head>
 
-<body class="min-h-screen text-gray-800">
+<body>
 
-<header class="sticky top-0 bg-white/80 backdrop-blur border-b z-50">
-  <div class="max-w-6xl mx-auto px-4 py-4 flex justify-between items-center">
-    <h1 class="text-3xl font-black text-yellow-500">⚡仙台旅行</h1>
-    <div class="font-bold">2026/5/21 - 5/25</div>
-  </div>
-</header>
+<div class="max-w-5xl mx-auto p-4 space-y-4">
 
-<main class="max-w-6xl mx-auto px-4 py-8 space-y-8">
+<!-- HEADER -->
+<div class="card">
+  <h1 class="text-2xl font-black">⚡ 仙台皮卡丘旅行 App</h1>
+  <div>2026/05/21 - 2026/05/25</div>
+</div>
 
-<!-- 行程 -->
-<section class="card">
-  <h2 class="text-3xl font-black text-yellow-500 mb-4">📅 每日行程</h2>
+<!-- TABS -->
+<div id="tabs" class="flex gap-2 flex-wrap"></div>
 
-  <!-- Tabs -->
-  <div class="flex gap-2 mb-4 flex-wrap" id="tabs"></div>
+<!-- ITINERARY -->
+<div class="card">
+  <h2 class="font-bold text-lg mb-2">📅 行程</h2>
 
-  <!-- Day Content -->
-  <div id="dayContainer" class="space-y-3"></div>
-</section>
+  <button class="btn mb-3" onclick="openFullRoute()">
+    🗺 一鍵整天路線導航
+  </button>
 
-<!-- 記帳 -->
-<section class="card">
-  <h2 class="text-3xl font-black text-yellow-500 mb-6">💰 旅行記帳</h2>
+  <div id="itineraryList" class="space-y-2"></div>
+</div>
 
-  <div class="grid lg:grid-cols-2 gap-6">
+<!-- NOTES -->
+<div class="card">
+  <h2 class="font-bold text-lg mb-2">📝 旅遊備註</h2>
 
-    <div class="space-y-4">
-      <input id="name" type="text" placeholder="花費項目" class="w-full border rounded-xl p-3">
-      <input id="amount" type="number" placeholder="日圓金額" class="w-full border rounded-xl p-3">
+  <textarea id="noteBox"
+    class="w-full border p-2 rounded"
+    rows="4"
+    placeholder="寫下今天的旅遊心得..."></textarea>
 
-      <select id="category" class="w-full border rounded-xl p-3">
-        <option>交通</option>
-        <option>餐飲</option>
-        <option>購物</option>
-        <option>景點</option>
-      </select>
+  <button class="btn mt-2" onclick="saveNote()">儲存備註</button>
 
-      <button onclick="addExpense()" class="pikachu-btn w-full py-3 rounded-xl font-black">
-        ➕ 新增花費
-      </button>
-    </div>
+  <div id="savedNote" class="mt-3 text-gray-700"></div>
+</div>
 
-    <div>
-      <div id="expenseList" class="space-y-3 mb-6"></div>
+<!-- PHOTO -->
+<div class="card">
+  <h2 class="font-bold text-lg mb-2">📷 照片記錄</h2>
 
-      <div class="border-t pt-4 space-y-2 text-lg">
-        <div>🇯🇵 日圓總花費：<span id="yenTotal" class="font-black text-orange-600">¥0</span></div>
-        <div>🇹🇼 台幣換算：<span id="twdTotal" class="font-black text-red-500">NT$0</span></div>
-      </div>
-    </div>
+  <input type="file" accept="image/*" onchange="uploadPhoto(event)" />
 
-  </div>
-</section>
+  <div id="photoArea" class="grid grid-cols-2 gap-2 mt-3"></div>
+</div>
 
-</main>
+<!-- EXPENSE -->
+<div class="card">
+  <h2 class="font-bold text-lg mb-2">💰 記帳</h2>
+
+  <input id="name" placeholder="項目" class="border p-2 w-full mb-2"/>
+  <input id="amount" type="number" placeholder="金額" class="border p-2 w-full mb-2"/>
+
+  <button class="btn w-full" onclick="addExpense()">新增</button>
+
+  <div id="expenseList" class="mt-3 space-y-2"></div>
+</div>
+
+</div>
 
 <script>
 
-/* ---------------------------
-   匯率
-----------------------------*/
-let exchangeRate = 0.22;
-
-async function fetchExchangeRate() {
-  try {
-    const res = await fetch("https://open.er-api.com/v6/latest/JPY");
-    const data = await res.json();
-    exchangeRate = data.rates.TWD;
-    renderExpenses();
-  } catch (e) {
-    console.log("匯率讀取失敗");
-  }
-}
-fetchExchangeRate();
-
-/* ---------------------------
-   記帳資料
-----------------------------*/
-let expenses = JSON.parse(localStorage.getItem("sendaiExpenses")) || [];
-
-function saveData() {
-  localStorage.setItem("sendaiExpenses", JSON.stringify(expenses));
-}
-
-function addExpense() {
-  const name = document.getElementById("name").value;
-  const amount = parseInt(document.getElementById("amount").value);
-  const category = document.getElementById("category").value;
-
-  if (!name || !amount) return alert("請輸入完整資訊");
-
-  expenses.push({ name, amount, category });
-
-  saveData();
-  renderExpenses();
-
-  document.getElementById("name").value = "";
-  document.getElementById("amount").value = "";
-}
-
-function deleteExpense(i) {
-  expenses.splice(i, 1);
-  saveData();
-  renderExpenses();
-}
-
-/* ---------------------------
-   行程資料（每日分頁）
-----------------------------*/
-let itineraries = JSON.parse(localStorage.getItem("sendaiPlan")) || {
-  "5/21": [
-    { name: "抵達仙台", lat: 38.2682, lng: 140.8694 },
-    { name: "仙台車站逛街", lat: 38.2607, lng: 140.8821 }
-  ],
-  "5/22": [
-    { name: "松島遊船", lat: 38.3661, lng: 141.0669 }
-  ],
-  "5/23": [
-    { name: "猊鼻渓", lat: 38.9856, lng: 141.2977 }
-  ]
+/* =========================
+   行程資料
+========================= */
+let itineraries = JSON.parse(localStorage.getItem("plan")) || {
+"2026/05/21":[
+  {name:"抵達仙台",lat:38.26,lng:140.88},
+  {name:"仙台站",lat:38.26,lng:140.88}
+],
+"2026/05/22":[
+  {name:"仙台朝市",lat:38.26,lng:140.88},
+  {name:"瑞鳳殿",lat:38.25,lng:140.86}
+],
+"2026/05/23":[
+  {name:"金蛇水神社",lat:38.06,lng:140.85},
+  {name:"松島",lat:38.37,lng:141.06}
+],
+"2026/05/24":[
+  {name:"一ノ関",lat:38.93,lng:141.13},
+  {name:"猊鼻渓",lat:38.98,lng:141.29}
+],
+"2026/05/25":[
+  {name:"仙台購物",lat:38.26,lng:140.88},
+  {name:"機場",lat:38.14,lng:140.92}
+]
 };
 
-let currentDay = "5/21";
+let currentDay = Object.keys(itineraries)[0];
 
-function savePlan() {
-  localStorage.setItem("sendaiPlan", JSON.stringify(itineraries));
+function savePlan(){
+localStorage.setItem("plan",JSON.stringify(itineraries));
 }
 
-/* ---------------------------
-   Google Maps 導航
-----------------------------*/
-function openMap(lat, lng) {
-  const url = `https://www.google.com/maps/dir/?api=1&destination=${lat},${lng}&travelmode=transit`;
-  window.open(url, "_blank");
+/* =========================
+   Tabs
+========================= */
+function renderTabs(){
+const tabs=document.getElementById("tabs");
+tabs.innerHTML="";
+
+Object.keys(itineraries).forEach(d=>{
+tabs.innerHTML+=`
+<div class="tab ${d===currentDay?'active':''}" onclick="switchDay('${d}')">
+${d}
+</div>`;
+});
 }
 
-/* ---------------------------
-   行程 UI
-----------------------------*/
-function renderTabs() {
-  const tabs = document.getElementById("tabs");
-  tabs.innerHTML = "";
-
-  Object.keys(itineraries).forEach(day => {
-    tabs.innerHTML += `
-      <button onclick="switchDay('${day}')"
-        class="px-4 py-2 rounded-xl ${day === currentDay ? 'tab-active' : 'bg-white'} border">
-        ${day}
-      </button>
-    `;
-  });
+function switchDay(d){
+currentDay=d;
+renderAll();
 }
 
-function switchDay(day) {
-  currentDay = day;
-  renderPlan();
-  renderTabs();
+/* =========================
+   行程
+========================= */
+function renderItinerary(){
+const box=document.getElementById("itineraryList");
+box.innerHTML="";
+
+itineraries[currentDay].forEach((p,i)=>{
+box.innerHTML+=`
+<div class="card flex justify-between items-center" data-index="${i}">
+<div>${p.name}</div>
+
+<div class="flex gap-2">
+<button class="btn" onclick="openMap(${p.lat},${p.lng})">導航</button>
+</div>
+</div>`;
+});
+
+enableDrag();
 }
 
-function renderPlan() {
-  const container = document.getElementById("dayContainer");
-  container.innerHTML = "";
-
-  itineraries[currentDay].forEach((item, i) => {
-    container.innerHTML += `
-      <div class="bg-yellow-50 p-4 rounded-2xl flex justify-between items-center cursor-move"
-           data-index="${i}">
-
-        <div>
-          <div class="font-bold">${item.name}</div>
-        </div>
-
-        <button onclick="openMap(${item.lat},${item.lng})"
-          class="bg-blue-500 text-white px-3 py-1 rounded-lg">
-          🗺 導航
-        </button>
-      </div>
-    `;
-  });
-
-  enableDrag();
+/* Google Maps */
+function openMap(lat,lng){
+window.open(
+`https://www.google.com/maps/dir/?api=1&destination=${lat},${lng}&travelmode=transit`,
+"_blank");
 }
 
-/* ---------------------------
-   拖拉排序
-----------------------------*/
-function enableDrag() {
-  const el = document.getElementById("dayContainer");
+/* 一鍵整天路線 */
+function openFullRoute(){
+let points=itineraries[currentDay];
+if(points.length<2)return;
 
-  new Sortable(el, {
-    animation: 150,
-    onEnd: function () {
-      const newOrder = [];
-      el.querySelectorAll("[data-index]").forEach((node) => {
-        const i = node.getAttribute("data-index");
-        newOrder.push(itineraries[currentDay][i]);
-      });
+let origin=`${points[0].lat},${points[0].lng}`;
+let dest=`${points[points.length-1].lat},${points[points.length-1].lng}`;
 
-      itineraries[currentDay] = newOrder;
-      savePlan();
-      renderPlan();
-    }
-  });
+let waypoints=points.slice(1,-1)
+.map(p=>`${p.lat},${p.lng}`).join("|");
+
+let url=`https://www.google.com/maps/dir/?api=1&origin=${origin}&destination=${dest}&travelmode=transit&waypoints=${waypoints}`;
+
+window.open(url,"_blank");
 }
 
-/* ---------------------------
-   記帳 UI
-----------------------------*/
-function renderExpenses() {
-
-  const list = document.getElementById("expenseList");
-  list.innerHTML = "";
-
-  let total = 0;
-
-  expenses.forEach((item, i) => {
-    total += item.amount;
-
-    list.innerHTML += `
-      <div class="bg-yellow-50 p-4 rounded-2xl flex justify-between items-center">
-
-        <div>
-          <div class="font-bold">${item.name}</div>
-          <div class="text-sm text-gray-500">${item.category}</div>
-        </div>
-
-        <div class="flex gap-3 items-center">
-          <div class="font-black text-orange-600">¥${item.amount}</div>
-          <button onclick="deleteExpense(${i})" class="bg-red-400 text-white px-3 py-1 rounded-lg">✕</button>
-        </div>
-
-      </div>
-    `;
-  });
-
-  document.getElementById("yenTotal").innerText =
-    "¥" + total.toLocaleString();
-
-  document.getElementById("twdTotal").innerText =
-    "NT$" + Math.round(total * exchangeRate).toLocaleString();
+/* 拖拉 */
+function enableDrag(){
+new Sortable(document.getElementById("itineraryList"),{
+animation:150,
+onEnd:()=>{
+let arr=[];
+document.querySelectorAll("[data-index]").forEach(el=>{
+arr.push(itineraries[currentDay][el.dataset.index]);
+});
+itineraries[currentDay]=arr;
+savePlan();
+renderItinerary();
+}
+});
 }
 
-/* ---------------------------
-   初始化
-----------------------------*/
+/* =========================
+   備註
+========================= */
+function saveNote(){
+localStorage.setItem("note-"+currentDay,
+document.getElementById("noteBox").value);
+
+loadNote();
+}
+
+function loadNote(){
+document.getElementById("noteBox").value=
+localStorage.getItem("note-"+currentDay)||"";
+
+document.getElementById("savedNote").innerText=
+localStorage.getItem("note-"+currentDay)||"";
+}
+
+/* =========================
+   照片
+========================= */
+function uploadPhoto(e){
+let file=e.target.files[0];
+let reader=new FileReader();
+
+reader.onload=function(){
+let photos=JSON.parse(localStorage.getItem("photo-"+currentDay)||"[]");
+photos.push(reader.result);
+localStorage.setItem("photo-"+currentDay,JSON.stringify(photos));
+renderPhotos();
+};
+
+reader.readAsDataURL(file);
+}
+
+function renderPhotos(){
+let photos=JSON.parse(localStorage.getItem("photo-"+currentDay)||"[]");
+let box=document.getElementById("photoArea");
+box.innerHTML="";
+
+photos.forEach(p=>{
+box.innerHTML+=`<img src="${p}" class="rounded-xl"/>`;
+});
+}
+
+/* =========================
+   記帳
+========================= */
+let expenses=[];
+
+function addExpense(){
+let n=document.getElementById("name").value;
+let a=parseInt(document.getElementById("amount").value);
+
+if(!n||!a)return;
+
+expenses.push({n,a});
+
+renderExpense();
+}
+
+function renderExpense(){
+let box=document.getElementById("expenseList");
+box.innerHTML="";
+let total=0;
+
+expenses.forEach(e=>{
+total+=e.a;
+box.innerHTML+=`<div>${e.n} - ¥${e.a}</div>`;
+});
+
+box.innerHTML+=`<div class="font-bold">總計 ¥${total}</div>`;
+}
+
+/* =========================
+   init
+========================= */
+function renderAll(){
 renderTabs();
-renderPlan();
-renderExpenses();
+renderItinerary();
+loadNote();
+renderPhotos();
+renderExpense();
+}
+
+renderAll();
 
 </script>
 
