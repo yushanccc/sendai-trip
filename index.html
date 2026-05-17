@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-    <title>2026初夏仙台散策⚡</title>
+    <title>2026初夏仙台散策 ⚡ 皮卡丘伴你同行</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://cdn.jsdelivr.net/npm/sortablejs@1.15.2/Sortable.min.js"></script>
     <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@300..700&family=Noto+Sans+TC:wght@400;700;900&display=swap" rel="stylesheet">
@@ -82,13 +82,6 @@
         .animate-pika-bounce { animation: pika-bounce 2s infinite ease-in-out; }
         .animate-pika-wag { animation: pika-wag 1.5s infinite ease-in-out; }
         .animate-pika-pulse { animation: pika-pulse 2.5s infinite ease-in-out; }
-
-        /* 景點卡片插畫風背景專用裝飾圖案 */
-        .hand-drawn-bg {
-            position: relative;
-            background-size: 20px 20px;
-            background-image: radial-gradient(circle, rgba(255,255,255,0.15) 1px, transparent 1px);
-        }
         
         ::-webkit-scrollbar { width: 8px; }
         ::-webkit-scrollbar-track { background: #fffbf0; }
@@ -98,6 +91,7 @@
 <body class="text-slate-800 pb-12">
     <div class="max-w-6xl mx-auto p-4 space-y-6">
         
+        <!-- 頂部精準皮卡丘主視覺列 -->
         <div class="card relative overflow-hidden bg-gradient-to-r from-amber-100 via-yellow-50 to-orange-100 border-4 border-yellow-400 flex flex-col md:flex-row justify-between items-center p-6 gap-6 shadow-lg">
             <div class="absolute top-0 left-0 w-8 h-8 bg-black transform -translate-x-4 -translate-y-4 rotate-45"></div>
             <div class="absolute top-0 right-0 w-8 h-8 bg-black transform translate-x-4 -translate-y-4 rotate-45"></div>
@@ -136,6 +130,7 @@
             </div>
         </div>
 
+        <!-- 功能分頁標籤 -->
         <div class="flex gap-2 overflow-x-auto pb-2 -mx-4 px-4 md:mx-0 md:px-0 scrollbar-none">
             <button class="nav-tab active" onclick="switchMainTab('itinerary', this)">🗺️ 每日行程</button>
             <button class="nav-tab" onclick="switchMainTab('shopping', this)">🛍️ 購物清單</button>
@@ -145,6 +140,7 @@
             <button class="nav-tab" onclick="switchMainTab('attractions', this)">🌟 景點介紹</button>
         </div>
 
+        <!-- 1. 每日行程分頁 -->
         <div id="section-itinerary" class="main-section space-y-4">
             <div class="card relative">
                 <div class="absolute right-4 top-4 flex items-center gap-1 bg-yellow-100 text-yellow-800 text-xs px-2 py-1 rounded-full font-bold border border-yellow-300">
@@ -170,6 +166,7 @@
             </div>
         </div>
 
+        <!-- 2. 購物清單分頁 -->
         <div id="section-shopping" class="main-section space-y-4 hidden">
             <div class="card relative">
                 <div class="absolute right-4 top-4 flex items-center gap-1 bg-orange-100 text-orange-800 text-xs px-2 py-1 rounded-full font-bold border border-orange-300 animate-pika-bounce">
@@ -179,29 +176,31 @@
 
                 <h2 class="text-xl font-black mb-4 flex items-center gap-2 text-slate-800">🛍️ 我的敲可愛採購清單</h2>
                 <div class="flex gap-2 mb-4">
-                    <input id="shopInput" type="text" class="form-input flex-1 border border-slate-300 rounded-xl px-4 focus:outline-yellow-400" placeholder="填入想買的限定商品或伴手禮...">
-                    <button class="btn-pika" onclick="addShopItem()">新增項目</button>
+                    <input id="shopInput" type="text" class="form-input flex-1 border border-slate-300 rounded-xl px-4 focus:outline-yellow-400 text-sm" placeholder="填入想買的限定商品或伴手禮...">
+                    <button class="btn-pika text-sm" onclick="addShopItem()">新增項目</button>
                 </div>
                 <div id="shopList" class="divide-y divide-slate-100 max-h-[500px] overflow-y-auto pr-2"></div>
             </div>
         </div>
 
+        <!-- 3. 待辦事項分頁 -->
         <div id="section-todo" class="main-section space-y-4 hidden">
             <div class="card relative">
-                <div class="absolute right-4 top-4 flex items-center gap-1 bg-red-100 text-red-800 text-xs px-2 py-1 rounded-full font-bold border border-red-300">
+                <div class="absolute right-4 top-4 flex items-center gap-1 bg-red-100 text-red-800 text-xs px-2 py-1 rounded-full font-bold border border-red-300 animate-pika-bounce">
                     <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/25.png" class="w-5 h-5 object-contain animate-pulse" alt="Pika">
                     <span>打卡小助手皮卡</span>
                 </div>
 
                 <h2 class="text-xl font-black mb-4 flex items-center gap-2 text-slate-800">📝 出發前/旅途中待辦事項</h2>
                 <div class="flex gap-2 mb-4">
-                    <input id="todoInput" type="text" class="form-input flex-1 border border-slate-300 rounded-xl px-4 focus:outline-yellow-400" placeholder="例如：填寫 Visit Japan Web、護照確認...">
-                    <button class="btn-pika" onclick="addTodoItem()">確認新增</button>
+                    <input id="todoInput" type="text" class="form-input flex-1 border border-slate-300 rounded-xl px-4 focus:outline-yellow-400 text-sm" placeholder="例如：填寫 Visit Japan Web、護照確認...">
+                    <button class="btn-pika text-sm" onclick="addTodoItem()">確認新增</button>
                 </div>
                 <div id="todoList" class="space-y-2 max-h-[500px] overflow-y-auto pr-2"></div>
             </div>
         </div>
 
+        <!-- 4. 每日備註分頁 -->
         <div id="section-notes" class="main-section space-y-4 hidden">
             <div class="card relative">
                 <div class="absolute right-4 top-4 flex items-center gap-1 bg-amber-100 text-amber-800 text-xs px-2 py-1 rounded-full font-bold border border-amber-300">
@@ -217,15 +216,16 @@
                     <div class="font-bold text-sm mb-2 text-amber-800 flex items-center gap-1">
                         <span>⚡ 正在編輯：</span><span id="noteCurrentDateDisplay" class="underline text-red-600"></span>
                     </div>
-                    <textarea id="noteBox" rows="6" class="w-full border border-slate-300 rounded-xl p-3 focus:outline-yellow-400 bg-white" placeholder="在此輸入這天的專屬備註..."></textarea>
-                    <button class="btn-pika mt-3 w-full sm:w-auto" onclick="saveNoteData()">💾 儲存今日備註</button>
+                    <textarea id="noteBox" rows="6" class="w-full border border-slate-300 rounded-xl p-3 focus:outline-yellow-400 bg-white text-sm" placeholder="在此輸入這天的專屬備註..."></textarea>
+                    <button class="btn-pika mt-3 w-full sm:w-auto text-sm" onclick="saveNoteData()">💾 儲存今日備註</button>
                 </div>
             </div>
         </div>
 
+        <!-- 5. 記帳管理分頁 -->
         <div id="section-expense" class="main-section space-y-4 hidden">
             <div class="card relative">
-                <div class="absolute right-4 top-4 flex items-center gap-1 bg-green-100 text-green-800 text-xs px-2 py-1 rounded-full font-bold border border-green-300 animate-bounce">
+                <div class="absolute right-4 top-4 flex items-center gap-1 bg-green-100 text-green-800 text-xs px-2 py-1 rounded-full font-bold border border-green-300 animate-pika-pulse">
                     <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/25.png" class="w-5 h-5 object-contain" alt="Pika">
                     <span>金幣滿滿皮卡丘</span>
                 </div>
@@ -234,17 +234,17 @@
                 <div class="grid grid-cols-1 sm:grid-cols-3 gap-3 bg-slate-50 p-4 rounded-2xl mb-6 border border-slate-100">
                     <div>
                         <label class="block text-xs font-bold mb-1 text-slate-500">選擇消費日期</label>
-                        <select id="expDateSelect" class="border border-slate-300 rounded-xl p-2 bg-white w-full focus:outline-yellow-400"></select>
+                        <select id="expDateSelect" class="border border-slate-300 rounded-xl p-2 bg-white w-full focus:outline-yellow-400 text-sm"></select>
                     </div>
                     <div>
                         <label class="block text-xs font-bold mb-1 text-slate-500">品項名稱</label>
-                        <input id="expNameInput" type="text" class="border border-slate-300 rounded-xl p-2 bg-white w-full focus:outline-yellow-400" placeholder="如：牛舌定食">
+                        <input id="expNameInput" type="text" class="border border-slate-300 rounded-xl p-2 bg-white w-full focus:outline-yellow-400 text-sm" placeholder="如：牛舌定食">
                     </div>
                     <div>
                         <label class="block text-xs font-bold mb-1 text-slate-500">金額 (日圓 ¥)</label>
                         <div class="flex gap-2">
-                            <input id="expAmtInput" type="number" class="border border-slate-300 rounded-xl p-2 bg-white w-full focus:outline-yellow-400" placeholder="0">
-                            <button class="btn-pika shrink-0" onclick="addExpenseItem()">記一筆</button>
+                            <input id="expAmtInput" type="number" class="border border-slate-300 rounded-xl p-2 bg-white w-full focus:outline-yellow-400 text-sm" placeholder="0">
+                            <button class="btn-pika shrink-0 text-sm" onclick="addExpenseItem()">記一筆</button>
                         </div>
                     </div>
                 </div>
@@ -267,14 +267,14 @@
             </div>
         </div>
 
+        <!-- 6. 景點介紹分頁 -->
         <div id="section-attractions" class="main-section space-y-4 hidden">
             <div class="card bg-gradient-to-r from-yellow-100 via-amber-50 to-yellow-200 border-2 border-yellow-400 relative">
                 <div class="absolute right-4 top-4 flex items-center gap-1 bg-yellow-400 text-slate-900 text-xs px-2.5 py-1 rounded-full font-black border-2 border-slate-900 animate-pika-pulse">
                     <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/25.png" class="w-6 h-6 object-contain" alt="Pika">
                     <span>探險隊長皮卡丘</span>
                 </div>
-                <h2 class="text-2xl font-black text-amber-950 flex items-center gap-2">🌟 仙台 & 周邊精選 10 大景點全攻略 (神奇寶貝對應版)</h2>
-                <p class="text-xs text-amber-800 font-bold">已全面更換為極度穩定的 PokeAPI 官方高解析圖示，搭配手繪風場景背景，讓媽媽賞景更輕鬆好讀！</p>
+                <h2 class="text-2xl font-black text-amber-950 flex items-center gap-2">🌟 仙台 & 周邊精選 10 大景點全攻略</h2>
             </div>
             
             <div id="attractionGrid" class="grid grid-cols-1 md:grid-cols-2 gap-6"></div>
@@ -341,7 +341,6 @@
             { date: "2026/05/23", item: "觀瀾亭抹茶體驗", amount: 800 }
         ];
 
-        // 重新編制 10 大景點資料：置換為穩定 PokeAPI 官方繪圖 + 手繪活潑彩色漸層背景樣式 + 可愛貼心解說圖章
         const attractionData = [
             {
                 title: "松島",
@@ -449,6 +448,16 @@
         let currentNoteDay = datesArr[0];
         let itineraryMode = "single";
 
+        window.onload = function() {
+            switchMainTab('itinerary', document.querySelector('.nav-tab'));
+            initExpenseSelect();
+            renderShop();
+            renderTodo();
+            initNoteTabs();
+            renderExpense();
+            renderAttractions();
+        };
+
         function switchMainTab(targetSection, tabButton) {
             document.querySelectorAll('.main-section').forEach(sec => sec.classList.add('hidden'));
             document.getElementById(`section-${targetSection}`).classList.remove('hidden');
@@ -489,14 +498,14 @@
 
             if (itineraryMode === "all") {
                 datesArr.forEach(day => {
-                    container.innerHTML += `<div class="font-black text-amber-600 text-lg mt-4 mb-2 flex items-center gap-1">⚡ ${day}</div>`;
+                    container.innerHTML += `<div class="font-black text-amber-600 text-sm mt-4 mb-2 flex items-center gap-1">⚡ ${day}</div>`;
                     if (itineraries[day].length === 0) {
                         container.innerHTML += `<div class="text-xs text-slate-400 italic pl-4">本日目前無安排行程。</div>`;
                     }
                     itineraries[day].forEach(p => {
                         container.innerHTML += `
                             <div class="bg-white p-4 rounded-xl border border-slate-100 flex justify-between items-center shadow-sm">
-                                <span class="font-bold text-slate-700">${p.name}</span>
+                                <span class="font-bold text-slate-700 text-sm">${p.name}</span>
                                 <button class="btn-pika text-xs py-1 px-3" onclick="openMap(${p.lat}, ${p.lng})">🧭 地圖導航</button>
                             </div>`;
                     });
@@ -506,7 +515,7 @@
 
             const currentItems = itineraries[currentDay] || [];
             if (currentItems.length === 0) {
-                container.innerHTML = `<div class="text-center p-8 text-slate-400 italic">這天還沒有安排景點喔！</div>`;
+                container.innerHTML = `<div class="text-center p-8 text-slate-400 italic text-sm">這天還沒有安排景點喔！</div>`;
                 return;
             }
 
@@ -515,232 +524,229 @@
                     <div class="itinerary-drag-item bg-white p-4 rounded-2xl border-2 border-slate-100 flex justify-between items-center shadow-sm hover:border-yellow-300 cursor-move" data-index="${idx}">
                         <div class="flex items-center gap-3">
                             <div class="w-6 h-6 rounded-full bg-yellow-100 text-yellow-700 font-bold flex items-center justify-center text-xs">${idx + 1}</div>
-                            <span class="font-bold text-slate-800 tracking-wide">${p.name}</span>
+                            <span class="font-bold text-slate-800 tracking-wide text-sm">${p.name}</span>
                         </div>
                         <button class="btn-pika text-xs py-1.5 px-3" onclick="openMap(${p.lat}, ${p.lng})">🧭 地圖導航</button>
                     </div>`;
             });
 
-            new Sortable(container, {
-                animation: 180,
-                handle: '.itinerary-drag-item',
-                onEnd: () => {
-                    let reorderedArr = [];
-                    container.querySelectorAll('.itinerary-drag-item').forEach(el => {
-                        let oldIdx = parseInt(el.getAttribute('data-index'));
-                        reorderedArr.push(currentItems[oldIdx]);
-                    });
-                    itineraries[currentDay] = reorderedArr;
-                    localStorage.setItem("pika_plan", JSON.stringify(itineraries));
-                    renderItinerary();
-                }
-            });
+            if (typeof Sortable !== 'undefined') {
+                new Sortable(container, {
+                    animation: 150,
+                    handle: '.itinerary-drag-item',
+                    onEnd: function (evt) {
+                        const oldIndex = evt.oldIndex;
+                        const newIndex = evt.newIndex;
+                        const dayList = itineraries[currentDay];
+                        const removed = dayList.splice(oldIndex, 1)[0];
+                        dayList.splice(newIndex, 0, removed);
+                        localStorage.setItem("pika_plan", JSON.stringify(itineraries));
+                        renderItinerary();
+                    }
+                });
+            }
         }
 
         function openMap(lat, lng) {
-            window.open(`https://maps.google.com/?q=${lat},${lng}&travelmode=transit`, "_blank");
+            window.open(`https://www.google.com/maps/search/?api=1&query=${lat},${lng}`, '_blank');
         }
 
         function openFullRoute() {
-            let arr = itineraries[currentDay];
-            if (!arr || arr.length === 0) return;
-            let o = arr[0], d = arr[arr.length - 1];
-            let w = arr.slice(1, -1).map(p => p.lat + "," + p.lng).join("|");
-            window.open(`https://www.google.com/maps/dir/?api=1&origin=${o.lat},${o.lng}&destination=${d.lat},${d.lng}&waypoints=${w}&travelmode=transit`, "_blank");
+            const currentItems = itineraries[currentDay] || [];
+            if (currentItems.length === 0) {
+                alert("今天沒有排行程，皮卡丘不知道往哪走角！");
+                return;
+            }
+            const origin = `${currentItems[0].lat},${currentItems[0].lng}`;
+            const destination = `${currentItems[currentItems.length-1].lat},${currentItems[currentItems.length-1].lng}`;
+            const waypoints = currentItems.slice(1, -1).map(p => `${p.lat},${p.lng}`).join('|');
+            let url = `https://www.google.com/maps/dir/?api=1&origin=${origin}&destination=${destination}`;
+            if(waypoints) url += `&waypoints=${waypoints}`;
+            window.open(url, '_blank');
         }
 
-        function renderShoppingList() {
-            const box = document.getElementById("shopList");
-            box.innerHTML = "";
-            shops.forEach((s, i) => {
-                box.innerHTML += `
-                    <div class="flex justify-between items-center py-3">
-                        <label class="flex items-center gap-3 cursor-pointer flex-1">
-                            <input type="checkbox" class="w-5 h-5 rounded text-yellow-500 accent-yellow-400" ${s.done ? 'checked' : ''} onchange="toggleShopItem(${i})">
-                            <span class="${s.done ? 'line-through text-slate-400' : 'font-bold text-slate-700'}">${s.text}</span>
-                        </label>
-                        <button class="text-slate-400 hover:text-red-500 font-bold px-2 text-sm" onclick="deleteShopItem(${i})">❌</button>
-                    </div>`;
-            });
-            localStorage.setItem("pika_shop", JSON.stringify(shops));
-        }
-
+        // 購物功能
         function addShopItem() {
             const input = document.getElementById("shopInput");
-            if (!input.value.trim()) return;
+            if(!input.value.trim()) return;
             shops.push({ text: input.value.trim(), done: false });
             input.value = "";
-            renderShoppingList();
+            localStorage.setItem("pika_shop", JSON.stringify(shops));
+            renderShop();
         }
-        function toggleShopItem(i) { shops[i].done = !shops[i].done; renderShoppingList(); }
-        function deleteShopItem(i) { shops.splice(i, 1); renderShoppingList(); }
-
-        function renderTodoList() {
-            const box = document.getElementById("todoList");
-            box.innerHTML = "";
-            todos.forEach((t, i) => {
-                box.innerHTML += `
-                    <div class="flex justify-between items-center p-3 bg-slate-50 rounded-xl border border-slate-100">
-                        <label class="flex items-center gap-3 cursor-pointer flex-1">
-                            <input type="checkbox" class="w-5 h-5 rounded text-red-500 accent-red-500" ${t.done ? 'checked' : ''} onchange="toggleTodoItem(${i})">
-                            <span class="${t.done ? 'line-through text-slate-400 italic' : 'font-bold text-slate-700'}">${t.text}</span>
+        function toggleShopItem(idx) {
+            shops[idx].done = !shops[idx].done;
+            localStorage.setItem("pika_shop", JSON.stringify(shops));
+            renderShop();
+        }
+        function deleteShopItem(idx) {
+            shops.splice(idx, 1);
+            localStorage.setItem("pika_shop", JSON.stringify(shops));
+            renderShop();
+        }
+        function renderShop() {
+            const list = document.getElementById("shopList");
+            list.innerHTML = "";
+            shops.forEach((item, idx) => {
+                list.innerHTML += `
+                    <div class="flex items-center justify-between py-2.5 gap-2">
+                        <label class="flex items-center gap-2 cursor-pointer text-sm font-bold ${item.done ? 'line-through text-slate-400' : 'text-slate-700'}">
+                            <input type="checkbox" ${item.done ? 'checked' : ''} onchange="toggleShopItem(${idx})" class="w-4 h-4 accent-yellow-500 rounded">
+                            <span>${item.text}</span>
                         </label>
-                        <button class="text-slate-400 hover:text-red-500 font-bold px-2 text-sm" onclick="deleteTodoItem(${i})">❌</button>
+                        <button onclick="deleteShopItem(${idx})" class="text-xs text-red-500 hover:underline font-bold">刪除</button>
                     </div>`;
             });
-            localStorage.setItem("pika_todo", JSON.stringify(todos));
             updateGlobalWidgets();
         }
 
+        // 待辦功能
         function addTodoItem() {
             const input = document.getElementById("todoInput");
-            if (!input.value.trim()) return;
+            if(!input.value.trim()) return;
             todos.push({ text: input.value.trim(), done: false });
             input.value = "";
-            renderTodoList();
+            localStorage.setItem("pika_todo", JSON.stringify(todos));
+            renderTodo();
         }
-        function toggleTodoItem(i) { todos[i].done = !todos[i].done; renderTodoList(); }
-        function deleteTodoItem(i) { todos.splice(i, 1); renderTodoList(); }
+        function toggleTodoItem(idx) {
+            todos[idx].done = !todos[idx].done;
+            localStorage.setItem("pika_todo", JSON.stringify(todos));
+            renderTodo();
+        }
+        function deleteTodoItem(idx) {
+            todos.splice(idx, 1);
+            localStorage.setItem("pika_todo", JSON.stringify(todos));
+            renderTodo();
+        }
+        function renderTodo() {
+            const list = document.getElementById("todoList");
+            list.innerHTML = "";
+            todos.forEach((item, idx) => {
+                list.innerHTML += `
+                    <div class="flex items-center justify-between p-3 bg-slate-50 rounded-xl border border-slate-100 gap-2">
+                        <label class="flex items-center gap-2 cursor-pointer text-sm font-bold ${item.done ? 'line-through text-slate-400' : 'text-slate-700'}">
+                            <input type="checkbox" ${item.done ? 'checked' : ''} onchange="toggleTodoItem(${idx})" class="w-4 h-4 accent-red-500 rounded">
+                            <span>${item.text}</span>
+                        </label>
+                        <button onclick="deleteTodoItem(${idx})" class="text-xs text-red-500 hover:underline font-bold">刪除</button>
+                    </div>`;
+            });
+            updateGlobalWidgets();
+        }
 
+        // 備註功能
         function initNoteTabs() {
             const container = document.getElementById("noteDayTabs");
             container.innerHTML = "";
             datesArr.forEach(d => {
-                const isAct = (d === currentNoteDay) ? 'active' : '';
-                container.innerHTML += `<button class="day-tab ${isAct}" onclick="switchNoteDay('${d}')">${d}</button>`;
+                const activeClass = (d === currentNoteDay) ? 'bg-amber-500 text-white font-bold' : 'bg-slate-100 text-slate-600';
+                container.innerHTML += `<button class="px-3 py-1.5 rounded-xl text-xs transition-all ${activeClass}" onclick="switchNoteDay('${d}')">${d.substring(5)}</button>`;
             });
             document.getElementById("noteCurrentDateDisplay").innerText = currentNoteDay;
             document.getElementById("noteBox").value = notes[currentNoteDay] || "";
         }
-
-        function switchNoteDay(targetDate) {
-            notes[currentNoteDay] = document.getElementById("noteBox").value;
-            currentNoteDay = targetDate;
+        function switchNoteDay(day) {
+            currentNoteDay = day;
             initNoteTabs();
         }
-
         function saveNoteData() {
             notes[currentNoteDay] = document.getElementById("noteBox").value;
             localStorage.setItem("pika_notes", JSON.stringify(notes));
-            alert(`⚡ ${currentNoteDay} 的旅途備註儲存成功囉！皮卡皮卡！`);
+            alert("⚡ 皮卡丘幫你把這天的備註藏好囉！儲存成功！");
         }
 
-        function initExpenseFormOptions() {
+        // 記帳功能
+        function initExpenseSelect() {
             const select = document.getElementById("expDateSelect");
             select.innerHTML = "";
-            datesArr.forEach(d => { select.innerHTML += `<option value="${d}">${d}</option>`; });
+            datesArr.forEach(d => {
+                select.innerHTML += `<option value="${d}">${d}</option>`;
+            });
         }
-
-        function renderExpenseReport() {
+        function addExpenseItem() {
+            const date = document.getElementById("expDateSelect").value;
+            const name = document.getElementById("expNameInput").value.trim();
+            const amt = parseInt(document.getElementById("expAmtInput").value);
+            if(!name || isNaN(amt)) return;
+            expenses.push({ date: date, item: name, amount: amt });
+            document.getElementById("expNameInput").value = "";
+            document.getElementById("expAmtInput").value = "";
+            localStorage.setItem("pika_expenses", JSON.stringify(expenses));
+            renderExpense();
+        }
+        function deleteExpenseItem(idx) {
+            expenses.splice(idx, 1);
+            localStorage.setItem("pika_expenses", JSON.stringify(expenses));
+            renderExpense();
+        }
+        function renderExpense() {
             const container = document.getElementById("expenseDayBreakdown");
             container.innerHTML = "";
+            
             datesArr.forEach(day => {
-                let dayRecords = expenses.filter(e => e.date === day);
-                let daySum = dayRecords.reduce((s, r) => s + r.amount, 0);
-                let htmlBlock = `
-                    <div class="bg-white p-4 rounded-2xl border-2 border-slate-100 shadow-sm space-y-2">
-                        <div class="flex justify-between items-center border-b border-dashed border-slate-100 pb-2">
-                            <span class="font-black text-slate-800 text-sm">📅 ${day}</span>
-                            <span class="text-xs font-black text-amber-600 bg-amber-50 px-2 py-1 rounded-lg">單日小計: ¥${daySum.toLocaleString()}</span>
-                        </div>
-                        <div class="space-y-1 text-sm pl-2">`;
-                if (dayRecords.length === 0) {
-                    htmlBlock += `<p class="text-xs text-slate-400 italic py-1">這天目前沒有消費紀錄。</p>`;
+                const dayExps = expenses.filter(e => e.date === day);
+                let dayTotal = dayExps.reduce((sum, e) => sum + e.amount, 0);
+                
+                let html = `
+                    <div class="bg-white p-4 rounded-xl border border-slate-200 shadow-xs">
+                        <div class="flex justify-between items-center border-b pb-2 mb-2">
+                            <span class="font-bold text-sm text-slate-700">📅 ${day}</span>
+                            <span class="text-xs font-black text-amber-600">小計: ¥${dayTotal.toLocaleString()}</span>
+                        </div>`;
+                if(dayExps.length === 0) {
+                    html += `<p class="text-xs text-slate-400 italic">本日無消費紀錄。</p>`;
                 } else {
-                    dayRecords.forEach(r => {
-                        let globalIndex = expenses.findIndex(e => e.date === r.date && e.item === r.item && e.amount === r.amount);
-                        htmlBlock += `
-                            <div class="flex justify-between items-center py-1 group">
-                                <span class="text-slate-600 font-bold">• ${r.item}</span>
-                                <div class="flex items-center gap-3">
-                                    <span class="font-mono text-slate-700 font-bold">¥${r.amount.toLocaleString()}</span>
-                                    <button class="text-xs text-slate-300 hover:text-red-500" onclick="deleteExpenseItem(${globalIndex})">❌</button>
-                                </div>
-                            </div>`;
+                    html += `<div class="space-y-2">`;
+                    expenses.forEach((e, originalIdx) => {
+                        if(e.date === day) {
+                            html += `
+                                <div class="flex justify-between items-center text-xs">
+                                    <span class="text-slate-600 font-medium">${e.item}</span>
+                                    <div class="flex items-center gap-3">
+                                        <span class="font-bold text-slate-800">¥${e.amount.toLocaleString()}</span>
+                                        <button onclick="deleteExpenseItem(${originalIdx})" class="text-red-400 hover:text-red-600 font-bold">✕</button>
+                                    </div>
+                                </div>`;
+                        }
                     });
+                    html += `</div>`;
                 }
-                htmlBlock += `</div></div>`;
-                container.innerHTML += htmlBlock;
+                html += `</div>`;
+                container.innerHTML += html;
             });
-            localStorage.setItem("pika_expenses", JSON.stringify(expenses));
             updateGlobalWidgets();
         }
 
-        function addExpenseItem() {
-            const date = document.getElementById("expDateSelect").value;
-            const nameInput = document.getElementById("expNameInput");
-            const amtInput = document.getElementById("expAmtInput");
-            let item = nameInput.value.trim();
-            let amount = parseInt(amtInput.value);
-            if (!item || isNaN(amount) || amount <= 0) {
-                alert("請填寫正確的消費項目與金額唷！⚡");
-                return;
-            }
-            expenses.push({ date, item, amount });
-            nameInput.value = "";
-            amtInput.value = "";
-            renderExpenseReport();
-        }
-
-        function deleteExpenseItem(globalIndex) {
-            if (globalIndex > -1) {
-                expenses.splice(globalIndex, 1);
-                renderExpenseReport();
-            }
-        }
-
-        // 升級景點介紹渲染：完全改為 PokeAPI 官方繪圖，搭配富含手繪感的手繪漸層色彩與活潑環境特徵
-        function renderAttractionsGrid() {
+        // 景點介紹彩染與生成功能
+        function renderAttractions() {
             const grid = document.getElementById("attractionGrid");
             grid.innerHTML = "";
             attractionData.forEach(item => {
                 grid.innerHTML += `
-                    <div class="card overflow-hidden flex flex-col justify-between hover:shadow-md transition">
-                        <div class="space-y-4">
-                            <div class="h-56 w-full rounded-2xl overflow-hidden relative border-2 border-slate-700 shadow-inner flex flex-col items-center justify-center hand-drawn-bg" 
-                                 style="background: ${item.bgGradient};">
-                                
-                                <div class="absolute top-2 left-3 text-lg opacity-80 tracking-widest">${item.bgDecor}</div>
-                                <div class="absolute top-2 right-3 text-[10px] font-black bg-white/80 border border-slate-700 px-2 py-0.5 rounded-full text-slate-700">東北限定手繪風背景</div>
-
-                                <img src="${item.pikaImg}" alt="${item.pikaName}" class="w-32 h-32 object-contain drop-shadow-lg z-10 animate-pika-bounce mt-2" loading="lazy">
-                                
-                                <div class="absolute bottom-2 left-2 right-2 bg-slate-900/80 backdrop-blur-sm text-yellow-300 py-1 px-3 rounded-xl font-bold text-xs text-center border border-yellow-400 z-10">
-                                    🐾 區域拍檔：${item.pikaName}
+                    <div class="card bg-white flex flex-col justify-between overflow-hidden border-2 border-slate-100 hover:border-yellow-400 transition-all">
+                        <div>
+                            <!-- 動態注入專屬漸層背景色彩，消滅純白背景 -->
+                            <div class="relative w-full h-48 rounded-xl overflow-hidden flex items-center justify-center p-4 shadow-inner" style="background: ${item.bgGradient}">
+                                <div class="absolute inset-0 opacity-20 text-md p-2 pointer-events-none select-none tracking-widest">${item.bgDecor} ${item.bgDecor}</div>
+                                <img src="${item.pikaImg}" alt="${item.title}" class="w-36 h-36 object-contain z-10 animate-pika-bounce" />
+                                <div class="absolute bottom-2 right-3 bg-black/40 text-white text-[11px] px-2 py-0.5 rounded-full font-bold backdrop-blur-xs">
+                                    ${item.pikaName}
                                 </div>
                             </div>
-                            
-                            <div>
-                                <h3 class="font-black text-xl text-slate-800 mb-2 border-l-4 border-yellow-500 pl-2 flex items-center gap-1">
-                                    <span>⚡ ${item.title}</span>
-                                </h3>
-                                <p class="text-slate-600 text-sm leading-relaxed text-justify">${item.desc}</p>
-                            </div>
-                            
-                            <div class="bg-amber-50/70 p-4 rounded-xl border border-amber-100 space-y-1">
-                                <h4 class="text-xs font-black text-amber-900 tracking-wider flex items-center gap-1">✨ 必看亮點與必做體驗</h4>
-                                <div class="text-xs text-slate-700 leading-relaxed space-y-2 pt-1">${item.highlight}</div>
+                            <h3 class="text-xl font-black text-slate-800 mt-4 mb-2 flex items-center gap-1">🌟 ${item.title}</h3>
+                            <p class="text-sm text-slate-600 leading-relaxed mb-3">${item.desc}</p>
+                            <div class="bg-amber-50/60 p-3 rounded-xl border border-amber-100 mb-3 text-xs text-slate-700 space-y-1">
+                                <span class="font-bold text-amber-900 block">✨ 必看與體驗亮點：</span>
+                                <div>${item.highlight}</div>
                             </div>
                         </div>
-                        <div class="text-[11px] text-slate-400 mt-4 pt-3 border-t border-dashed border-slate-100 space-y-0.5">
+                        <div class="text-[11px] text-slate-500 border-t pt-2 mt-2 leading-relaxed">
                             ${item.info}
                         </div>
                     </div>`;
             });
         }
-
-        function initAllSystems() {
-            renderItinerary();
-            renderShoppingList();
-            renderTodoList();
-            initNoteTabs();
-            initExpenseFormOptions();
-            renderExpenseReport();
-            renderAttractionsGrid();
-            updateGlobalWidgets();
-        }
-
-        window.onload = initAllSystems;
     </script>
 </body>
 </html>
