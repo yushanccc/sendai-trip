@@ -3,10 +3,10 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-    <title>2026初夏仙台散策⚡</title>
+    <title>2026初夏仙台散策 ⚡ 皮卡丘伴你同行</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://cdn.jsdelivr.net/npm/sortablejs@1.15.2/Sortable.min.js"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@300..700&family=Noto+Sans+TC:wght@400;700;900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght=300..700&family=Noto+Sans+TC:wght=400;700;900&display=swap" rel="stylesheet">
     <style>
         body {
             font-family: 'Fredoka', 'Noto Sans TC', system-ui, sans-serif;
@@ -113,7 +113,7 @@
                     <h1 class="text-3xl md:text-4xl font-black tracking-wider flex flex-wrap items-center justify-center sm:justify-start gap-2 text-slate-900">
                         2026初夏仙台散策 <span class="text-yellow-500 animate-pika-pulse">⚡ 皮卡丘伴你同行</span>
                     </h1>
-                    <p class="text-sm font-bold text-slate-600 mt-1">✨ 專為媽媽打造的夢幻神奇寶貝 × 仙台孝親慶生旅遊看板 ✨</p>
+                    <p class="text-sm font-bold text-slate-600 mt-1">✨ Pokemon × 仙台旅遊Let's GO!! ✨</p>
                 </div>
             </div>
             
@@ -315,7 +315,7 @@
         };
 
         let todos = JSON.parse(localStorage.getItem("pika_todo")) || [
-            { text: "確認護照效期大於六個月", done: true },
+            { text: "確認媽媽的護照效期大於六個月", done: true },
             { text: "投保旅遊平安險與不便險", done: false },
             { text: "填寫 Visit Japan Web 並截圖 QR Code", done: false }
         ];
@@ -346,7 +346,9 @@
                 title: "松島",
                 pikaName: "拉普拉斯 (Lapras) · 水屬性",
                 pikaImg: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/131.png",
-                bgGradient: "linear-gradient(to bottom, #7dd3fc, #bae6fd, #22d3ee)", 
+                cardBg: "linear-gradient(135deg, #e0f2fe 0%, #f0f9ff 100%)",
+                cardBorder: "#bae6fd",
+                bgGradient: "linear-gradient(to bottom, #38bdf8, #0ea5e9, #0284c7)", 
                 bgDecor: "🌊 🏝️ ⛵ ☁️",
                 desc: "松島海岸不僅是地理座標，更是日本千年歷史的縮影。當您步出車站，迎面而來的是帶著鹹味的清爽海風與松樹的清香。由於您與媽媽選擇不搭船，這片區域的「陸地散策」將會非常精采。這裡的步道圍繞著灣岸建設，一側是星羅棋布的 260 餘座小島，一側是國寶級的古剎與茶室。5 月下旬，岸邊的松葉正是翠綠欲滴，陽光在平靜如鏡的海面上折射出寶石般的光澤。",
                 highlight: "• 五大堂 (Godaido)：這是松島的象徵。連結五大堂的「紅漆透橋」刻意設計了縫隙，讓人行走時低頭能見到腳底海水，寓意「修行時需屏除雜念」。媽媽體力好，走這段橋會感到趣味十足。<br>• 觀瀾亭 (Kanrantei)：曾是伊達政宗的茶室。必做體驗是帶媽媽坐進面向松島灣的塌塌米席，點一份「抹茶與毛豆泥甜點」，在微風中靜靜欣賞如畫海景，這是為媽媽慶生最優雅的時刻。<br>• 烤牡蠣體驗：松島的牡蠣舉世聞名。必做體驗是步行至附近的「牡蠣小屋」，看著碩大飽滿的牡蠣在火爐上嘶嘶作響，鮮甜香氣將成為旅行最深刻的味覺記憶。",
@@ -356,7 +358,9 @@
                 title: "福浦島 (Fukuura Island)",
                 pikaName: "呆呆獸 (Slowpoke) · 宮城觀光大使",
                 pikaImg: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/79.png",
-                bgGradient: "linear-gradient(to tr, #a7f3d0, #fbcfe8, #93c5fd)",
+                cardBg: "linear-gradient(135deg, #fce7f3 0%, #fdf2f8 100%)",
+                cardBorder: "#fbcfe8",
+                bgGradient: "linear-gradient(to tr, #f472b6, #ec4899, #db2777)",
                 bgDecor: "🌉 🌸 🌿 🍥",
                 desc: "如果說松島海岸是熱鬧的舞台，那麼「福浦島」就是一座漂浮在海上的私人花園。這座島嶼透過長達 252 公尺的紅色大橋「福浦橋」與陸地相連。被譽為「相遇之橋」。特別邀請宮城縣官方在地觀光擔當「呆呆獸」與媽媽共同前行！對於體力好的媽媽來說，福浦島提供了一種完全沉浸的森林步行感受，遠離嘈雜。",
                 highlight: "• 福浦橋 (Fukuura Bridge)：這是不搭船也能近距離觀測松島灣的最佳方式。走在橋上，左右兩側完全無遮蔽，那種海天一色的開闊感非常壯觀。<br>• 見晴台 (Miharashi Pavilion)：島上有數個高低錯落的展望點。必看亮點是位於島嶼南側的見晴台，從這裡望去，可以平視松島灣最核心的島嶼群，視野完全不輸給觀光船。<br>• 環島健行：島上擁有超過 250 種植物。必做體驗是完成一圈約 40-50 分鐘的環島徒步。路徑多為修整良好的木棧道或土徑，非常適合喜歡走路、親近自然的媽媽。",
@@ -366,7 +370,9 @@
                 title: "仙台朝市：仙台市民的熱情廚房",
                 pikaName: "卡比獸 (Snorlax) · 一般屬性美食家",
                 pikaImg: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/143.png",
-                bgGradient: "linear-gradient(to r, #ffedd5, #fef08a, #fed7aa)",
+                cardBg: "linear-gradient(135deg, #fef9c3 0%, #fffbeb 100%)",
+                cardBorder: "#fef08a",
+                bgGradient: "linear-gradient(to r, #eab308, #facc15, #fef08a)",
                 bgDecor: "🍳 🍉 🐟 🍙",
                 desc: "仙台朝市被譽為「仙台的廚房」，是感受這座城市生命力最好的起點。早晨 8:30 踏入這條僅百公尺長的窄巷，迎接你的是嘹亮的叫賣聲與充滿活力的色彩。5 月下旬正是東北水果交替的時節，幸運的話能遇見香氣馥郁的宮城縣產草莓，或是正要上市的紅艷櫻桃。跟著愛吃的卡比獸一起出發挖掘美食吧！",
                 highlight: "• 尋找「齋藤惣菜店」：買一塊外脆內綿的現炸可樂餅，那是仙台人從小到大的記憶。<br>• 「朝市丼」落座：挑選自己最愛的超鮮魚介食材，拼成一碗世界獨一無二、料多到滿出來的海鮮慶生丼。",
@@ -376,7 +382,9 @@
                 title: "地底の森博物館 (Chitei no Mori Museum)",
                 pikaName: "寶寶暴龍 (Tyrunt) · 岩石/龍屬性/化石",
                 pikaImg: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/696.png",
-                bgGradient: "linear-gradient(to br, #d6d3d1, #f5ece2, #b45309)",
+                cardBg: "linear-gradient(135deg, #f5e6d3 0%, #faf5ef 100%)",
+                cardBorder: "#e7d4bc",
+                bgGradient: "linear-gradient(to br, #a8a29e, #78716c, #57534e)",
                 bgDecor: "🦴 🪵 🏺 🔍",
                 desc: "這是世界上罕見的舊石器時代主題博物館，完美復原並展示了兩萬年前富澤地區的自然環境與人類活動遺跡。走入館內，宏大的地底挖掘現場將帶給您穿越時空的震撼感。搭配從地下化石中復活的可愛寶寶暴龍，最具考古及知性探索感！",
                 highlight: "• 必看亮點：現場保存極其完整的「舊石器時代森林地下遺跡」與兩萬年前古人類留下的篝火痕跡。<br>• 必做體驗：在博物館外部精心規劃的「冰河時期之森」公園慢步，這裡重建了2萬年前的古老植被，環境清幽極具知性美。",
@@ -386,7 +394,9 @@
                 title: "瑞鳳殿 (Zuihoden Mausoleum)",
                 pikaName: "燭光靈 (Litwick) · 幽靈/火屬性廟宇",
                 pikaImg: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/607.png",
-                bgGradient: "linear-gradient(to b, #312e81, #6b21a8, #f59e0b)",
+                cardBg: "linear-gradient(135deg, #f3e8ff 0%, #faf5ff 100%)",
+                cardBorder: "#e9d5ff",
+                bgGradient: "linear-gradient(to b, #c084fc, #a855f7, #7e22ce)",
                 bgDecor: "🏮 ⛩️ 🌲 🍂",
                 desc: "這裡是名震天下的仙台藩祖——伊達政宗卿的桃山樣式豪華靈廟。在太平洋戰爭中曾燒毀，後於1979年依原樣重建，其裝飾藝術巧奪天工，絢麗無比，是來仙台絕不可錯過的歷史地標。配搭著日式廟宇長夜燈化身的燭光靈，充滿神聖莊嚴又典雅的氛圍。",
                 highlight: "• 必看亮點：建築本體極其繁複華美、五彩繽紛的浮雕與炫目的金箔裝飾。<br>• 必做體驗：陪著媽媽踏上通往靈廟的參天杉木古道坡道緩慢向上爬，一邊吸收森林芬多精，一邊感受林間獨有的幽靜與神聖莊嚴氛圍。",
@@ -396,9 +406,11 @@
                 title: "仙台城跡 (Aoba Castle)",
                 pikaName: "快龍 (Dragonite) · 龍/飛行屬性古城守護者",
                 pikaImg: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/149.png",
-                bgGradient: "linear-gradient(to tr, #94a3b8, #e0f2fe, #38bdf8)",
+                cardBg: "linear-gradient(135deg, #ffedd5 0%, #fff7ed 100%)",
+                cardBorder: "#fed7aa",
+                bgGradient: "linear-gradient(to tr, #fb923c, #f97316, #ea580c)",
                 bgDecor: "🏯 🐎 ☁️ ⛰️",
-                desc: "又稱青葉城，為伊達家族世代居住的根據地。雖然昔日雄偉的天守閣與宮殿已不復存在，但現場壯麗的高聳石垣與俯瞰市中心的絕佳地理位置，依然能讓人深深感受到當年的大名威風。搭配可靠、飛天遁地的帥氣快龍，一起跟伊達政宗銅像俯瞰大好河山吧！",
+                desc: "又稱青葉城，為伊達家族世代居住的根據地。雖然昔日雄偉的天守閣與宮殿已不復存在，打卡拍照高聳石垣與俯瞰市中心的絕佳地理位置，依然能讓人深深感受到當年的大名威風。搭配可靠、飛天遁地的帥氣快龍，一起跟伊達政宗銅像俯瞰大好河山吧！",
                 highlight: "• 必看亮點：全仙台最經典的地標「伊達政宗卿騎馬青銅像」，英姿颯爽。<br>• 必做體驗：站在展望台上俯瞰整個被譽為「杜之都」的仙台市景與廣瀨川。隨後到美食區買一份口感綿密冰涼的「現做毛豆泥麻糬」一同享用。",
                 info: "📍 地址：宮城縣仙台市青葉區川內1<br>⏰ 開放時間：遺址區全天開放（青葉城資料展示館 09:00 - 17:00）<br>💰 是否收費：遺址區域免費；進入資料展覽館 700 日圓"
             },
@@ -406,7 +418,9 @@
                 title: "金蛇水神社 (Kanahebisui Shrine)",
                 pikaName: "迷你龍 (Dratini) · 龍屬性水神/金運",
                 pikaImg: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/147.png",
-                bgGradient: "linear-gradient(to br, #ddd6fe, #fce7f3, #fef08a)",
+                cardBg: "linear-gradient(135deg, #fae8ff 0%, #fdf4ff 100%)",
+                cardBorder: "#f5d0fe",
+                bgGradient: "linear-gradient(to br, #e879f9, #d946ef, #aa336a)",
                 bgDecor: "🐍 🍇 💧 🪙",
                 desc: "自古以來便是供奉蛇型水神、祈求商賣繁盛、金運開運的日本東北超級名所。近年來因為神社境內設計極具美感且現代化的休憩設施，成為熱門打卡景點。以美麗的蛇型水神化身「迷你龍」當代表，高雅地帶領媽媽欣賞五月下旬盛開的紫藤瀑布！",
                 highlight: "• 必看亮點：5 月下旬正逢神社境內最著名的牡丹園盛開與紫藤花如瀑布般垂下的季節（初夏限定絕景）。<br>• 必做體驗：前往神社附設的現代化「Sando Terrace」咖啡廳，點一份超萌的蛇型麵包與特製咖啡，坐在大片落地窗前愜意賞花賞景。",
@@ -416,7 +430,9 @@
                 title: "猊鼻溪 (Geibikei Gorge)",
                 pikaName: "烏波 (Wooper) · 水/地面屬性溪流小可愛",
                 pikaImg: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/194.png",
-                bgGradient: "linear-gradient(to b, #065f46, #e2e8f0, #3b82f6)",
+                cardBg: "linear-gradient(135deg, #ccfbf1 0%, #f0fdfa 100%)",
+                cardBorder: "#99f6e4",
+                bgGradient: "linear-gradient(to b, #2dd4bf, #14b8a6, #0d9488)",
                 bgDecor: "🛶 🧗‍♂️ 🏞️ 🟢",
                 desc: "名列日本百景之一，是由北上川支流砂鐵川侵蝕絕壁而形成的巨大峽谷。兩岸延伸達2公里的奇岩怪石與高聳絕壁非常壯麗。這裡最著名的是完全依賴人力、不用馬達的「純人工傳統搖櫓船」。讓常在溪流暢游的烏波陪媽媽在清澈無比的溪水中前行，體驗丟好運玉的樂趣！",
                 highlight: "• 必看亮點：高達百公尺的垂直巨大絕壁景觀，以及形似龍鼻子的「大龍鼻」奇岩。<br>• 必做體驗：當船隻抵達終點停靠時，下船步行至對岸，購買刻有財、福、戀等字樣的「運玉」（幸運石），並嘗試將其精準投進崖壁的神奇洞穴中，投中願望即會成真！",
@@ -426,7 +442,9 @@
                 title: "定禪寺通 (Jozenji-dori Avenue)",
                 pikaName: "妙蛙種子 (Bulbasaur) · 草屬性森林之都",
                 pikaImg: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/1.png",
-                bgGradient: "linear-gradient(to tl, #34d399, #f7fee7, #059669)",
+                cardBg: "linear-gradient(135deg, #dcfce7 0%, #f0fdf4 100%)",
+                cardBorder: "#bbf7d0",
+                bgGradient: "linear-gradient(to tl, #4ade80, #22c55e, #16a34a)",
                 bgDecor: "🌳 🌿 ☕ 🚶‍♀️",
                 desc: "定禪寺通是仙台被尊稱為「杜之都」（森林之都）最具代表性的綠色隧道街道。中央安全島被規劃成悠閒的步行者天國步道，兩側茂密的欅樹在初夏編織出綠意盎然的天然遮陽棚。與草屬性始祖妙蛙種子一起散步，感受最純淨舒服的森林芬多精吧！",
                 highlight: "• 必看亮點：夾道並排而立、多達 166 棵高大挺拔的青翠櫸木。步道中央還矗立著義大利雕刻大師所作的精緻青銅雕塑。<br>• 必做體驗：陪媽媽漫步在步道中央，累了就隨意挑選一家街邊開放式的文青咖啡座坐下，看著陽光穿透樹葉灑落的光影，感受最正宗的仙台慢活日常節奏。",
@@ -436,7 +454,9 @@
                 title: "AER 展望台 (AER Observation Terrace)",
                 pikaName: "電龍 (Ampharos) · 電屬性高空燈塔夜景",
                 pikaImg: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/181.png",
-                bgGradient: "linear-gradient(to b, #0f172a, #1e293b, #f59e0b)",
+                cardBg: "linear-gradient(135deg, #fef3c7 0%, #fffbeb 100%)",
+                cardBorder: "#fde68a",
+                bgGradient: "linear-gradient(to b, #1e293b, #0f172a, #f59e0b)",
                 bgDecor: "🌃 🚀 🚄 🌟",
                 desc: "位於仙台車站正對面的超顯目地標——AER大樓。其頂層31樓規劃了兩側露天的免費展望露台，是俯瞰整個仙台市區與追蹤新幹線進出站的最佳制高點，夜景也相當浪漫。派出能發出耀眼高空光芒的電龍當作高空瞭望台守護神，陪伴媽媽俯瞰最美麗的火車鐵道與城市夜空！",
                 highlight: "• 必看亮點：分別位於北側與南側、擁有不同城市風貌與山海地平線的寬廣視角。<br>• 必做體驗：站在玻璃窗前，向下俯瞰新幹線列車就像微型玩具火車一樣流暢地進出仙台站。這裡空間大、空調舒適且人潮較少，非常適合在車站周邊 S-PAL 購物完後上來放鬆歇息。",
@@ -718,30 +738,37 @@
             updateGlobalWidgets();
         }
 
-        // 景點介紹彩染與生成功能
+        // 景點介紹全彩色卡片生成功能
         function renderAttractions() {
             const grid = document.getElementById("attractionGrid");
             grid.innerHTML = "";
             attractionData.forEach(item => {
                 grid.innerHTML += `
-                    <div class="card bg-white flex flex-col justify-between overflow-hidden border-2 border-slate-100 hover:border-yellow-400 transition-all">
+                    <!-- 徹底消滅白底！整張卡片注入專屬彩色背景 -->
+                    <div class="rounded-[28px] p-5 flex flex-col justify-between overflow-hidden border-2 shadow-md hover:shadow-xl transition-all duration-300 hover:scale-[1.01]" style="background: ${item.cardBg}; border-color: ${item.cardBorder}">
                         <div>
-                            <!-- 動態注入專屬漸層背景色彩，消滅純白背景 -->
-                            <div class="relative w-full h-48 rounded-xl overflow-hidden flex items-center justify-center p-4 shadow-inner" style="background: ${item.bgGradient}">
-                                <div class="absolute inset-0 opacity-20 text-md p-2 pointer-events-none select-none tracking-widest">${item.bgDecor} ${item.bgDecor}</div>
-                                <img src="${item.pikaImg}" alt="${item.title}" class="w-36 h-36 object-contain z-10 animate-pika-bounce" />
-                                <div class="absolute bottom-2 right-3 bg-black/40 text-white text-[11px] px-2 py-0.5 rounded-full font-bold backdrop-blur-xs">
+                            <!-- 頂部高飽和度寶可夢插畫容器 -->
+                            <div class="relative w-full h-44 rounded-2xl overflow-hidden flex items-center justify-center p-4 shadow-inner" style="background: ${item.bgGradient}">
+                                <div class="absolute inset-0 opacity-20 text-xs p-2 pointer-events-none select-none tracking-widest">${item.bgDecor} ${item.bgDecor}</div>
+                                <img src="${item.pikaImg}" alt="${item.title}" class="w-32 h-32 object-contain z-10 animate-pika-bounce" />
+                                <div class="absolute bottom-2 right-3 bg-black/50 text-white text-[10px] px-2.5 py-0.5 rounded-full font-bold backdrop-blur-md">
                                     ${item.pikaName}
                                 </div>
                             </div>
-                            <h3 class="text-xl font-black text-slate-800 mt-4 mb-2 flex items-center gap-1">🌟 ${item.title}</h3>
-                            <p class="text-sm text-slate-600 leading-relaxed mb-3">${item.desc}</p>
-                            <div class="bg-amber-50/60 p-3 rounded-xl border border-amber-100 mb-3 text-xs text-slate-700 space-y-1">
-                                <span class="font-bold text-amber-900 block">✨ 必看與體驗亮點：</span>
-                                <div>${item.highlight}</div>
+                            
+                            <!-- 景點內容與文字版面 -->
+                            <h3 class="text-xl font-black text-slate-900 mt-4 mb-2 flex items-center gap-1">🌟 ${item.title}</h3>
+                            <p class="text-sm text-slate-700 font-medium leading-relaxed mb-3">${item.desc}</p>
+                            
+                            <!-- 亮點區塊：維持同色系高質感半透明感 -->
+                            <div class="bg-white/50 backdrop-blur-xs p-3 rounded-xl border border-white/60 mb-3 text-xs text-slate-800 space-y-1 shadow-xs">
+                                <span class="font-black text-slate-900 block">✨ 必看與體驗亮點：</span>
+                                <div class="leading-relaxed font-medium">${item.highlight}</div>
                             </div>
                         </div>
-                        <div class="text-[11px] text-slate-500 border-t pt-2 mt-2 leading-relaxed">
+                        
+                        <!-- 實用資訊欄位 -->
+                        <div class="text-[11px] text-slate-600 font-semibold border-t border-black/10 pt-2 mt-2 leading-relaxed">
                             ${item.info}
                         </div>
                     </div>`;
