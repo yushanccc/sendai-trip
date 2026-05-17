@@ -105,7 +105,7 @@
                         <div class="absolute bottom-0 right-1 w-4 h-4 pikachu-red rounded-full"></div>
                     </div>
                     <div class="absolute -top-2 -right-2 bg-red-500 text-white text-[10px] px-1.5 py-0.5 rounded-full font-black border border-white animate-bounce">
-                        主視覺 ⚡
+                        ⚡
                     </div>
                 </div>
                 
@@ -119,7 +119,7 @@
             
             <div class="flex gap-4 bg-white/90 backdrop-blur-sm px-5 py-3 rounded-2xl border-2 border-yellow-300 text-center shadow-md z-10 shrink-0">
                 <div>
-                    <p class="text-xs text-slate-400 font-bold">💰 預算總計</p>
+                    <p class="text-xs text-slate-400 font-bold">💰 花費總計</p>
                     <p class="text-xl font-black text-amber-600 animate-pulse" id="globalWidgetExpense">¥0</p>
                 </div>
                 <div class="border-l border-slate-200"></div>
@@ -174,7 +174,7 @@
                     <span>採購大師皮卡丘</span>
                 </div>
 
-                <h2 class="text-xl font-black mb-4 flex items-center gap-2 text-slate-800">🛍️ 我的敲可愛採購清單</h2>
+                <h2 class="text-xl font-black mb-4 flex items-center gap-2 text-slate-800">🛍️ 我的採購清單</h2>
                 <div class="flex gap-2 mb-4">
                     <input id="shopInput" type="text" class="form-input flex-1 border border-slate-300 rounded-xl px-4 focus:outline-yellow-400 text-sm" placeholder="填入想買的限定商品或伴手禮...">
                     <button class="btn-pika text-sm" onclick="addShopItem()">新增項目</button>
@@ -274,7 +274,7 @@
                     <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/25.png" class="w-6 h-6 object-contain" alt="Pika">
                     <span>探險隊長皮卡丘</span>
                 </div>
-                <h2 class="text-2xl font-black text-amber-950 flex items-center gap-2">🌟 仙台 & 周邊精選 10 大景點全攻略</h2>
+                <h2 class="text-2xl font-black text-amber-950 flex items-center gap-2">🌟 仙台精選 10 大景點全攻略</h2>
             </div>
             
             <div id="attractionGrid" class="grid grid-cols-1 md:grid-cols-2 gap-6"></div>
@@ -321,7 +321,7 @@
         ];
 
         let shops = JSON.parse(localStorage.getItem("pika_shop")) || [
-            { text: "仙台寶可夢中心限定皮卡丘娃娃", done: false },
+            { text: "仙台寶可夢中心限定娃娃", done: false },
             { text: "毛豆泥麻糬禮盒", done: false },
             { text: "白謙蒲鉾店 魚板", done: false }
         ];
