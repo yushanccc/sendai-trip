@@ -68,17 +68,12 @@
             0%, 100% { transform: translateY(0) rotate(0deg); }
             50% { transform: translateY(-8px) rotate(3deg); }
         }
-        @keyframes pika-wag {
-            0%, 100% { transform: rotate(-5deg); }
-            50% { transform: rotate(5deg); }
-        }
         @keyframes pika-pulse {
             0%, 100% { transform: scale(1); filter: drop-shadow(0 0 2px rgba(253,216,53,0.6)); }
             50% { transform: scale(1.05); filter: drop-shadow(0 0 12px rgba(253,216,53,0.9)); }
         }
         
         .animate-pika-bounce { animation: pika-bounce 2s infinite ease-in-out; }
-        .animate-pika-wag { animation: pika-wag 1.5s infinite ease-in-out; }
         .animate-pika-pulse { animation: pika-pulse 2.5s infinite ease-in-out; }
         
         ::-webkit-scrollbar { width: 8px; }
@@ -102,7 +97,7 @@
                         <div class="absolute bottom-0 right-1 w-4 h-4 pikachu-red rounded-full"></div>
                     </div>
                     <div class="absolute -top-2 -right-2 bg-red-500 text-white text-[10px] px-1.5 py-0.5 rounded-full font-black border border-white animate-bounce">
-                        ⚡⚡
+                        ⚡
                     </div>
                 </div>
                 
@@ -138,7 +133,6 @@
 
         <div id="section-itinerary" class="main-section space-y-4">
             <div class="card relative bg-white border-2 border-yellow-200">
-                
                 <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 mb-4">
                     <div id="itineraryDayTabs" class="flex gap-2 flex-wrap"></div>
                     <div class="flex gap-2 bg-slate-100 p-1 rounded-xl text-xs font-bold">
@@ -197,7 +191,7 @@
 
         <div id="section-expense" class="main-section space-y-4 hidden">
             <div class="card relative bg-white border-2 border-green-200">
-                <h2 class="text-xl font-black mb-4 flex items-center gap-2 text-slate-800">💰 旅程記帳簿</h2>
+                <h2 class="text-xl font-black mb-4 flex items-center gap-2 text-slate-800">💰 旅程流水帳記帳簿</h2>
                 <div class="grid grid-cols-1 sm:grid-cols-3 gap-3 bg-slate-50 p-4 rounded-2xl mb-6 border border-slate-100">
                     <div>
                         <label class="block text-xs font-bold mb-1 text-slate-500">選擇消費日期</label>
@@ -247,13 +241,14 @@
     <script>
         const datesArr = ["2026/05/21", "2026/05/22", "2026/05/23", "2026/05/24", "2026/05/25"];
         
-        let itineraries = JSON.parse(localStorage.getItem("pika_plan")) || {
+        // 預設完整的行程資料庫
+        const defaultItineraries = {
             "2026/05/21":[
                 {time:"16:30", name:"仙台空港 Access 線", category:"交通", address:"宮城県名取市下増田字南原", cost:"660 圓/人", costDesc:"1F，25 分抵仙台駅", openHours:"全天配合航班", remarks:"星宇JX862 臺北11:35-仙台16:00，直奔市區", lat:38.14, lng:140.92},
                 {time:"17:00", name:"Almont Hotel Sendai", category:"飯店", address:"宮城県仙台市青葉区中央3-10-14", cost:"—", costDesc:"住宿自理", openHours:"24小時", remarks:"5 分到仙台駅，含大浴場放鬆必備", lat:38.257, lng:140.883},
                 {time:"18:00", name:"AER 展望テラス（31F）", category:"景點", address:"宮城県仙台市青葉区中央1-3-1 AER 31F", cost:"免費", costDesc:"自由參觀", openHours:"10:00–20:00", remarks:"2 分鐘即達，俯瞰市街全景與落日", lat:38.263, lng:140.882},
                 {time:"19:00", name:"地酒和鮮 蔵の庄", category:"餐廳", address:"宮城県仙台市青葉区中央1丁目周邊", cost:"2,500–4,000/人", costDesc:"三陸海鮮居酒屋", openHours:"17:00–23:00", remarks:"★不吃牛肉首選！宮城在地地酒與海鮮極其豐富", lat:38.259, lng:140.882},
-                {time:, name:"伊達の牛たん本舗（S-PAL，晚餐備選）", category:"餐廳", address:"宮城県仙台市青葉区中央1-1-1 S-PAL", cost:"2,000–3,500/人", costDesc:"厚切鹽烤牛舌定食", openHours:"11:00–22:00", remarks:"備選：適合吃牛肉的同行者，車站直結 S-PAL 內", lat:38.259, lng:140.882}
+                {time:, name:"伊達の牛たん本舗（S-PAL，晚餐備選）", category:"餐廳", address:"宮城県仙台市青葉区中央1-1-1 S-PAL", cost:"2,000–3,500/人", costDesc:"厚切鹽烤牛舌定食", openHours:"11:00–22:00", remarks:"可買牛舌脆片伴手哩；適合吃牛肉的同行者，車站直結 S-PAL 內", lat:38.259, lng:140.882}
             ],
             "2026/05/22":[
                 {time:"08:30", name:"仙台朝市", category:"景點/餐廳", address:"宮城県仙台市青葉区二日町4-7", cost:"免費", costDesc:"店家消費自理", openHours:"08:00–18:00", remarks:"體驗在地早晨活力，海鮮與水果天堂", lat:38.259, lng:140.880},
@@ -293,6 +288,17 @@
                 {time:"14:30", name:"仙台空港（JX863 離境）", category:"交通", address:"宮城県名取市下増田字南原", cost:"660 圓/人", costDesc:"Access線火車車資", openHours:"星宇 JX863 17:20起飛", remarks:"回台星宇航空班機。最晚需於 14:50 前從仙台站搭上火車（車程25分）", lat:38.14, lng:140.92}
             ]
         };
+
+        // 安全讀取快取機制 (防止資料損毀導致頁面空白)
+        let itineraries;
+        try {
+            itineraries = JSON.parse(localStorage.getItem("pika_plan"));
+            if (!itineraries || !itineraries["2026/05/21"]) {
+                itineraries = defaultItineraries;
+            }
+        } catch (e) {
+            itineraries = defaultItineraries;
+        }
 
         let todos = JSON.parse(localStorage.getItem("pika_todo")) || [
             { text: "確認護照效期大於六個月", done: true },
@@ -396,7 +402,7 @@
                 cardClass: "border-fuchsia-400 bg-fuchsia-50/60",
                 bgDecor: "🐍 🍇 💧 🪙",
                 desc: "自古以來便是供奉蛇型水神、祈求商賣繁盛、金運開運的日本東北超級名所。近年來因為神社境內設計極具美感且現代化的休憩設施，成為熱門打卡景點。以美麗的蛇型水神化身「迷你龍」當代表，高雅地欣賞五月下旬盛開的紫藤瀑布！",
-                highlight: "• 必看亮點：5 月下旬正逢神社境內最著名的牡丹園盛開與紫藤花如瀑布般垂下的季節（初夏限定絕景）。<br>• 必做體驗：前往神社附設的現代化「Sando Terrace」咖啡廳，點一份超萌的蛇型麵包與特製咖啡，坐在大片落地窗前愜意賞花賞景。",
+                highlight: "• 必看亮點：5 月下旬正逢神社境內最著名的牡丹園盛開與紫藤花如瀑布般垂下的季節（初夏限定絕景）。<br>• 必做體驗：前往神社附設的現代化「Sando Terrace」咖啡廳，點一份超萌的蛇型麵包與特製咖啡，坐在大片落地窗前餚意賞花賞景。",
                 info: "📍 地址：宮城縣岩沼市三色吉字水神168<br>⏰ 開放時間：全天開放（社務所與咖啡廳空間 08:30 - 16:00）<br>💰 是否收費：境內免費；牡丹園花季入園依花況可能酌收門票"
             },
             {
@@ -501,25 +507,26 @@
             const container = document.getElementById("itineraryContainer");
             container.innerHTML = "";
 
-            // 總覽模式：僅呈現日期、時間、地名
+            // 總覽模式
             if (itineraryMode === "all") {
                 datesArr.forEach(day => {
                     container.innerHTML += `<div class="font-black text-amber-600 text-sm mt-4 mb-2 flex items-center gap-1">⚡ ${day}</div>`;
-                    if (itineraries[day].length === 0) {
+                    if (!itineraries[day] || itineraries[day].length === 0) {
                         container.innerHTML += `<div class="text-xs text-slate-400 italic pl-4">本日目前無安排行程。</div>`;
+                    } else {
+                        itineraries[day].forEach(p => {
+                            container.innerHTML += `
+                                <div class="bg-white p-3 rounded-xl border border-slate-100 shadow-sm flex items-center gap-3 text-sm mb-1.5">
+                                    <span class="bg-red-50 text-red-600 text-[11px] px-2 py-0.5 rounded font-black border border-red-100">${p.time || '—'}</span>
+                                    <span class="font-black text-slate-800">${p.name}</span>
+                                </div>`;
+                        });
                     }
-                    itineraries[day].forEach(p => {
-                        container.innerHTML += `
-                            <div class="bg-white p-3 rounded-xl border border-slate-100 shadow-sm flex items-center gap-3 text-sm mb-1.5">
-                                <span class="bg-red-50 text-red-600 text-[11px] px-2 py-0.5 rounded font-black border border-red-100">${p.time || '—'}</span>
-                                <span class="font-black text-slate-800">${p.name}</span>
-                            </div>`;
-                    });
                 });
                 return;
             }
 
-            // 分頁模式：清爽排版（僅顯示時間、地名、細緻箭頭、導航鈕）
+            // 分頁模式 (去除點擊查看詳情贅字，保留俐落箭頭指示)
             const currentItems = itineraries[currentDay] || [];
             if (currentItems.length === 0) {
                 container.innerHTML = `<div class="text-center p-8 text-slate-400 italic text-sm">這天還沒有安排景點喔！</div>`;
@@ -566,7 +573,7 @@
                     </div>`;
             });
 
-            if (typeof Sortable !== 'undefined') {
+            if (typeof Sortable !== 'undefined' && container) {
                 new Sortable(container, {
                     animation: 150,
                     handle: '.itinerary-drag-item',
@@ -583,16 +590,16 @@
             }
         }
 
-        // 優化版 Google Maps 單點搜尋引導
+        // 標準 Google 地圖搜尋 API URL 格式化
         function openMap(lat, lng) {
             window.open(`https://www.google.com/maps/search/?api=1&query=${lat},${lng}`, '_blank');
         }
 
-        // 優化版 全天智慧路線串聯導航
+        // 標準 一鍵串連當天路線規劃導航 URL
         function openFullRoute() {
             const currentItems = itineraries[currentDay] || [];
             if (currentItems.length === 0) {
-                alert("今天沒有排行程，皮卡丘不知道往哪走喔！");
+                alert("今天沒有排行程喔！");
                 return;
             }
             const origin = `${currentItems[0].lat},${currentItems[0].lng}`;
@@ -624,6 +631,7 @@
         }
         function renderShop() {
             const list = document.getElementById("shopList");
+            if(!list) return;
             list.innerHTML = "";
             shops.forEach((item, idx) => {
                 list.innerHTML += `
@@ -658,6 +666,7 @@
         }
         function renderTodo() {
             const list = document.getElementById("todoList");
+            if(!list) return;
             list.innerHTML = "";
             todos.forEach((item, idx) => {
                 list.innerHTML += `
@@ -674,6 +683,7 @@
 
         function initNoteTabs() {
             const container = document.getElementById("noteDayTabs");
+            if(!container) return;
             container.innerHTML = "";
             datesArr.forEach(d => {
                 const activeClass = (d === currentNoteDay) ? 'bg-amber-500 text-white font-bold' : 'bg-slate-100 text-slate-600';
@@ -694,6 +704,7 @@
 
         function initExpenseSelect() {
             const select = document.getElementById("expDateSelect");
+            if(!select) return;
             select.innerHTML = "";
             datesArr.forEach(d => {
                 select.innerHTML += `<option value="${d}">${d}</option>`;
@@ -717,6 +728,7 @@
         }
         function renderExpense() {
             const container = document.getElementById("expenseDayBreakdown");
+            if(!container) return;
             container.innerHTML = "";
             
             datesArr.forEach(day => {
@@ -755,6 +767,7 @@
 
         function renderAttractions() {
             const grid = document.getElementById("attractionGrid");
+            if(!grid) return;
             grid.innerHTML = "";
             attractionData.forEach(item => {
                 grid.innerHTML += `
