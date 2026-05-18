@@ -102,7 +102,7 @@
                         <div class="absolute bottom-0 right-1 w-4 h-4 pikachu-red rounded-full"></div>
                     </div>
                     <div class="absolute -top-2 -right-2 bg-red-500 text-white text-[10px] px-1.5 py-0.5 rounded-full font-black border border-white animate-bounce">
-                        主視覺 ⚡
+                        Pika!!⚡
                     </div>
                 </div>
                 
@@ -138,11 +138,7 @@
 
         <div id="section-itinerary" class="main-section space-y-4">
             <div class="card relative bg-white border-2 border-yellow-200">
-                <div class="absolute right-4 top-4 flex items-center gap-1 bg-yellow-100 text-yellow-800 text-xs px-2 py-1 rounded-full font-bold border border-yellow-300">
-                    <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/25.png" class="w-5 h-5 object-contain animate-pika-wag" alt="Pika">
-                    <span>導航皮卡丘特派員</span>
-                </div>
-
+                
                 <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 mb-4">
                     <div id="itineraryDayTabs" class="flex gap-2 flex-wrap"></div>
                     <div class="flex gap-2 bg-slate-100 p-1 rounded-xl text-xs font-bold">
@@ -153,21 +149,16 @@
                 
                 <div class="bg-amber-50/50 p-3 rounded-2xl flex items-center justify-between mb-4 border border-dashed border-amber-300">
                     <span class="text-xs font-bold text-amber-800 flex items-center gap-1">
-                        ⚡ 提示：分頁模式下點擊「地名」可展開詳細內容，拖曳卡片可調整順序唷！
+                        ⚡ 提示：點擊「地名區域」可展開或收合詳細內容，拖曳卡片可自由調整行程順序唷！
                     </span>
                     <button class="btn-pika text-xs py-1 px-3" onclick="openFullRoute()">🗺 一鍵導航整天路線</button>
                 </div>
-                <div id="itineraryContainer" class="space-y-4"></div>
+                <div id="itineraryContainer" class="space-y-3"></div>
             </div>
         </div>
 
         <div id="section-shopping" class="main-section space-y-4 hidden">
             <div class="card relative bg-white border-2 border-orange-200">
-                <div class="absolute right-4 top-4 flex items-center gap-1 bg-orange-100 text-orange-800 text-xs px-2 py-1 rounded-full font-bold border border-orange-300 animate-pika-bounce">
-                    <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/25.png" class="w-5 h-5 object-contain" alt="Pika">
-                    <span>採購大師皮卡丘</span>
-                </div>
-
                 <h2 class="text-xl font-black mb-4 flex items-center gap-2 text-slate-800">🛍️ 我的敲可愛採購清單</h2>
                 <div class="flex gap-2 mb-4">
                     <input id="shopInput" type="text" class="form-input flex-1 border border-slate-300 rounded-xl px-4 focus:outline-yellow-400 text-sm" placeholder="填入想買的限定商品或伴手禮...">
@@ -179,11 +170,6 @@
 
         <div id="section-todo" class="main-section space-y-4 hidden">
             <div class="card relative bg-white border-2 border-red-200">
-                <div class="absolute right-4 top-4 flex items-center gap-1 bg-red-100 text-red-800 text-xs px-2 py-1 rounded-full font-bold border border-red-300 animate-pika-bounce">
-                    <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/25.png" class="w-5 h-5 object-contain animate-pulse" alt="Pika">
-                    <span>打卡小助手皮卡</span>
-                </div>
-
                 <h2 class="text-xl font-black mb-4 flex items-center gap-2 text-slate-800">📝 出發前/旅途中待辦事項</h2>
                 <div class="flex gap-2 mb-4">
                     <input id="todoInput" type="text" class="form-input flex-1 border border-slate-300 rounded-xl px-4 focus:outline-yellow-400 text-sm" placeholder="例如：填寫 Visit Japan Web、護照確認...">
@@ -195,11 +181,6 @@
 
         <div id="section-notes" class="main-section space-y-4 hidden">
             <div class="card relative bg-white border-2 border-amber-200">
-                <div class="absolute right-4 top-4 flex items-center gap-1 bg-amber-100 text-amber-800 text-xs px-2 py-1 rounded-full font-bold border border-amber-300">
-                    <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/25.png" class="w-5 h-5 object-contain animate-pika-wag" alt="Pika">
-                    <span>秘密筆記皮卡</span>
-                </div>
-
                 <h2 class="text-xl font-black mb-2 flex items-center gap-2 text-slate-800">📓 每日旅途備註記憶</h2>
                 <p class="text-xs text-slate-400 mb-4">點擊下方日期按鈕，可以記錄並儲存該日特別需要注意的Memo。</p>
                 <div id="noteDayTabs" class="flex gap-2 flex-wrap mb-4"></div>
@@ -216,11 +197,6 @@
 
         <div id="section-expense" class="main-section space-y-4 hidden">
             <div class="card relative bg-white border-2 border-green-200">
-                <div class="absolute right-4 top-4 flex items-center gap-1 bg-green-100 text-green-800 text-xs px-2 py-1 rounded-full font-bold border border-green-300 animate-pika-pulse">
-                    <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/25.png" class="w-5 h-5 object-contain" alt="Pika">
-                    <span>金幣滿滿皮卡丘</span>
-                </div>
-
                 <h2 class="text-xl font-black mb-4 flex items-center gap-2 text-slate-800">💰 旅程流水帳記帳簿</h2>
                 <div class="grid grid-cols-1 sm:grid-cols-3 gap-3 bg-slate-50 p-4 rounded-2xl mb-6 border border-slate-100">
                     <div>
@@ -259,11 +235,7 @@
         </div>
 
         <div id="section-attractions" class="main-section space-y-4 hidden">
-            <div class="card bg-gradient-to-r from-yellow-400 via-orange-300 to-amber-400 border-4 border-slate-800 relative shadow-xl">
-                <div class="absolute right-4 top-4 flex items-center gap-1 bg-slate-900 text-yellow-400 text-xs px-3 py-1.5 rounded-full font-black border border-yellow-400 animate-pika-pulse">
-                    <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/25.png" class="w-6 h-6 object-contain" alt="Pika">
-                    <span>探險隊長皮卡丘</span>
-                </div>
+            <div class="card bg-gradient-to-r from-yellow-400 via-orange-300 to-amber-400 border-4 border-slate-800 relative shadow-xl p-6">
                 <h2 class="text-2xl font-black text-slate-900 flex items-center gap-2">🌟 仙台 & 周邊精選 10 大景點全攻略</h2>
             </div>
             
@@ -311,7 +283,7 @@
                 {time:"10:58", name:"一ノ關駅（ポケモン Train 乗車）", category:"交通", address:"岩手県一関市山目字前田", cost:"3,020 圓/人", costDesc:"新幹線+指定席費用另計", openHours:"新幹線車次固定", remarks:"夢幻皮卡丘彩繪列車！有迎賓大娃娃與超熱鬧的舉旗歡迎儀式", lat:38.926, lng:141.138},
                 {time:"11:49", name:"猊鼻渓 舟下り（乗船所）", category:"景點", address:"岩手県一関市東山町長坂町467", cost:"1,800 圓/人", costDesc:"純手搖單槳船往返", openHours:"季節限定營業", remarks:"日本百景大峽谷，全程 90 分鐘，聽船伕高唱民謠、嘗試投擲運玉！", lat:38.991, lng:141.253},
                 {time:"13:40", name:"げいびレストハウス", category:"餐廳", address:"岩手県一関市東山町長坂町467（乗船所旁）", cost:"800–1,500/人", costDesc:"傳統蕎麥麵", openHours:"11:00–16:00", remarks:"下船後步行即達！主打岩手手打蕎麥麵與一口蕎麥麵體驗", lat:38.991, lng:141.253},
-                {time:"17:30", name:"Clis Road ＋ 一番町商店街", category:"景點", address:"宮城県仙台市青葉区一番町3丁目", cost:"免費", costDesc:"逛街採買", openHours:"各店家不同", remarks:"散步約10分鐘，有雨棚大拱頂設計，下雨也能舒creativecommons.org服服逛街", lat:38.260, lng:140.875},
+                {time:"17:30", name:"Clis Road ＋ 一番町商店街", category:"景點", address:"宮城県仙台市青葉区一番町3丁目", cost:"免費", costDesc:"逛街採買", openHours:"各店家不同", remarks:"散步約10分鐘，有雨棚大拱頂設計，下雨也能舒適逛街", lat:38.260, lng:140.875},
                 {time:"19:00", name:"旬味酒好 かん（国分町）", category:"餐廳", address:"宮城県仙台市青葉区国分町2丁目", cost:"2,500–3,500/人", costDesc:"地酒海鮮居酒屋", openHours:"18:00–23:00", remarks:"國分町的隱藏版高質感老店。專賣東北在地名酒與三陸特產下酒菜", lat:38.262, lng:140.870}
             ],
             "2026/05/25":[
@@ -391,7 +363,7 @@
                 cardClass: "border-orange-400 bg-orange-50/60",
                 bgDecor: "🦴 🪵 🏺 🔍",
                 desc: "這是世界上罕見的舊石器時代主題博物館，完美復原並展示了兩萬年前富澤地區的自然環境與人類活動遺跡。走入館內，宏大的地底挖掘現場將帶給您穿越時空的震撼感。搭配從地下化石中復活的可愛寶寶暴龍，最具考古及知性探索感！",
-                highlight: "• 必看亮點：現場保存極其完整的「舊石器時代森林地下遺跡」與兩萬年前古人類留留下 的篝火痕跡。<br>• 必做體驗：在博物館外部精心規劃的「冰河時期之森」公園慢步，這裡重建了2萬年前的古老植被，環境清幽極具知性美。",
+                highlight: "• 必看亮點：現場保存極其完整的「舊石器時代森林地下遺跡」與兩萬年前古人類留下的篝火痕跡。<br>• 必做體驗：在博物館外部精心規劃的「冰河時期之森」公園慢步，這裡重建了2萬年前的古老植被，環境清幽極具知性美。",
                 info: "📍 地址：宮城縣仙台市太白區長町南4-3-1<br>⏰ 開放時間：09:00 - 16:45（週一及假日翌日休館）<br>💰 是否收費：成人 460 日圓"
             },
             {
@@ -511,8 +483,16 @@
 
         function toggleItineraryDetails(idx) {
             const detailsDiv = document.getElementById(`details-${idx}`);
+            const arrowSpan = document.getElementById(`arrow-${idx}`);
             if (detailsDiv) {
-                detailsDiv.classList.toggle('hidden');
+                const isHidden = detailsDiv.classList.contains('hidden');
+                if (isHidden) {
+                    detailsDiv.classList.remove('hidden');
+                    if(arrowSpan) arrowSpan.innerText = "▼";
+                } else {
+                    detailsDiv.classList.add('hidden');
+                    if(arrowSpan) arrowSpan.innerText = "▶";
+                }
             }
         }
 
@@ -521,6 +501,7 @@
             const container = document.getElementById("itineraryContainer");
             container.innerHTML = "";
 
+            // 總覽模式：僅呈現日期、時間、地名
             if (itineraryMode === "all") {
                 datesArr.forEach(day => {
                     container.innerHTML += `<div class="font-black text-amber-600 text-sm mt-4 mb-2 flex items-center gap-1">⚡ ${day}</div>`;
@@ -529,15 +510,16 @@
                     }
                     itineraries[day].forEach(p => {
                         container.innerHTML += `
-                            <div class="bg-white p-3 rounded-xl border border-slate-100 shadow-sm flex items-center gap-3 text-sm mb-2">
-                                <span class="bg-red-50 text-red-600 text-[11px] px-1.5 py-0.5 rounded font-bold">${p.time || '—'}</span>
-                                <span class="font-black text-slate-700">${p.name}</span>
+                            <div class="bg-white p-3 rounded-xl border border-slate-100 shadow-sm flex items-center gap-3 text-sm mb-1.5">
+                                <span class="bg-red-50 text-red-600 text-[11px] px-2 py-0.5 rounded font-black border border-red-100">${p.time || '—'}</span>
+                                <span class="font-black text-slate-800">${p.name}</span>
                             </div>`;
                     });
                 });
                 return;
             }
 
+            // 分頁模式：清爽排版（僅顯示時間、地名、細緻箭頭、導航鈕）
             const currentItems = itineraries[currentDay] || [];
             if (currentItems.length === 0) {
                 container.innerHTML = `<div class="text-center p-8 text-slate-400 italic text-sm">這天還沒有安排景點喔！</div>`;
@@ -546,14 +528,14 @@
 
             currentItems.forEach((p, idx) => {
                 container.innerHTML += `
-                    <div class="itinerary-drag-item bg-white p-4 rounded-2xl border-2 border-slate-100 shadow-sm hover:border-yellow-300 transition-all cursor-move space-y-2" data-index="${idx}">
-                        <div class="flex justify-between items-center gap-2">
-                            <div class="flex items-center gap-2 flex-wrap cursor-pointer select-none" onclick="toggleItineraryDetails(${idx})">
-                                <span class="w-6 h-6 rounded-full bg-yellow-400 text-slate-800 font-black flex items-center justify-center text-xs shadow-sm">${idx + 1}</span>
-                                <span class="bg-red-100 text-red-700 text-[11px] px-2 py-0.5 rounded-md font-bold">${p.time || '—'}</span>
-                                <h4 class="font-black text-slate-800 tracking-wide text-base flex items-center gap-1 hover:text-amber-600">
+                    <div class="itinerary-drag-item bg-white p-3.5 rounded-2xl border-2 border-slate-100 shadow-xs hover:border-yellow-300 transition-all cursor-move space-y-1" data-index="${idx}">
+                        <div class="flex justify-between items-center gap-3">
+                            <div class="flex items-center gap-3 flex-1 cursor-pointer select-none" onclick="toggleItineraryDetails(${idx})">
+                                <span class="w-5 h-5 rounded-full bg-yellow-400 text-slate-800 font-black flex items-center justify-center text-[11px] shadow-xs shrink-0">${idx + 1}</span>
+                                <span class="bg-red-100 text-red-700 text-[11px] px-2 py-0.5 rounded-md font-black shrink-0 border border-red-200">${p.time || '—'}</span>
+                                <h4 class="font-black text-slate-900 tracking-wide text-base flex items-center gap-1.5">
                                     <span>${p.name}</span>
-                                    <span class="text-slate-400 text-xs font-normal"> (點擊查看詳情)</span>
+                                    <span id="arrow-${idx}" class="text-[10px] text-slate-400 font-normal">▶</span>
                                 </h4>
                             </div>
                             <button class="btn-pika text-xs py-1 px-3 shrink-0" onclick="openMap(${p.lat}, ${p.lng})">🧭 導航</button>
@@ -601,19 +583,22 @@
             }
         }
 
+        // 優化版 Google Maps 單點搜尋引導
         function openMap(lat, lng) {
             window.open(`https://www.google.com/maps/search/?api=1&query=${lat},${lng}`, '_blank');
         }
 
+        // 優化版 全天智慧路線串聯導航
         function openFullRoute() {
             const currentItems = itineraries[currentDay] || [];
             if (currentItems.length === 0) {
-                alert("今天沒有排行程，皮卡丘不知道往哪走角！");
+                alert("今天沒有排行程，皮卡丘不知道往哪走喔！");
                 return;
             }
             const origin = `${currentItems[0].lat},${currentItems[0].lng}`;
             const destination = `${currentItems[currentItems.length-1].lat},${currentItems[currentItems.length-1].lng}`;
             const waypoints = currentItems.slice(1, -1).map(p => `${p.lat},${p.lng}`).join('|');
+            
             let url = `https://www.google.com/maps/dir/?api=1&origin=${origin}&destination=${destination}`;
             if(waypoints) url += `&waypoints=${waypoints}`;
             window.open(url, '_blank');
@@ -704,7 +689,7 @@
         function saveNoteData() {
             notes[currentNoteDay] = document.getElementById("noteBox").value;
             localStorage.setItem("pika_notes", JSON.stringify(notes));
-            alert("⚡ 皮卡丘幫你把這天的備註藏好囉！儲存成功！");
+            alert("⚡ 已幫您把這天的備註儲存成功！");
         }
 
         function initExpenseSelect() {
