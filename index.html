@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-    <title>2026初夏仙台散策 ⚡ 皮卡丘伴你同行</title>
+    <title>2026初夏仙台散策 ⚡皮卡丘伴你同行⚡</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://cdn.jsdelivr.net/npm/sortablejs@1.15.2/Sortable.min.js"></script>
     <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@300..700&family=Noto+Sans+TC:wght@400;700;900&display=swap" rel="stylesheet">
@@ -108,7 +108,7 @@
                 
                 <div class="text-center sm:text-left">
                     <h1 class="text-3xl md:text-4xl font-black tracking-wider flex flex-wrap items-center justify-center sm:justify-start gap-2 text-slate-900">
-                        2026初夏仙台散策 <span class="text-yellow-500 animate-pika-pulse">⚡ 皮卡丘伴你同行</span>
+                        2026初夏仙台散策 <span class="text-yellow-500 animate-pika-pulse">⚡皮卡丘伴你同行⚡</span>
                     </h1>
                     <p class="text-sm font-bold text-slate-600 mt-1">✨ Pokémon × 仙台旅遊Let's GO! ✨</p>
                 </div>
@@ -235,7 +235,7 @@
 
         <div id="section-attractions" class="main-section space-y-4 hidden">
             <div class="card bg-gradient-to-r from-yellow-400 via-orange-300 to-amber-400 border-4 border-slate-800 shadow-xl">
-                <h2 class="text-2xl font-black text-slate-900 flex items-center gap-2">🌟 仙台 & 周邊精選 10 大景點全攻略</h2>
+                <h2 class="text-2xl font-black text-slate-900 flex items-center gap-2">🌟 仙台精選 10 大景點全攻略</h2>
             </div>
             
             <div id="attractionGrid" class="grid grid-cols-1 md:grid-cols-2 gap-6"></div>
@@ -248,8 +248,8 @@
         
         let itineraries = JSON.parse(localStorage.getItem("pika_plan")) || {
             "2026/05/21":[
-                {time:"16:00", name:"仙台空港 Access 線", category:"交通", address:"宮城県名取市下増田字南原", cost:"660 圓/人", costDesc:"1F，25 分抵仙台駅", openHours:"全天配合航班", remarks:"★交通調度建議班次：① 16:11-16:38 (快速) 或 ② 16:33-16:58 (普通)。下飛機直奔市區的最佳選擇", lat:38.14, lng:140.92},
-                {time:"16:45", name:"Almont Hotel Sendai", category:"飯店", address:"宮城県仙台市青葉区中央3-10-14", cost:"—", costDesc:"住宿自理", openHours:"24小時", remarks:"5 分到仙台駅，含頂樓大浴場放鬆必備", lat:38.257, lng:140.883},
+                {time:"16:30", name:"仙台空港 Access 線", category:"交通", address:"宮城県名取市下増田字南原", cost:"660 圓/人", costDesc:"1F，25 分抵仙台駅", openHours:"全天配合航班", remarks:"★交通調度建議班次：① 16:11-16:38 (快速) 或 ② 16:33-16:58 (普通)。下飛機直奔市區的最佳選擇", lat:38.14, lng:140.92},
+                {time:"17:", name:"Almont Hotel Sendai", category:"飯店", address:"宮城県仙台市青葉区中央3-10-14", cost:"—", costDesc:"住宿自理", openHours:"24小時", remarks:"5 分到仙台駅，含頂樓大浴場放鬆必備", lat:38.257, lng:140.883},
                 {time:"18:00", name:"AER 展望テラス（31F）", category:"景點", address:"宮城県仙台市青葉区中央1-3-1 AER 31F", cost:"免費", costDesc:"自由參觀", openHours:"10:00–20:00", remarks:"2 分鐘即達，俯瞰市街全景與落日", lat:38.263, lng:140.882},
                 {time:"19:00", type:"withAlt", name:"地酒和鮮 蔵の庄", category:"餐廳", address:"宮城県仙台市青葉区中央1丁目周邊", cost:"2,500–4,000/人", costDesc:"三陸海鮮居酒屋", openHours:"17:00–23:00", remarks:"★不吃牛肉首選！宮城在地地酒與海鮮極其豐富", lat:38.259, lng:140.882, altName:"伊達の牛たん本舗（S-PAL）", altCost:"2,000–3,500/人", altCostDesc:"厚切鹽烤牛舌定食", altOpenHours:"11:00–22:00", altRemarks:"適合吃牛肉的同行者，車站直結 S-PAL 內", altLat:38.259, altLng:140.882}
             ],
@@ -265,7 +265,7 @@
                 {time:"12:30", name:"梅の花 仙台店", category:"餐廳", address:"宮城県仙台市太白区富沢3丁目", cost:"2,300–3,500/人", costDesc:"豆腐懷石套餐", openHours:"11:30–15:00", remarks:"★交通：從地底之森步行約12分，或搭地下鐵至富沢駅。建議銜接班次：① 12:05-12:07 或 ② 12:15-12:17。高級豆腐懷石、無牛肉，訂位已特別備註『母の誕生日』", lat:38.261, lng:140.871},
                 {time:"14:30", name:"瑞鳳殿", category:"景點", address:"宮城県仙台市青葉区霊屋下23-2", cost:"570 圓/人", costDesc:"門票費用", openHours:"09:00–16:50", remarks:"★交通：自仙台駅搭乘 Loople 觀光巴士。建議去程班次：① 13:45-13:58 或 ② 14:00-14:13。伊達政宗華麗靈廟，杉木參道環境清幽", lat:38.250, lng:140.865},
                 {time:"15:30", name:"仙台城跡（青葉城）", category:"景點", address:"宮城県仙台市青葉区天守台青葉城址", cost:"免費", costDesc:"VR體驗另計", openHours:"全天開放", remarks:"★交通：自瑞鳳殿續搭 Loople 巴士。建議去程班次：① 15:13-15:26 或 ② 15:28-15:41。與經典伊達政宗騎馬銅像合影，俯瞰大仙台市景", lat:38.250, lng:140.856},
-                {time:"18:00", type:"group", name:"仙台駅前閃電血拼圈（含寶可夢中心）", category:"購物/餐廳", lat:38.260, lng:140.881, remarks:"★18:00後全新擴充：高效率精華區逛街路線", subItems:[
+                {time:"18:00", type:"group", name:"仙台駅前逛街", category:"購物/餐廳", lat:38.260, lng:140.881, remarks:"★1高效率精華區逛街路線", subItems:[
                     {name:"寶可夢中心 仙台 (S-PAL 本館 3F)", icon:"⚡", cost:"自由購物", remarks:"10:00–20:00。與車站直結！皮卡丘東北限定周邊必搶，大本營衝刺點"},
                     {name:"Sendai PARCO (本館 & 新館)", icon:"🛍️", cost:"免費參觀", remarks:"聚集各大服飾日牌與動漫精品選物(JUMP SHOP)，就在車站正隔壁"},
                     {name:"Sendai LoFT 旗艦店", icon:"💛", cost:"自由採購", remarks:"文具小物、美妝生活雜貨集中地，退稅服務效率高，補貨絕佳選擇"}
@@ -278,20 +278,20 @@
                 ]},
                 {time:"12:00", type:"withAlt", name:"松島さかな市場 焼がきハウス", category:"餐廳", address:"宮城県宮城郡松島町松島字普賢堂13", cost:"2,500 圓/人", costDesc:"烤牡蠣 45 分吃到飽", openHours:"11:00–15:00", remarks:"★交通：由岩沼經仙台轉搭 JR 仙石線至松島海岸駅。建議車次①：岩沼10:45->仙台11:06/仙石線11:19->松島海岸11:58；建議車次②：岩沼11:01->仙台11:22/仙石線11:35->松島海岸12:13", lat:38.371, lng:141.060, altName:"さんとり茶屋 ／ 牡蠣屋フライ亭", altCost:"2,000–3,000/人", altCostDesc:"カキ三昧セット", altOpenHours:"11:00–15:00", altRemarks:"備選：精緻牡蠣定食，俯瞰松島灣，松島海岸駅步行 8 分", altLat:38.371, altLng:141.060},
                 {time:"13:30", name:"松島 五大堂", category:"景點", address:"宮城県宮城郡松島町松島字町内111", cost:"免費", costDesc:"自由參觀", openHours:"全天開放", remarks:"散步約10-15分鐘。紅漆透橋非常獨特，松島經典地標", lat:38.371, lng:141.060},
-                {time:"14:00", name:"福浦島", category:"景點", address:"宮城県宮城郡松島町松島字普賢堂", cost:"200 圓/人", costDesc:"福浦橋通行費", openHours:"8:30–17:00", remarks:"★時程警戒：預計 15:00 前必須離開福浦島回程！慢步環島約30分", lat:38.371, lng:141.060},
-                {time:"15:00", name:"回Almont取行李 ＆ 移宿 check-in", category:"交通/飯店", address:"Daiwa Roynet Hotel 仙台西口PREMIER", cost:"—", costDesc:"辦理入住", openHours:"24小時", remarks:"★交通(仙石線回仙台)：建議回程班次：① 15:04-15:43 或 ② 15:24-16:03。回Almont取行李後，步行至新飯店辦理 Check-in 置放重物", lat:38.259, lng:140.880},
-                {time:"17:30", type:"group", name:"新飯店西口周邊逛街與美食之夜", category:"購物/餐廳", lat:38.260, lng:140.881, remarks:"★全新調整：移宿後的西口繁華街夜間悠閒散策", subItems:[
+                {time:"14:00", name:"福浦島", category:"景點", address:"宮城県宮城郡松島町松島字普賢堂", cost:"200 圓/人", costDesc:"福浦橋通行費", openHours:"8:30–17:00", remarks:"★時程警戒：預計 15:00 前必須離開福浦島回程！漫步環島約30分", lat:38.371, lng:141.060},
+                {time:"15:00", name:"回Almont Hotel取行李 ＆ Daiwa Roynet Hotel 仙台西口PREMIER check-in", category:"交通/飯店", address:"Daiwa Roynet Hotel 仙台西口PREMIER", cost:"—", costDesc:"辦理入住", openHours:"24小時", remarks:"★交通(仙石線回仙台)：建議回程班次：① 15:04-15:43 或 ② 15:24-16:03。回Almont取行李後，步行至Daiwa Roynet Hotel 仙台西口PREMIER", lat:38.259, lng:140.880},
+                {time:"17:30", type:"group", name:"新飯店西口周邊逛街與美食之夜", category:"購物/餐廳", lat:38.260, lng:140.881, remarks:"★西口繁華街夜間悠閒散策", subItems:[
                     {name:"青葉通 ＆ 廣瀨通大路散策", icon:"🏙️", cost:"免費", remarks:"漫步高質感初夏林蔭大道，欣賞熱鬧的城市霓虹與愜意街景"},
                     {name:"末廣拉麵本福 (中央通店)", icon:"🍜", cost:"900-1,300/人", remarks:"東北超人氣黑醬油拉麵代表，滿滿大蔥免費加，美味暖胃首選"},
-                    {name:"S-PAL 仙台本館地下街自由配", icon:"🍮", cost:"自由花費", remarks:"飯後甜點採購！可買新鮮宮城草莓、手作布丁或毛豆泥昔帶回飯店享受"}
+                    {name:"S-PAL 仙台本館地下街", icon:"🍮", cost:"自由花費", remarks:"飯後甜點採購！可買新鮮宮城草莓、手作布丁或毛豆泥昔帶回飯店享受"}
                 ]}
             ],
             "2026/05/24":[
                 {time:"08:00", name:"E PRONTO（仙台駅 1F）", category:"餐廳", address:"宮城県仙台市青葉区中央1-1-1 仙台駅1F", cost:"500-1,000/人", costDesc:"晨間輕食", openHours:"07:00 開放", remarks:"出發前輕鬆享用香醇咖啡與美味歐式早餐", lat:38.260, lng:140.881},
-                {time:"10:58", name:"一ノ關駅（ポケモン Train 乗車）", category:"交通", address:"岩手県一関市山目字前田", cost:"3,020 圓/人", costDesc:"新幹線+指定席費用另計", openHours:"新幹線車次固定", remarks:"★交通：自仙台搭東北新幹線前往。建議去程班次：① 09:12-09:44 (Yamabiko 51號) 或 ② 09:48-10:18 (Hayabusa 103號)。夢幻皮卡丘彩繪列車！", lat:38.926, lng:141.138},
-                {time:"11:49", name:"猊鼻渓 舟下り（乗船所）", category:"景點", address:"岩手県一関市東山町長坂町467", cost:"1,800 圓/人", costDesc:"純手搖單槳船往返", openHours:"季節限定營業", remarks:"★交通：皮卡丘列車直結大船渡線於11:41抵達猊鼻溪駅。全程 90 分鐘，聽船伕高唱民謠、嘗試投擲運玉！", lat:38.991, lng:141.253},
-                {time:"13:40", name:"げいびレストハウス", category:"餐廳", address:"岩手県一関市東山町長坂町467（乗船所旁）", cost:"800–1,500/人", costDesc:"傳統蕎麥麵", openHours:"11:00–16:00", remarks:"下船後步行即達！主打岩手手打蕎麥麵與一口蕎麥麵體驗", lat:38.991, lng:141.253},
-                {time:"17:30", type:"group", name:"Clis Road ＋ 一番町商店街全攻略", category:"景點/購物", lat:38.260, lng:140.875, remarks:"★增強補充：巨型雨棚商店街連線，精選店家與周邊漫遊", subItems:[
+                {time:"10:58", name:"一ノ關駅（搭乘Pokemon Train）", category:"交通", address:"岩手県一関市山目字前田", cost:"3,020 圓/人", costDesc:"新幹線+指定席費用另計", openHours:"新幹線車次固定", remarks:"★交通：自仙台搭東北新幹線前往。建議去程班次：① 09:12-09:44 (Yamabiko 51號) 或 ② 09:48-10:18 (Hayabusa 103號)。夢幻皮卡丘彩繪列車！", lat:38.926, lng:141.138},
+                {time:"11:49", name:"猊鼻渓 遊船", category:"景點", address:"岩手県一関市東山町長坂町467", cost:"1,800 圓/人", costDesc:"純手搖單槳船往返", openHours:"季節限定營業", remarks:"★交通：皮卡丘列車直結大船渡線於11:41抵達猊鼻溪駅。全程 90 分鐘，聽船伕高唱民謠、嘗試投擲運玉！", lat:38.991, lng:141.253},
+                {time:"13:40", name:"手打蕎麥麵（げいびレストハウス）", category:"餐廳", address:"岩手県一関市東山町長坂町467（乗船所旁）", cost:"800–1,500/人", costDesc:"傳統蕎麥麵", openHours:"11:00–16:00", remarks:"下船後步行即達！主打岩手手打蕎麥麵與一口蕎麥麵體驗", lat:38.991, lng:141.253},
+                {time:"17:30", type:"group", name:"Clis Road ＋ 一番町商店街全攻略", category:"景點/購物", lat:38.260, lng:140.875, remarks:"★巨型雨棚商店街連線，精選店家與周邊漫遊", subItems:[
                     {name:"鯛きち 名掛丁店 (薄皮鯛魚燒)", icon:"🐟", cost:"180-250 圓/個", remarks:"超人氣爆醬鯛魚燒！必點期間限定卡士達或脆皮紅豆，逛街完美點心"},
                     {name:"阿部蒲鉾店 本店 (現烤魚板體驗)", icon:"🍡", cost:"150 圓/串", remarks:"可現場動手現烤魚板，外酥內嫩！外加必吃脆皮炸葫蘆 (ひょうたん揚げ)"},
                     {name:"喜久水庵 ／ 茶の井ヶ田 一番町店", icon:"🍵", cost:"300-600 圓", remarks:"動漫迷聖地！必吃經典『喜久福』毛豆泥大福與濃厚抹茶霜淇淋"},
@@ -299,7 +299,7 @@
                 ]}
             ],
             "2026/05/25":[
-                {time:"08:30", type:"group", name:"仙台朝市伴手禮最後衝刺與市區漫遊", category:"餐廳/購物", lat:38.259, lng:140.880, remarks:"★增強補充：週一朝市與商圈全面火力全開，鎖定爆款特產", subItems:[
+                {time:"08:30", type:"group", name:"伴手禮採買與市區漫遊", category:"餐廳/購物", lat:38.259, lng:140.880, remarks:"★週一朝市與商圈全面火力全開，鎖定爆款特產", subItems:[
                     {name:"齋藤惣菜店 ＆ 佐藤鮮魚店", icon:"🥔", cost:"依品項計", remarks:"把握最後機會買現炸可樂餅，佐藤鮮魚店可現場切刺身刺身即食"},
                     {name:"朝市みうらや (海鮮乾貨與在地辣油)", icon:"🌶️", cost:"約 800-1,200", remarks:"尋找網紅爆款「陣中牛舌辣油」與精緻干貝/鯖魚乾貨，送禮首選"},
                     {name:"市區商圈延伸：LoFT & 廣瀨通商圈", icon:"🛍️", cost:"自由逛", remarks:"做最後一輪美妝、生活雜貨及限量文具小物的快速補貨"}
@@ -310,7 +310,7 @@
                     {name:"Sendai Mediatheque (仙台媒體中心)", icon:"🏢", cost:"免費參觀", remarks:"建築大師伊東豊雄代表作！全玻璃帷幕與樹幹狀管柱結構，設計控、拍照狂必訪"},
                     {name:"街邊文青咖啡座 (如 Café de Sura)", icon:"☕", cost:"600-1,200/人", remarks:"坐在櫸樹下的戶外雅座，喝著冰咖啡看著光影灑落，享受最頂級的仙台慢活"}
                 ]},
-                {time:"14:30", name:"仙台空港（JX863 離境）", category:"交通", address:"宮城県名取市下増田字南原", cost:"660 圓/人", costDesc:"Access線火車車資", openHours:"星宇 JX863 17:20起飛", remarks:"★交通調度建議班次：① 14:37-15:03 (快速) 或 ② 15:00-15:26 (普通)。最晚需於 14:50 前從仙台站搭上火車（車程25分）", lat:38.14, lng:140.92}
+                {time:"14:30", name:"仙台空港（星宇JX863）", category:"交通", address:"宮城県名取市下増田字南原", cost:"660 圓/人", costDesc:"Access線火車車資", openHours:"星宇 JX863 17:20起飛", remarks:"★交通調度建議班次：① 14:37-15:03 (快速) 或 ② 15:00-15:26 (普通)。最晚需於 14:50 前從仙台站搭上火車（車程25分）", lat:38.14, lng:140.92}
             ]
         };
 
