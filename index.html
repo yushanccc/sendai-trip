@@ -23,9 +23,6 @@
         .animate-pika-bounce {
             animation: pika-bounce 2s infinite ease-in-out;
         }
-        .card-shadow {
-            box-shadow: 0 8px 24px rgba(253, 216, 53, 0.15);
-        }
     </style>
 </head>
 <body class="text-slate-900 antialiased pb-12">
@@ -36,11 +33,22 @@
         <h1 class="text-2xl md:text-4xl font-black tracking-wider text-slate-950 flex items-center justify-center gap-2">
             ⚡ 2026初夏仙台散策 ⚡
         </h1>
-        <p class="text-xs md:text-sm font-bold text-slate-800 mt-1 tracking-widest">皮卡丘伴你同行 • 夢幻星宇假期</p>
+        <p class="text-xs md:text-sm font-bold text-slate-800 mt-1 tracking-widest">皮卡丘伴你同行 • 行程工具全能管理艙</p>
     </header>
 
-    <div class="max-w-5xl mx-auto px-4 mt-6">
-        <div class="flex flex-wrap justify-center gap-2 bg-white/60 p-2 rounded-2xl border-2 border-slate-900/10 backdrop-blur-md">
+    <nav class="max-w-5xl mx-auto px-4 mt-6">
+        <div class="grid grid-cols-3 md:grid-cols-6 gap-2 bg-slate-900 p-2 rounded-2xl border-2 border-slate-950 shadow-lg">
+            <button onclick="switchTab('itinerary')" id="tab-itinerary" class="tab-btn py-2.5 px-1 text-center rounded-xl font-black text-xs md:text-sm transition-all bg-yellow-400 text-slate-950 border-2 border-slate-950">📅 行程規劃</button>
+            <button onclick="switchTab('spots')" id="tab-spots" class="tab-btn py-2.5 px-1 text-center rounded-xl font-black text-xs md:text-sm transition-all text-slate-400 hover:text-white">🗺️ 景點介紹</button>
+            <button onclick="switchTab('shopping')" id="tab-shopping" class="tab-btn py-2.5 px-1 text-center rounded-xl font-black text-xs md:text-sm transition-all text-slate-400 hover:text-white">🛍️ 購物清單</button>
+            <button onclick="switchTab('todo')" id="tab-todo" class="tab-btn py-2.5 px-1 text-center rounded-xl font-black text-xs md:text-sm transition-all text-slate-400 hover:text-white">✅ 待辦事項</button>
+            <button onclick="switchTab('accounting')" id="tab-accounting" class="tab-btn py-2.5 px-1 text-center rounded-xl font-black text-xs md:text-sm transition-all text-slate-400 hover:text-white">💰 記帳管理</button>
+            <button onclick="switchTab('notes')" id="tab-notes" class="tab-btn py-2.5 px-1 text-center rounded-xl font-black text-xs md:text-sm transition-all text-slate-400 hover:text-white">📝 每日備註</button>
+        </div>
+    </nav>
+
+    <section id="page-itinerary" class="tab-page max-w-5xl mx-auto px-4 mt-6">
+        <div class="flex flex-wrap justify-center gap-2 bg-white/60 p-2 rounded-2xl border-2 border-slate-900/10 backdrop-blur-md mb-4">
             <button onclick="filterDay('all')" id="btn-all" class="day-btn px-4 py-2 rounded-xl font-black text-sm transition-all duration-200 pikachu-yellow border-2 border-slate-950 shadow-sm">顯示全部</button>
             <button onclick="filterDay('5/21')" id="btn-521" class="day-btn px-4 py-2 rounded-xl font-black text-sm transition-all duration-200 hover:bg-amber-100 text-slate-700">5/21 (四)</button>
             <button onclick="filterDay('5/22')" id="btn-522" class="day-btn px-4 py-2 rounded-xl font-black text-sm transition-all duration-200 hover:bg-amber-100 text-slate-700">5/22 (五)</button>
@@ -48,13 +56,97 @@
             <button onclick="filterDay('5/24')" id="btn-524" class="day-btn px-4 py-2 rounded-xl font-black text-sm transition-all duration-200 hover:bg-amber-100 text-slate-700">5/24 (日)</button>
             <button onclick="filterDay('5/25')" id="btn-525" class="day-btn px-4 py-2 rounded-xl font-black text-sm transition-all duration-200 hover:bg-amber-100 text-slate-700">5/25 (一)</button>
         </div>
-        <p class="text-center text-xs text-slate-500 mt-2 font-medium">💡 提示：您可以滑動卡片進行上下拖曳，自由調整當天的行程順序唷！</p>
-    </div>
+        <p class="text-center text-xs text-slate-500 mb-6 font-medium">💡 提示：您可以上下拖曳卡片自由調換當天的行程順序！</p>
+        
+        <div id="itinerary-container" class="space-y-8"></div>
+    </section>
 
-    <main class="max-w-5xl mx-auto px-4 mt-6">
-        <div id="itinerary-container" class="space-y-8">
+    <section id="page-spots" class="tab-page max-w-5xl mx-auto px-4 mt-6 hidden">
+        <div class="bg-white/80 border-4 border-slate-950 rounded-3xl p-6 shadow-md">
+            <h2 class="text-2xl font-black text-slate-950 mb-2 flex items-center gap-2">🗺️ 仙台精選人氣景點總覽</h2>
+            <p class="text-sm text-slate-600 mb-6 font-medium">點擊下方任一景點卡片，皆可彈出查看詳細的營業時間、門票花費及獨家推薦攻略！</p>
+            <div id="spots-grid" class="grid grid-cols-1 md:grid-cols-2 gap-4"></div>
+        </div>
+    </section>
+
+    <section id="page-shopping" class="tab-page max-w-xl mx-auto px-4 mt-6 hidden">
+        <div class="bg-white/80 border-4 border-slate-950 rounded-3xl p-6 shadow-md">
+            <h2 class="text-2xl font-black text-slate-950 mb-4 flex items-center gap-2">🛍️ 東北限定伴手禮與購物清單</h2>
+            <div class="flex gap-2 mb-4">
+                <input type="text" id="shop-input" placeholder="想要買什麼？（例：毛豆泥奶昔）" class="flex-1 px-4 py-2 rounded-xl border-2 border-slate-950 font-bold focus:outline-none focus:bg-amber-50">
+                <button onclick="addShopItem()" class="pikachu-yellow px-4 py-2 rounded-xl border-2 border-slate-950 font-black hover:bg-yellow-400 active:scale-95 transition-all">新增</button>
             </div>
-    </main>
+            <ul id="shop-list" class="space-y-2"></ul>
+        </div>
+    </section>
+
+    <section id="page-todo" class="tab-page max-w-xl mx-auto px-4 mt-6 hidden">
+        <div class="bg-white/80 border-4 border-slate-950 rounded-3xl p-6 shadow-md">
+            <h2 class="text-2xl font-black text-slate-950 mb-4 flex items-center gap-2">✅ 出發前/旅途中待辦確認欄</h2>
+            <div class="flex gap-2 mb-4">
+                <input type="text" id="todo-input" placeholder="新增待辦事項...（例：填寫 Visit Japan Web）" class="flex-1 px-4 py-2 rounded-xl border-2 border-slate-950 font-bold focus:outline-none focus:bg-amber-50">
+                <button onclick="addTodoItem()" class="pikachu-yellow px-4 py-2 rounded-xl border-2 border-slate-950 font-black hover:bg-yellow-400 active:scale-95 transition-all">新增</button>
+            </div>
+            <ul id="todo-list" class="space-y-2"></ul>
+        </div>
+    </section>
+
+    <section id="page-accounting" class="tab-page max-w-3xl mx-auto px-4 mt-6 hidden">
+        <div class="bg-white/80 border-4 border-slate-950 rounded-3xl p-6 shadow-md">
+            <h2 class="text-2xl font-black text-slate-950 mb-2 flex items-center gap-2">💰 旅程消費記帳記帳本</h2>
+            <p class="text-xs text-slate-500 mb-4 font-medium">即時掌握日圓花費，輕鬆平衡預算不超支！</p>
+            
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-2 mb-4">
+                <input type="text" id="exp-title" placeholder="消費項目 (例：牛舌定食)" class="px-3 py-2 rounded-xl border-2 border-slate-950 text-sm font-bold">
+                <input type="number" id="exp-amount" placeholder="金額 (日圓 JPY)" class="px-3 py-2 rounded-xl border-2 border-slate-950 text-sm font-bold">
+                <button onclick="addExpense()" class="pikachu-yellow px-4 py-2 rounded-xl border-2 border-slate-950 font-black text-sm hover:bg-yellow-400 transition-all">記一筆</button>
+            </div>
+
+            <div class="overflow-x-auto">
+                <table class="w-full text-left border-collapse">
+                    <thead>
+                        <tr class="bg-slate-900 text-white text-xs md:text-sm font-black">
+                            <th class="p-3 rounded-l-xl">消費明細</th>
+                            <th class="p-3">花費金額</th>
+                            <th class="p-3 text-center rounded-r-xl">操作</th>
+                        </tr>
+                    </thead>
+                    <tbody id="expense-table-body" class="text-sm font-bold text-slate-800"></tbody>
+                </table>
+            </div>
+            <div class="mt-4 pt-3 border-t-2 border-dashed border-slate-200 text-right">
+                <span class="text-base md:text-lg font-black text-slate-950">總計花費：<span id="expense-total" class="text-rose-500 text-xl md:text-2xl font-black">0</span> 日圓</span>
+            </div>
+        </div>
+    </section>
+
+    <section id="page-notes" class="tab-page max-w-3xl mx-auto px-4 mt-6 hidden">
+        <div class="bg-white/80 border-4 border-slate-950 rounded-3xl p-6 shadow-md">
+            <h2 class="text-2xl font-black text-slate-950 mb-4 flex items-center gap-2">📝 隨手每日旅遊札記 / 備註</h2>
+            <div class="space-y-4">
+                <div>
+                    <label class="block text-xs font-black text-amber-700 mb-1">📅 5/21 (四) 啟程備註</label>
+                    <textarea id="note-521" oninput="saveNotes()" placeholder="寫下今天要注意的事或心情小筆記..." class="w-full h-20 p-3 rounded-xl border-2 border-slate-950 text-sm font-medium focus:outline-none focus:bg-amber-50/40"></textarea>
+                </div>
+                <div>
+                    <label class="block text-xs font-black text-amber-700 mb-1">📅 5/22 (五) 歷史巡禮備註</label>
+                    <textarea id="note-522" oninput="saveNotes()" placeholder="寫下今天要注意的事或心情小筆記..." class="w-full h-20 p-3 rounded-xl border-2 border-slate-950 text-sm font-medium focus:outline-none focus:bg-amber-50/40"></textarea>
+                </div>
+                <div>
+                    <label class="block text-xs font-black text-amber-700 mb-1">📅 5/23 (六) 松島絕景備註</label>
+                    <textarea id="note-523" oninput="saveNotes()" placeholder="寫下今天要注意的事或心情小筆記..." class="w-full h-20 p-3 rounded-xl border-2 border-slate-950 text-sm font-medium focus:outline-none focus:bg-amber-50/40"></textarea>
+                </div>
+                <div>
+                    <label class="block text-xs font-black text-amber-700 mb-1">📅 5/24 (日) 新綠購物備註</label>
+                    <textarea id="note-524" oninput="saveNotes()" placeholder="寫下今天要注意的事或心情小筆記..." class="w-full h-20 p-3 rounded-xl border-2 border-slate-950 text-sm font-medium focus:outline-none focus:bg-amber-50/40"></textarea>
+                </div>
+                <div>
+                    <label class="block text-xs font-black text-amber-700 mb-1">📅 5/25 (一) 歸途收尾備註</label>
+                    <textarea id="note-525" oninput="saveNotes()" placeholder="寫下今天要注意的事或心情小筆記..." class="w-full h-20 p-3 rounded-xl border-2 border-slate-950 text-sm font-medium focus:outline-none focus:bg-amber-50/40"></textarea>
+                </div>
+            </div>
+        </div>
+    </section>
 
     <div id="info-modal" class="fixed inset-0 bg-slate-950/60 backdrop-blur-sm hidden items-center justify-center z-50 p-4 transition-opacity duration-300 opacity-0">
         <div class="bg-white rounded-3xl border-4 border-slate-950 w-full max-w-md overflow-hidden transform scale-95 transition-transform duration-300 shadow-2xl">
@@ -65,324 +157,238 @@
             <div class="p-6 space-y-4 bg-amber-50/30">
                 <div class="bg-white p-3 rounded-xl border border-slate-200 shadow-xs">
                     <span class="block text-xs font-black text-amber-600 mb-1">🕒 營業時間 / 開放時段</span>
-                    <p id="modal-hours" class="text-sm font-bold text-slate-800">尚未提供資料</p>
+                    <p id="modal-hours" class="text-sm font-bold text-slate-800">載入中...</p>
                 </div>
                 <div class="bg-white p-3 rounded-xl border border-slate-200 shadow-xs">
                     <span class="block text-xs font-black text-emerald-600 mb-1">💰 預估費用 / 門票票價</span>
-                    <p id="modal-cost" class="text-sm font-bold text-slate-800">尚未提供資料</p>
+                    <p id="modal-cost" class="text-sm font-bold text-slate-800">載入中...</p>
                 </div>
                 <div class="bg-white p-3 rounded-xl border border-slate-200 shadow-xs">
                     <span class="block text-xs font-black text-rose-500 mb-1">💡 備註 / 推薦 / 提醒</span>
-                    <p id="modal-notes" class="text-sm font-medium text-slate-700 leading-relaxed">尚未提供資料</p>
+                    <p id="modal-notes" class="text-sm font-medium text-slate-700 leading-relaxed">載入中...</p>
                 </div>
             </div>
             <div class="p-4 bg-white border-t border-slate-100 flex justify-end">
-                <button onclick="closeModal()" class="px-6 py-2 rounded-xl font-black text-sm border-2 border-slate-950 pikachu-yellow hover:bg-yellow-400 active:scale-95 transition-all">
-                    收到了！
-                </button>
+                <button onclick="closeModal()" class="px-6 py-2 rounded-xl font-black text-sm border-2 border-slate-950 pikachu-yellow hover:bg-yellow-400 active:scale-95 transition-all">收到了！</button>
             </div>
         </div>
     </div>
 
     <script>
-        // 行程資料庫（包含新補充的 5/21 及 5/25 星宇航空班機與各大經典景點）
+        // 1. 全球行程資料庫 (包含 5/21 與 5/25 擴充之星宇航空行程)
         const itineraryData = [
-            // 5/21 行程
             {
-                id: "item-1",
-                day: "5/21",
-                pikaName: "飛行皮卡丘 ⚡",
-                pikaEmoji: "✈️",
+                id: "item-1", day: "5/21", pikaName: "飛行皮卡丘 ⚡", pikaEmoji: "✈️",
                 title: "桃園國際機場 ➔ 仙台國際機場 (星宇航空 JX862)",
-                desc: "搭乘精品星宇航空 JX862 航班前往杜之都仙台！臺北 11:35 起飛，預計 16:00 抵達仙台，展開初夏的高端極致散策。",
-                highlight: "機上精緻餐飲與招牌特調、胡同燒肉飯；抵達後搭乘仙台機場 Access 線快速直達市區。",
-                info: "班機時間：11:35 - 16:00。請務必提前於 09:30 前完成機場報到與行李托運。",
-                details: {
-                    hours: "星宇航空櫃檯於開航前 2.5 小時（09:05）開放報到",
-                    cost: "已包含於機票費用中 (商務艙/經濟艙優選)",
-                    notes: "出發前請確認 Visit Japan Web 已填寫完畢並取得 QR Code，能大幅縮短在仙台機場的通關時間！機上別忘了點選一杯星宇特調享受假期。"
-                }
+                desc: "搭乘星宇航空精品客機 JX862 直飛仙台！台北 11:35 起飛，預計 16:00 順利落地降落，踏上杜之都初夏之旅。",
+                highlight: "機上美味餐點與招牌特調；入境後搭乘仙台機場 Access 快線電車直奔市區車站。",
+                info: "班機起飛時間：11:35 - 16:00。強烈建議在早晨 09:30 前完成臨櫃行李托運作業。",
+                details: { hours: "星宇航空機場櫃檯於開航前 2.5 小時開放報到作業", cost: "已包含於機票固定開銷中", notes: "出發前請預先填寫好 Visit Japan Web 以取得入境通關 QR Code。在飛機上別忘了向空服員點一杯專屬特調放鬆心情！" }
             },
             {
-                id: "item-2",
-                day: "5/21",
-                pikaName: "探險皮卡丘 🧭",
-                pikaEmoji: "🏨",
-                title: "仙台車站商圈 & 飯店 Check-in 辦理入住",
-                desc: "從機場搭乘快捷電車抵達仙台車站後，步行至週邊精選設計旅宿辦理入住並置放行李，準備晚間的市區漫遊。",
-                highlight: "熟悉仙台車站內部動線，包含 2 樓的伴手禮專區與 3 樓的牛舌通、壽司通位置。",
-                info: "市區交通便利，站前四通八達，各大百貨與藥妝店皆在步行範圍內。",
-                details: {
-                    hours: "飯店一般入住時間為 15:00 之後，櫃檯提供 24 小時服務",
-                    cost: "仙台機場 Access 線單程電車：660 日圓",
-                    notes: "建議將行李箱安置於房內後，隨身攜帶輕便小包與相機即可。仙台車站地下街有投幣式置物櫃可多加利用。"
-                }
+                id: "item-2", day: "5/21", pikaName: "探險皮卡丘 🧭", pikaEmoji: "🏨",
+                title: "仙台車站商圈與周邊設計旅宿辦理 Check-in",
+                desc: "自機場搭乘快捷電車抵達熱鬧的仙台車站後，先行前往鄰近的高規格精選飯店辦理行李置放與入住手續。",
+                highlight: "快速解鎖並熟悉仙台車站動線，包含 2 樓超多伴手禮商場與 3 樓牛舌通美食區的位置。",
+                info: "市區核心商圈，交通極度便利，周邊藥妝店、百貨、超商皆在輕鬆步行半徑內。",
+                details: { hours: "飯店標準入住時間一般為 15:00 之後，提供 24h 櫃檯服務", cost: "仙台機場 Access 線單程票價：660 日圓", notes: "放置完大型行李箱後，建議換上隨身防盜輕便小包與拍照設備，即可輕鬆漫步夜間仙台街頭。" }
             },
             {
-                id: "item-3",
-                day: "5/21",
-                pikaName: "美食家皮卡丘 👅",
-                pikaEmoji: "🥩",
-                title: "晚餐名物盛宴：仙台牛舌名店品嚐",
-                desc: "來到仙台的第一晚，絕對不能錯過最道地的炭烤厚切牛舌！在香氣四溢的店內享用極致彈牙的定番奢華定食。",
-                highlight: "炭烤厚切牛舌、極致鮮美牛尾湯、健康麥飯與山藥泥的夢幻完美組合。",
-                info: "推薦老字號「伊達の牛たん本舗」或「利久牛舌」，炭火現烤香氣逼人。",
-                details: {
-                    hours: "11:00 - 22:30 (最後點餐 22:00)",
-                    cost: "每人約 2,500 - 4,500 日圓 (視極厚切或一般規格而定)",
-                    notes: "初夏晚餐時段排隊人潮較多，建議在 18:30 前或 20:00 後前往可減少等候時間。點餐時強烈推薦升級為「極厚切」，口感層次完全不同！"
-                }
-            },
-            
-            // 5/22 行程
-            {
-                id: "item-4",
-                day: "5/22",
-                pikaName: "大將軍皮卡丘 ⚔️",
-                pikaEmoji: "🏯",
-                title: "瑞鳳殿 & 仙台城跡 (青葉城) 歷史巡禮",
-                desc: "搭乘復古的 Loople 仙台觀光巴士，探訪獨眼龍伊達政宗的華麗桃山文化陵廟「瑞鳳殿」，隨後登上仙台城跡鳥瞰整座城市。",
-                highlight: "絢麗奪目的繁複建築雕刻、參天杉木古道、矗立在藍天下的伊達政宗騎馬青銅像。",
-                info: "本丸遺跡視野極佳，晴朗時能一路遠眺至太平洋。",
-                details: {
-                    hours: "瑞鳳殿: 09:00 - 16:50 | 仙台城跡: 24小時開放",
-                    cost: "瑞鳳殿門票: 570 日圓 | Loople 巴士一日券: 630 日圓",
-                    notes: "前往瑞鳳殿需要步行一段有坡度的石階步道，建議穿著防滑好走的休閒鞋。青葉城本丸附近有美味的毛豆泥麻糬店，適合做為下午茶點心！"
-                }
+                id: "item-3", day: "5/21", pikaName: "美食家皮卡丘 👅", pikaEmoji: "🥩",
+                title: "仙台首夜名物盛宴：炭烤厚切牛舌名店朝聖",
+                desc: "來到牛舌故鄉的首晚主體秀！在炭火香氣滿溢的知名老字號餐廳中，品嚐香脆、厚實且多汁的究極名物定食。",
+                highlight: "大火炭烤極厚切牛舌、清甜爽口牛尾湯、健康營養麥飯佐山藥泥的黃金三角結合。",
+                info: "強力首選推薦：伊達の牛たん本舗、善治郎或利久牛舌等名氣大店。",
+                details: { hours: "11:00 - 22:30 (最後點餐時間通常為 22:00)", cost: "每人均消預估約 2,500 - 4,800 日圓不等", notes: "初夏時節的晚餐排隊尖峰期人潮較多，若欲減少排隊時間，建議提早於 18:15 前或延後至 20:15 後前往就座。極厚切口感完勝一般規格，極推！" }
             },
             {
-                id: "item-5",
-                day: "5/22",
-                pikaName: "文青皮卡丘 🎨",
-                pikaEmoji: "🏛️",
-                title: "仙台媒體中心 (Sendai Mediatheque)",
-                desc: "朝聖由建築大師伊東豊雄大師設計的殿堂級經典代表作。運用特殊管狀結構與全玻璃帷幕，將自然光線完美引入室內。",
-                highlight: "極具視覺震撼的透明鋼管結構、充滿設計美學的圖書館與藝文開放空間。",
-                info: "一樓設有精緻的設計師紀念品店與咖啡廳，非常適合午後漫步。",
-                details: {
-                    hours: "09:00 - 22:00 (各樓層展覽與商店營業時間略有不同，每月有不定期休館日)",
-                    cost: "免費入館參觀",
-                    notes: "此處同時為仙台市民圖書館，在內部拍照、參觀時請保持輕聲細語，切勿使用閃光燈打擾在地閱讀的民眾。"
-                }
-            },
-
-            // 5/23 行程
-            {
-                id: "item-6",
-                day: "5/23",
-                pikaName: "水手皮卡丘 ⚓",
-                pikaEmoji: "🌊",
-                title: "日本三景：松島灣遊覽船 & 五大堂",
-                desc: "搭乘 JR 仙石線前往日本三大名景之一的「松島」。搭乘大型觀光遊覽船穿梭於松島灣，欣賞散落海面、姿態各異的蒼松奇岩。",
-                highlight: "經典松島灣海景、象徵松島地標的千年木造古蹟「五大堂」與考驗膽量的紅漆透橋。",
-                info: "從 JR 松島海岸站出站後步行 5 分鐘即可抵達遊船碼頭。",
-                details: {
-                    hours: "遊船班次: 09:00 - 16:00 (每整點發船) | 五大堂: 白天開放",
-                    cost: "松島灣大型遊覽船票: 約 1,500 日圓",
-                    notes: "木造的五大堂連接橋「透橋」橋面木條間距較寬，可以直接看到下方海水，步行時請拿穩手機。千萬注意海上風大，初夏仍建議帶件薄外套防風。"
-                }
+                id: "item-4", day: "5/22", pikaName: "大將軍皮卡丘 ⚔️", pikaEmoji: "🏯",
+                title: "瑞鳳殿 & 仙台城跡 (青葉城) 歷史與視野雙享",
+                desc: "搭乘復古風情的 Loople 觀光巴士。首站探訪獨眼龍伊達政宗奢華桃山文化陵廟「瑞鳳殿」，隨後登頂仙台城跡俯瞰市景。",
+                highlight: "極致華麗的繁複木雕工藝建築、莊嚴的參天古杉林步道、傲然矗立在青空下的伊達政宗騎馬青銅雕像。",
+                info: "城跡本丸平台視野一望無際，天氣能見度高時可一路極目遠眺至蔚藍的太平洋海岸。",
+                details: { hours: "瑞鳳殿: 09:00 - 16:50 | 仙台城跡: 24h 戶外開放", cost: "瑞鳳殿入園門票: 570 日圓 | Loople 觀光巴士一日乘車券: 630 日圓", notes: "瑞鳳殿前有一段階梯步道需稍微步行，建議穿著透氣好走的休閒球鞋。本丸遺址旁設有土產店，毛豆泥麻糬是推薦下午茶！" }
             },
             {
-                id: "item-7",
-                day: "5/23",
-                pikaName: "散步皮卡丘 🐾",
-                pikaEmoji: "🌉",
-                title: "福浦島漫遊 ➔ 紅色結緣福浦橋",
-                desc: "步行橫跨長達 252 公尺的亮麗朱紅色「福浦橋」前往自然生態公園福浦島。沿著島上步道漫步，從各種絕佳視角俯瞰松島灣。",
-                highlight: "超上鏡的朱紅長橋、洗滌身心的森林芬多精步道、觀景台一覽無遺的松島全景。",
-                info: "福浦橋又被稱為「遇見良緣之橋」，是當地著名的浪漫地標。",
-                details: {
-                    hours: "08:00 - 17:00 (3月至10月) | 冬季僅開放至 16:30",
-                    cost: "福浦島入場通行費 (過橋費): 200 日圓",
-                    notes: "島上步道規劃完善，但部分路段有小起伏，全程走完約需 45 至 60 分鐘。島上設有洗手間與長椅，可以放慢腳步享受愜意海風。"
-                }
-            },
-
-            // 5/24 行程
-            {
-                id: "item-8",
-                day: "5/24",
-                pikaName: "綠意皮卡丘 🌳",
-                pikaEmoji: "🍃",
-                title: "定禪寺通綠色隧道 ➔ 露天藝術大道散策",
-                desc: "漫步於全日本最著名的櫸木林蔭大道。陽光透過茂密的初夏新綠灑落，街道中央設有寬敞的散步道與多座名家青銅雕刻作品。",
-                highlight: "如詩如畫的杜之都綠色隧道、極具質感的街邊露天咖啡座、悠閒的城市生活感。",
-                info: "此處為仙台各大知名祭典與音樂節的核心舉辦場地。",
-                details: {
-                    hours: "24 小時全天開放",
-                    cost: "免費參觀",
-                    notes: "強烈推薦在街道兩側挑選一間設計感十足的咖啡廳，坐在戶外座位點一杯冰拿鐵，享受屬於仙台獨有的慢活上午。"
-                }
+                id: "item-5", day: "5/22", pikaName: "文青皮卡丘 🎨", pikaEmoji: "🏛️",
+                title: "仙台媒體中心 (Sendai Mediatheque) 現代美學",
+                desc: "朝聖普立茲克建築獎大師伊東豊雄的傳世美學名作。全玻璃帷幕配合特殊不規則空心管狀結構，模糊了室內與戶外的界線。",
+                highlight: "令人歎為觀止的透明鋼管樹幹結構、充滿文藝美感的開放式現代圖書館與藝文藝廊空間。",
+                info: "一樓大廳設有極具品味的高質感文創設計師紀念品選物店與極簡風咖啡館。",
+                details: { hours: "09:00 - 22:00 (內部各樓層展館及商店時間依現場為準，每月有指定休館日)", cost: "完全免費入館參觀", notes: "此館同時作為市民活動與公立圖書館使用，在館內移動與拍照時，請務必關閉相機閃光燈，並保持輕聲細語，切勿高聲喧嘩。" }
             },
             {
-                id: "item-9",
-                day: "5/24",
-                pikaName: "購物狂皮卡丘 🛍️",
-                pikaEmoji: "🎁",
-                title: "Clis Road 拱廊商店街大採購",
-                desc: "全面開啟血拼模式！長達數公里的加蓋拱廊商店街，集結了日本最新藥妝店、日系服飾、限定伴手禮與生活雜貨雜貨店。",
-                highlight: "全天候不受天候影響的舒適免稅購物環境、必喝毛豆泥奶昔 (Zunda Shake) 旗艦店。",
-                info: "商店街內各大藥妝店皆配有中文服務人員，免稅辦理流程流暢。",
-                details: {
-                    hours: "多數商店營業時間為 10:00 - 20:00 (依各店家公告為準)",
-                    cost: "依個人購物免稅消費預算而定",
-                    notes: "必嚐特產「毛豆泥奶昔」甜而不膩，冰涼爽口！若購買藥妝欲辦理退稅，記得隨身攜帶護照正本，並注意液體類商品不可在境內拆封唷。"
-                }
-            },
-
-            // 5/25 行程
-            {
-                id: "item-10",
-                day: "5/25",
-                pikaName: "伴手禮皮卡丘 菓子",
-                pikaEmoji: "🍡",
-                title: "仙台車站最後衝刺補貨 ➔ 享用美味名物點心",
-                desc: "把握在仙台的最後半天，在仙台車站共構的百貨與手信街將特產一網打盡！購買黃金千層派、萩の月和菓子及當地限定清酒。",
-                highlight: "仙台車站 2 樓全東北最齊全的伴手禮大街、現做熱騰騰的毛豆麻糬點心。",
-                info: "買完後即可回飯店提取行李，搭乘 Access 電車前往機場，動線無縫接軌。",
-                details: {
-                    hours: "車站商店街: 09:00 - 21:00",
-                    cost: "現場零售甜點約 300 - 1,000 日圓",
-                    notes: "建議在中午前完成名產購買，並預留時間回飯店大廳提領行李。某些生鮮牛舌或冷藏甜點（如喜久福麻糬）需注意保鮮時間及登機規定。"
-                }
+                id: "item-6", day: "5/23", pikaName: "水手皮卡丘 ⚓", pikaEmoji: "🌊",
+                title: "日本三景：松島灣遊覽船航行 ➔ 千年五大堂",
+                desc: "搭乘 JR 仙石線鐵道奔向名揚海外的日本三景「松島」。登上手工大型觀光船破浪前行，觀賞松島灣內上百座奇特蒼松孤島。",
+                highlight: "碧海藍天配奇岩美景、松島精神象徵「五大堂」古蹟、考驗膽識的紅漆鏤空透橋。",
+                info: "由 JR 松島海岸站出站步行大約 5-7 分鐘即可輕鬆抵達觀光船搭乘碼頭。",
+                details: { hours: "遊船班次: 09:00 - 16:00 (每逢整點發船) | 五大堂: 白天自由開放", cost: "松島灣大眾觀光遊船全票: 約 1,500 日圓", notes: "通往五大堂的「透橋」可以直視腳下方晃動的海水，拿手機拍照時請務必抓穩。海邊及船上風勢較強，初夏仍建議備妥一件防風外衣。" }
             },
             {
-                id: "item-11",
-                day: "5/25",
-                pikaName: "揮手皮卡丘 👋",
-                pikaEmoji: "✈️",
+                id: "item-7", day: "5/23", pikaName: "散步皮卡丘 🐾", pikaEmoji: "🌉",
+                title: "福浦島自然生態慢遊 ➔ 朱紅結緣福浦橋",
+                desc: "悠閒漫步橫跨蔚藍海面、長達 252 公尺的亮麗朱紅色「福浦橋」。過橋進入全島皆為自然植物園的福浦島體驗健行。",
+                highlight: "在照片中極為耀眼的長跨海紅橋、芬多精爆發的林蔭森林步道、觀景台無死角飽覽松島灣全貌。",
+                info: "這座美麗的紅色長橋在當地又被浪漫地稱作「遇見良緣之橋」，是高人氣的打卡點。",
+                details: { hours: "08:00 - 17:00 (3月～10月夏令時間) | 冬季會提早於 16:30 關閉", cost: "福浦島入島通行過橋費: 200 日圓", notes: "小島上的泥土與木棧步道維護良好，走完一整圈深度漫遊約需 1 小時。島上有些許起伏，建議依個人體力調配悠閒步調。" }
+            },
+            {
+                id: "item-8", day: "5/24", pikaName: "綠意皮卡丘 🌳", pikaEmoji: "🍃",
+                title: "定禪寺通櫸木綠色隧道 ➔ 露天雕刻大道美學",
+                desc: "沉浸在仙台最著名的核心意象林蔭道。初夏和煦的陽光透過繁茂的新綠櫸木葉片灑落，路中央中央散步道宛如大型美術館。",
+                highlight: "被綠意完全包圍的杜之都綠色隧道、設置於林間的名家經典青銅雕塑、愜意優雅的街道生活感。",
+                info: "這裡是仙台七夕祭、定禪寺街頭爵士音樂節等無數全日本聞名盛典的主舞台。",
+                details: { hours: "24 小時全日戶外開放", cost: "自由免費參觀", notes: "推薦找一間街角開窗的網美咖啡廳，點份鬆餅與冰美式，靜靜看著陽光灑落的綠蔭樹影，感受北日本特有的頂級慢活步調。" }
+            },
+            {
+                id: "item-9", day: "5/24", pikaName: "購物狂皮卡丘 🛍️", pikaEmoji: "🎁",
+                title: "Clis Road 拱廊巨型商店街免稅大血拼",
+                desc: "火力全開的採購時間！超長有加蓋屋頂的遮雨大拱廊商店街，一網打盡日本最新流行藥妝、服飾、特產伴手禮與雜貨名店。",
+                highlight: "完全不怕日曬雨淋、動線寬敞筆直的超舒適購物天堂；必喝毛豆泥奶昔旗艦店插旗。",
+                info: "主要知名藥妝大店多數皆提供現場直接免稅服務，並有機會遇到中文服務人員。",
+                details: { hours: "多數商家營業時間落在 10:00 - 20:00 區間 (依店鋪各自公告為準)", cost: "依個人血拼清單與退稅免稅額度而定", notes: "必喝名產「毛豆泥奶昔 (Zunda Shake)」滋味極濃。辦理免稅退稅時護照正本必須隨身出示，且免稅密封袋在離開日本前切勿拆封。" }
+            },
+            {
+                id: "item-10", day: "5/25", pikaName: "伴手禮皮卡丘 菓子", pikaEmoji: "🍡",
+                title: "仙台車站土產大街終極補貨 ➔ 車站名物特產點心",
+                desc: "把握起飛前的黃金上午！在與仙台車站共構的百貨手信商場進行最後一波土產掃貨，買齊和菓子「萩の月」與在地地酒。",
+                highlight: "全東北地區最為齊全壯觀的伴手禮專區、現烤出爐香氣四溢的特色小點心零嘴。",
+                info: "一站式購足所有禮品後，可直接回飯店櫃檯拉取寄放的行李箱，無縫接軌直奔機場。",
+                details: { hours: "車站伴手禮街營業時間為 09:00 - 21:00", cost: "視採購伴手禮禮盒多寡而定", notes: "某些限定冷藏或保存期限極短的生鮮糕點（例如喜久福生大福麻糬），請注意保鮮溫度，並確認是否符合攜帶登機相關海關規範。" }
+            },
+            {
+                id: "item-11", day: "5/25", pikaName: "揮手皮卡丘 👋", pikaEmoji: "✈️",
                 title: "仙台國際機場 ➔ 桃園國際機場 (星宇航空 JX863)",
-                desc: "滿載初夏的美好回憶，前往機場辦理登機。搭乘精品星宇航空 JX863 完美返航（仙台 17:20 起飛 - 臺北 20:10 抵達）。",
-                highlight: "仙台機場免稅店最後採購免稅清酒與限定零食、享受星宇航空高規格機上娛樂與貼心服務。",
-                info: "班機時間：17:20 - 20:10。預計晚間八點多抵達台灣，為行程劃下完美句點。",
-                details: {
-                    hours: "星宇航空櫃檯於開航前 2 小時（15:20）開放報到",
-                    cost: "已包含於機票費用中",
-                    notes: "仙台機場國際線航廈較小，免稅店在入關後。班機於 17:20 準時起飛，建議最晚於 15:00 前抵達機場，留足時間辦理退稅與登機。"
-                }
+                desc: "收拾滿滿的戰利品與難忘回憶前往機場。搭乘精品星宇航空 JX863 返航，班機 17:20 起飛，預計 20:10 平安返抵國門。",
+                highlight: "入關後在仙台機場免稅店進行地酒或伴手禮最後補漏；享受星宇航空優質的機上視聽娛樂系統與款待服務。",
+                info: "班機飛行時間：17:20 - 20:10。為初夏的仙台精緻散策畫下百分之百的圓滿句點。",
+                details: { hours: "星宇航空機場臨櫃櫃檯於開航前 2 小時 (15:20) 準時開辦報到", cost: "已包含於既有航空費用中", notes: "仙台國際機場航廈小巧，出境入關後的免稅店規模有限。由於 17:20 準時起飛，建議最遲於 15:00 前抵達機場辦理退稅與託運。" }
             }
         ];
 
         let currentFilter = 'all';
 
-        // 渲染行程卡片函式
+        // 2. 頁籤切換系統 (Tabs)
+        function switchTab(tabName) {
+            // 隱藏所有頁面
+            document.querySelectorAll('.tab-page').forEach(page => page.classList.add('hidden'));
+            // 顯示目標頁面
+            document.getElementById(`page-${tabName}`).classList.remove('hidden');
+            
+            // 重置所有按鈕樣式為未激活狀態
+            document.querySelectorAll('.tab-btn').forEach(btn => {
+                btn.className = "tab-btn py-2.5 px-1 text-center rounded-xl font-black text-xs md:text-sm transition-all text-slate-400 hover:text-white";
+            });
+            // 激活當前按鈕樣式
+            document.getElementById(`tab-${tabName}`).className = "tab-btn py-2.5 px-1 text-center rounded-xl font-black text-xs md:text-sm transition-all bg-yellow-400 text-slate-950 border-2 border-slate-950 shadow-md";
+        }
+
+        // 3. 行程渲染與拖曳系統 (Itinerary with Sortable)
         function renderItinerary() {
             const container = document.getElementById('itinerary-container');
             container.innerHTML = '';
-
-            // 按日期分組
             const days = ['5/21', '5/22', '5/23', '5/24', '5/25'];
             
             days.forEach(day => {
-                // 如果有篩選，且目前日期不符合篩選則跳過
                 if (currentFilter !== 'all' && currentFilter !== day) return;
-
                 const dayItems = itineraryData.filter(item => item.day === day);
                 if (dayItems.length === 0) return;
 
-                // 創建每一天的區塊外殼
                 const daySection = document.createElement('div');
-                daySection.className = 'bg-white/40 border-2 border-slate-950/10 rounded-3xl p-6 backdrop-blur-md shadow-inner mb-6';
+                daySection.className = 'bg-white/40 border-2 border-slate-950/10 rounded-3xl p-4 md:p-6 backdrop-blur-md shadow-inner mb-6';
                 
-                // 日期標題
                 let dayOfWeek = '';
-                if(day==='5/21') dayOfWeek='(四) ⚡ 啟程 • 驚艷杜之都';
-                if(day==='5/22') dayOfWeek='(五) ⚔️ 歷史 • 經典大朝聖';
-                if(day==='5/23') dayOfWeek='(六) 🌊 絕景 • 日本三景藍調';
-                if(day==='5/24') dayOfWeek='(日) 🌳 新綠 • 時尚購物市區漫步';
-                if(day==='5/25') dayOfWeek='(一) 👋 歸途 • 珍藏滿滿回憶';
+                if(day==='5/21') dayOfWeek='(四) 啟程 • 驚艷杜之都';
+                if(day==='5/22') dayOfWeek='(五) 歷史 • 經典大朝聖';
+                if(day==='5/23') dayOfWeek='(六) 絕景 • 日本三景藍調';
+                if(day==='5/24') dayOfWeek='(日) 新綠 • 時尚購物市區漫步';
+                if(day==='5/25') dayOfWeek='(一) 歸途 • 珍藏滿滿回憶';
 
                 daySection.innerHTML = `
-                    <h2 class="text-2xl font-black text-slate-950 mb-4 pb-2 border-b-2 border-dashed border-slate-950/20 flex items-center gap-2">
+                    <h2 class="text-xl md:text-2xl font-black text-slate-950 mb-4 pb-2 border-b-2 border-dashed border-slate-950/20 flex items-center gap-2">
                         📅 ${day} ${dayOfWeek}
                     </h2>
-                    <div class="sortable-list space-y-4" data-day="${day}">
-                        </div>
+                    <div class="sortable-list space-y-4" data-day="${day}"></div>
                 `;
 
                 const listContainer = daySection.querySelector('.sortable-list');
 
-                // 填入該日期的卡片
                 dayItems.forEach(item => {
                     const card = document.createElement('div');
-                    card.id = item.id;
-                    card.className = "group bg-white border-2 border-slate-950 rounded-[24px] p-5 shadow-sm hover:shadow-[0_12px_28px_rgba(253,216,53,0.25)] transition-all duration-300 cursor-pointer relative overflow-hidden transform hover:-translate-y-1 active:scale-[0.99]";
-                    
-                    // 讓整張卡片點擊時觸發打開 Modal 彈窗
+                    card.className = "group bg-white border-2 border-slate-950 rounded-[22px] p-4 shadow-sm hover:shadow-md transition-all duration-300 cursor-pointer relative transform hover:-translate-y-0.5";
                     card.onclick = () => openModal(item);
-
                     card.innerHTML = `
-                        <div class="flex flex-col md:flex-row md:items-start justify-between gap-4">
-                            <div class="flex-1">
-                                <div class="flex items-center gap-2 mb-2 flex-wrap">
-                                    <div class="bg-slate-900 text-yellow-300 text-[11px] px-2.5 py-1 rounded-full font-black tracking-wide border border-yellow-400/50 backdrop-blur-sm shadow-xs flex items-center gap-1">
-                                        <span>${item.pikaEmoji}</span> ${item.pikaName}
-                                    </div>
-                                    <span class="text-[10px] bg-amber-100 text-amber-800 font-bold px-2 py-0.5 rounded-md border border-amber-200">🔍 點擊看詳細資訊</span>
-                                </div>
-                                
-                                <h3 class="text-lg md:text-xl font-black text-slate-950 mb-2 flex items-center gap-1 transition-colors group-hover:text-amber-600">
-                                    🌟 ${item.title}
-                                </h3>
-                                
-                                <p class="text-sm text-slate-700 font-medium leading-relaxed mb-4">${item.desc}</p>
-                                
-                                <div class="bg-amber-50/50 backdrop-blur-xs p-3.5 rounded-xl border border-amber-900/10 mb-3 text-xs text-slate-800 space-y-1.5 shadow-xs">
-                                    <span class="font-black text-slate-950 block text-sm flex items-center gap-1 text-amber-700">✨ 必看與體驗亮點：</span>
-                                    <div class="leading-relaxed font-medium">${item.highlight}</div>
-                                </div>
+                        <div class="flex flex-col gap-2">
+                            <div class="flex items-center gap-2 flex-wrap">
+                                <span class="bg-slate-900 text-yellow-300 text-[10px] px-2 py-0.5 rounded-full font-black flex items-center gap-1">
+                                    <span>${item.pikaEmoji}</span> ${item.pikaName}
+                                </span>
+                                <span class="text-[10px] bg-amber-100 text-amber-800 font-bold px-2 py-0.5 rounded-md">🔍 點擊看詳細資訊</span>
                             </div>
-                        </div>
-                        
-                        <div class="text-[11px] text-slate-600 border-t border-slate-900/10 pt-3 mt-2 font-bold leading-relaxed bg-slate-50/80 p-2.5 rounded-xl flex items-center justify-between">
-                            <span>📌 ${item.info}</span>
-                            <span class="text-amber-600 font-black shrink-0 ml-2 group-hover:translate-x-1 transition-transform">更多細節 ➔</span>
+                            <h3 class="text-base md:text-lg font-black text-slate-950 group-hover:text-amber-600 transition-colors">🌟 ${item.title}</h3>
+                            <p class="text-xs md:text-sm text-slate-700 font-medium leading-relaxed">${item.desc}</p>
+                            <div class="bg-amber-50/60 p-3 rounded-xl border border-amber-900/10 text-xs text-slate-800 font-medium mt-1">
+                                <span class="font-black text-amber-700 block mb-0.5">✨ 體驗亮點：</span>${item.highlight}
+                            </div>
+                            <div class="text-[11px] text-slate-600 border-t border-slate-100 pt-2 mt-1 font-bold flex justify-between items-center">
+                                <span>📌 ${item.info}</span>
+                                <span class="text-amber-600 font-black shrink-0 ml-2">細節 ➔</span>
+                            </div>
                         </div>
                     `;
                     listContainer.appendChild(card);
                 });
-
                 container.appendChild(daySection);
 
-                // 初始化此日期的 Sortable 拖曳排序功能
                 new Sortable(listContainer, {
                     animation: 150,
                     ghostClass: 'bg-amber-50',
-                    chosenClass: 'border-amber-400',
-                    dragClass: 'opacity-50'
+                    chosenClass: 'border-amber-400'
                 });
             });
         }
 
-        // 切換日期篩選器
         function filterDay(day) {
             currentFilter = day;
-            
-            // 更新所有按鈕樣式
-            document.querySelectorAll('.day-btn').forEach(btn => {
-                btn.className = "day-btn px-4 py-2 rounded-xl font-black text-sm transition-all duration-200 hover:bg-amber-100 text-slate-700";
-            });
-
-            // 啟動當前選中按鈕樣式
+            document.querySelectorAll('.day-btn').forEach(btn => btn.className = "day-btn px-4 py-2 rounded-xl font-black text-sm transition-all duration-200 hover:bg-amber-100 text-slate-700");
             const activeId = day === 'all' ? 'btn-all' : `btn-${day.replace('/', '')}`;
             document.getElementById(activeId).className = "day-btn px-4 py-2 rounded-xl font-black text-sm transition-all duration-200 pikachu-yellow border-2 border-slate-950 shadow-sm";
-
-            // 重新渲染畫面
             renderItinerary();
         }
 
-        // 開啟詳細資訊視窗 (Modal)
+        // 4. 景點介紹頁面渲染系統
+        function renderSpotsPage() {
+            const grid = document.getElementById('spots-grid');
+            grid.innerHTML = '';
+            // 挑選具有代表性的獨立景點供使用者點閱
+            const distinctSpots = itineraryData.filter(item => !item.title.includes("機場") && !item.title.includes("Check-in"));
+            
+            distinctSpots.forEach(spot => {
+                const card = document.createElement('div');
+                card.className = "bg-white border-2 border-slate-950 rounded-2xl p-4 shadow-sm hover:shadow-md cursor-pointer hover:bg-amber-50/20 transition-all";
+                card.onclick = () => openModal(spot);
+                card.innerHTML = `
+                    <div class="flex justify-between items-start mb-2">
+                        <h3 class="font-black text-slate-950 text-base md:text-lg">📍 ${spot.title.split(' (')[0].split(' ➔ ')[0]}</h3>
+                        <span class="text-xs font-black bg-yellow-100 text-yellow-800 px-2 py-0.5 rounded-full border border-yellow-300">更多資訊 🔍</span>
+                    </div>
+                    <p class="text-xs text-slate-600 line-clamp-2 font-medium mb-2">${spot.desc}</p>
+                    <div class="text-[11px] bg-slate-50 p-2 rounded-lg border text-slate-700 font-bold truncate">📌 預估費用: ${spot.details.cost}</div>
+                `;
+                grid.appendChild(card);
+            });
+        }
+
+        // 5. 通用彈窗互動功能 (Modal)
         function openModal(item) {
             const modal = document.getElementById('info-modal');
-            
-            // 填充動態欄位資料
             document.getElementById('modal-title').innerText = item.title;
             document.getElementById('modal-pika').innerText = item.pikaEmoji;
-            document.getElementById('modal-hours').innerText = item.details.hours || "依現場實際狀況為準";
-            document.getElementById('modal-cost').innerText = item.details.cost || "現場自費";
-            document.getElementById('modal-notes').innerText = item.details.notes || "暫無額外備註";
+            document.getElementById('modal-hours').innerText = item.details.hours || "依現場實際開放公告為準";
+            document.getElementById('modal-cost').innerText = item.details.cost || "現場自費/無門票";
+            document.getElementById('modal-notes').innerText = item.details.notes || "暫無特別注意事項";
 
-            // 顯示動畫處理
             modal.classList.remove('hidden');
             modal.classList.add('flex');
             setTimeout(() => {
@@ -393,30 +399,119 @@
             }, 10);
         }
 
-        // 關閉詳細資訊視窗
         function closeModal() {
             const modal = document.getElementById('info-modal');
             modal.classList.remove('opacity-100');
             modal.classList.add('opacity-0');
             modal.querySelector('.transform').classList.remove('scale-100');
             modal.querySelector('.transform').classList.add('scale-95');
-            
             setTimeout(() => {
                 modal.classList.remove('flex');
                 modal.classList.add('hidden');
             }, 300);
         }
 
-        // 點擊彈窗外圍背景自動關閉
         document.getElementById('info-modal').addEventListener('click', function(e) {
-            if (e.target === this) {
-                closeModal();
-            }
+            if (e.target === this) closeModal();
         });
 
-        // 網頁加載完畢後自動執行渲染
+        // ================= 互動元件模組邏輯 (LocalStorage 持久化儲存) =================
+
+        // 6. 購物清單模組
+        let shopItems = JSON.parse(localStorage.getItem('pika_shop')) || ['毛豆泥奶昔 🥤', '萩の月 禮盒 🥮', '日本在地清酒 🍶', '免稅必買藥妝 💊'];
+        function renderShop() {
+            const ul = document.getElementById('shop-list'); ul.innerHTML = '';
+            shopItems.forEach((item, index) => {
+                ul.innerHTML += `
+                    <li class="flex justify-between items-center bg-white border-2 border-slate-950 p-3 rounded-xl shadow-xs font-bold text-sm">
+                        <span>🛒 ${item}</span>
+                        <button onclick="deleteShop(${index})" class="text-rose-500 font-black px-2 hover:bg-rose-50 rounded-lg">✕</button>
+                    </li>`;
+            });
+            localStorage.setItem('pika_shop', JSON.stringify(shopItems));
+        }
+        function addShopItem() {
+            const input = document.getElementById('shop-input');
+            if (input.value.trim()) { shopItems.push(input.value.trim()); input.value = ''; renderShop(); }
+        }
+        function deleteShop(index) { shopItems.splice(index, 1); renderShop(); }
+
+        // 7. 待辦事項模組
+        let todoItems = JSON.parse(localStorage.getItem('pika_todo')) || ['確認護照效期大於6個月 🛂', '填寫 Visit Japan Web 取得 QR Code 📲', '準備日圓現金與海外高回饋信用卡 💴'];
+        function renderTodo() {
+            const ul = document.getElementById('todo-list'); ul.innerHTML = '';
+            todoItems.forEach((item, index) => {
+                ul.innerHTML += `
+                    <li class="flex justify-between items-center bg-white border-2 border-slate-950 p-3 rounded-xl shadow-xs font-bold text-sm">
+                        <span>📝 ${item}</span>
+                        <button onclick="deleteTodo(${index})" class="text-rose-500 font-black px-2 hover:bg-rose-50 rounded-lg">✕</button>
+                    </li>`;
+            });
+            localStorage.setItem('pika_todo', JSON.stringify(todoItems));
+        }
+        function addTodoItem() {
+            const input = document.getElementById('todo-input');
+            if (input.value.trim()) { todoItems.push(input.value.trim()); input.value = ''; renderTodo(); }
+        }
+        function deleteTodo(index) { todoItems.splice(index, 1); renderTodo(); }
+
+        // 8. 記帳管理模組
+        let expenses = JSON.parse(localStorage.getItem('pika_exp')) || [
+            { title: '機場 Access 線電車單程', amount: 660 },
+            { title: '厚切炭烤牛舌極致定食', amount: 3800 }
+        ];
+        function renderExpenses() {
+            const tbody = document.getElementById('expense-table-body'); tbody.innerHTML = '';
+            let total = 0;
+            expenses.forEach((exp, index) => {
+                total += parseInt(exp.amount);
+                tbody.innerHTML += `
+                    <tr class="border-b border-slate-200 hover:bg-slate-50/50">
+                        <td class="p-3">${exp.title}</td>
+                        <td class="p-3 text-emerald-600">${parseInt(exp.amount).toLocaleString()} JPY</td>
+                        <td class="p-3 text-center"><button onclick="deleteExpense(${index})" class="text-rose-500 font-black px-2">刪除</button></td>
+                    </tr>`;
+            });
+            document.getElementById('expense-total').innerText = total.toLocaleString();
+            localStorage.setItem('pika_exp', JSON.stringify(expenses));
+        }
+        function addExpense() {
+            const title = document.getElementById('exp-title'); const amount = document.getElementById('exp-amount');
+            if (title.value.trim() && amount.value) {
+                expenses.push({ title: title.value.trim(), amount: parseInt(amount.value) });
+                title.value = ''; amount.value = ''; renderExpenses();
+            }
+        }
+        function deleteExpense(index) { expenses.splice(index, 1); renderExpenses(); }
+
+        // 9. 每日備註模組
+        function saveNotes() {
+            const notes = {
+                n521: document.getElementById('note-521').value,
+                n522: document.getElementById('note-522').value,
+                n523: document.getElementById('note-523').value,
+                n524: document.getElementById('note-524').value,
+                n525: document.getElementById('note-525').value
+            };
+            localStorage.setItem('pika_notes', JSON.stringify(notes));
+        }
+        function loadNotes() {
+            const notes = JSON.parse(localStorage.getItem('pika_notes')) || { n521: '', n522: '', n523: '', n524: '', n525: '' };
+            document.getElementById('note-521').value = notes.n521 || '';
+            document.getElementById('note-522').value = notes.n522 || '';
+            document.getElementById('note-523').value = notes.n523 || '';
+            document.getElementById('note-524').value = notes.n524 || '';
+            document.getElementById('note-525').value = notes.n525 || '';
+        }
+
+        // 10. 初始化程序
         window.addEventListener('DOMContentLoaded', () => {
             renderItinerary();
+            renderSpotsPage();
+            renderShop();
+            renderTodo();
+            renderExpenses();
+            loadNotes();
         });
     </script>
 </body>
