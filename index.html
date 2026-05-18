@@ -248,8 +248,8 @@
         
         let itineraries = JSON.parse(localStorage.getItem("pika_plan")) || {
             "2026/05/21":[
-                {time:"16:00", name:"仙台空港 Access 線", category:"交通", address:"宮城県名取市下増田字南原", cost:"660 圓/人", costDesc:"1F，25 分抵仙台駅", openHours:"全天配合航班", remarks:"下飛機直奔市區的最佳選擇", lat:38.14, lng:140.92},
-                {time:"16:00", name:"Almont Hotel Sendai", category:"飯店", address:"宮城県仙台市青葉区中央3-10-14", cost:"—", costDesc:"住宿自理", openHours:"24小時", remarks:"5 分到仙台駅，含大浴場放鬆必備", lat:38.257, lng:140.883},
+                {time:"16:00", name:"仙台空港 Access 線", category:"交通", address:"宮城県名取市下増田字南原", cost:"660 圓/人", costDesc:"1F，25 分抵仙台駅", openHours:"全天配合航班", remarks:"★交通調度建議班次：① 16:11-16:38 (快速) 或 ② 16:33-16:58 (普通)。下飛機直奔市區的最佳選擇", lat:38.14, lng:140.92},
+                {time:"16:45", name:"Almont Hotel Sendai", category:"飯店", address:"宮城県仙台市青葉区中央3-10-14", cost:"—", costDesc:"住宿自理", openHours:"24小時", remarks:"5 分到仙台駅，含頂樓大浴場放鬆必備", lat:38.257, lng:140.883},
                 {time:"18:00", name:"AER 展望テラス（31F）", category:"景點", address:"宮城県仙台市青葉区中央1-3-1 AER 31F", cost:"免費", costDesc:"自由參觀", openHours:"10:00–20:00", remarks:"2 分鐘即達，俯瞰市街全景與落日", lat:38.263, lng:140.882},
                 {time:"19:00", type:"withAlt", name:"地酒和鮮 蔵の庄", category:"餐廳", address:"宮城県仙台市青葉区中央1丁目周邊", cost:"2,500–4,000/人", costDesc:"三陸海鮮居酒屋", openHours:"17:00–23:00", remarks:"★不吃牛肉首選！宮城在地地酒與海鮮極其豐富", lat:38.259, lng:140.882, altName:"伊達の牛たん本舗（S-PAL）", altCost:"2,000–3,500/人", altCostDesc:"厚切鹽烤牛舌定食", altOpenHours:"11:00–22:00", altRemarks:"適合吃牛肉的同行者，車站直結 S-PAL 內", altLat:38.259, altLng:140.882}
             ],
@@ -261,39 +261,56 @@
                     {name:"ころっけや 齋藤惣菜店", icon:"🥔", cost:"90 圓/個", remarks:"週日公休。超人氣排隊可樂餅，外酥內綿密！"}
                 ]},
                 {time:"10:00", name:"ankoya (あんこや) 駅前店", category:"餐廳", address:"宮城県仙台市青葉区中央1-8-31 名掛丁センター街", cost:"—", costDesc:"精緻點心", openHours:"10:00–賣完為止", remarks:"超熱門手工正方形銅鑼燒，買來當旅途小點心", lat:38.260, lng:140.881},
-                {time:"10:30", name:"地底の森ミュージアム", category:"景點", address:"410 圓/人", costDesc:"門票費用", openHours:"9:00–16:45", remarks:"★注意週一公休！保存2萬年前冰河時期遺址。地鐵長町南駅步行 8 分", lat:38.218, lng:140.884},
-                {time:"12:30", name:"梅の花 仙台店", category:"餐廳", address:"宮城県仙台市太白区富沢3丁目", cost:"2,300–3,500/人", costDesc:"豆腐懷石套餐", openHours:"11:30–15:00", remarks:"★已訂位！高級豆腐懷石、無牛肉，訂位已特別備註『母の誕生日』", lat:38.261, lng:140.871},
-                {time:"14:30", name:"瑞鳳殿", category:"景點", address:"宮城県仙台市青葉区霊屋下23-2", cost:"570 圓/人", costDesc:"門票費用", openHours:"09:00–16:50", remarks:"伊達政宗華麗靈廟，杉木參道環境清幽，觀光巴士可達", lat:38.250, lng:140.865},
-                {time:"15:30", name:"仙台城跡（青葉城）", category:"景點", address:"宮城県仙台市青葉区天守台青葉城址", cost:"免費", costDesc:"VR體驗另計", openHours:"全天開放", remarks:"巴士可達。與經典伊達政宗騎馬銅像合影，俯瞰大仙台市景", lat:38.250, lng:140.856},
-                {time:"18:00", name:"寶可夢中心 仙台", category:"景點", address:"宮城県仙台市青葉区中央1-1-1 仙台駅 2F", cost:"免費", costDesc:"購物自理", openHours:"10:00–20:00", remarks:"仙台車站 2F 連絡通道直結，寶可夢粉衝刺點！", lat:38.260, lng:140.881}
+                {time:"10:30", name:"地底の森ミュージアム", category:"景點", address:"410 圓/人", costDesc:"門票費用", openHours:"9:00–16:45", remarks:"★交通：搭乘地下鐵南北線至「長町南駅」步行8分。建議去程班次：① 10:09-10:18 或 ② 10:21-10:30。注意週一公休！保存2萬年前冰河時期遺址。", lat:38.218, lng:140.884},
+                {time:"12:30", name:"梅の花 仙台店", category:"餐廳", address:"宮城県仙台市太白区富沢3丁目", cost:"2,300–3,500/人", costDesc:"豆腐懷石套餐", openHours:"11:30–15:00", remarks:"★交通：從地底之森步行約12分，或搭地下鐵至富沢駅。建議銜接班次：① 12:05-12:07 或 ② 12:15-12:17。高級豆腐懷石、無牛肉，訂位已特別備註『母の誕生日』", lat:38.261, lng:140.871},
+                {time:"14:30", name:"瑞鳳殿", category:"景點", address:"宮城県仙台市青葉区霊屋下23-2", cost:"570 圓/人", costDesc:"門票費用", openHours:"09:00–16:50", remarks:"★交通：自仙台駅搭乘 Loople 觀光巴士。建議去程班次：① 13:45-13:58 或 ② 14:00-14:13。伊達政宗華麗靈廟，杉木參道環境清幽", lat:38.250, lng:140.865},
+                {time:"15:30", name:"仙台城跡（青葉城）", category:"景點", address:"宮城県仙台市青葉区天守台青葉城址", cost:"免費", costDesc:"VR體驗另計", openHours:"全天開放", remarks:"★交通：自瑞鳳殿續搭 Loople 巴士。建議去程班次：① 15:13-15:26 或 ② 15:28-15:41。與經典伊達政宗騎馬銅像合影，俯瞰大仙台市景", lat:38.250, lng:140.856},
+                {time:"18:00", type:"group", name:"仙台駅前閃電血拼圈（含寶可夢中心）", category:"購物/餐廳", lat:38.260, lng:140.881, remarks:"★18:00後全新擴充：高效率精華區逛街路線", subItems:[
+                    {name:"寶可夢中心 仙台 (S-PAL 本館 3F)", icon:"⚡", cost:"自由購物", remarks:"10:00–20:00。與車站直結！皮卡丘東北限定周邊必搶，大本營衝刺點"},
+                    {name:"Sendai PARCO (本館 & 新館)", icon:"🛍️", cost:"免費參觀", remarks:"聚集各大服飾日牌與動漫精品選物(JUMP SHOP)，就在車站正隔壁"},
+                    {name:"Sendai LoFT 旗艦店", icon:"💛", cost:"自由採購", remarks:"文具小物、美妝生活雜貨集中地，退稅服務效率高，補貨絕佳選擇"}
+                ]}
             ],
             "2026/05/23":[
-                {time:"09:00", type:"group", name:"金蛇水神社エリア", category:"景點/餐廳", lat:38.106, lng:140.835, remarks:"東北超強開運祈財聖地，境內咖啡廳超美", subItems:[
+                {time:"09:00", type:"group", name:"金蛇水神社エリア", category:"景點/餐廳", lat:38.106, lng:140.835, remarks:"★交通：搭乘 JR 東北本線至岩沼駅再轉市民巴士或計程車。建議去程車次：① 08:02-08:23 或 ② 08:31-08:52", subItems:[
                     {name:"金蛇水神社", icon:"🐍", cost:"免費（御守約 500–1,000）", remarks:"撫摸蛇形石祈財、洗鈔當錢母，買黃金御守、黃金鹽"},
                     {name:"Sando Terrace", icon:"☕", cost:"600–1,000/人", remarks:"神社境內極具美感的現代咖啡廳，點蛇型麵包與特製咖啡"}
                 ]},
-                {time:"12:00", type:"withAlt", name:"松島さかな市場 焼がきハウス", category:"餐廳", address:"宮城県宮城郡松島町松島字普賢堂13", cost:"2,500 圓/人", costDesc:"烤牡蠣 45 分吃到飽", openHours:"11:00–15:00", remarks:"鮮美牡蠣大滿足！強烈建議預約，賣完即止，週末記得早到", lat:38.371, lng:141.060, altName:"さんとり茶屋 ／ 牡蠣屋フライ亭", altCost:"2,000–3,000/人", altCostDesc:"カキ三昧セット", altOpenHours:"11:00–15:00", altRemarks:"備選：精緻牡蠣定食，俯瞰松島灣，松島海岸駅步行 8 分", altLat:38.371, altLng:141.060},
-                {time:"14:00", name:"松島 五大堂", category:"景點", address:"宮城県宮城郡松島町松島字町内111", cost:"免費", costDesc:"自由參觀", openHours:"全天開放", remarks:"散步約10-15分鐘。紅漆透橋非常獨特，松島經典地標", lat:38.371, lng:141.060},
-                {time:"14:30", name:"福浦島", category:"景點", address:"宮城県宮城郡松島町松島字普賢堂", cost:"200 圓/人", costDesc:"福浦橋通行費", openHours:"8:30–17:00", remarks:"過紅色渡月橋進入，擁有完整的自然森林步道，慢步環島約30分", lat:38.371, lng:141.060},
-                {time:"19:00", type:"group", name:"仙台駅前夜間美食巡禮", category:"餐廳", lat:38.260, lng:140.881, remarks:"晚間在仙台駅前一帶，串起三處各具特色的美食", subItems:[
-                    {name:"阿部蒲鉾店 本店", icon:"🐟", cost:"150 圓/個", remarks:"超好玩 DIY 烤魚板體驗與美味瓢簞炸！仙台駅前步行 3 分"},
-                    {name:"牡蠣と寿司 うみのおきて 仙台朝市総本店", icon:"🦪", cost:"2,000–4,000/人", remarks:"朝市旁的夜晚海鮮大本營，生蠔與壽司新鮮度爆表（17:00–00:00）"},
-                    {name:"Zunda Saryo ずんだ茶寮（S-PAL）", icon:"🍵", cost:"300–600/人", remarks:"仙台名物首選！必喝超濃郁毛豆泥昔與麻糬點心（S-PAL）"}
+                {time:"12:00", type:"withAlt", name:"松島さかな市場 焼がきハウス", category:"餐廳", address:"宮城県宮城郡松島町松島字普賢堂13", cost:"2,500 圓/人", costDesc:"烤牡蠣 45 分吃到飽", openHours:"11:00–15:00", remarks:"★交通：由岩沼經仙台轉搭 JR 仙石線至松島海岸駅。建議車次①：岩沼10:45->仙台11:06/仙石線11:19->松島海岸11:58；建議車次②：岩沼11:01->仙台11:22/仙石線11:35->松島海岸12:13", lat:38.371, lng:141.060, altName:"さんとり茶屋 ／ 牡蠣屋フライ亭", altCost:"2,000–3,000/人", altCostDesc:"カキ三昧セット", altOpenHours:"11:00–15:00", altRemarks:"備選：精緻牡蠣定食，俯瞰松島灣，松島海岸駅步行 8 分", altLat:38.371, altLng:141.060},
+                {time:"13:30", name:"松島 五大堂", category:"景點", address:"宮城県宮城郡松島町松島字町内111", cost:"免費", costDesc:"自由參觀", openHours:"全天開放", remarks:"散步約10-15分鐘。紅漆透橋非常獨特，松島經典地標", lat:38.371, lng:141.060},
+                {time:"14:00", name:"福浦島", category:"景點", address:"宮城県宮城郡松島町松島字普賢堂", cost:"200 圓/人", costDesc:"福浦橋通行費", openHours:"8:30–17:00", remarks:"★時程警戒：預計 15:00 前必須離開福浦島回程！慢步環島約30分", lat:38.371, lng:141.060},
+                {time:"15:00", name:"回Almont取行李 ＆ 移宿 check-in", category:"交通/飯店", address:"Daiwa Roynet Hotel 仙台西口PREMIER", cost:"—", costDesc:"辦理入住", openHours:"24小時", remarks:"★交通(仙石線回仙台)：建議回程班次：① 15:04-15:43 或 ② 15:24-16:03。回Almont取行李後，步行至新飯店辦理 Check-in 置放重物", lat:38.259, lng:140.880},
+                {time:"17:30", type:"group", name:"新飯店西口周邊逛街與美食之夜", category:"購物/餐廳", lat:38.260, lng:140.881, remarks:"★全新調整：移宿後的西口繁華街夜間悠閒散策", subItems:[
+                    {name:"青葉通 ＆ 廣瀨通大路散策", icon:"🏙️", cost:"免費", remarks:"漫步高質感初夏林蔭大道，欣賞熱鬧的城市霓虹與愜意街景"},
+                    {name:"末廣拉麵本福 (中央通店)", icon:"🍜", cost:"900-1,300/人", remarks:"東北超人氣黑醬油拉麵代表，滿滿大蔥免費加，美味暖胃首選"},
+                    {name:"S-PAL 仙台本館地下街自由配", icon:"🍮", cost:"自由花費", remarks:"飯後甜點採購！可買新鮮宮城草莓、手作布丁或毛豆泥昔帶回飯店享受"}
                 ]}
             ],
             "2026/05/24":[
                 {time:"08:00", name:"E PRONTO（仙台駅 1F）", category:"餐廳", address:"宮城県仙台市青葉区中央1-1-1 仙台駅1F", cost:"500-1,000/人", costDesc:"晨間輕食", openHours:"07:00 開放", remarks:"出發前輕鬆享用香醇咖啡與美味歐式早餐", lat:38.260, lng:140.881},
-                {time:"10:58", name:"一ノ關駅（ポケモン Train 乗車）", category:"交通", address:"岩手県一関市山目字前田", cost:"3,020 圓/人", costDesc:"新幹線+指定席費用另計", openHours:"新幹線車次固定", remarks:"夢幻皮卡丘彩繪列車！有迎賓大娃娃與超熱鬧的舉旗歡迎儀式", lat:38.926, lng:141.138},
-                {time:"11:49", name:"猊鼻渓 舟下り（乗船所）", category:"景點", address:"岩手県一関市東山町長坂町467", cost:"1,800 圓/人", costDesc:"純手搖單槳船往返", openHours:"季節限定營業", remarks:"日本百景大峽谷，全程 90 分鐘，聽船伕高唱民謠、嘗試投擲運玉！", lat:38.991, lng:141.253},
+                {time:"10:58", name:"一ノ關駅（ポケモン Train 乗車）", category:"交通", address:"岩手県一関市山目字前田", cost:"3,020 圓/人", costDesc:"新幹線+指定席費用另計", openHours:"新幹線車次固定", remarks:"★交通：自仙台搭東北新幹線前往。建議去程班次：① 09:12-09:44 (Yamabiko 51號) 或 ② 09:48-10:18 (Hayabusa 103號)。夢幻皮卡丘彩繪列車！", lat:38.926, lng:141.138},
+                {time:"11:49", name:"猊鼻渓 舟下り（乗船所）", category:"景點", address:"岩手県一関市東山町長坂町467", cost:"1,800 圓/人", costDesc:"純手搖單槳船往返", openHours:"季節限定營業", remarks:"★交通：皮卡丘列車直結大船渡線於11:41抵達猊鼻溪駅。全程 90 分鐘，聽船伕高唱民謠、嘗試投擲運玉！", lat:38.991, lng:141.253},
                 {time:"13:40", name:"げいびレストハウス", category:"餐廳", address:"岩手県一関市東山町長坂町467（乗船所旁）", cost:"800–1,500/人", costDesc:"傳統蕎麥麵", openHours:"11:00–16:00", remarks:"下船後步行即達！主打岩手手打蕎麥麵與一口蕎麥麵體驗", lat:38.991, lng:141.253},
-                {time:"17:30", name:"Clis Road ＋ 一番町商店街", category:"景點", address:"宮城県仙台市青葉区一番町3丁目", cost:"免費", costDesc:"逛街採買", openHours:"各店家不同", remarks:"散步約10分鐘，有雨棚大拱頂設計，下雨也能舒creativecommons.org服服逛街", lat:38.260, lng:140.875},
-                {time:"19:00", name:"旬味酒好 かん（国分町）", category:"餐廳", address:"宮城県仙台市青葉区国分町2丁目", cost:"2,500–3,500/人", costDesc:"地酒海鮮居酒屋", openHours:"18:00–23:00", remarks:"國分町的隱藏版高質感老店。專賣東北在地名酒與三陸特產下酒菜", lat:38.262, lng:140.870}
+                {time:"17:30", type:"group", name:"Clis Road ＋ 一番町商店街全攻略", category:"景點/購物", lat:38.260, lng:140.875, remarks:"★增強補充：巨型雨棚商店街連線，精選店家與周邊漫遊", subItems:[
+                    {name:"鯛きち 名掛丁店 (薄皮鯛魚燒)", icon:"🐟", cost:"180-250 圓/個", remarks:"超人氣爆醬鯛魚燒！必點期間限定卡士達或脆皮紅豆，逛街完美點心"},
+                    {name:"阿部蒲鉾店 本店 (現烤魚板體驗)", icon:"🍡", cost:"150 圓/串", remarks:"可現場動手現烤魚板，外酥內嫩！外加必吃脆皮炸葫蘆 (ひょうたん揚げ)"},
+                    {name:"喜久水庵 ／ 茶の井ヶ田 一番町店", icon:"🍵", cost:"300-600 圓", remarks:"動漫迷聖地！必吃經典『喜久福』毛豆泥大福與濃厚抹茶霜淇淋"},
+                    {name:"周邊逛街延伸：Vlandome 商店街", icon:"🏰", cost:"免費逛", remarks:"包含大型 Disney Store、大創、以及松本清、Sundrug 等超齊全藥妝店一級戰區"}
+                ]}
             ],
             "2026/05/25":[
-                {time:"08:30", name:"仙台朝市", category:"餐廳", address:"宮城県仙台市青葉区二日町4-7", cost:"800–1,500/人", costDesc:"海鮮晨食", openHours:"8:00–12:00", remarks:"週一市場火力全開！把握搭機前的最後機會來享用最新鮮的清晨海鮮", lat:38.259, lng:140.880},
-                {time:"10:00", name:"S-PAL 仙台（伴手禮採購）", category:"購物", address:"宮城県仙台市青葉区中央1-1-1", cost:"—", costDesc:"伴手禮費用", openHours:"10:00–21:00", remarks:"與車站直通！毛豆泥禮盒、萩之月、牛舌辣油在這一站式全買齊", lat:38.260, lng:140.881},
-                {time:"13:00", name:"定禅寺通", category:"景點", address:"宮城県仙台市青葉区定禅寺通", cost:"免費", costDesc:"自由慢步", openHours:"全天開放", remarks:"仙台「杜之都」的最美代名詞！在初夏翠綠的高大櫸樹隧道下漫步吸芬多精", lat:38.265, lng:140.870},
-                {time:"14:30", name:"仙台空港（JX863 離境）", category:"交通", address:"宮城県名取市下増田字南原", cost:"660 圓/人", costDesc:"Access線火車車資", openHours:"星宇 JX863 17:20起飛", remarks:"回台星宇航空班機。最晚需於 14:50 前從仙台站搭上火車（車程25分）", lat:38.14, lng:140.92}
+                {time:"08:30", type:"group", name:"仙台朝市伴手禮最後衝刺與市區漫遊", category:"餐廳/購物", lat:38.259, lng:140.880, remarks:"★增強補充：週一朝市與商圈全面火力全開，鎖定爆款特產", subItems:[
+                    {name:"齋藤惣菜店 ＆ 佐藤鮮魚店", icon:"🥔", cost:"依品項計", remarks:"把握最後機會買現炸可樂餅，佐藤鮮魚店可現場切刺身刺身即食"},
+                    {name:"朝市みうらや (海鮮乾貨與在地辣油)", icon:"🌶️", cost:"約 800-1,200", remarks:"尋找網紅爆款「陣中牛舌辣油」與精緻干貝/鯖魚乾貨，送禮首選"},
+                    {name:"市區商圈延伸：LoFT & 廣瀨通商圈", icon:"🛍️", cost:"自由逛", remarks:"做最後一輪美妝、生活雜貨及限量文具小物的快速補貨"}
+                ]},
+                {time:"10:00", name:"S-PAL 仙台（伴手禮一站式買齊）", category:"購物", address:"宮城県仙台市青葉区中央1-1-1", cost:"—", costDesc:"伴手禮費用", openHours:"10:00–21:00", remarks:"與車站直通！必買：菓匠三全「萩之月」蛋糕、白謙蒲鉾店魚板、毛豆泥起司蛋糕禮盒", lat:38.260, lng:140.881},
+                {time:"13:00", type:"group", name:"定禪寺通初夏奢華翠綠散策", category:"景點/咖啡", lat:38.265, lng:140.870, remarks:"★交通：搭地下鐵南北線至「勾當台公園駅」出站即達。沉浸杜之都的核心魅力", subItems:[
+                    {name:"櫸樹隧道與青銅雕塑漫步", icon:"🌳", cost:"免費", remarks:"初夏翠綠櫸樹交織成絕美棚頂，觀賞大師艾米里歐·葛雷柯的「夏」雕塑"},
+                    {name:"Sendai Mediatheque (仙台媒體中心)", icon:"🏢", cost:"免費參觀", remarks:"建築大師伊東豊雄代表作！全玻璃帷幕與樹幹狀管柱結構，設計控、拍照狂必訪"},
+                    {name:"街邊文青咖啡座 (如 Café de Sura)", icon:"☕", cost:"600-1,200/人", remarks:"坐在櫸樹下的戶外雅座，喝著冰咖啡看著光影灑落，享受最頂級的仙台慢活"}
+                ]},
+                {time:"14:30", name:"仙台空港（JX863 離境）", category:"交通", address:"宮城県名取市下増田字南原", cost:"660 圓/人", costDesc:"Access線火車車資", openHours:"星宇 JX863 17:20起飛", remarks:"★交通調度建議班次：① 14:37-15:03 (快速) 或 ② 15:00-15:26 (普通)。最晚需於 14:50 前從仙台站搭上火車（車程25分）", lat:38.14, lng:140.92}
             ]
         };
 
@@ -335,7 +352,7 @@
                 bgDecor: "🌊 🏝️ ⛵ ☁️",
                 desc: "松島海岸不僅是地理座標，更是日本千年歷史的縮影。當您步出車站，迎面而來的是帶著鹹味的清爽海風與松樹的清香。不搭船，這片區域的「陸地散策」將會非常精采。這裡的步道圍繞著灣岸建設，一側是星羅棋布的 260 餘座小島，一側是國寶級的古剎與茶室。5 月下旬，岸邊的松葉正是翠綠欲滴，陽光在平靜如鏡的海面上折射出寶石般的光澤。",
                 highlight: "• 五大堂 (Godaido)：這是松島的象徵。連結五大堂的「紅漆透橋」刻意設計了縫隙，讓人行走時低頭能見到腳底海水，寓意「修行時需屏除雜念」。<br>• 觀瀾亭 (Kanrantei)：曾是伊達政宗的茶室。必做體驗是坐進面向松島灣的塌塌米席，點一份「抹茶與毛豆泥甜點」，在微風中靜靜欣賞如畫海景，優雅時刻。<br>• 烤牡蠣體驗：松島的牡蠣舉世聞名。必做體驗是步行至附近的「牡蠣小屋」，看著碩大飽滿的牡蠣在火爐上嘶嘶作響，鮮甜香氣將成為旅行最深刻的味覺記憶。",
-                info: "📍 地址：宮城縣宮城郡松島町松島町內<br>⏰ 開放時間：全天開放（五大堂至 16:00；觀瀾亭 08:30 - 17:00）<br>💰 是否收費：區域參觀免費；觀瀾亭入內 200 日圓（餐點另計）"
+                info: "📍 地址：宮城縣宮城郡松島町松島町內<br>⏰ 開放時間：全天開放（五大堂至 16:00；觀瀾亭 08:30 - 17:00）<br>🚆 交通資訊：自仙台站搭乘 JR 仙石線至「松島海岸駅」下車步行約 7 分鐘。<br>⏱️ 建議去程班次：① 09:14 - 09:53 (普通) 或 ② 10:24 - 11:03 (普通)。<br>💰 是否收費：區域參觀免費；觀瀾亭入內 200 日圓（餐點另計）"
             },
             {
                 title: "福浦島 (Fukuura Island)",
@@ -346,8 +363,8 @@
                 cardClass: "border-pink-400 bg-pink-50/70",
                 bgDecor: "🌉 🌸 🌿 🍥",
                 desc: "如果說松島海岸是熱鬧的舞台，那麼「福浦島」就是一座漂浮在海上的私人花園。這座島嶼透過長達 252 公尺的紅色大橋「福浦橋」與陸地相連。被譽為「相遇之橋」。特別邀請宮城縣官方在地觀光擔當「呆呆獸」共同前行！福浦島提供了一種完全沉浸的森林步行感受，遠離嘈雜。",
-                highlight: "• 福浦橋 (Fukuura Bridge)：這是不搭船也能近距離觀測松島灣的最佳方式。走在橋上，左右兩側完全無遮蔽，那種海天一色的開闊感非常壯觀。<br>• 見晴台 (Miharashi Pavilion)：島上有數個高低錯落的展望點。必看亮點是位於島嶼南側的見晴台，從這裡望去，可以平視松島灣最核心的島嶼群，視野完全不輸給觀光船。<br>• 環島健行：島上擁有超過 250 種植物。必做體驗是完成一圈約 40-40 分鐘的環島徒步。路徑多為修整良好的木棧道或土徑。",
-                info: "📍 地址：宮城縣宮城郡松島町松島仙隨 30-1<br>⏰ 開放時間：08:00 - 17:00 (11月至2月至 16:30)<br>💰 是否收費：200 日圓 (成人通行費)"
+                highlight: "• 福浦橋 (Fukuura Bridge)：這是不搭船也能近距離觀測松島灣的最佳方式。走在橋上，左右兩側完全無遮蔽，那種海天一色的開闊感非常壯觀。<br>• 見晴台 (Miharashi Pavilion)：島上有數個高低錯落的展望點。必看亮點是位於島嶼南側的見晴台，從這裡望去，可以平視松島灣最核心的島嶼群，視野完全不輸給觀光船。<br>• 環島健行：島上擁有超過 250 種植物。必做體驗是完成一圈約 40-50 分鐘的環島徒步。路徑多為修整良好的木棧道或土徑。",
+                info: "📍 地址：宮城縣宮城郡松島町松島仙隨 30-1<br>⏰ 開放時間：08:00 - 17:00<br>🚆 交通資訊：由松島海岸駅徒步約 15 分鐘可達紅色福浦橋。<br>⏱️ 建議回程班次(回仙台)：① 15:04 - 15:43 或 ② 15:24 - 16:03。<br>💰 是否收費：200 日圓 (成人通行費)"
             },
             {
                 title: "仙台朝市：仙台市民的熱情廚房",
@@ -359,7 +376,7 @@
                 bgDecor: "🍳 🍉 🐟 🍙",
                 desc: "仙台朝市被譽為「仙台的廚房」，是感受這座城市生命力最好的起點。早晨 8:30 踏入這條僅百公尺長的窄巷，迎接你的是嘹亮的叫賣聲與充滿活力的色彩。5 月下旬正是東北水果交替的時節，幸運的話能遇見香氣馥郁的宮城縣產草莓，或是正要上市的紅艷櫻桃。跟著愛吃的卡比獸一起出發挖掘美食吧！",
                 highlight: "• 尋找「齋藤惣菜店」：買一塊外脆內綿的現炸可樂餅，那是仙台人從小到大的記憶。<br>• 「朝市丼」落座：挑選自己最愛的超鮮魚介食材，拼成一碗世界獨一無二、料多到滿出來的海鮮慶生丼。",
-                info: "📍 地址：宮城縣仙台市青葉區中央4-3-28<br>⏰ 開放時間：08:00 - 18:00 (週日公休)<br>💰 是否收費：免費入內參觀"
+                info: "📍 地址：宮城縣仙台市青葉區中央4-3-28<br>⏰ 開放時間：08:00 - 18:00 (週日公休)<br>🚶‍♂️ 交通資訊：從 JR 仙台駅西口步行僅需 5 分鐘即可抵達。<br>⏱️ 建議造訪時段：① 08:30 清晨熱鬧開市 或 ② 10:30 避開尖峰人潮。<br>💰 是否收費：免費入內參觀"
             },
             {
                 title: "地底の森博物館 (Chitei no Mori Museum)",
@@ -370,8 +387,8 @@
                 cardClass: "border-orange-400 bg-orange-50/60",
                 bgDecor: "🦴 🪵 🏺 🔍",
                 desc: "這是世界上罕見的舊石器時代主題博物館，完美復原並展示了兩萬年前富澤地區的自然環境與人類活動遺跡。走入館內，宏大的地底挖掘現場將帶給您穿越時空的震撼感。搭配從地下化石中復活的可愛寶寶暴龍，最具考古及知性探索感！",
-                highlight: "• 必看亮點：現場保存極其完整的「舊石器時代森林地下遺跡」與兩萬年前古人類留留下 的篝火痕跡。<br>• 必做體驗：在博物館外部精心規劃的「冰河時期之森」公園慢步，這裡重建了2萬年前的古老植被，環境清幽極具知性美。",
-                info: "📍 地址：宮城縣仙台市太白區長町南4-3-1<br>⏰ 開放時間：09:00 - 16:45（週一及假日翌日休館）<br>💰 是否收費：成人 460 日圓"
+                highlight: "• 必看亮點：現場保存極其完整的「舊石器時代森林地下遺跡」與兩萬年前古人類留下的篝火痕跡。<br>• 必做體驗：在博物館外部精心規劃的「冰河時期之森」公園慢步，這裡重建了2萬年前的古老植被，環境清幽極具知性美。",
+                info: "📍 地址：宮城縣仙台市太白區長町南4-3-1<br>⏰ 開放時間：09:00 - 16:45（週一及假日翌日休館）<br>🚇 交通資訊：搭乘地下鐵南北線至「長町南駅」自西1出口步行 8 分鐘。<br>⏱️ 建議去程班次：① 09:39 - 09:48 或 ② 10:09 - 10:18。<br>💰 是否收費：成人 460 日圓"
             },
             {
                 title: "瑞鳳殿 (Zuihoden Mausoleum)",
@@ -383,7 +400,7 @@
                 bgDecor: "🏮 ⛩️ 🌲 🍂",
                 desc: "這裡是名震天下的仙台藩祖——伊達政宗卿的桃山樣式豪華靈廟。在太平洋戰爭中曾燒毀，後於1979年依原樣重建，其裝飾藝術巧奪天工，絢麗無比，是來仙台絕不可錯過的歷史地標。配搭著日式廟宇長夜燈化身的燭光靈，充滿神聖莊嚴又典雅的氛圍。",
                 highlight: "• 必看亮點：建築本體極其繁複華美、五彩繽紛的浮雕與炫目的金箔裝飾。<br>• 必做體驗：踏上通往靈廟的參天杉木古道坡道緩慢向上爬，一邊吸收森林芬多精，一邊感受林間獨有的幽靜與神聖莊嚴氛圍。",
-                info: "📍 地址：宮城縣仙台市青葉區靈屋下23-2<br>⏰ 開放時間：09:00 - 16:50 (依季節微調)<br>💰 是否收費：成人 570 日圓"
+                info: "📍 地址：宮城縣仙台市青葉區靈屋下23-2<br>⏰ 開放時間：09:00 - 16:50 (依季節微調)<br>🚌 交通資訊：於 JR 仙台駅西口西口巴士站 16 號月台搭乘「Loople 仙台」觀光巴士至「瑞鳳殿前」站。<br>⏱️ 建議去程班次：① 13:45 - 13:58 或 ② 14:00 - 14:13。<br>💰 是否收費：成人 570 日圓"
             },
             {
                 title: "仙台城跡 (Aoba Castle)",
@@ -395,7 +412,7 @@
                 bgDecor: "🏯 🐎 ☁️ ⛰️",
                 desc: "又稱青葉城，為伊達家族世代居住的根據地。雖然昔日雄偉的天守閣與宮殿已不復存在，打卡拍照依然能讓人深深感受到當年的大名威風。搭配可靠、飛天遁地的帥氣快龍，一起跟伊達政宗銅像俯瞰大好河山吧！",
                 highlight: "• 必看亮點：全仙台最經典的地標「伊達政宗卿騎馬青銅像」，英姿颯爽。<br>• 必做體驗：站在展望台上俯瞰整個被譽為「杜之都」的仙台市景與廣瀨川。隨後到美食區買一份口感綿密冰涼的「現做毛豆泥麻糬」一同享用。",
-                info: "📍 地址：宮城縣仙台市青葉區川內1<br>⏰ 開放時間：遺址區全天開放（青葉城資料展示館 09:00 - 17:00）<br>💰 是否收費：遺址區域免費；進入資料展覽館 700 日圓"
+                info: "📍 地址：宮城縣仙台市青葉區川內1<br>⏰ 開放時間：遺址區全天開放（青葉城資料展示館 09:00 - 17:00）<br>🚌 交通資訊：自仙台車站或瑞鳳殿搭乘「Loople 仙台」觀光巴士至「仙台城跡」站下車即達。<br>⏱️ 建議續接班次(自瑞鳳殿出發)：① 14:43 - 14:56 或 ② 15:13 - 15:26。<br>💰 是否收費：遺址區域免費；進入資料展覽館 700 日圓"
             },
             {
                 title: "金蛇水神社 (Kanahebisui Shrine)",
@@ -407,7 +424,7 @@
                 bgDecor: "🐍 🍇 💧 🪙",
                 desc: "自古以來便是供奉蛇型水神、祈求商賣繁盛、金運開運的日本東北超級名所。近年來因為神社境內設計極具美感且現代化的休憩設施，成為熱門打卡景點。以美麗的蛇型水神化身「迷你龍」當代表，高雅地欣賞五月下旬盛開的紫藤瀑布！",
                 highlight: "• 必看亮點：5 月下旬正逢神社境內最著名的牡丹園盛開與紫藤花如瀑布般垂下的季節（初夏限定絕景）。<br>• 必做體驗：前往神社附設的現代化「Sando Terrace」咖啡廳，點一份超萌的蛇型麵包與特製咖啡，坐在大片落地窗前愜意賞花賞景。",
-                info: "📍 地址：宮城縣岩沼市三色吉字水神168<br>⏰ 開放時間：全天開放（社務所與咖啡廳空間 08:30 - 16:00）<br>💰 是否收費：境內免費；牡丹園花季入園依花況可能酌收門票"
+                info: "📍 地址：宮城縣岩沼市三色吉字水神168<br>⏰ 開放時間：全天開放（社務所與咖啡廳空間 08:30 - 16:00）<br>🚆 交通資訊：自 JR 仙台駅搭乘 JR 東北本線至「岩沼駅」，轉搭市民巴士或計程車約 10 分鐘。<br>⏱️ JR 建議去程班次：① 08:02 - 08:23 或 ② 08:31 - 08:52。<br>💰 是否收費：境內免費；牡丹園花季入園依花況可能酌收門票"
             },
             {
                 title: "猊鼻溪 (Geibikei Gorge)",
@@ -419,19 +436,19 @@
                 bgDecor: "🛶 🧗‍♂️ 🏞️ 🟢",
                 desc: "名列日本百景之一，是由北上川支流砂鐵川侵蝕絕壁而形成的巨大峽谷。兩岸延伸達2公里的奇岩怪石與高聳絕壁非常壯麗。這裡最著名的是完全依賴人力、不用馬達的「純人工傳統搖櫓船」。讓常在溪流暢游的烏波陪伴在清澈無比的溪水中前行，體驗丟好運玉的樂趣！",
                 highlight: "• 必看亮點：高達百公尺的垂直巨大絕壁景觀，以及形似龍鼻子的「大龍鼻」奇岩。<br>• 必做體驗：當船隻抵達終點停靠時，下船步行至對岸，購買刻有財、福、戀等字樣的「運玉」（幸運石），並嘗試將其精準投進崖壁的神奇洞穴中，投中願望即會成真！",
-                info: "📍 地址：岩手縣一關市東山町長坂字町467<br>⏰ 開放時間：08:30 - 16:00（船班時刻依季節略有變動）<br>💰 是否收費：往返乘船票成人約 1,800 日圓"
+                info: "📍 地址：岩手縣一關市東山町長坂字町467<br>⏰ 開放時間：08:30 - 16:00（船班時刻依季節略有變動）<br>🚄 交通資訊：由仙台站搭乘東北新幹線至「一ノ関駅」，轉乘 JR 大船渡線至「猊鼻溪駅」徒步 5 分鐘。<br>⏱️ 新幹線建議去程車次：① 09:12 - 09:44 (Yamabiko 51號) 或 ② 09:48 - 10:18 (Hayabusa 103號)。<br>💰 是否收費：往返乘船票成人約 1,800 日圓"
             },
             {
                 title: "定禪寺通 (Jozenji-dori Avenue)",
                 photoUrl: "https://storage.googleapis.com/glide-prod.appspot.com/uploads-v2/blHpv7FOY26tzdcWdrrk/pub/CIXTVCKR8F3w6v8hv530.jpg",
-                pikaName: "妙蛙種子 (Bulbasaur) · 草屬性森林之都",
+                pikaName: "妙蛙種子 (Bulbasaur) · 草屬性森林之總",
                 pikaImg: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/1.png",
                 bgClass: "bg-gradient-to-br from-green-400 via-emerald-300 to-lime-500",
                 cardClass: "border-green-400 bg-green-50/70",
                 bgDecor: "🌳 🌿 ☕ 🚶‍♀️",
                 desc: "定禪寺通是仙台被尊稱為「杜之都」（森林之都）最具代表性的綠色隧道街道。中央安全島被規劃成悠閒的步行者天國步道，兩側茂密的欅樹在初夏編織出綠意盎然的天然遮陽棚。與草屬性始祖妙蛙種子一起散步，感受最純淨舒服的森林芬多精吧！",
                 highlight: "• 必看亮點：夾道並排而立、多達 166 棵高大挺拔的青翠櫸木。步道中央還矗立著義大利雕刻大師所作的精緻青銅雕塑。<br>• 必做體驗：漫步在步道中央，累了就隨意挑選一家街邊開放式的文青咖啡座坐下，看著陽光穿透樹葉灑落的光影，感受最正宗的仙台慢活日常節奏。",
-                info: "📍 地址：宮城縣仙台市青葉區國分町附近街道<br>⏰ 開放時間：全天開放<br>💰 是否收費：免費自由散步"
+                info: "📍 地址：宮城縣仙台市青葉區國分町附近街道<br>⏰ 開放時間：全天開放<br>🚇 交通資訊：搭乘地下鐵南北線至「勾當台公園駅」下車，出站即抵達。<br>⏱️ 建議漫步時段：① 13:00 伴隨午後陽光林蔭散步 或 ② 15:30 享受悠閒露天咖啡時光。<br>💰 是否收費：免費自由散步"
             },
             {
                 title: "AER 展望台 (AER Observation Terrace)",
@@ -443,7 +460,7 @@
                 bgDecor: "🌃 🚀 🚄 🌟",
                 desc: "位於仙台車站正對面的超顯目地標——AER大樓。其頂層31樓規劃了兩側露天的免費展望露台，是俯瞰整個仙台市區與追蹤新幹線進出站的最佳制高點，夜景也相當浪漫。派出能發出耀眼高空光芒的電龍當作高空瞭望台守護神，陪伴俯瞰最美麗的火車鐵道與城市夜空！",
                 highlight: "• 必看亮點：分別位於北側與南側、擁有不同城市風貌與山海地平線的寬廣視角。<br>• 必做體驗：站在玻璃窗前，向下俯瞰新幹線列車就像微型玩具火車一樣流暢地進出仙台站。這裡空間大、空調舒適且人潮較少，非常適合在車站周邊 S-PAL 購物完後上來放鬆歇息。",
-                info: "📍 地址：宮城縣仙台市青葉區中央1-3-1 (AER大樓31樓最高層)<br>⏰ 開放時間：10:00 - 20:00<br>💰 是否收費：完全免費開放"
+                info: "📍 地址：宮城縣仙台市青葉區中央1-3-1 (AER大樓31樓最高層)<br>⏰ 開放時間：10:00 - 20:00<br>🚶‍♂️ 交通資訊：由 JR 仙台駅西口經由連通天橋徒步步行僅需 2 分鐘即可抵達。<br>⏱️ 建議登頂時段：① 17:45 追逐初夏日落夕陽 或 ② 19:15 俯瞰震撼的城市鐵道夜景。<br>💰 是否收費：完全免費開放"
             }
         ];
 
@@ -545,7 +562,6 @@
 
             currentItems.forEach((p, idx) => {
                 if (p.type === 'group') {
-                    // Group card: show all sub-items
                     container.innerHTML += `
                         <div class="itinerary-drag-item bg-gradient-to-r from-amber-50 to-yellow-50 p-4 rounded-2xl border-2 border-amber-200 shadow-sm hover:border-yellow-400 transition-all cursor-move" data-index="${idx}">
                             <div class="flex justify-between items-center gap-2 mb-3">
@@ -556,6 +572,7 @@
                                 </div>
                                 <button class="btn-pika text-xs py-1 px-3 shrink-0" onclick="openMap(${p.lat}, ${p.lng})">🧭 導航</button>
                             </div>
+                            <p class="text-xs text-amber-900 font-black mb-2 bg-yellow-100/60 p-1.5 rounded-lg border border-yellow-200/50">${p.remarks}</p>
                             <div class="grid grid-cols-1 sm:grid-cols-2 gap-2">
                                 ${p.subItems.map(s => `
                                     <div class="bg-white rounded-xl px-3 py-2.5 border border-amber-100 shadow-xs flex items-start gap-2">
@@ -563,16 +580,14 @@
                                         <div>
                                             <p class="font-black text-sm text-slate-800">${s.name}</p>
                                             <p class="text-[11px] text-slate-500 mt-0.5">${s.cost}</p>
-                                            <p class="text-[11px] text-amber-700 font-medium mt-0.5">${s.remarks}</p>
+                                            <p class="text-[11px] text-amber-700 font-bold mt-0.5">${s.remarks}</p>
                                         </div>
                                     </div>`).join('')}
                             </div>
                         </div>`;
                 } else if (p.type === 'withAlt') {
-                    // Primary + Alternative card
                     container.innerHTML += `
                         <div class="itinerary-drag-item bg-white p-4 rounded-2xl border-2 border-slate-100 shadow-sm hover:border-yellow-300 transition-all cursor-move space-y-3" data-index="${idx}">
-                            <!-- Main choice -->
                             <div class="flex justify-between items-center gap-2">
                                 <div class="flex items-center gap-2 flex-wrap cursor-pointer select-none" onclick="toggleItineraryDetails(${idx})">
                                     <span class="w-6 h-6 rounded-full bg-yellow-400 text-slate-800 font-black flex items-center justify-center text-xs shadow-sm">${idx + 1}</span>
@@ -585,14 +600,12 @@
                                 </div>
                                 <button class="btn-pika text-xs py-1 px-3 shrink-0" onclick="openMap(${p.lat}, ${p.lng})">🧭 導航</button>
                             </div>
-                            <!-- Alt choice -->
                             <div class="flex items-center gap-2 bg-slate-50 rounded-xl px-3 py-2 border border-dashed border-slate-200">
                                 <span class="bg-slate-200 text-slate-600 text-[10px] px-1.5 py-0.5 rounded font-bold shrink-0">備選</span>
                                 <span class="text-sm font-bold text-slate-600">${p.altName}</span>
                                 <span class="text-xs text-slate-400 font-medium hidden sm:inline">— ${p.altRemarks}</span>
                                 <button class="btn-pika text-xs py-0.5 px-2 ml-auto shrink-0 text-[11px]" onclick="openMap(${p.altLat}, ${p.altLng})">🧭</button>
                             </div>
-                            <!-- Expandable main details -->
                             <div id="details-${idx}" class="hidden grid grid-cols-1 md:grid-cols-2 gap-3 text-xs text-slate-600 border-t pt-3 mt-2 border-slate-100">
                                 <div>
                                     <p class="font-bold text-slate-400 mb-0.5">🏷️ 行程分類</p>
@@ -621,7 +634,6 @@
                             </div>
                         </div>`;
                 } else {
-                    // Normal entry
                     container.innerHTML += `
                         <div class="itinerary-drag-item bg-white p-4 rounded-2xl border-2 border-slate-100 shadow-sm hover:border-yellow-300 transition-all cursor-move space-y-2" data-index="${idx}">
                             <div class="flex justify-between items-center gap-2">
@@ -685,7 +697,7 @@
         function openFullRoute() {
             const currentItems = itineraries[currentDay] || [];
             if (currentItems.length === 0) {
-                alert("今天沒有排行程，皮卡丘不知道往哪走角！");
+                alert("今天沒有排行程，皮卡丘不知道往哪走喔！");
                 return;
             }
             const origin = `${currentItems[0].lat},${currentItems[0].lng}`;
@@ -852,20 +864,15 @@
                 grid.innerHTML += `
                     <div class="card flex flex-col justify-between overflow-hidden border-4 ${item.cardClass} shadow-lg hover:scale-[1.02] transition-all duration-300 group">
                         <div>
-                            <!-- Photo + Pokémon overlay -->
                             <div class="relative w-full h-52 rounded-2xl overflow-hidden mb-4">
                                 <img src="${item.photoUrl}" alt="${item.title}" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'" />
-                                <!-- fallback gradient bg -->
                                 <div style="display:none" class="absolute inset-0 flex items-center justify-center ${item.bgClass}">
                                     <span class="text-4xl opacity-30">${item.bgDecor}</span>
                                 </div>
-                                <!-- dark gradient overlay for text readability -->
                                 <div class="absolute inset-0 bg-gradient-to-t from-black/65 via-black/10 to-transparent pointer-events-none"></div>
-                                <!-- Pokémon overlay – smaller, sits bottom-right -->
                                 <img src="${item.pikaImg}" alt="${item.pikaName}" 
                                      class="absolute bottom-1 right-2 w-20 h-20 object-contain drop-shadow-xl z-10 animate-pika-bounce 
                                             transition-transform duration-300 group-hover:scale-110" />
-                                <!-- Pokémon name tag bottom-left -->
                                 <div class="absolute bottom-2 left-3 bg-slate-900/80 text-yellow-300 text-[11px] px-2.5 py-1 rounded-full font-black tracking-wide border border-yellow-400/50 backdrop-blur-sm z-10">
                                     ${item.pikaName}
                                 </div>
@@ -878,7 +885,7 @@
                                 <div class="leading-relaxed">${item.highlight}</div>
                             </div>
                         </div>
-                        <div class="text-[11px] text-slate-600 border-t border-slate-900/10 pt-3 mt-2 font-bold leading-relaxed">
+                        <div class="text-[11px] text-slate-600 border-t border-slate-900/10 pt-3 mt-2 font-bold leading-relaxed bg-amber-50/40 p-2 rounded-xl">
                             ${item.info}
                         </div>
                     </div>`;
