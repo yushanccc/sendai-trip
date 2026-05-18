@@ -102,7 +102,7 @@
                         <div class="absolute bottom-0 right-1 w-4 h-4 pikachu-red rounded-full"></div>
                     </div>
                     <div class="absolute -top-2 -right-2 bg-red-500 text-white text-[10px] px-1.5 py-0.5 rounded-full font-black border border-white animate-bounce">
-                        ⚡
+                        主視覺 ⚡
                     </div>
                 </div>
                 
@@ -248,17 +248,18 @@
         
         let itineraries = JSON.parse(localStorage.getItem("pika_plan")) || {
             "2026/05/21":[
-                {time:"16:30", name:"仙台空港 Access 線", category:"交通", address:"宮城県名取市下増田字南原", cost:"660 圓/人", costDesc:"1F，25 分抵仙台駅", openHours:"全天配合航班", remarks:"下飛機直奔市區的最佳選擇", lat:38.14, lng:140.92},
-                {time:"17:00", name:"Almont Hotel Sendai", category:"飯店", address:"宮城県仙台市青葉区中央3-10-14", cost:"—", costDesc:"住宿自理", openHours:"24小時", remarks:"5 分到仙台駅，含大浴場放鬆必備", lat:38.257, lng:140.883},
+                {time:"16:00", name:"仙台空港 Access 線", category:"交通", address:"宮城県名取市下増田字南原", cost:"660 圓/人", costDesc:"1F，25 分抵仙台駅", openHours:"全天配合航班", remarks:"下飛機直奔市區的最佳選擇", lat:38.14, lng:140.92},
+                {time:"16:00", name:"Almont Hotel Sendai", category:"飯店", address:"宮城県仙台市青葉区中央3-10-14", cost:"—", costDesc:"住宿自理", openHours:"24小時", remarks:"5 分到仙台駅，含大浴場放鬆必備", lat:38.257, lng:140.883},
                 {time:"18:00", name:"AER 展望テラス（31F）", category:"景點", address:"宮城県仙台市青葉区中央1-3-1 AER 31F", cost:"免費", costDesc:"自由參觀", openHours:"10:00–20:00", remarks:"2 分鐘即達，俯瞰市街全景與落日", lat:38.263, lng:140.882},
-                {time:"19:00", name:"地酒和鮮 蔵の庄", category:"餐廳", address:"宮城県仙台市青葉区中央1丁目周邊", cost:"2,500–4,000/人", costDesc:"三陸海鮮居酒屋", openHours:"17:00–23:00", remarks:"★不吃牛肉首選！宮城在地地酒與海鮮極其豐富", lat:38.259, lng:140.882},
-                {time:"     ", name:"伊達の牛たん本舗（S-PAL）", category:"餐廳", address:"宮城県仙台市青葉区中央1-1-1 S-PAL", cost:"2,000–3,500/人", costDesc:"厚切鹽烤牛舌定食", openHours:"11:00–22:00", remarks:"備選：適合吃牛肉的同行者，車站直結 S-PAL 內", lat:38.259, lng:140.882}
+                {time:"19:00", type:"withAlt", name:"地酒和鮮 蔵の庄", category:"餐廳", address:"宮城県仙台市青葉区中央1丁目周邊", cost:"2,500–4,000/人", costDesc:"三陸海鮮居酒屋", openHours:"17:00–23:00", remarks:"★不吃牛肉首選！宮城在地地酒與海鮮極其豐富", lat:38.259, lng:140.882, altName:"伊達の牛たん本舗（S-PAL）", altCost:"2,000–3,500/人", altCostDesc:"厚切鹽烤牛舌定食", altOpenHours:"11:00–22:00", altRemarks:"適合吃牛肉的同行者，車站直結 S-PAL 內", altLat:38.259, altLng:140.882}
             ],
             "2026/05/22":[
-                {time:"08:30", name:"仙台朝市", category:"景點/餐廳", address:"宮城県仙台市青葉区二日町4-7", cost:"免費", costDesc:"店家消費自理", openHours:"08:00–18:00", remarks:"體驗在地早晨活力，海鮮與水果天堂", lat:38.259, lng:140.880},
-                {time:"    ", name:"110 coffee（朝市内）", category:"餐廳", address:"宮城県仙台市青葉区二日町4（朝市内）", cost:"—", costDesc:"咖啡消費", openHours:"8:00–12:00", remarks:"Google 4.6 高分，市場角落的隱藏咖啡店，需找一下", lat:38.259, lng:140.880},
-                {time:"    ", name:"鮮魚店 浜伸", category:"餐廳", address:"宮城県仙台市青葉区二日町4（朝市内）", cost:"800–1,200/人", costDesc:"鮪魚刺身", openHours:"8:00–12:00", remarks:"週日公休。鮪魚刺身超讚，英語嘛通 OK", lat:38.259, lng:140.880},
-                {time:"    ", name:"ころっけや 齋藤惣菜店", category:"餐廳", address:"宮城県仙台市青葉区二日町4（朝市内）", cost:"90 圓/個", costDesc:"現炸炸物", openHours:"8:00–12:00", remarks:"週日公休。超人氣排隊可樂餅，外酥內綿密！", lat:38.259, lng:140.880},
+                {time:"08:30", type:"group", name:"仙台朝市エリア", category:"餐廳/景點", lat:38.259, lng:140.880, remarks:"仙台の廚房！朝市區域美食逐一探索", subItems:[
+                    {name:"仙台朝市", icon:"🏪", cost:"免費入場", remarks:"體驗在地早晨活力，海鮮與水果天堂"},
+                    {name:"110 coffee（朝市内）", icon:"☕", cost:"約 600–800/人", remarks:"Google 4.6 高分，市場角落的隱藏咖啡店，需找一下"},
+                    {name:"鮮魚店 浜伸", icon:"🐟", cost:"800–1,200/人", remarks:"週日公休。鮪魚刺身超讚，英語嘛通 OK"},
+                    {name:"ころっけや 齋藤惣菜店", icon:"🥔", cost:"90 圓/個", remarks:"週日公休。超人氣排隊可樂餅，外酥內綿密！"}
+                ]},
                 {time:"10:00", name:"ankoya (あんこや) 駅前店", category:"餐廳", address:"宮城県仙台市青葉区中央1-8-31 名掛丁センター街", cost:"—", costDesc:"精緻點心", openHours:"10:00–賣完為止", remarks:"超熱門手工正方形銅鑼燒，買來當旅途小點心", lat:38.260, lng:140.881},
                 {time:"10:30", name:"地底の森ミュージアム", category:"景點", address:"410 圓/人", costDesc:"門票費用", openHours:"9:00–16:45", remarks:"★注意週一公休！保存2萬年前冰河時期遺址。地鐵長町南駅步行 8 分", lat:38.218, lng:140.884},
                 {time:"12:30", name:"梅の花 仙台店", category:"餐廳", address:"宮城県仙台市太白区富沢3丁目", cost:"2,300–3,500/人", costDesc:"豆腐懷石套餐", openHours:"11:30–15:00", remarks:"★已訂位！高級豆腐懷石、無牛肉，訂位已特別備註『母の誕生日』", lat:38.261, lng:140.871},
@@ -267,15 +268,18 @@
                 {time:"18:00", name:"寶可夢中心 仙台", category:"景點", address:"宮城県仙台市青葉区中央1-1-1 仙台駅 2F", cost:"免費", costDesc:"購物自理", openHours:"10:00–20:00", remarks:"仙台車站 2F 連絡通道直結，寶可夢粉衝刺點！", lat:38.260, lng:140.881}
             ],
             "2026/05/23":[
-                {time:"09:00", name:"金蛇水神社", category:"景點", address:"宮城県岩沼市三色吉字水神7", cost:"免費", costDesc:"御守約 500–1,000", openHours:"8:30–17:00", remarks:"東北超強開運祈財聖地。岩沼駅步行10分，火車車資 320 圓", lat:38.106, lng:140.835},
-                {time:"09:00", name:"Sando Terrace", category:"餐廳", address:"宮城県岩沼市三色吉字水神7（境内）", cost:"600–1,000/人", costDesc:"和式甜點與咖啡", openHours:"9:00–16:00", remarks:"神社境內極具美感與現代化的全新休憩咖啡廳", lat:38.106, lng:140.835},
-                {time:"12:00", name:"松島さかな市場 焼がきハウス", category:"餐廳", address:"宮城県宮城郡松島町松島字普賢堂13", cost:"2,500 圓/人", costDesc:"烤牡蠣 45 分吃到飽", openHours:"11:00–15:00", remarks:"鮮美牡蠣大滿足！強烈建議預約，賣完即止，週末記得早到", lat:38.371, lng:141.060},
-                {time:"12:00", name:"さんとり茶屋 / 牡蠣屋フライ亭", category:"餐廳", address:"宮城県宮城郡松島町松島字普賢堂地内", cost:"2,000–3,000/人", costDesc:"カキ三昧セット", openHours:"11:00–15:00", remarks:"備選餐廳。可一邊享用精緻牡蠣定食、一邊俯瞰松島灣，松島海岸駅步8分", lat:38.371, lng:141.060},
+                {time:"09:00", type:"group", name:"金蛇水神社エリア", category:"景點/餐廳", lat:38.106, lng:140.835, remarks:"東北超強開運祈財聖地，境內咖啡廳超美", subItems:[
+                    {name:"金蛇水神社", icon:"🐍", cost:"免費（御守約 500–1,000）", remarks:"撫摸蛇形石祈財、洗鈔當錢母，買黃金御守、黃金鹽"},
+                    {name:"Sando Terrace", icon:"☕", cost:"600–1,000/人", remarks:"神社境內極具美感的現代咖啡廳，點蛇型麵包與特製咖啡"}
+                ]},
+                {time:"12:00", type:"withAlt", name:"松島さかな市場 焼がきハウス", category:"餐廳", address:"宮城県宮城郡松島町松島字普賢堂13", cost:"2,500 圓/人", costDesc:"烤牡蠣 45 分吃到飽", openHours:"11:00–15:00", remarks:"鮮美牡蠣大滿足！強烈建議預約，賣完即止，週末記得早到", lat:38.371, lng:141.060, altName:"さんとり茶屋 ／ 牡蠣屋フライ亭", altCost:"2,000–3,000/人", altCostDesc:"カキ三昧セット", altOpenHours:"11:00–15:00", altRemarks:"備選：精緻牡蠣定食，俯瞰松島灣，松島海岸駅步行 8 分", altLat:38.371, altLng:141.060},
                 {time:"14:00", name:"松島 五大堂", category:"景點", address:"宮城県宮城郡松島町松島字町内111", cost:"免費", costDesc:"自由參觀", openHours:"全天開放", remarks:"散步約10-15分鐘。紅漆透橋非常獨特，松島經典地標", lat:38.371, lng:141.060},
                 {time:"14:30", name:"福浦島", category:"景點", address:"宮城県宮城郡松島町松島字普賢堂", cost:"200 圓/人", costDesc:"福浦橋通行費", openHours:"8:30–17:00", remarks:"過紅色渡月橋進入，擁有完整的自然森林步道，慢步環島約30分", lat:38.371, lng:141.060},
-                {time:"19:00", name:"阿部蒲鉾店 本店", category:"餐廳", address:"宮城県仙台市青葉区中央2-3-18", cost:"150 圓/個", costDesc:"現炸瓢簞魚板", openHours:"9:30–18:30", remarks:"超好玩 DIY 烤魚板體驗與美味瓢簞炸！仙台駅前步行3分", lat:38.260, lng:140.881},
-                {time:"19:00", name:"牡蠣と寿司 うみのおきて 仙台朝市總本店", category:"餐廳", address:"克城縣仙台市青葉區中央4-3-1 東四市場ビル1F", cost:"2,000-4,000/人", costDesc:"海鮮壽司料理", openHours:"17:00–00:00", remarks:"朝市旁的夜晚海鮮大本營，生蠔與壽司新鮮度爆表", lat:38.259, lng:140.880},
-                {time:"19:00", name:"Zunda Saryo ずんだ茶寮（S-PAL）", category:"餐廳", address:"宮城県仙台市青葉区中央1-1-1 S-PAL", cost:"300-600/人", costDesc:"毛豆泥點心", openHours:"09:00–21:00", remarks:"仙台名物首選！必喝超濃郁毛豆泥昔與麻糬點心", lat:38.260, lng:140.881}
+                {time:"19:00", type:"group", name:"仙台駅前夜間美食巡禮", category:"餐廳", lat:38.260, lng:140.881, remarks:"晚間在仙台駅前一帶，串起三處各具特色的美食", subItems:[
+                    {name:"阿部蒲鉾店 本店", icon:"🐟", cost:"150 圓/個", remarks:"超好玩 DIY 烤魚板體驗與美味瓢簞炸！仙台駅前步行 3 分"},
+                    {name:"牡蠣と寿司 うみのおきて 仙台朝市総本店", icon:"🦪", cost:"2,000–4,000/人", remarks:"朝市旁的夜晚海鮮大本營，生蠔與壽司新鮮度爆表（17:00–00:00）"},
+                    {name:"Zunda Saryo ずんだ茶寮（S-PAL）", icon:"🍵", cost:"300–600/人", remarks:"仙台名物首選！必喝超濃郁毛豆泥昔與麻糬點心（S-PAL）"}
+                ]}
             ],
             "2026/05/24":[
                 {time:"08:00", name:"E PRONTO（仙台駅 1F）", category:"餐廳", address:"宮城県仙台市青葉区中央1-1-1 仙台駅1F", cost:"500-1,000/人", costDesc:"晨間輕食", openHours:"07:00 開放", remarks:"出發前輕鬆享用香醇咖啡與美味歐式早餐", lat:38.260, lng:140.881},
@@ -323,6 +327,7 @@
         const attractionData = [
             {
                 title: "松島",
+                photoUrl: "https://storage.googleapis.com/glide-prod.appspot.com/uploads-v2/blHpv7FOY26tzdcWdrrk/pub/imFdvPSwMpqyCc5oPu7n.jpg",
                 pikaName: "拉普拉斯 (Lapras) · 水屬性",
                 pikaImg: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/131.png",
                 bgClass: "bg-gradient-to-br from-blue-400 via-cyan-300 to-sky-500", 
@@ -334,6 +339,7 @@
             },
             {
                 title: "福浦島 (Fukuura Island)",
+                photoUrl: "https://storage.googleapis.com/glide-prod.appspot.com/uploads-v2/blHpv7FOY26tzdcWdrrk/pub/BppvDXW32PXVaLCoQD91.jpg",
                 pikaName: "呆呆獸 (Slowpoke) · 宮城觀光大使",
                 pikaImg: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/79.png",
                 bgClass: "bg-gradient-to-br from-pink-400 via-rose-300 to-purple-400",
@@ -345,6 +351,7 @@
             },
             {
                 title: "仙台朝市：仙台市民的熱情廚房",
+                photoUrl: "https://storage.googleapis.com/glide-prod.appspot.com/uploads-v2/blHpv7FOY26tzdcWdrrk/pub/tQfQzsbecxElpEOhUskF.jpg",
                 pikaName: "卡比獸 (Snorlax) · 一般屬性美食家",
                 pikaImg: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/143.png",
                 bgClass: "bg-gradient-to-br from-amber-400 via-orange-300 to-yellow-500",
@@ -356,6 +363,7 @@
             },
             {
                 title: "地底の森博物館 (Chitei no Mori Museum)",
+                photoUrl: "https://storage.googleapis.com/glide-prod.appspot.com/uploads-v2/blHpv7FOY26tzdcWdrrk/pub/OLovtaCOw0UFyjT7wmoF.jpg",
                 pikaName: "寶寶暴龍 (Tyrunt) · 岩石/龍屬性/化石",
                 pikaImg: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/696.png",
                 bgClass: "bg-gradient-to-br from-stone-400 via-orange-300 to-amber-700",
@@ -367,6 +375,7 @@
             },
             {
                 title: "瑞鳳殿 (Zuihoden Mausoleum)",
+                photoUrl: "https://storage.googleapis.com/glide-prod.appspot.com/uploads-v2/blHpv7FOY26tzdcWdrrk/pub/5cPNKuqQZuVdo99pqKXN.jpg",
                 pikaName: "燭光靈 (Litwick) · 幽靈/火屬性廟宇",
                 pikaImg: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/607.png",
                 bgClass: "bg-gradient-to-br from-indigo-500 via-purple-400 to-pink-500",
@@ -378,6 +387,7 @@
             },
             {
                 title: "仙台城跡 (Aoba Castle)",
+                photoUrl: "https://storage.googleapis.com/glide-prod.appspot.com/uploads-v2/blHpv7FOY26tzdcWdrrk/pub/0pL8NDDu9icNUtBhF85c.jpg",
                 pikaName: "快龍 (Dragonite) · 龍/飛行屬性古城守護者",
                 pikaImg: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/149.png",
                 bgClass: "bg-gradient-to-br from-sky-400 via-teal-300 to-emerald-400",
@@ -389,6 +399,7 @@
             },
             {
                 title: "金蛇水神社 (Kanahebisui Shrine)",
+                photoUrl: "https://storage.googleapis.com/glide-prod.appspot.com/uploads-v2/blHpv7FOY26tzdcWdrrk/pub/AXSKHjCMwOYbvgn5uJWj.jpg",
                 pikaName: "迷你龍 (Dratini) · 龍屬性水神/金運",
                 pikaImg: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/147.png",
                 bgClass: "bg-gradient-to-br from-violet-400 via-fuchsia-300 to-yellow-300",
@@ -400,6 +411,7 @@
             },
             {
                 title: "猊鼻溪 (Geibikei Gorge)",
+                photoUrl: "https://storage.googleapis.com/glide-prod.appspot.com/uploads-v2/blHpv7FOY26tzdcWdrrk/pub/eeVWwOswr6w2s74dNETr.jpg",
                 pikaName: "烏波 (Wooper) · 水/地面屬性溪流小可愛",
                 pikaImg: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/194.png",
                 bgClass: "bg-gradient-to-br from-emerald-500 via-teal-400 to-cyan-600",
@@ -411,6 +423,7 @@
             },
             {
                 title: "定禪寺通 (Jozenji-dori Avenue)",
+                photoUrl: "https://storage.googleapis.com/glide-prod.appspot.com/uploads-v2/blHpv7FOY26tzdcWdrrk/pub/CIXTVCKR8F3w6v8hv530.jpg",
                 pikaName: "妙蛙種子 (Bulbasaur) · 草屬性森林之都",
                 pikaImg: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/1.png",
                 bgClass: "bg-gradient-to-br from-green-400 via-emerald-300 to-lime-500",
@@ -422,6 +435,7 @@
             },
             {
                 title: "AER 展望台 (AER Observation Terrace)",
+                photoUrl: "https://storage.googleapis.com/glide-prod.appspot.com/uploads-v2/blHpv7FOY26tzdcWdrrk/pub/TRuwqlAElxPmphFCr8XC.jpg",
                 pikaName: "電龍 (Ampharos) · 電屬性高空燈塔夜景",
                 pikaImg: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/181.png",
                 bgClass: "bg-gradient-to-br from-yellow-400 via-amber-400 to-slate-800",
@@ -501,11 +515,23 @@
                         container.innerHTML += `<div class="text-xs text-slate-400 italic pl-4">本日目前無安排行程。</div>`;
                     }
                     itineraries[day].forEach(p => {
-                        container.innerHTML += `
-                            <div class="bg-white p-3 rounded-xl border border-slate-100 shadow-sm flex items-center gap-3 text-sm mb-2">
-                                <span class="bg-red-50 text-red-600 text-[11px] px-1.5 py-0.5 rounded font-bold">${p.time || '—'}</span>
-                                <span class="font-black text-slate-700">${p.name}</span>
-                            </div>`;
+                        if (p.type === 'group') {
+                            container.innerHTML += `
+                                <div class="bg-white p-3 rounded-xl border border-slate-100 shadow-sm mb-2">
+                                    <div class="flex items-center gap-2 text-sm mb-1.5">
+                                        <span class="bg-red-50 text-red-600 text-[11px] px-1.5 py-0.5 rounded font-bold">${p.time || '—'}</span>
+                                        <span class="font-black text-slate-700">📍 ${p.name}</span>
+                                    </div>
+                                    <div class="pl-2 space-y-0.5">${p.subItems.map(s => `<div class="text-xs text-slate-500 font-medium">${s.icon} ${s.name}</div>`).join('')}</div>
+                                </div>`;
+                        } else {
+                            container.innerHTML += `
+                                <div class="bg-white p-3 rounded-xl border border-slate-100 shadow-sm flex items-center gap-3 text-sm mb-2">
+                                    <span class="bg-red-50 text-red-600 text-[11px] px-1.5 py-0.5 rounded font-bold">${p.time || '—'}</span>
+                                    <span class="font-black text-slate-700">${p.name}</span>
+                                    ${p.type === 'withAlt' ? `<span class="text-[10px] text-slate-400 font-medium">/ 備選: ${p.altName}</span>` : ''}
+                                </div>`;
+                        }
                     });
                 });
                 return;
@@ -518,43 +544,121 @@
             }
 
             currentItems.forEach((p, idx) => {
-                container.innerHTML += `
-                    <div class="itinerary-drag-item bg-white p-4 rounded-2xl border-2 border-slate-100 shadow-sm hover:border-yellow-300 transition-all cursor-move space-y-2" data-index="${idx}">
-                        <div class="flex justify-between items-center gap-2">
-                            <div class="flex items-center gap-2 flex-wrap cursor-pointer select-none" onclick="toggleItineraryDetails(${idx})">
-                                <span class="w-6 h-6 rounded-full bg-yellow-400 text-slate-800 font-black flex items-center justify-center text-xs shadow-sm">${idx + 1}</span>
-                                <span class="bg-red-100 text-red-700 text-[11px] px-2 py-0.5 rounded-md font-bold">${p.time || '—'}</span>
-                                <h4 class="font-black text-slate-800 tracking-wide text-base flex items-center gap-1 hover:text-amber-600">
-                                    <span>${p.name}</span>
-                                    <span id="chevron-${idx}" class="text-slate-300 text-sm transition-transform duration-200">▾</span>
-                                </h4>
+                if (p.type === 'group') {
+                    // Group card: show all sub-items
+                    container.innerHTML += `
+                        <div class="itinerary-drag-item bg-gradient-to-r from-amber-50 to-yellow-50 p-4 rounded-2xl border-2 border-amber-200 shadow-sm hover:border-yellow-400 transition-all cursor-move" data-index="${idx}">
+                            <div class="flex justify-between items-center gap-2 mb-3">
+                                <div class="flex items-center gap-2 flex-wrap">
+                                    <span class="w-6 h-6 rounded-full bg-yellow-400 text-slate-800 font-black flex items-center justify-center text-xs shadow-sm">${idx + 1}</span>
+                                    <span class="bg-red-100 text-red-700 text-[11px] px-2 py-0.5 rounded-md font-bold">${p.time || '—'}</span>
+                                    <h4 class="font-black text-slate-800 tracking-wide text-base">📍 ${p.name}</h4>
+                                </div>
+                                <button class="btn-pika text-xs py-1 px-3 shrink-0" onclick="openMap(${p.lat}, ${p.lng})">🧭 導航</button>
                             </div>
-                            <button class="btn-pika text-xs py-1 px-3 shrink-0" onclick="openMap(${p.lat}, ${p.lng})">🧭 導航</button>
-                        </div>
-                        
-                        <div id="details-${idx}" class="hidden grid grid-cols-1 md:grid-cols-2 gap-3 text-xs text-slate-600 border-t pt-3 mt-2 border-slate-100">
-                            <div>
-                                <p class="font-bold text-slate-400 mb-0.5">🏷️ 行程分類</p>
-                                <p class="text-slate-700 font-medium"><span class="bg-blue-100 text-blue-700 text-[11px] px-2 py-0.5 rounded-md font-bold">${p.category || '—'}</span></p>
+                            <div class="grid grid-cols-1 sm:grid-cols-2 gap-2">
+                                ${p.subItems.map(s => `
+                                    <div class="bg-white rounded-xl px-3 py-2.5 border border-amber-100 shadow-xs flex items-start gap-2">
+                                        <span class="text-lg leading-none mt-0.5">${s.icon}</span>
+                                        <div>
+                                            <p class="font-black text-sm text-slate-800">${s.name}</p>
+                                            <p class="text-[11px] text-slate-500 mt-0.5">${s.cost}</p>
+                                            <p class="text-[11px] text-amber-700 font-medium mt-0.5">${s.remarks}</p>
+                                        </div>
+                                    </div>`).join('')}
                             </div>
-                            <div>
-                                <p class="font-bold text-slate-400 mb-0.5">📍 詳細地址</p>
-                                <p class="text-slate-700 select-all font-medium">${p.address || '—'}</p>
+                        </div>`;
+                } else if (p.type === 'withAlt') {
+                    // Primary + Alternative card
+                    container.innerHTML += `
+                        <div class="itinerary-drag-item bg-white p-4 rounded-2xl border-2 border-slate-100 shadow-sm hover:border-yellow-300 transition-all cursor-move space-y-3" data-index="${idx}">
+                            <!-- Main choice -->
+                            <div class="flex justify-between items-center gap-2">
+                                <div class="flex items-center gap-2 flex-wrap cursor-pointer select-none" onclick="toggleItineraryDetails(${idx})">
+                                    <span class="w-6 h-6 rounded-full bg-yellow-400 text-slate-800 font-black flex items-center justify-center text-xs shadow-sm">${idx + 1}</span>
+                                    <span class="bg-red-100 text-red-700 text-[11px] px-2 py-0.5 rounded-md font-bold">${p.time || '—'}</span>
+                                    <span class="bg-emerald-100 text-emerald-700 text-[10px] px-1.5 py-0.5 rounded font-bold">⭐ 主選</span>
+                                    <h4 class="font-black text-slate-800 tracking-wide text-base flex items-center gap-1 hover:text-amber-600">
+                                        <span>${p.name}</span>
+                                        <span id="chevron-${idx}" class="text-slate-300 text-sm transition-transform duration-200">▾</span>
+                                    </h4>
+                                </div>
+                                <button class="btn-pika text-xs py-1 px-3 shrink-0" onclick="openMap(${p.lat}, ${p.lng})">🧭 導航</button>
                             </div>
-                            <div>
-                                <p class="font-bold text-slate-400 mb-0.5">⏰ 開放時間</p>
-                                <p class="text-slate-700 font-medium">${p.openHours || '—'}</p>
+                            <!-- Alt choice -->
+                            <div class="flex items-center gap-2 bg-slate-50 rounded-xl px-3 py-2 border border-dashed border-slate-200">
+                                <span class="bg-slate-200 text-slate-600 text-[10px] px-1.5 py-0.5 rounded font-bold shrink-0">備選</span>
+                                <span class="text-sm font-bold text-slate-600">${p.altName}</span>
+                                <span class="text-xs text-slate-400 font-medium hidden sm:inline">— ${p.altRemarks}</span>
+                                <button class="btn-pika text-xs py-0.5 px-2 ml-auto shrink-0 text-[11px]" onclick="openMap(${p.altLat}, ${p.altLng})">🧭</button>
                             </div>
-                            <div>
-                                <p class="font-bold text-slate-400 mb-0.5">💰 預估費用 & 說明</p>
-                                <p class="text-slate-700 font-medium"><span class="text-amber-600 font-bold">${p.cost || '—'}</span> <span class="text-slate-400">(${p.costDesc || '—'})</span></p>
+                            <!-- Expandable main details -->
+                            <div id="details-${idx}" class="hidden grid grid-cols-1 md:grid-cols-2 gap-3 text-xs text-slate-600 border-t pt-3 mt-2 border-slate-100">
+                                <div>
+                                    <p class="font-bold text-slate-400 mb-0.5">🏷️ 行程分類</p>
+                                    <p class="text-slate-700 font-medium"><span class="bg-blue-100 text-blue-700 text-[11px] px-2 py-0.5 rounded-md font-bold">${p.category || '—'}</span></p>
+                                </div>
+                                <div>
+                                    <p class="font-bold text-slate-400 mb-0.5">📍 詳細地址</p>
+                                    <p class="text-slate-700 select-all font-medium">${p.address || '—'}</p>
+                                </div>
+                                <div>
+                                    <p class="font-bold text-slate-400 mb-0.5">⏰ 開放時間</p>
+                                    <p class="text-slate-700 font-medium">${p.openHours || '—'}</p>
+                                </div>
+                                <div>
+                                    <p class="font-bold text-slate-400 mb-0.5">💰 預估費用</p>
+                                    <p class="text-slate-700 font-medium"><span class="text-amber-600 font-bold">${p.cost || '—'}</span> <span class="text-slate-400">(${p.costDesc || '—'})</span></p>
+                                </div>
+                                <div class="md:col-span-2">
+                                    <p class="font-bold text-slate-400 mb-0.5">💡 備註與貼心提醒</p>
+                                    <p class="text-slate-700 font-bold bg-yellow-50 p-1.5 rounded-lg border border-yellow-100">${p.remarks || '—'}</p>
+                                </div>
+                                <div class="md:col-span-2 bg-slate-50 p-2 rounded-lg border border-dashed border-slate-200 space-y-1">
+                                    <p class="font-bold text-slate-400 mb-0.5 text-[11px]">🔄 備選詳情：${p.altName}</p>
+                                    <p class="text-[11px] text-slate-600">${p.altRemarks} ｜ ${p.altCost}（${p.altCostDesc}）｜ ${p.altOpenHours}</p>
+                                </div>
                             </div>
-                            <div class="md:col-span-2">
-                                <p class="font-bold text-slate-400 mb-0.5">💡 備註與貼心提醒</p>
-                                <p class="text-slate-700 font-bold bg-yellow-50 p-1.5 rounded-lg border border-yellow-100">${p.remarks || '—'}</p>
+                        </div>`;
+                } else {
+                    // Normal entry
+                    container.innerHTML += `
+                        <div class="itinerary-drag-item bg-white p-4 rounded-2xl border-2 border-slate-100 shadow-sm hover:border-yellow-300 transition-all cursor-move space-y-2" data-index="${idx}">
+                            <div class="flex justify-between items-center gap-2">
+                                <div class="flex items-center gap-2 flex-wrap cursor-pointer select-none" onclick="toggleItineraryDetails(${idx})">
+                                    <span class="w-6 h-6 rounded-full bg-yellow-400 text-slate-800 font-black flex items-center justify-center text-xs shadow-sm">${idx + 1}</span>
+                                    <span class="bg-red-100 text-red-700 text-[11px] px-2 py-0.5 rounded-md font-bold">${p.time || '—'}</span>
+                                    <h4 class="font-black text-slate-800 tracking-wide text-base flex items-center gap-1 hover:text-amber-600">
+                                        <span>${p.name}</span>
+                                        <span id="chevron-${idx}" class="text-slate-300 text-sm transition-transform duration-200">▾</span>
+                                    </h4>
+                                </div>
+                                <button class="btn-pika text-xs py-1 px-3 shrink-0" onclick="openMap(${p.lat}, ${p.lng})">🧭 導航</button>
                             </div>
-                        </div>
-                    </div>`;
+                            <div id="details-${idx}" class="hidden grid grid-cols-1 md:grid-cols-2 gap-3 text-xs text-slate-600 border-t pt-3 mt-2 border-slate-100">
+                                <div>
+                                    <p class="font-bold text-slate-400 mb-0.5">🏷️ 行程分類</p>
+                                    <p class="text-slate-700 font-medium"><span class="bg-blue-100 text-blue-700 text-[11px] px-2 py-0.5 rounded-md font-bold">${p.category || '—'}</span></p>
+                                </div>
+                                <div>
+                                    <p class="font-bold text-slate-400 mb-0.5">📍 詳細地址</p>
+                                    <p class="text-slate-700 select-all font-medium">${p.address || '—'}</p>
+                                </div>
+                                <div>
+                                    <p class="font-bold text-slate-400 mb-0.5">⏰ 開放時間</p>
+                                    <p class="text-slate-700 font-medium">${p.openHours || '—'}</p>
+                                </div>
+                                <div>
+                                    <p class="font-bold text-slate-400 mb-0.5">💰 預估費用 & 說明</p>
+                                    <p class="text-slate-700 font-medium"><span class="text-amber-600 font-bold">${p.cost || '—'}</span> <span class="text-slate-400">(${p.costDesc || '—'})</span></p>
+                                </div>
+                                <div class="md:col-span-2">
+                                    <p class="font-bold text-slate-400 mb-0.5">💡 備註與貼心提醒</p>
+                                    <p class="text-slate-700 font-bold bg-yellow-50 p-1.5 rounded-lg border border-yellow-100">${p.remarks || '—'}</p>
+                                </div>
+                            </div>
+                        </div>`;
+                }
             });
 
             if (typeof Sortable !== 'undefined') {
@@ -746,16 +850,27 @@
             grid.innerHTML = "";
             attractionData.forEach(item => {
                 grid.innerHTML += `
-                    <div class="card flex flex-col justify-between overflow-hidden border-4 ${item.cardClass} shadow-lg hover:scale-[1.02] transition-all duration-300">
+                    <div class="card flex flex-col justify-between overflow-hidden border-4 ${item.cardClass} shadow-lg hover:scale-[1.02] transition-all duration-300 group">
                         <div>
-                            <div class="relative w-full h-48 rounded-2xl overflow-hidden flex items-center justify-center p-4 shadow-inner ${item.bgClass}">
-                                <div class="absolute inset-0 opacity-20 text-md p-2 pointer-events-none select-none tracking-widest">${item.bgDecor} ${item.bgDecor}</div>
-                                <img src="${item.pikaImg}" alt="${item.title}" class="w-36 h-36 object-contain z-10 animate-pika-bounce" />
-                                <div class="absolute bottom-2 right-3 bg-slate-900/80 text-yellow-300 text-[11px] px-2.5 py-1 rounded-full font-black tracking-wide border border-yellow-400/50 backdrop-blur-xs">
+                            <!-- Photo + Pokémon overlay -->
+                            <div class="relative w-full h-52 rounded-2xl overflow-hidden mb-4">
+                                <img src="${item.photoUrl}" alt="${item.title}" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'" />
+                                <!-- fallback gradient bg -->
+                                <div style="display:none" class="absolute inset-0 flex items-center justify-center ${item.bgClass}">
+                                    <span class="text-4xl opacity-30">${item.bgDecor}</span>
+                                </div>
+                                <!-- dark gradient overlay for text readability -->
+                                <div class="absolute inset-0 bg-gradient-to-t from-black/65 via-black/10 to-transparent pointer-events-none"></div>
+                                <!-- Pokémon overlay – smaller, sits bottom-right -->
+                                <img src="${item.pikaImg}" alt="${item.pikaName}" 
+                                     class="absolute bottom-1 right-2 w-20 h-20 object-contain drop-shadow-xl z-10 animate-pika-bounce 
+                                            transition-transform duration-300 group-hover:scale-110" />
+                                <!-- Pokémon name tag bottom-left -->
+                                <div class="absolute bottom-2 left-3 bg-slate-900/80 text-yellow-300 text-[11px] px-2.5 py-1 rounded-full font-black tracking-wide border border-yellow-400/50 backdrop-blur-sm z-10">
                                     ${item.pikaName}
                                 </div>
                             </div>
-                            <h3 class="text-xl font-black text-slate-900 mt-4 mb-2 flex items-center gap-1">🌟 ${item.title}</h3>
+                            <h3 class="text-xl font-black text-slate-900 mb-2 flex items-center gap-1">🌟 ${item.title}</h3>
                             <p class="text-sm text-slate-800 font-medium leading-relaxed mb-4">${item.desc}</p>
                             
                             <div class="bg-white/70 backdrop-blur-xs p-4 rounded-xl border border-white/60 mb-3 text-xs text-slate-800 space-y-2 shadow-sm">
