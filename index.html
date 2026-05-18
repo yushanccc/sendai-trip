@@ -115,9 +115,80 @@
             color: #64748b;
             font-weight: 900;
         }
-    </style>
+    
+.detail-note{
+    color:#64748b;
+    font-size:11px;
+}
+.transport-chip{
+    background:#f8fafc;
+    border:1px solid #e2e8f0;
+    color:#334155;
+    padding:5px 10px;
+    border-radius:999px;
+    font-size:11px;
+    font-weight:700;
+}
+
+
+
+.copyable, .copyable *{
+    user-select:text !important;
+    -webkit-user-select:text !important;
+}
+.drag-handle{
+    cursor:grab;
+    user-select:none !important;
+}
+.route-row{
+    justify-content:flex-start !important;
+    text-align:left;
+    padding-left:4px;
+}
+.route-chip{
+    background:#f8fafc;
+    border:1px solid #e2e8f0;
+    color:#334155;
+    padding:5px 10px;
+    border-radius:999px;
+    font-size:11px;
+    font-weight:800;
+    display:inline-flex;
+    align-items:center;
+    gap:4px;
+}
+
+
+.weather-mini-strip{
+    display:flex;
+    flex-wrap:nowrap;
+    gap:6px;
+    overflow-x:auto;
+    -webkit-overflow-scrolling:touch;
+    scrollbar-width:none;
+    max-width:100%;
+}
+.weather-mini-strip::-webkit-scrollbar{display:none;}
+.weather-mini-pill{
+    flex:0 0 auto;
+    background:#f0f9ff;
+    border:1px solid #bae6fd;
+    color:#334155;
+    border-radius:999px;
+    padding:5px 9px;
+    font-size:11px;
+    font-weight:800;
+    white-space:nowrap;
+}
+@media (max-width:767px){
+    #weatherWidget{
+        max-width:100%;
+    }
+}
+
+</style>
 </head>
-<body class="text-slate-800 pb-12">
+<body class="text-slate-800 pb-12 copyable">
     <div class="max-w-6xl mx-auto p-4 space-y-6">
         
         <div class="card relative overflow-hidden bg-gradient-to-r from-amber-100 via-yellow-50 to-orange-100 border-4 border-yellow-400 flex flex-col md:flex-row justify-between items-center p-6 gap-6 shadow-lg">
@@ -143,40 +214,37 @@
                 </div>
             </div>
             
-            <div class="flex gap-4 bg-white/90 backdrop-blur-sm px-5 py-3 rounded-2xl border-2 border-yellow-300 text-center shadow-md z-10 shrink-0">
-                <div>
-                    <p class="text-xs text-slate-400 font-bold">💰 預算總計</p>
-                    <p class="text-xl font-black text-amber-600 animate-pulse" id="globalWidgetExpense">¥0</p>
+            <div class="z-10 shrink-0 w-full md:w-auto space-y-2">
+                <div class="flex gap-4 bg-white/90 backdrop-blur-sm px-5 py-3 rounded-2xl border-2 border-yellow-300 text-center shadow-md justify-center">
+                    <div>
+                        <p class="text-xs text-slate-400 font-bold">💰 預算總計</p>
+                        <p class="text-xl font-black text-amber-600 animate-pulse" id="globalWidgetExpense">¥0</p>
+                    </div>
+                    <div class="border-l border-slate-200"></div>
+                    <div>
+                        <p class="text-xs text-slate-400 font-bold">📝 待辦進度</p>
+                        <p class="text-xl font-black text-slate-700" id="globalWidgetTodo">0/0</p>
+                    </div>
                 </div>
-                <div class="border-l border-slate-200"></div>
-                <div>
-                    <p class="text-xs text-slate-400 font-bold">📝 待辦進度</p>
-                    <p class="text-xl font-black text-slate-700" id="globalWidgetTodo">0/0</p>
+
+                <div id="weatherWidget" class="bg-white/90 backdrop-blur-sm px-3 py-2 rounded-2xl border-2 border-sky-200 shadow-md max-w-full md:max-w-[360px]">
+                    <div class="flex items-center gap-2">
+                        <div class="text-xs font-black text-sky-700 shrink-0">☀️ 仙台天氣</div>
+                        <div id="weatherContent" class="weather-mini-strip">
+                            <div class="weather-mini-pill">載入中...</div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
-
-        
-        <div id="weatherWidget" class="card bg-gradient-to-r from-sky-100 via-cyan-50 to-blue-100 border-2 border-sky-200">
-            <div class="flex flex-wrap items-center justify-between gap-3">
-                <div>
-                    <h2 class="text-lg font-black text-slate-800">☀️ 仙台每日天氣預報</h2>
-                    <p class="text-xs text-slate-500">自動抓取仙台近期天氣資訊</p>
-                </div>
-                <div id="weatherContent" class="flex flex-wrap gap-3 text-sm font-bold">
-                    <div class="bg-white px-4 py-2 rounded-xl border border-sky-200">載入天氣中...</div>
-                </div>
-            </div>
-        </div>
-
-
-        <div class="flex gap-2 overflow-x-auto pb-2 -mx-4 px-4 md:mx-0 md:px-0 scrollbar-none">
+<div class="flex gap-2 overflow-x-auto pb-2 -mx-4 px-4 md:mx-0 md:px-0 scrollbar-none">
             <button class="nav-tab active" onclick="switchMainTab('itinerary', this)">🗺️ 每日行程</button>
             <button class="nav-tab" onclick="switchMainTab('shopping', this)">🛍️ 購物清單</button>
             <button class="nav-tab" onclick="switchMainTab('todo', this)">📝 待辦事項</button>
             <button class="nav-tab" onclick="switchMainTab('notes', this)">📓 每日備註</button>
             <button class="nav-tab" onclick="switchMainTab('expense', this)">💰 記帳管理</button>
             <button class="nav-tab" onclick="switchMainTab('attractions', this)">🌟 景點介紹</button>
+            <button class="nav-tab" onclick="copyCurrentSectionText()">📋 複製文字</button>
         </div>
 
         <div id="section-itinerary" class="main-section space-y-4">
@@ -525,25 +593,50 @@
             }
 ];
 
+        const routeTimeOverrides = {
+            "桃園國際機場 ➔ 仙台空港 (星宇航空 JX862)|仙台空港 Access 線": "入境移動約30分鐘",
+            "仙台空港 Access 線|Almont Hotel Sendai": "車程約52分鐘",
+            "Almont Hotel Sendai|AER 展望テラス（31F）": "步行約14分鐘",
+            "AER 展望テラス（31F）|地酒和鮮 蔵の庄": "步行約10分鐘",
 
-        const dayThemes = {
-            "2026/05/21": { label:"⚡ 電系啟程日｜皮卡丘出發，從空港一路充電到仙台市區", cls:"bg-gradient-to-r from-yellow-200 via-amber-100 to-orange-100" },
-            "2026/05/22": { label:"🪨 岩石系・火系探索日｜地底之森、瑞鳳殿、青葉城歷史冒險", cls:"bg-gradient-to-r from-stone-200 via-amber-100 to-red-100" },
-            "2026/05/23": { label:"🐉 龍系／毒系＋🌊水系日｜金蛇水神社開運，松島海岸療癒", cls:"bg-gradient-to-r from-emerald-100 via-cyan-100 to-blue-100" },
-            "2026/05/24": { label:"🌿 草系溪谷日｜Pokemon Train、猊鼻溪與森林慢旅", cls:"bg-gradient-to-r from-lime-100 via-green-100 to-emerald-100" },
-            "2026/05/25": { label:"🌿 草系城市散策日｜定禪寺通綠蔭、伴手禮最後衝刺", cls:"bg-gradient-to-r from-green-100 via-yellow-100 to-amber-100" }
+            "仙台朝市エリア|ankoya (あんこや) 駅前店": "步行約6分鐘",
+            "ankoya (あんこや) 駅前店|地底の森ミュージアム": "電車約24分鐘",
+            "地底の森ミュージアム|梅の花 仙台店": "步行約14分鐘",
+            "梅の花 仙台店|瑞鳳殿": "車程約28分鐘",
+            "瑞鳳殿|仙台城跡（青葉城）": "車程約13分鐘",
+            "仙台城跡（青葉城）|仙台駅前逛街": "車程約25分鐘",
+
+            "金蛇水神社エリア|松島さかな市場 焼がきハウス": "電車約75分鐘",
+            "松島さかな市場 焼がきハウス|松島 五大堂": "步行約8分鐘",
+            "松島 五大堂|福浦島": "步行約10分鐘",
+            "福浦島|回Almont Hotel取行李 ＆ Daiwa Roynet Hotel 仙台西口PREMIER check-in": "電車約45分鐘",
+            "回Almont Hotel取行李 ＆ Daiwa Roynet Hotel 仙台西口PREMIER check-in|新飯店西口周邊逛街與美食之夜": "步行約8分鐘",
+
+            "E PRONTO（仙台駅 1F）|一ノ關駅（搭乘Pokemon Train）": "新幹線約32分鐘",
+            "一ノ關駅（搭乘Pokemon Train）|猊鼻渓 遊船": "電車約43分鐘",
+            "猊鼻渓 遊船|手打蕎麥麵（げいびレストハウス）": "步行約3分鐘",
+            "手打蕎麥麵（げいびレストハウス）|Clis Road ＋ 一番町商店街全攻略": "電車約110分鐘",
+
+            "伴手禮採買與市區漫遊|S-PAL 仙台（伴手禮一站式買齊）": "步行約8分鐘",
+            "S-PAL 仙台（伴手禮一站式買齊）|定禪寺通初夏奢華翠綠散策": "電車約10分鐘",
+            "定禪寺通初夏奢華翠綠散策|仙台空港 Access 線": "電車約35分鐘",
+            "仙台空港 Access 線|仙台空港 ➔ 桃園國際機場 (星宇航空 JX863)": "步行約8分鐘"
         };
 
-        function getTravelEstimate(prev, curr) {
-            if (!prev || !curr || !prev.lat || !prev.lng || !curr.lat || !curr.lng) return null;
+        function getRouteLabel(prev, curr) {
+            if (!prev || !curr) return null;
+            const key = `${prev.name}|${curr.name}`;
+            if (routeTimeOverrides[key]) return routeTimeOverrides[key];
+
+            if (!prev.lat || !prev.lng || !curr.lat || !curr.lng) return null;
             const R = 6371;
             const dLat = (curr.lat - prev.lat) * Math.PI / 180;
             const dLng = (curr.lng - prev.lng) * Math.PI / 180;
             const a = Math.sin(dLat/2) ** 2 + Math.cos(prev.lat*Math.PI/180) * Math.cos(curr.lat*Math.PI/180) * Math.sin(dLng/2) ** 2;
             const km = R * 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1-a));
-            let mins = Math.round(km <= 1 ? km * 14 + 5 : km * 3 + 12);
-            mins = Math.min(Math.max(mins, 5), 95);
-            return { km: km.toFixed(1), mins };
+
+            if (km <= 1.2) return `步行約${Math.max(3, Math.round(km / 4.8 * 60))}分鐘`;
+            return `車程約${Math.max(10, Math.round(km / 35 * 60))}分鐘`;
         }
 
         function openMapUrl(url) {
@@ -586,12 +679,8 @@
                     const date = day.substring(5).replace('-', '/');
                     const code = data.daily.weathercode[idx];
                     return `
-                        <div class="bg-white px-4 py-3 rounded-2xl border border-sky-200 shadow-sm min-w-[110px]">
-                            <div class="text-xs text-slate-500">${date}</div>
-                            <div class="font-black text-slate-800 mt-1">${weatherMap[code] || '🌥️ 天氣'}</div>
-                            <div class="text-xs text-slate-600 mt-1">
-                                ${Math.round(data.daily.temperature_2m_max[idx])}° / ${Math.round(data.daily.temperature_2m_min[idx])}°
-                            </div>
+                        <div class="weather-mini-pill">
+                            ${date}　${weatherMap[code] || '🌥️'}　${Math.round(data.daily.temperature_2m_max[idx])}°/${Math.round(data.daily.temperature_2m_min[idx])}°
                         </div>
                     `;
                 }).join('');
@@ -615,6 +704,27 @@
             updateGlobalWidgets();
             loadWeather();
         });
+
+
+        async function copyCurrentSectionText() {
+            const activeSection = Array.from(document.querySelectorAll('.main-section')).find(sec => !sec.classList.contains('hidden'));
+            const text = (activeSection ? activeSection.innerText : document.body.innerText)
+                .replace(/\n{3,}/g, '\n\n')
+                .trim();
+
+            try {
+                await navigator.clipboard.writeText(text);
+                alert('已複製目前分頁文字！');
+            } catch (err) {
+                const temp = document.createElement('textarea');
+                temp.value = text;
+                document.body.appendChild(temp);
+                temp.select();
+                document.execCommand('copy');
+                document.body.removeChild(temp);
+                alert('已複製目前分頁文字！');
+            }
+        }
 
         // 分頁切換系統
         function switchMainTab(tabId, el) {
@@ -677,11 +787,22 @@
         }
 
         // 行程卡片展開收合處理器
+
         function toggleDetails(element) {
             const body = element.querySelector('.pika-details-body');
-            if (body) {
-                body.classList.toggle('hidden');
-            }
+            if (!body) return;
+            const isOpening = body.classList.contains('hidden');
+            body.classList.toggle('hidden');
+            const btn = element.querySelector('.detail-toggle');
+            if (btn) btn.textContent = isOpening ? '收合' : '詳情';
+        }
+
+        function toggleSubDetails(btn) {
+            const box = btn.closest('.sub-card');
+            const body = box.querySelector('.sub-details');
+            const isOpening = body.classList.contains('hidden');
+            body.classList.toggle('hidden');
+            btn.textContent = isOpening ? '收合' : '詳情';
         }
 
         // 渲染行程列表
@@ -691,24 +812,18 @@
 
             if (itineraryMode === 'single') {
                 const dayData = itineraries[currentDay] || [];
-                const theme = dayThemes[currentDay] || { label:'⚡ 寶可夢旅程日', cls:'bg-gradient-to-r from-yellow-100 to-amber-100' };
-                const themeDiv = document.createElement('div');
-                themeDiv.className = `theme-banner mb-4 ${theme.cls}`;
-                themeDiv.innerHTML = `<div class="font-black text-slate-900">🎮 今日屬性主題</div><div class="text-sm font-bold text-slate-700 mt-1">${theme.label}</div>`;
-                container.appendChild(themeDiv);
-
-                const listWrapper = document.createElement('div');
+const listWrapper = document.createElement('div');
                 listWrapper.id = "sortableList";
                 listWrapper.className = "space-y-3";
 
                 dayData.forEach((item, index) => {
                     if (index > 0) {
                         const prev = dayData[index - 1];
-                        const estimate = getTravelEstimate(prev, item);
-                        if (estimate) {
+                        const routeLabel = getRouteLabel(prev, item);
+                        if (routeLabel) {
                             const route = document.createElement('div');
-                            route.className = "flex justify-center";
-                            route.innerHTML = `<div class="route-chip">➜ ${prev.name} → ${item.name} 約 ${estimate.mins} 分鐘</div>`;
+                            route.className = "flex route-row";
+                            route.innerHTML = `<div class="route-chip">➜ ${routeLabel}</div>`;
                             listWrapper.appendChild(route);
                         }
                     }
@@ -716,35 +831,38 @@
                 });
                 container.appendChild(listWrapper);
 
-                new Sortable(listWrapper, {
-                    animation: 150,
-                    ghostClass: 'bg-yellow-50',
-                    filter: '.route-chip',
-                    onEnd: () => {
-                        const ordered = Array.from(listWrapper.querySelectorAll('[data-item-index]'))
-                            .map(el => dayData[parseInt(el.dataset.itemIndex)]);
-                        itineraries[currentDay] = ordered;
-                        localStorage.setItem("pika_plan", JSON.stringify(itineraries));
-                        renderItinerary();
-                    }
-                });
+                if (window.matchMedia('(min-width: 768px)').matches) {
+                    new Sortable(listWrapper, {
+                        animation: 150,
+                        ghostClass: 'bg-yellow-50',
+                        handle: '.drag-handle',
+                        filter: '.route-chip',
+                        preventOnFilter: false,
+                        onEnd: () => {
+                            const ordered = Array.from(listWrapper.querySelectorAll('[data-item-index]'))
+                                .map(el => dayData[parseInt(el.dataset.itemIndex)]);
+                            itineraries[currentDay] = ordered;
+                            localStorage.setItem("pika_plan", JSON.stringify(itineraries));
+                            renderItinerary();
+                        }
+                    });
+                }
             } else {
                 datesArr.forEach(d => {
-                    const theme = dayThemes[d] || { label:'⚡ 寶可夢旅程日', cls:'bg-gradient-to-r from-yellow-100 to-amber-100' };
                     const dayHeader = document.createElement('div');
-                    dayHeader.className = `theme-banner mt-4 mb-2 ${theme.cls}`;
-                    dayHeader.innerHTML = `<div class="font-black text-slate-900">📅 ${d}</div><div class="text-sm font-bold text-slate-700 mt-1">${theme.label}</div>`;
+                    dayHeader.className = "text-md font-black text-slate-900 bg-amber-100 p-3 rounded-xl mt-4 mb-2 border-l-4 border-amber-400";
+                    dayHeader.innerHTML = `📅 ${d}`;
                     container.appendChild(dayHeader);
 
                     const dayData = itineraries[d] || [];
                     dayData.forEach((item, index) => {
                         if (index > 0) {
                             const prev = dayData[index - 1];
-                            const estimate = getTravelEstimate(prev, item);
-                            if (estimate) {
+                            const routeLabel = getRouteLabel(prev, item);
+                            if (routeLabel) {
                                 const route = document.createElement('div');
-                                route.className = "flex justify-center";
-                                route.innerHTML = `<div class="route-chip">➜ ${prev.name} → ${item.name} 約 ${estimate.mins} 分鐘</div>`;
+                                route.className = "flex route-row";
+                                route.innerHTML = `<div class="route-chip">➜ ${routeLabel}</div>`;
                                 container.appendChild(route);
                             }
                         }
@@ -757,8 +875,8 @@
         // 行程卡片 HTML DOM 生成器（依據需求確保點擊皆可展開詳細內容）
         function createItineraryCard(item, index, dateStr) {
             const cardEl = document.createElement('div');
-            cardEl.className = "bg-white border-2 border-slate-200 rounded-2xl p-4 shadow-xs hover:shadow-md transition cursor-pointer select-none group";
-            cardEl.onclick = () => toggleDetails(cardEl);
+            cardEl.className = "bg-white border-2 border-slate-200 rounded-2xl p-4 shadow-xs hover:shadow-md transition cursor-default copyable group";
+            // 改為只用「詳情」按鈕展開，避免選取文字時誤觸
             cardEl.dataset.itemIndex = index;
 
             let typeBadgeColor = "bg-slate-100 text-slate-700";
@@ -770,14 +888,14 @@
 
             let innerHTML = `
                 <div class="flex justify-between items-center flex-wrap gap-2">
-                    <div class="flex items-center gap-2 flex-wrap">
+                    <div class="flex items-center gap-2 flex-wrap"><span class="drag-handle hidden md:inline-flex text-slate-300 text-sm" title="拖曳排序">☰</span>
                         <span class="bg-amber-400 text-slate-900 font-black px-2.5 py-0.5 rounded-lg text-xs">${item.time}</span>
                         <span class="${typeBadgeColor} px-2 py-0.5 rounded-lg text-xs font-bold">${item.category}</span>
                         <h4 class="font-black text-slate-900 text-base group-hover:text-amber-600 transition-colors">${item.name}</h4>
                     </div>
                     <div class="flex items-center gap-2">
                         ${item.lat && item.lng ? `<button onclick="event.stopPropagation(); openMapLocation(${item.lat}, ${item.lng}, '${String(item.name).replace(/'/g, "\'")}')" class="btn-pika text-[11px] py-1 px-3">🗺️ 導航</button>` : ''}
-                        <span class="detail-symbol">▶</span>
+                        <button type="button" onclick="event.stopPropagation(); toggleDetails(this.closest('.group'))" class="btn-pika detail-toggle text-[11px] py-1 px-3">詳情</button>
                     </div>
                 </div>
             `;
@@ -793,10 +911,10 @@
                 `;
                 item.subItems.forEach((sub) => {
                     innerHTML += `
-                        <div class="p-3 bg-slate-50 hover:bg-yellow-50/40 rounded-xl border border-slate-100 transition" onclick="event.stopPropagation(); this.querySelector('.sub-details').classList.toggle('hidden')">
+                        <div class="sub-card p-3 bg-slate-50 hover:bg-yellow-50/40 rounded-xl border border-slate-100 transition">
                             <div class="flex justify-between items-center font-bold text-slate-800">
                                 <span>${sub.icon || '✨'} ${sub.name}</span>
-                                <span class="detail-symbol text-[10px]">▾</span>
+                                <button type="button" onclick="event.stopPropagation(); toggleSubDetails(this)" class="btn-pika text-[10px] py-1 px-2">詳情</button>
                             </div>
                             <div class="sub-details hidden mt-2 pt-2 border-t border-slate-200 text-[11px] text-slate-600 space-y-1">
                                 <div>⏰ <b>開放時間：</b> ${sub.openHours || '配合主圈或全天'}</div>
