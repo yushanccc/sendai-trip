@@ -6,7 +6,7 @@
     <title>2026初夏仙台散策 ⚡ 皮卡丘伴你同行</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://cdn.jsdelivr.net/npm/sortablejs@1.15.2/Sortable.min.js"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght=300..700&family=Noto+Sans+TC:wght=400;700;900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@300..700&family=Noto+Sans+TC:wght@400;700;900&display=swap" rel="stylesheet">
     <style>
         body {
             font-family: 'Fredoka', 'Noto Sans TC', system-ui, sans-serif;
@@ -16,7 +16,6 @@
         .pikachu-yellow { background-color: #FDD835; }
         .pikachu-red { background-color: #E53935; }
         .card {
-            background: white;
             border-radius: 24px;
             padding: 20px;
             box-shadow: 0 8px 24px rgba(253, 216, 53, 0.12);
@@ -65,7 +64,6 @@
             border-color: #E53935;
         }
         
-        /* 皮卡丘專屬動畫效果 */
         @keyframes pika-bounce {
             0%, 100% { transform: translateY(0) rotate(0deg); }
             50% { transform: translateY(-8px) rotate(3deg); }
@@ -91,7 +89,6 @@
 <body class="text-slate-800 pb-12">
     <div class="max-w-6xl mx-auto p-4 space-y-6">
         
-        <!-- 頂部精準皮卡丘主視覺列 -->
         <div class="card relative overflow-hidden bg-gradient-to-r from-amber-100 via-yellow-50 to-orange-100 border-4 border-yellow-400 flex flex-col md:flex-row justify-between items-center p-6 gap-6 shadow-lg">
             <div class="absolute top-0 left-0 w-8 h-8 bg-black transform -translate-x-4 -translate-y-4 rotate-45"></div>
             <div class="absolute top-0 right-0 w-8 h-8 bg-black transform translate-x-4 -translate-y-4 rotate-45"></div>
@@ -105,7 +102,7 @@
                         <div class="absolute bottom-0 right-1 w-4 h-4 pikachu-red rounded-full"></div>
                     </div>
                     <div class="absolute -top-2 -right-2 bg-red-500 text-white text-[10px] px-1.5 py-0.5 rounded-full font-black border border-white animate-bounce">
-                        ⚡
+                        主視覺 ⚡
                     </div>
                 </div>
                 
@@ -113,13 +110,13 @@
                     <h1 class="text-3xl md:text-4xl font-black tracking-wider flex flex-wrap items-center justify-center sm:justify-start gap-2 text-slate-900">
                         2026初夏仙台散策 <span class="text-yellow-500 animate-pika-pulse">⚡ 皮卡丘伴你同行</span>
                     </h1>
-                    <p class="text-sm font-bold text-slate-600 mt-1">✨ Pokemon × 仙台旅遊Let's GO!! ✨</p>
+                    <p class="text-sm font-bold text-slate-600 mt-1">✨ Pokémon × 仙台旅遊Let's GO! ✨</p>
                 </div>
             </div>
             
             <div class="flex gap-4 bg-white/90 backdrop-blur-sm px-5 py-3 rounded-2xl border-2 border-yellow-300 text-center shadow-md z-10 shrink-0">
                 <div>
-                    <p class="text-xs text-slate-400 font-bold">💰 花費總計</p>
+                    <p class="text-xs text-slate-400 font-bold">💰 預算總計</p>
                     <p class="text-xl font-black text-amber-600 animate-pulse" id="globalWidgetExpense">¥0</p>
                 </div>
                 <div class="border-l border-slate-200"></div>
@@ -130,7 +127,6 @@
             </div>
         </div>
 
-        <!-- 功能分頁標籤 -->
         <div class="flex gap-2 overflow-x-auto pb-2 -mx-4 px-4 md:mx-0 md:px-0 scrollbar-none">
             <button class="nav-tab active" onclick="switchMainTab('itinerary', this)">🗺️ 每日行程</button>
             <button class="nav-tab" onclick="switchMainTab('shopping', this)">🛍️ 購物清單</button>
@@ -140,9 +136,8 @@
             <button class="nav-tab" onclick="switchMainTab('attractions', this)">🌟 景點介紹</button>
         </div>
 
-        <!-- 1. 每日行程分頁 -->
         <div id="section-itinerary" class="main-section space-y-4">
-            <div class="card relative">
+            <div class="card relative bg-white border-2 border-yellow-200">
                 <div class="absolute right-4 top-4 flex items-center gap-1 bg-yellow-100 text-yellow-800 text-xs px-2 py-1 rounded-full font-bold border border-yellow-300">
                     <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/25.png" class="w-5 h-5 object-contain animate-pika-wag" alt="Pika">
                     <span>導航皮卡丘特派員</span>
@@ -158,23 +153,22 @@
                 
                 <div class="bg-amber-50/50 p-3 rounded-2xl flex items-center justify-between mb-4 border border-dashed border-amber-300">
                     <span class="text-xs font-bold text-amber-800 flex items-center gap-1">
-                        ⚡ 提示：行程卡片可以上下拖曳調整順序唷！媽媽加油！
+                        ⚡ 提示：行程卡片可以上下拖曳調整順序唷！
                     </span>
                     <button class="btn-pika text-xs py-1 px-3" onclick="openFullRoute()">🗺 一鍵導航整天路線</button>
                 </div>
-                <div id="itineraryContainer" class="space-y-3"></div>
+                <div id="itineraryContainer" class="space-y-4"></div>
             </div>
         </div>
 
-        <!-- 2. 購物清單分頁 -->
         <div id="section-shopping" class="main-section space-y-4 hidden">
-            <div class="card relative">
+            <div class="card relative bg-white border-2 border-orange-200">
                 <div class="absolute right-4 top-4 flex items-center gap-1 bg-orange-100 text-orange-800 text-xs px-2 py-1 rounded-full font-bold border border-orange-300 animate-pika-bounce">
                     <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/25.png" class="w-5 h-5 object-contain" alt="Pika">
                     <span>採購大師皮卡丘</span>
                 </div>
 
-                <h2 class="text-xl font-black mb-4 flex items-center gap-2 text-slate-800">🛍️ 我的採購清單</h2>
+                <h2 class="text-xl font-black mb-4 flex items-center gap-2 text-slate-800">🛍️ 我的敲可愛採購清單</h2>
                 <div class="flex gap-2 mb-4">
                     <input id="shopInput" type="text" class="form-input flex-1 border border-slate-300 rounded-xl px-4 focus:outline-yellow-400 text-sm" placeholder="填入想買的限定商品或伴手禮...">
                     <button class="btn-pika text-sm" onclick="addShopItem()">新增項目</button>
@@ -183,9 +177,8 @@
             </div>
         </div>
 
-        <!-- 3. 待辦事項分頁 -->
         <div id="section-todo" class="main-section space-y-4 hidden">
-            <div class="card relative">
+            <div class="card relative bg-white border-2 border-red-200">
                 <div class="absolute right-4 top-4 flex items-center gap-1 bg-red-100 text-red-800 text-xs px-2 py-1 rounded-full font-bold border border-red-300 animate-pika-bounce">
                     <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/25.png" class="w-5 h-5 object-contain animate-pulse" alt="Pika">
                     <span>打卡小助手皮卡</span>
@@ -200,9 +193,8 @@
             </div>
         </div>
 
-        <!-- 4. 每日備註分頁 -->
         <div id="section-notes" class="main-section space-y-4 hidden">
-            <div class="card relative">
+            <div class="card relative bg-white border-2 border-amber-200">
                 <div class="absolute right-4 top-4 flex items-center gap-1 bg-amber-100 text-amber-800 text-xs px-2 py-1 rounded-full font-bold border border-amber-300">
                     <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/25.png" class="w-5 h-5 object-contain animate-pika-wag" alt="Pika">
                     <span>秘密筆記皮卡</span>
@@ -222,9 +214,8 @@
             </div>
         </div>
 
-        <!-- 5. 記帳管理分頁 -->
         <div id="section-expense" class="main-section space-y-4 hidden">
-            <div class="card relative">
+            <div class="card relative bg-white border-2 border-green-200">
                 <div class="absolute right-4 top-4 flex items-center gap-1 bg-green-100 text-green-800 text-xs px-2 py-1 rounded-full font-bold border border-green-300 animate-pika-pulse">
                     <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/25.png" class="w-5 h-5 object-contain" alt="Pika">
                     <span>金幣滿滿皮卡丘</span>
@@ -267,14 +258,13 @@
             </div>
         </div>
 
-        <!-- 6. 景點介紹分頁 -->
         <div id="section-attractions" class="main-section space-y-4 hidden">
-            <div class="card bg-gradient-to-r from-yellow-100 via-amber-50 to-yellow-200 border-2 border-yellow-400 relative">
-                <div class="absolute right-4 top-4 flex items-center gap-1 bg-yellow-400 text-slate-900 text-xs px-2.5 py-1 rounded-full font-black border-2 border-slate-900 animate-pika-pulse">
+            <div class="card bg-gradient-to-r from-yellow-400 via-orange-300 to-amber-400 border-4 border-slate-800 relative shadow-xl">
+                <div class="absolute right-4 top-4 flex items-center gap-1 bg-slate-900 text-yellow-400 text-xs px-3 py-1.5 rounded-full font-black border border-yellow-400 animate-pika-pulse">
                     <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/25.png" class="w-6 h-6 object-contain" alt="Pika">
                     <span>探險隊長皮卡丘</span>
                 </div>
-                <h2 class="text-2xl font-black text-amber-950 flex items-center gap-2">🌟 仙台精選 10 大景點全攻略</h2>
+                <h2 class="text-2xl font-black text-slate-900 flex items-center gap-2">🌟 仙台 & 周邊精選 10 大景點全攻略</h2>
             </div>
             
             <div id="attractionGrid" class="grid grid-cols-1 md:grid-cols-2 gap-6"></div>
@@ -287,50 +277,68 @@
         
         let itineraries = JSON.parse(localStorage.getItem("pika_plan")) || {
             "2026/05/21":[
-                {name:"仙台空港 Access 線",lat:38.14,lng:140.92},
-                {name:"Almont Hotel Sendai",lat:38.257,lng:140.883},
-                {name:"AER 展望台",lat:38.263,lng:140.882},
-                {name:"伊達牛舌本店",lat:38.259,lng:140.882}
+                {time:"16:00", name:"仙台空港 Access 線", category:"交通", address:"宮城県名取市下増田字南原", cost:"660 圓/人", costDesc:"1F，25 分抵仙台駅", openHours:"全天配合航班", remarks:"下飛機直奔市區的最佳選擇", lat:38.14, lng:140.92},
+                {time:"16:00", name:"Almont Hotel Sendai", category:"飯店", address:"宮城県仙台市青葉区中央3-10-14", cost:"—", costDesc:"住宿自理", openHours:"24小時", remarks:"5 分到仙台駅，含大浴場放鬆必備", lat:38.257, lng:140.883},
+                {time:"18:00", name:"AER 展望テラス（31F）", category:"景點", address:"宮城県仙台市青葉区中央1-3-1 AER 31F", cost:"免費", costDesc:"自由參觀", openHours:"10:00–20:00", remarks:"2 分鐘即達，俯瞰市街全景與落日", lat:38.263, lng:140.882},
+                {time:"19:00", name:"地酒和鮮 蔵の庄", category:"餐廳", address:"宮城県仙台市青葉区中央1丁目周邊", cost:"2,500–4,000/人", costDesc:"三陸海鮮居酒屋", openHours:"17:00–23:00", remarks:"★不吃牛肉首選！宮城在地地酒與海鮮極其豐富", lat:38.259, lng:140.882},
+                {time:"19:00", name:"伊達の牛たん本舗（S-PAL）", category:"餐廳", address:"宮城県仙台市青葉区中央1-1-1 S-PAL", cost:"2,000–3,500/人", costDesc:"厚切鹽烤牛舌定食", openHours:"11:00–22:00", remarks:"備選：適合吃牛肉的同行者，車站直結 S-PAL 內", lat:38.259, lng:140.882}
             ],
             "2026/05/22":[
-                {name:"仙台朝市",lat:38.259,lng:140.880},
-                {name:"地底の森博物館",lat:38.218,lng:140.884},
-                {name:"梅の花",lat:38.261,lng:140.871},
-                {name:"瑞鳳殿",lat:38.250,lng:140.865},
-                {name:"寶可夢中心",lat:38.260,lng:140.881}
+                {time:"08:30", name:"仙台朝市", category:"景點/餐廳", address:"宮城県仙台市青葉区二日町4-7", cost:"免費", costDesc:"店家消費自理", openHours:"08:00–18:00", remarks:"體驗在地早晨活力，海鮮與水果天堂", lat:38.259, lng:140.880},
+                {time:"08:30", name:"110 coffee（朝市内）", category:"餐廳", address:"宮城県仙台市青葉区二日町4（朝市内）", cost:"—", costDesc:"咖啡消費", openHours:"8:00–12:00", remarks:"Google 4.6 高分，市場角落的隱藏咖啡店，需找一下", lat:38.259, lng:140.880},
+                {time:"08:30", name:"鮮魚店 浜伸", category:"餐廳", address:"宮城県仙台市青葉区二日町4（朝市内）", cost:"800–1,200/人", costDesc:"鮪魚刺身", openHours:"8:00–12:00", remarks:"週日公休。鮪魚刺身超讚，英語嘛通 OK", lat:38.259, lng:140.880},
+                {time:"08:30", name:"ころっけや 齋藤惣菜店", category:"餐廳", address:"宮城県仙台市青葉区二日町4（朝市内）", cost:"90 圓/個", costDesc:"現炸炸物", openHours:"8:00–12:00", remarks:"週日公休。超人氣排隊可樂餅，外酥內綿密！", lat:38.259, lng:140.880},
+                {time:"10:00", name:"ankoya (あんこや) 駅前店", category:"餐廳", address:"宮城県仙台市青葉区中央1-8-31 名掛丁センター街", cost:"—", costDesc:"精緻點心", openHours:"10:00–賣完為止", remarks:"超熱門手工正方形銅鑼燒，買來當旅途小點心", lat:38.260, lng:140.881},
+                {time:"10:30", name:"地底の森ミュージアム", category:"景點", address:"410 圓/人", costDesc:"門票費用", openHours:"9:00–16:45", remarks:"★注意週一公休！保存2萬年前冰河時期遺址。地鐵長町南駅步行 8 分", lat:38.218, lng:140.884},
+                {time:"12:30", name:"梅の花 仙台店", category:"餐廳", address:"宮城県仙台市太白区富沢3丁目", cost:"2,300–3,500/人", costDesc:"豆腐懷石套餐", openHours:"11:30–15:00", remarks:"★已訂位！高級豆腐懷石、無牛肉，訂位已特別備註『母の誕生日』", lat:38.261, lng:140.871},
+                {time:"14:30", name:"瑞鳳殿", category:"景點", address:"宮城県仙台市青葉区霊屋下23-2", cost:"570 圓/人", costDesc:"門票費用", openHours:"09:00–16:50", remarks:"伊達政宗華麗靈廟，杉木參道環境清幽，觀光巴士可達", lat:38.250, lng:140.865},
+                {time:"15:30", name:"仙台城跡（青葉城）", category:"景點", address:"宮城県仙台市青葉区天守台青葉城址", cost:"免費", costDesc:"VR體驗另計", openHours:"全天開放", remarks:"巴士可達。與經典伊達政宗騎馬銅像合影，俯瞰大仙台市景", lat:38.250, lng:140.856},
+                {time:"18:00", name:"寶可夢中心 仙台", category:"景點", address:"宮城県仙台市青葉区中央1-1-1 仙台駅 2F", cost:"免費", costDesc:"購物自理", openHours:"10:00–20:00", remarks:"仙台車站 2F 連絡通道直結，寶可夢粉衝刺點！", lat:38.260, lng:140.881}
             ],
             "2026/05/23":[
-                {name:"金蛇水神社",lat:38.106,lng:140.835},
-                {name:"松島",lat:38.371,lng:141.060}
+                {time:"09:00", name:"金蛇水神社", category:"景點", address:"宮城県岩沼市三色吉字水神7", cost:"免費", costDesc:"御守約 500–1,000", openHours:"8:30–17:00", remarks:"東北超強開運祈財聖地。岩沼駅步行10分，火車車資 320 圓", lat:38.106, lng:140.835},
+                {time:"09:00", name:"Sando Terrace", category:"餐廳", address:"宮城県岩沼市三色吉字水神7（境内）", cost:"600–1,000/人", costDesc:"和式甜點與咖啡", openHours:"9:00–16:00", remarks:"神社境內極具美感與現代化的全新休憩咖啡廳", lat:38.106, lng:140.835},
+                {time:"12:00", name:"松島さかな市場 焼がきハウス", category:"餐廳", address:"宮城県宮城郡松島町松島字普賢堂13", cost:"2,500 圓/人", costDesc:"烤牡蠣 45 分吃到飽", openHours:"11:00–15:00", remarks:"鮮美牡蠣大滿足！強烈建議預約，賣完即止，週末記得早到", lat:38.371, lng:141.060},
+                {time:"12:00", name:"さんとり茶屋 / 牡蠣屋フライ亭", category:"餐廳", address:"宮城県宮城郡松島町松島字普賢堂地内", cost:"2,000–3,000/人", costDesc:"カキ三昧セット", openHours:"11:00–15:00", remarks:"備選餐廳。可一邊享用精緻牡蠣定食、一邊俯瞰松島灣，松島海岸駅步8分", lat:38.371, lng:141.060},
+                {time:"14:00", name:"松島 五大堂", category:"景點", address:"宮城県宮城郡松島町松島字町内111", cost:"免費", costDesc:"自由參觀", openHours:"全天開放", remarks:"散步約10-15分鐘。紅漆透橋非常獨特，松島經典地標", lat:38.371, lng:141.060},
+                {time:"14:30", name:"福浦島", category:"景點", address:"宮城県宮城郡松島町松島字普賢堂", cost:"200 圓/人", costDesc:"福浦橋通行費", openHours:"8:30–17:00", remarks:"過紅色渡月橋進入，擁有完整的自然森林步道，慢步環島約30分", lat:38.371, lng:141.060},
+                {time:"19:00", name:"阿部蒲鉾店 本店", category:"餐廳", address:"宮城県仙台市青葉区中央2-3-18", cost:"150 圓/個", costDesc:"現炸瓢簞魚板", openHours:"9:30–18:30", remarks:"超好玩 DIY 烤魚板體驗與美味瓢簞炸！仙台駅前步行3分", lat:38.260, lng:140.881},
+                {time:"19:00", name:"牡蠣と寿司 うみのおきて 仙台朝市總本店", category:"餐廳", address:"克城縣仙台市青葉區中央4-3-1 東四市場ビル1F", cost:"2,000-4,000/人", costDesc:"海鮮壽司料理", openHours:"17:00–00:00", remarks:"朝市旁的夜晚海鮮大本營，生蠔與壽司新鮮度爆表", lat:38.259, lng:140.880},
+                {time:"19:00", name:"Zunda Saryo ずんだ茶寮（S-PAL）", category:"餐廳", address:"宮城県仙台市青葉区中央1-1-1 S-PAL", cost:"300-600/人", costDesc:"毛豆泥點心", openHours:"09:00–21:00", remarks:"仙台名物首選！必喝超濃郁毛豆泥昔與麻糬點心", lat:38.260, lng:140.881}
             ],
             "2026/05/24":[
-                {name:"一ノ關站",lat:38.926,lng:141.138},
-                {name:"猊鼻渓",lat:38.991,lng:141.253}
+                {time:"08:00", name:"E PRONTO（仙台駅 1F）", category:"餐廳", address:"宮城県仙台市青葉区中央1-1-1 仙台駅1F", cost:"500-1,000/人", costDesc:"晨間輕食", openHours:"07:00 開放", remarks:"出發前輕鬆享用香醇咖啡與美味歐式早餐", lat:38.260, lng:140.881},
+                {time:"10:58", name:"一ノ關駅（ポケモン Train 乗車）", category:"交通", address:"岩手県一関市山目字前田", cost:"3,020 圓/人", costDesc:"新幹線+指定席費用另計", openHours:"新幹線車次固定", remarks:"夢幻皮卡丘彩繪列車！有迎賓大娃娃與超熱鬧的舉旗歡迎儀式", lat:38.926, lng:141.138},
+                {time:"11:49", name:"猊鼻渓 舟下り（乗船所）", category:"景點", address:"岩手県一関市東山町長坂町467", cost:"1,800 圓/人", costDesc:"純手搖單槳船往返", openHours:"季節限定營業", remarks:"日本百景大峽谷，全程 90 分鐘，聽船伕高唱民謠、嘗試投擲運玉！", lat:38.991, lng:141.253},
+                {time:"13:40", name:"げいびレストハウス", category:"餐廳", address:"岩手県一関市東山町長坂町467（乗船所旁）", cost:"800–1,500/人", costDesc:"傳統蕎麥麵", openHours:"11:00–16:00", remarks:"下船後步行即達！主打岩手手打蕎麥麵與一口蕎麥麵體驗", lat:38.991, lng:141.253},
+                {time:"17:30", name:"Clis Road ＋ 一番町商店街", category:"景點", address:"宮城県仙台市青葉区一番町3丁目", cost:"免費", costDesc:"逛街採買", openHours:"各店家不同", remarks:"散步約10分鐘，有雨棚大拱頂設計，下雨也能舒舒服服逛街", lat:38.260, lng:140.875},
+                {time:"19:00", name:"旬味酒好 かん（国分町）", category:"餐廳", address:"宮城県仙台市青葉区国分町2丁目", cost:"2,500–3,500/人", costDesc:"地酒海鮮居酒屋", openHours:"18:00–23:00", remarks:"國分町的隱藏版高質感老店。專賣東北在地名酒與三陸特產下酒菜", lat:38.262, lng:140.870}
             ],
             "2026/05/25":[
-                {name:"仙台朝市",lat:38.259,lng:140.880},
-                {name:"S-PAL",lat:38.260,lng:140.881},
-                {name:"仙台空港",lat:38.140,lng:140.925}
+                {time:"08:30", name:"仙台朝市", category:"餐廳", address:"宮城県仙台市青葉区二日町4-7", cost:"800–1,500/人", costDesc:"海鮮晨食", openHours:"8:00–12:00", remarks:"週一市場火力全開！把握搭機前的最後機會來享用最新鮮的清晨海鮮", lat:38.259, lng:140.880},
+                {time:"10:00", name:"S-PAL 仙台（伴手禮採購）", category:"購物", address:"宮城県仙台市青葉区中央1-1-1", cost:"—", costDesc:"伴手禮費用", openHours:"10:00–21:00", remarks:"與車站直通！毛豆泥禮盒、萩之月、牛舌辣油在這一站式全買齊", lat:38.260, lng:140.881},
+                {time:"13:00", name:"定禅寺通", category:"景點", address:"宮城県仙台市青葉区定禅寺通", cost:"免費", costDesc:"自由慢步", openHours:"全天開放", remarks:"仙台「杜之都」的最美代名詞！在初夏翠綠的高大櫸樹隧道下漫步吸芬多精", lat:38.265, lng:140.870},
+                {time:"14:30", name:"仙台空港（JX863 離境）", category:"交通", address:"宮城県名取市下増田字南原", cost:"660 圓/人", costDesc:"Access線火車車資", openHours:"星宇 JX863 17:20起飛", remarks:"回台星宇航空班機。最晚需於 14:50 前從仙台站搭上火車（車程25分）", lat:38.14, lng:140.92}
             ]
         };
 
         let todos = JSON.parse(localStorage.getItem("pika_todo")) || [
-            { text: "確認媽媽的護照效期大於六個月", done: true },
+            { text: "確認護照效期大於六個月", done: true },
             { text: "投保旅遊平安險與不便險", done: false },
             { text: "填寫 Visit Japan Web 並截圖 QR Code", done: false }
         ];
 
         let shops = JSON.parse(localStorage.getItem("pika_shop")) || [
-            { text: "仙台寶可夢中心限定娃娃", done: false },
+            { text: "仙台寶可夢中心限定皮卡丘娃娃", done: false },
             { text: "毛豆泥麻糬禮盒", done: false },
             { text: "白謙蒲鉾店 魚板", done: false }
         ];
 
         let notes = JSON.parse(localStorage.getItem("pika_notes")) || {
             "2026/05/21": "下飛機後先去拿 Access 線車票。飯店 Check-in 之後直奔 AER 展望台看夕陽。",
-            "2026/05/22": "今天媽媽體力很讚的話，瑞鳳殿的參道可以慢慢走。下午記得提早去寶可夢中心排隊。",
-            "2026/05/23": "松島散策不搭船，主攻五大堂與觀瀾亭抹茶套餐，幫媽媽拍照要避開逆光。",
-            "2026/05/24": "猊鼻溪乘船要記得買運玉！看媽媽能不能投進洞穴裡。",
+            "2026/05/22": "今天體力很好的話，瑞鳳殿的參道可以慢慢走。下午記得提早去寶可夢中心排隊。",
+            "2026/05/23": "松島散策不搭船，主攻五大堂與觀瀾亭抹茶套餐。",
+            "2026/05/24": "猊鼻溪乘船要記得買運玉！看能不能投進洞穴裡。",
             "2026/05/25": "最後回台前的採購，S-PAL 伴手禮街一次買齊。"
         };
 
@@ -346,33 +354,30 @@
                 title: "松島",
                 pikaName: "拉普拉斯 (Lapras) · 水屬性",
                 pikaImg: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/131.png",
-                cardBg: "linear-gradient(135deg, #e0f2fe 0%, #f0f9ff 100%)",
-                cardBorder: "#bae6fd",
-                bgGradient: "linear-gradient(to bottom, #38bdf8, #0ea5e9, #0284c7)", 
+                bgClass: "bg-gradient-to-br from-blue-400 via-cyan-300 to-sky-500", 
+                cardClass: "border-blue-400 bg-blue-50/70",
                 bgDecor: "🌊 🏝️ ⛵ ☁️",
-                desc: "松島海岸不僅是地理座標，更是日本千年歷史的縮影。當您步出車站，迎面而來的是帶著鹹味的清爽海風與松樹的清香。由於您與媽媽選擇不搭船，這片區域的「陸地散策」將會非常精采。這裡的步道圍繞著灣岸建設，一側是星羅棋布的 260 餘座小島，一側是國寶級的古剎與茶室。5 月下旬，岸邊的松葉正是翠綠欲滴，陽光在平靜如鏡的海面上折射出寶石般的光澤。",
-                highlight: "• 五大堂 (Godaido)：這是松島的象徵。連結五大堂的「紅漆透橋」刻意設計了縫隙，讓人行走時低頭能見到腳底海水，寓意「修行時需屏除雜念」。媽媽體力好，走這段橋會感到趣味十足。<br>• 觀瀾亭 (Kanrantei)：曾是伊達政宗的茶室。必做體驗是帶媽媽坐進面向松島灣的塌塌米席，點一份「抹茶與毛豆泥甜點」，在微風中靜靜欣賞如畫海景，這是為媽媽慶生最優雅的時刻。<br>• 烤牡蠣體驗：松島的牡蠣舉世聞名。必做體驗是步行至附近的「牡蠣小屋」，看著碩大飽滿的牡蠣在火爐上嘶嘶作響，鮮甜香氣將成為旅行最深刻的味覺記憶。",
+                desc: "松島海岸不僅是地理座標，更是日本千年歷史的縮影。當您步出車站，迎面而來的是帶著鹹味的清爽海風與松樹的清香。不搭船，這片區域的「陸地散策」將會非常精采。這裡的步道圍繞著灣岸建設，一側是星羅棋布的 260 餘座小島，一側是國寶級的古剎與茶室。5 月下旬，岸邊的松葉正是翠綠欲滴，陽光在平靜如鏡的海面上折射出寶石般的光澤。",
+                highlight: "• 五大堂 (Godaido)：這是松島的象徵。連結五大堂的「紅漆透橋」刻意設計了縫隙，讓人行走時低頭能見到腳底海水，寓意「修行時需屏除雜念」。<br>• 觀瀾亭 (Kanrantei)：曾是伊達政宗的茶室。必做體驗是坐進面向松島灣的塌塌米席，點一份「抹茶與毛豆泥甜點」，在微風中靜靜欣賞如畫海景，優雅時刻。<br>• 烤牡蠣體驗：松島的牡蠣舉世聞名。必做體驗是步行至附近的「牡蠣小屋」，看著碩大飽滿的牡蠣在火爐上嘶嘶作響，鮮甜香氣將成為旅行最深刻的味覺記憶。",
                 info: "📍 地址：宮城縣宮城郡松島町松島町內<br>⏰ 開放時間：全天開放（五大堂至 16:00；觀瀾亭 08:30 - 17:00）<br>💰 是否收費：區域參觀免費；觀瀾亭入內 200 日圓（餐點另計）"
             },
             {
                 title: "福浦島 (Fukuura Island)",
                 pikaName: "呆呆獸 (Slowpoke) · 宮城觀光大使",
                 pikaImg: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/79.png",
-                cardBg: "linear-gradient(135deg, #fce7f3 0%, #fdf2f8 100%)",
-                cardBorder: "#fbcfe8",
-                bgGradient: "linear-gradient(to tr, #f472b6, #ec4899, #db2777)",
+                bgClass: "bg-gradient-to-br from-pink-400 via-rose-300 to-purple-400",
+                cardClass: "border-pink-400 bg-pink-50/70",
                 bgDecor: "🌉 🌸 🌿 🍥",
-                desc: "如果說松島海岸是熱鬧的舞台，那麼「福浦島」就是一座漂浮在海上的私人花園。這座島嶼透過長達 252 公尺的紅色大橋「福浦橋」與陸地相連。被譽為「相遇之橋」。特別邀請宮城縣官方在地觀光擔當「呆呆獸」與媽媽共同前行！對於體力好的媽媽來說，福浦島提供了一種完全沉浸的森林步行感受，遠離嘈雜。",
-                highlight: "• 福浦橋 (Fukuura Bridge)：這是不搭船也能近距離觀測松島灣的最佳方式。走在橋上，左右兩側完全無遮蔽，那種海天一色的開闊感非常壯觀。<br>• 見晴台 (Miharashi Pavilion)：島上有數個高低錯落的展望點。必看亮點是位於島嶼南側的見晴台，從這裡望去，可以平視松島灣最核心的島嶼群，視野完全不輸給觀光船。<br>• 環島健行：島上擁有超過 250 種植物。必做體驗是完成一圈約 40-50 分鐘的環島徒步。路徑多為修整良好的木棧道或土徑，非常適合喜歡走路、親近自然的媽媽。",
+                desc: "如果說松島海岸是熱鬧的舞台，那麼「福浦島」就是一座漂浮在海上的私人花園。這座島嶼透過長達 252 公尺的紅色大橋「福浦橋」與陸地相連。被譽為「相遇之橋」。特別邀請宮城縣官方在地觀光擔當「呆呆獸」共同前行！福浦島提供了一種完全沉浸的森林步行感受，遠離嘈雜。",
+                highlight: "• 福浦橋 (Fukuura Bridge)：這是不搭船也能近距離觀測松島灣的最佳方式。走在橋上，左右兩側完全無遮蔽，那種海天一色的開闊感非常壯觀。<br>• 見晴台 (Miharashi Pavilion)：島上有數個高低錯落的展望點。必看亮點是位於島嶼南側的見晴台，從這裡望去，可以平視松島灣最核心的島嶼群，視野完全不輸給觀光船。<br>• 環島健行：島上擁有超過 250 種植物。必做體驗是完成一圈約 40-50 分鐘的環島徒步。路徑多為修整良好的木棧道或土徑。",
                 info: "📍 地址：宮城縣宮城郡松島町松島仙隨 30-1<br>⏰ 開放時間：08:00 - 17:00 (11月至2月至 16:30)<br>💰 是否收費：200 日圓 (成人通行費)"
             },
             {
                 title: "仙台朝市：仙台市民的熱情廚房",
                 pikaName: "卡比獸 (Snorlax) · 一般屬性美食家",
                 pikaImg: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/143.png",
-                cardBg: "linear-gradient(135deg, #fef9c3 0%, #fffbeb 100%)",
-                cardBorder: "#fef08a",
-                bgGradient: "linear-gradient(to r, #eab308, #facc15, #fef08a)",
+                bgClass: "bg-gradient-to-br from-amber-400 via-orange-300 to-yellow-500",
+                cardClass: "border-amber-400 bg-amber-50/70",
                 bgDecor: "🍳 🍉 🐟 🍙",
                 desc: "仙台朝市被譽為「仙台的廚房」，是感受這座城市生命力最好的起點。早晨 8:30 踏入這條僅百公尺長的窄巷，迎接你的是嘹亮的叫賣聲與充滿活力的色彩。5 月下旬正是東北水果交替的時節，幸運的話能遇見香氣馥郁的宮城縣產草莓，或是正要上市的紅艷櫻桃。跟著愛吃的卡比獸一起出發挖掘美食吧！",
                 highlight: "• 尋找「齋藤惣菜店」：買一塊外脆內綿的現炸可樂餅，那是仙台人從小到大的記憶。<br>• 「朝市丼」落座：挑選自己最愛的超鮮魚介食材，拼成一碗世界獨一無二、料多到滿出來的海鮮慶生丼。",
@@ -382,35 +387,32 @@
                 title: "地底の森博物館 (Chitei no Mori Museum)",
                 pikaName: "寶寶暴龍 (Tyrunt) · 岩石/龍屬性/化石",
                 pikaImg: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/696.png",
-                cardBg: "linear-gradient(135deg, #f5e6d3 0%, #faf5ef 100%)",
-                cardBorder: "#e7d4bc",
-                bgGradient: "linear-gradient(to br, #a8a29e, #78716c, #57534e)",
+                bgClass: "bg-gradient-to-br from-stone-400 via-orange-300 to-amber-700",
+                cardClass: "border-orange-400 bg-orange-50/60",
                 bgDecor: "🦴 🪵 🏺 🔍",
                 desc: "這是世界上罕見的舊石器時代主題博物館，完美復原並展示了兩萬年前富澤地區的自然環境與人類活動遺跡。走入館內，宏大的地底挖掘現場將帶給您穿越時空的震撼感。搭配從地下化石中復活的可愛寶寶暴龍，最具考古及知性探索感！",
-                highlight: "• 必看亮點：現場保存極其完整的「舊石器時代森林地下遺跡」與兩萬年前古人類留下的篝火痕跡。<br>• 必做體驗：在博物館外部精心規劃的「冰河時期之森」公園慢步，這裡重建了2萬年前的古老植被，環境清幽極具知性美。",
+                highlight: "• 必看亮點：現場保存極其完整的「舊石器時代森林地下遺跡」與兩萬年前古人類留留下 的篝火痕跡。<br>• 必做體驗：在博物館外部精心規劃的「冰河時期之森」公園慢步，這裡重建了2萬年前的古老植被，環境清幽極具知性美。",
                 info: "📍 地址：宮城縣仙台市太白區長町南4-3-1<br>⏰ 開放時間：09:00 - 16:45（週一及假日翌日休館）<br>💰 是否收費：成人 460 日圓"
             },
             {
                 title: "瑞鳳殿 (Zuihoden Mausoleum)",
                 pikaName: "燭光靈 (Litwick) · 幽靈/火屬性廟宇",
                 pikaImg: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/607.png",
-                cardBg: "linear-gradient(135deg, #f3e8ff 0%, #faf5ff 100%)",
-                cardBorder: "#e9d5ff",
-                bgGradient: "linear-gradient(to b, #c084fc, #a855f7, #7e22ce)",
+                bgClass: "bg-gradient-to-br from-indigo-500 via-purple-400 to-pink-500",
+                cardClass: "border-purple-400 bg-purple-50/70",
                 bgDecor: "🏮 ⛩️ 🌲 🍂",
                 desc: "這裡是名震天下的仙台藩祖——伊達政宗卿的桃山樣式豪華靈廟。在太平洋戰爭中曾燒毀，後於1979年依原樣重建，其裝飾藝術巧奪天工，絢麗無比，是來仙台絕不可錯過的歷史地標。配搭著日式廟宇長夜燈化身的燭光靈，充滿神聖莊嚴又典雅的氛圍。",
-                highlight: "• 必看亮點：建築本體極其繁複華美、五彩繽紛的浮雕與炫目的金箔裝飾。<br>• 必做體驗：陪著媽媽踏上通往靈廟的參天杉木古道坡道緩慢向上爬，一邊吸收森林芬多精，一邊感受林間獨有的幽靜與神聖莊嚴氛圍。",
+                highlight: "• 必看亮點：建築本體極其繁複華美、五彩繽紛的浮雕與炫目的金箔裝飾。<br>• 必做體驗：踏上通往靈廟的參天杉木古道坡道緩慢向上爬，一邊吸收森林芬多精，一邊感受林間獨有的幽靜與神聖莊嚴氛圍。",
                 info: "📍 地址：宮城縣仙台市青葉區靈屋下23-2<br>⏰ 開放時間：09:00 - 16:50 (依季節微調)<br>💰 是否收費：成人 570 日圓"
             },
             {
                 title: "仙台城跡 (Aoba Castle)",
                 pikaName: "快龍 (Dragonite) · 龍/飛行屬性古城守護者",
                 pikaImg: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/149.png",
-                cardBg: "linear-gradient(135deg, #ffedd5 0%, #fff7ed 100%)",
-                cardBorder: "#fed7aa",
-                bgGradient: "linear-gradient(to tr, #fb923c, #f97316, #ea580c)",
+                bgClass: "bg-gradient-to-br from-sky-400 via-teal-300 to-emerald-400",
+                cardClass: "border-teal-400 bg-teal-50/60",
                 bgDecor: "🏯 🐎 ☁️ ⛰️",
-                desc: "又稱青葉城，為伊達家族世代居住的根據地。雖然昔日雄偉的天守閣與宮殿已不復存在，打卡拍照高聳石垣與俯瞰市中心的絕佳地理位置，依然能讓人深深感受到當年的大名威風。搭配可靠、飛天遁地的帥氣快龍，一起跟伊達政宗銅像俯瞰大好河山吧！",
+                desc: "又稱青葉城，為伊達家族世代居住的根據地。雖然昔日雄偉的天守閣與宮殿已不復存在，打卡拍照依然能讓人深深感受到當年的大名威風。搭配可靠、飛天遁地的帥氣快龍，一起跟伊達政宗銅像俯瞰大好河山吧！",
                 highlight: "• 必看亮點：全仙台最經典的地標「伊達政宗卿騎馬青銅像」，英姿颯爽。<br>• 必做體驗：站在展望台上俯瞰整個被譽為「杜之都」的仙台市景與廣瀨川。隨後到美食區買一份口感綿密冰涼的「現做毛豆泥麻糬」一同享用。",
                 info: "📍 地址：宮城縣仙台市青葉區川內1<br>⏰ 開放時間：遺址區全天開放（青葉城資料展示館 09:00 - 17:00）<br>💰 是否收費：遺址區域免費；進入資料展覽館 700 日圓"
             },
@@ -418,11 +420,10 @@
                 title: "金蛇水神社 (Kanahebisui Shrine)",
                 pikaName: "迷你龍 (Dratini) · 龍屬性水神/金運",
                 pikaImg: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/147.png",
-                cardBg: "linear-gradient(135deg, #fae8ff 0%, #fdf4ff 100%)",
-                cardBorder: "#f5d0fe",
-                bgGradient: "linear-gradient(to br, #e879f9, #d946ef, #aa336a)",
+                bgClass: "bg-gradient-to-br from-violet-400 via-fuchsia-300 to-yellow-300",
+                cardClass: "border-fuchsia-400 bg-fuchsia-50/60",
                 bgDecor: "🐍 🍇 💧 🪙",
-                desc: "自古以來便是供奉蛇型水神、祈求商賣繁盛、金運開運的日本東北超級名所。近年來因為神社境內設計極具美感且現代化的休憩設施，成為熱門打卡景點。以美麗的蛇型水神化身「迷你龍」當代表，高雅地帶領媽媽欣賞五月下旬盛開的紫藤瀑布！",
+                desc: "自古以來便是供奉蛇型水神、祈求商賣繁盛、金運開運的日本東北超級名所。近年來因為神社境內設計極具美感且現代化的休憩設施，成為熱門打卡景點。以美麗的蛇型水神化身「迷你龍」當代表，高雅地欣賞五月下旬盛開的紫藤瀑布！",
                 highlight: "• 必看亮點：5 月下旬正逢神社境內最著名的牡丹園盛開與紫藤花如瀑布般垂下的季節（初夏限定絕景）。<br>• 必做體驗：前往神社附設的現代化「Sando Terrace」咖啡廳，點一份超萌的蛇型麵包與特製咖啡，坐在大片落地窗前愜意賞花賞景。",
                 info: "📍 地址：宮城縣岩沼市三色吉字水神168<br>⏰ 開放時間：全天開放（社務所與咖啡廳空間 08:30 - 16:00）<br>💰 是否收費：境內免費；牡丹園花季入園依花況可能酌收門票"
             },
@@ -430,11 +431,10 @@
                 title: "猊鼻溪 (Geibikei Gorge)",
                 pikaName: "烏波 (Wooper) · 水/地面屬性溪流小可愛",
                 pikaImg: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/194.png",
-                cardBg: "linear-gradient(135deg, #ccfbf1 0%, #f0fdfa 100%)",
-                cardBorder: "#99f6e4",
-                bgGradient: "linear-gradient(to b, #2dd4bf, #14b8a6, #0d9488)",
+                bgClass: "bg-gradient-to-br from-emerald-500 via-teal-400 to-cyan-600",
+                cardClass: "border-emerald-400 bg-emerald-50/60",
                 bgDecor: "🛶 🧗‍♂️ 🏞️ 🟢",
-                desc: "名列日本百景之一，是由北上川支流砂鐵川侵蝕絕壁而形成的巨大峽谷。兩岸延伸達2公里的奇岩怪石與高聳絕壁非常壯麗。這裡最著名的是完全依賴人力、不用馬達的「純人工傳統搖櫓船」。讓常在溪流暢游的烏波陪媽媽在清澈無比的溪水中前行，體驗丟好運玉的樂趣！",
+                desc: "名列日本百景之一，是由北上川支流砂鐵川侵蝕絕壁而形成的巨大峽谷。兩岸延伸達2公里的奇岩怪石與高聳絕壁非常壯麗。這裡最著名的是完全依賴人力、不用馬達的「純人工傳統搖櫓船」。讓常在溪流暢游的烏波陪伴在清澈無比的溪水中前行，體驗丟好運玉的樂趣！",
                 highlight: "• 必看亮點：高達百公尺的垂直巨大絕壁景觀，以及形似龍鼻子的「大龍鼻」奇岩。<br>• 必做體驗：當船隻抵達終點停靠時，下船步行至對岸，購買刻有財、福、戀等字樣的「運玉」（幸運石），並嘗試將其精準投進崖壁的神奇洞穴中，投中願望即會成真！",
                 info: "📍 地址：岩手縣一關市東山町長坂字町467<br>⏰ 開放時間：08:30 - 16:00（船班時刻依季節略有變動）<br>💰 是否收費：往返乘船票成人約 1,800 日圓"
             },
@@ -442,23 +442,21 @@
                 title: "定禪寺通 (Jozenji-dori Avenue)",
                 pikaName: "妙蛙種子 (Bulbasaur) · 草屬性森林之都",
                 pikaImg: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/1.png",
-                cardBg: "linear-gradient(135deg, #dcfce7 0%, #f0fdf4 100%)",
-                cardBorder: "#bbf7d0",
-                bgGradient: "linear-gradient(to tl, #4ade80, #22c55e, #16a34a)",
+                bgClass: "bg-gradient-to-br from-green-400 via-emerald-300 to-lime-500",
+                cardClass: "border-green-400 bg-green-50/70",
                 bgDecor: "🌳 🌿 ☕ 🚶‍♀️",
                 desc: "定禪寺通是仙台被尊稱為「杜之都」（森林之都）最具代表性的綠色隧道街道。中央安全島被規劃成悠閒的步行者天國步道，兩側茂密的欅樹在初夏編織出綠意盎然的天然遮陽棚。與草屬性始祖妙蛙種子一起散步，感受最純淨舒服的森林芬多精吧！",
-                highlight: "• 必看亮點：夾道並排而立、多達 166 棵高大挺拔的青翠櫸木。步道中央還矗立著義大利雕刻大師所作的精緻青銅雕塑。<br>• 必做體驗：陪媽媽漫步在步道中央，累了就隨意挑選一家街邊開放式的文青咖啡座坐下，看著陽光穿透樹葉灑落的光影，感受最正宗的仙台慢活日常節奏。",
+                highlight: "• 必看亮點：夾道並排而立、多達 166 棵高大挺拔的青翠櫸木。步道中央還矗立著義大利雕刻大師所作的精緻青銅雕塑。<br>• 必做體驗：漫步在步道中央，累了就隨意挑選一家街邊開放式的文青咖啡座坐下，看著陽光穿透樹葉灑落的光影，感受最正宗的仙台慢活日常節奏。",
                 info: "📍 地址：宮城縣仙台市青葉區國分町附近街道<br>⏰ 開放時間：全天開放<br>💰 是否收費：免費自由散步"
             },
             {
                 title: "AER 展望台 (AER Observation Terrace)",
                 pikaName: "電龍 (Ampharos) · 電屬性高空燈塔夜景",
                 pikaImg: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/181.png",
-                cardBg: "linear-gradient(135deg, #fef3c7 0%, #fffbeb 100%)",
-                cardBorder: "#fde68a",
-                bgGradient: "linear-gradient(to b, #1e293b, #0f172a, #f59e0b)",
+                bgClass: "bg-gradient-to-br from-yellow-400 via-amber-400 to-slate-800",
+                cardClass: "border-yellow-400 bg-yellow-50/60",
                 bgDecor: "🌃 🚀 🚄 🌟",
-                desc: "位於仙台車站正對面的超顯目地標——AER大樓。其頂層31樓規劃了兩側露天的免費展望露台，是俯瞰整個仙台市區與追蹤新幹線進出站的最佳制高點，夜景也相當浪漫。派出能發出耀眼高空光芒的電龍當作高空瞭望台守護神，陪伴媽媽俯瞰最美麗的火車鐵道與城市夜空！",
+                desc: "位於仙台車站正對面的超顯目地標——AER大樓。其頂層31樓規劃了兩側露天的免費展望露台，是俯瞰整個仙台市區與追蹤新幹線進出站的最佳制高點，夜景也相當浪漫。派出能發出耀眼高空光芒的電龍當作高空瞭望台守護神，陪伴俯瞰最美麗的火車鐵道與城市夜空！",
                 highlight: "• 必看亮點：分別位於北側與南側、擁有不同城市風貌與山海地平線的寬廣視角。<br>• 必做體驗：站在玻璃窗前，向下俯瞰新幹線列車就像微型玩具火車一樣流暢地進出仙台站。這裡空間大、空調舒適且人潮較少，非常適合在車站周邊 S-PAL 購物完後上來放鬆歇息。",
                 info: "📍 地址：宮城縣仙台市青葉區中央1-3-1 (AER大樓31樓最高層)<br>⏰ 開放時間：10:00 - 20:00<br>💰 是否收費：完全免費開放"
             }
@@ -524,9 +522,21 @@
                     }
                     itineraries[day].forEach(p => {
                         container.innerHTML += `
-                            <div class="bg-white p-4 rounded-xl border border-slate-100 flex justify-between items-center shadow-sm">
-                                <span class="font-bold text-slate-700 text-sm">${p.name}</span>
-                                <button class="btn-pika text-xs py-1 px-3" onclick="openMap(${p.lat}, ${p.lng})">🧭 地圖導航</button>
+                            <div class="bg-white p-4 rounded-xl border border-slate-100 shadow-sm space-y-2">
+                                <div class="flex justify-between items-center border-b pb-1">
+                                    <div class="flex items-center gap-2 flex-wrap">
+                                        <span class="bg-red-50 text-red-600 text-[10px] px-1.5 py-0.5 rounded font-bold">${p.time || '—'}</span>
+                                        <span class="bg-blue-50 text-blue-600 text-[10px] px-1.5 py-0.5 rounded font-bold">${p.category || '—'}</span>
+                                        <span class="font-black text-slate-700 text-sm">${p.name}</span>
+                                    </div>
+                                    <button class="btn-pika text-[11px] py-1 px-2.5 shrink-0" onclick="openMap(${p.lat}, ${p.lng})">🧭 導航</button>
+                                </div>
+                                <div class="text-[11px] text-slate-500 space-y-1">
+                                    <p><span class="font-bold text-slate-400">📍 地址:</span> ${p.address || '—'}</p>
+                                    <p><span class="font-bold text-slate-400">⏰ 開放時間:</span> ${p.openHours || '—'}</p>
+                                    <p><span class="font-bold text-slate-400">💰 費用:</span> <span class="text-amber-600 font-bold">${p.cost || '—'}</span> (${p.costDesc || '—'})</p>
+                                    <p class="bg-yellow-50/50 p-1.5 rounded text-slate-700 font-bold border border-yellow-100/50"><span class="text-amber-700">💡 備註:</span> ${p.remarks || '—'}</p>
+                                </div>
                             </div>`;
                     });
                 });
@@ -541,12 +551,35 @@
 
             currentItems.forEach((p, idx) => {
                 container.innerHTML += `
-                    <div class="itinerary-drag-item bg-white p-4 rounded-2xl border-2 border-slate-100 flex justify-between items-center shadow-sm hover:border-yellow-300 cursor-move" data-index="${idx}">
-                        <div class="flex items-center gap-3">
-                            <div class="w-6 h-6 rounded-full bg-yellow-100 text-yellow-700 font-bold flex items-center justify-center text-xs">${idx + 1}</div>
-                            <span class="font-bold text-slate-800 tracking-wide text-sm">${p.name}</span>
+                    <div class="itinerary-drag-item bg-white p-5 rounded-2xl border-2 border-slate-100 shadow-sm hover:border-yellow-300 transition-all cursor-move space-y-3" data-index="${idx}">
+                        <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-2 border-b pb-2 border-slate-100">
+                            <div class="flex items-center gap-2 flex-wrap">
+                                <span class="w-6 h-6 rounded-full bg-yellow-400 text-slate-800 font-black flex items-center justify-center text-xs shadow-sm">${idx + 1}</span>
+                                <span class="bg-red-100 text-red-700 text-[11px] px-2 py-0.5 rounded-md font-bold">${p.time || '—'}</span>
+                                <span class="bg-blue-100 text-blue-700 text-[11px] px-2 py-0.5 rounded-md font-bold">${p.category || '—'}</span>
+                                <h4 class="font-black text-slate-800 tracking-wide text-base">${p.name}</h4>
+                            </div>
+                            <button class="btn-pika text-xs py-1 px-3 self-end sm:self-auto shrink-0" onclick="openMap(${p.lat}, ${p.lng})">🧭 地圖導航</button>
                         </div>
-                        <button class="btn-pika text-xs py-1.5 px-3" onclick="openMap(${p.lat}, ${p.lng})">🧭 地圖導航</button>
+                        
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-3 text-xs text-slate-600">
+                            <div>
+                                <p class="font-bold text-slate-400 mb-0.5">📍 詳細地址</p>
+                                <p class="text-slate-700 select-all font-medium">${p.address || '—'}</p>
+                            </div>
+                            <div>
+                                <p class="font-bold text-slate-400 mb-0.5">⏰ 開放時間</p>
+                                <p class="text-slate-700 font-medium">${p.openHours || '—'}</p>
+                            </div>
+                            <div>
+                                <p class="font-bold text-slate-400 mb-0.5">💰 預估費用 & 說明</p>
+                                <p class="text-slate-700 font-medium"><span class="text-amber-600 font-bold">${p.cost || '—'}</span> <span class="text-slate-400">(${p.costDesc || '—'})</span></p>
+                            </div>
+                            <div>
+                                <p class="font-bold text-slate-400 mb-0.5">💡 備註與貼心提醒</p>
+                                <p class="text-slate-700 font-bold bg-yellow-50 p-1.5 rounded-lg border border-yellow-100">${p.remarks || '—'}</p>
+                            </div>
+                        </div>
                     </div>`;
             });
 
@@ -585,7 +618,6 @@
             window.open(url, '_blank');
         }
 
-        // 購物功能
         function addShopItem() {
             const input = document.getElementById("shopInput");
             if(!input.value.trim()) return;
@@ -620,7 +652,6 @@
             updateGlobalWidgets();
         }
 
-        // 待辦功能
         function addTodoItem() {
             const input = document.getElementById("todoInput");
             if(!input.value.trim()) return;
@@ -655,7 +686,6 @@
             updateGlobalWidgets();
         }
 
-        // 備註功能
         function initNoteTabs() {
             const container = document.getElementById("noteDayTabs");
             container.innerHTML = "";
@@ -676,7 +706,6 @@
             alert("⚡ 皮卡丘幫你把這天的備註藏好囉！儲存成功！");
         }
 
-        // 記帳功能
         function initExpenseSelect() {
             const select = document.getElementById("expDateSelect");
             select.innerHTML = "";
@@ -738,37 +767,29 @@
             updateGlobalWidgets();
         }
 
-        // 景點介紹全彩色卡片生成功能
         function renderAttractions() {
             const grid = document.getElementById("attractionGrid");
             grid.innerHTML = "";
             attractionData.forEach(item => {
                 grid.innerHTML += `
-                    <!-- 徹底消滅白底！整張卡片注入專屬彩色背景 -->
-                    <div class="rounded-[28px] p-5 flex flex-col justify-between overflow-hidden border-2 shadow-md hover:shadow-xl transition-all duration-300 hover:scale-[1.01]" style="background: ${item.cardBg}; border-color: ${item.cardBorder}">
+                    <div class="card flex flex-col justify-between overflow-hidden border-4 ${item.cardClass} shadow-lg hover:scale-[1.02] transition-all duration-300">
                         <div>
-                            <!-- 頂部高飽和度寶可夢插畫容器 -->
-                            <div class="relative w-full h-44 rounded-2xl overflow-hidden flex items-center justify-center p-4 shadow-inner" style="background: ${item.bgGradient}">
-                                <div class="absolute inset-0 opacity-20 text-xs p-2 pointer-events-none select-none tracking-widest">${item.bgDecor} ${item.bgDecor}</div>
-                                <img src="${item.pikaImg}" alt="${item.title}" class="w-32 h-32 object-contain z-10 animate-pika-bounce" />
-                                <div class="absolute bottom-2 right-3 bg-black/50 text-white text-[10px] px-2.5 py-0.5 rounded-full font-bold backdrop-blur-md">
+                            <div class="relative w-full h-48 rounded-2xl overflow-hidden flex items-center justify-center p-4 shadow-inner ${item.bgClass}">
+                                <div class="absolute inset-0 opacity-20 text-md p-2 pointer-events-none select-none tracking-widest">${item.bgDecor} ${item.bgDecor}</div>
+                                <img src="${item.pikaImg}" alt="${item.title}" class="w-36 h-36 object-contain z-10 animate-pika-bounce" />
+                                <div class="absolute bottom-2 right-3 bg-slate-900/80 text-yellow-300 text-[11px] px-2.5 py-1 rounded-full font-black tracking-wide border border-yellow-400/50 backdrop-blur-xs">
                                     ${item.pikaName}
                                 </div>
                             </div>
-                            
-                            <!-- 景點內容與文字版面 -->
                             <h3 class="text-xl font-black text-slate-900 mt-4 mb-2 flex items-center gap-1">🌟 ${item.title}</h3>
-                            <p class="text-sm text-slate-700 font-medium leading-relaxed mb-3">${item.desc}</p>
+                            <p class="text-sm text-slate-800 font-medium leading-relaxed mb-4">${item.desc}</p>
                             
-                            <!-- 亮點區塊：維持同色系高質感半透明感 -->
-                            <div class="bg-white/50 backdrop-blur-xs p-3 rounded-xl border border-white/60 mb-3 text-xs text-slate-800 space-y-1 shadow-xs">
-                                <span class="font-black text-slate-900 block">✨ 必看與體驗亮點：</span>
-                                <div class="leading-relaxed font-medium">${item.highlight}</div>
+                            <div class="bg-white/70 backdrop-blur-xs p-4 rounded-xl border border-white/60 mb-3 text-xs text-slate-800 space-y-2 shadow-sm">
+                                <span class="font-black text-slate-900 block text-sm border-b pb-1">✨ 必看與體驗亮點：</span>
+                                <div class="leading-relaxed">${item.highlight}</div>
                             </div>
                         </div>
-                        
-                        <!-- 實用資訊欄位 -->
-                        <div class="text-[11px] text-slate-600 font-semibold border-t border-black/10 pt-2 mt-2 leading-relaxed">
+                        <div class="text-[11px] text-slate-600 border-t border-slate-900/10 pt-3 mt-2 font-bold leading-relaxed">
                             ${item.info}
                         </div>
                     </div>`;
