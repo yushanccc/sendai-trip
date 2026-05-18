@@ -110,7 +110,7 @@
                     <h1 class="text-3xl md:text-4xl font-black tracking-wider flex flex-wrap items-center justify-center sm:justify-start gap-2 text-slate-900">
                         2026初夏仙台散策 <span class="text-yellow-500 animate-pika-pulse">⚡ 皮卡丘伴你同行</span>
                     </h1>
-                    <p class="text-sm font-bold text-slate-600 mt-1">✨  Pokémon × 仙台旅遊Let's GO!  ✨</p>
+                    <p class="text-sm font-bold text-slate-600 mt-1">✨ Pokémon × 仙台旅遊Let's GO! ✨</p>
                 </div>
             </div>
             
@@ -153,7 +153,7 @@
                 
                 <div class="bg-amber-50/50 p-3 rounded-2xl flex items-center justify-between mb-4 border border-dashed border-amber-300">
                     <span class="text-xs font-bold text-amber-800 flex items-center gap-1">
-                        ⚡ 提示：行程卡片可以上下拖曳調整順序唷！
+                        ⚡ 提示：分頁模式下點擊「地名」可展開詳細內容，拖曳卡片可調整順序唷！
                     </span>
                     <button class="btn-pika text-xs py-1 px-3" onclick="openFullRoute()">🗺 一鍵導航整天路線</button>
                 </div>
@@ -311,7 +311,7 @@
                 {time:"10:58", name:"一ノ關駅（ポケモン Train 乗車）", category:"交通", address:"岩手県一関市山目字前田", cost:"3,020 圓/人", costDesc:"新幹線+指定席費用另計", openHours:"新幹線車次固定", remarks:"夢幻皮卡丘彩繪列車！有迎賓大娃娃與超熱鬧的舉旗歡迎儀式", lat:38.926, lng:141.138},
                 {time:"11:49", name:"猊鼻渓 舟下り（乗船所）", category:"景點", address:"岩手県一関市東山町長坂町467", cost:"1,800 圓/人", costDesc:"純手搖單槳船往返", openHours:"季節限定營業", remarks:"日本百景大峽谷，全程 90 分鐘，聽船伕高唱民謠、嘗試投擲運玉！", lat:38.991, lng:141.253},
                 {time:"13:40", name:"げいびレストハウス", category:"餐廳", address:"岩手県一関市東山町長坂町467（乗船所旁）", cost:"800–1,500/人", costDesc:"傳統蕎麥麵", openHours:"11:00–16:00", remarks:"下船後步行即達！主打岩手手打蕎麥麵與一口蕎麥麵體驗", lat:38.991, lng:141.253},
-                {time:"17:30", name:"Clis Road ＋ 一番町商店街", category:"景點", address:"宮城県仙台市青葉区一番町3丁目", cost:"免費", costDesc:"逛街採買", openHours:"各店家不同", remarks:"散步約10分鐘，有雨棚大拱頂設計，下雨也能舒舒服服逛街", lat:38.260, lng:140.875},
+                {time:"17:30", name:"Clis Road ＋ 一番町商店街", category:"景點", address:"宮城県仙台市青葉区一番町3丁目", cost:"免費", costDesc:"逛街採買", openHours:"各店家不同", remarks:"散步約10分鐘，有雨棚大拱頂設計，下雨也能舒creativecommons.org服服逛街", lat:38.260, lng:140.875},
                 {time:"19:00", name:"旬味酒好 かん（国分町）", category:"餐廳", address:"宮城県仙台市青葉区国分町2丁目", cost:"2,500–3,500/人", costDesc:"地酒海鮮居酒屋", openHours:"18:00–23:00", remarks:"國分町的隱藏版高質感老店。專賣東北在地名酒與三陸特產下酒菜", lat:38.262, lng:140.870}
             ],
             "2026/05/25":[
@@ -336,8 +336,8 @@
 
         let notes = JSON.parse(localStorage.getItem("pika_notes")) || {
             "2026/05/21": "下飛機後先去拿 Access 線車票。飯店 Check-in 之後直奔 AER 展望台看夕陽。",
-            "2026/05/22": "今天體力很讚的話，瑞鳳殿的參道可以慢慢走。下午記得提早去寶可夢中心排隊。",
-            "2026/05/23": "松島散策不搭船，主攻五大堂與觀瀾亭抹茶套餐，拍照要避開逆光。",
+            "2026/05/22": "今天體力很好的話，瑞鳳殿的參道可以慢慢走。下午記得提早去寶可夢中心排隊。",
+            "2026/05/23": "松島散策不搭船，主攻五大堂與觀瀾亭抹茶套餐。",
             "2026/05/24": "猊鼻溪乘船要記得買運玉！看能不能投進洞穴裡。",
             "2026/05/25": "最後回台前的採購，S-PAL 伴手禮街一次買齊。"
         };
@@ -358,7 +358,7 @@
                 cardClass: "border-blue-400 bg-blue-50/70",
                 bgDecor: "🌊 🏝️ ⛵ ☁️",
                 desc: "松島海岸不僅是地理座標，更是日本千年歷史的縮影。當您步出車站，迎面而來的是帶著鹹味的清爽海風與松樹的清香。不搭船，這片區域的「陸地散策」將會非常精采。這裡的步道圍繞著灣岸建設，一側是星羅棋布的 260 餘座小島，一側是國寶級的古剎與茶室。5 月下旬，岸邊的松葉正是翠綠欲滴，陽光在平靜如鏡的海面上折射出寶石般的光澤。",
-                highlight: "• 五大堂 (Godaido)：這是松島的象徵。連結五大堂的「紅漆透橋」刻意設計了縫隙，讓人行走時低頭能見到腳底海水，寓意「修行時需屏除雜念」。體力好，走這段橋會感到趣味十足。<br>• 觀瀾亭 (Kanrantei)：曾是伊達政宗的茶室。必做體驗是坐進面向松島灣的塌塌米席，點一份「抹茶與毛豆泥甜點」，在微風中靜靜欣賞如畫海景，最優雅的時刻。<br>• 烤牡蠣體驗：松島的牡蠣舉世聞名。必做體驗是步行至附近的「牡蠣小屋」，看著碩大飽滿的牡蠣在火爐上嘶嘶作響，鮮甜香氣將成為旅行最深刻的味覺記憶。",
+                highlight: "• 五大堂 (Godaido)：這是松島的象徵。連結五大堂的「紅漆透橋」刻意設計了縫隙，讓人行走時低頭能見到腳底海水，寓意「修行時需屏除雜念」。<br>• 觀瀾亭 (Kanrantei)：曾是伊達政宗的茶室。必做體驗是坐進面向松島灣的塌塌米席，點一份「抹茶與毛豆泥甜點」，在微風中靜靜欣賞如畫海景，優雅時刻。<br>• 烤牡蠣體驗：松島的牡蠣舉世聞名。必做體驗是步行至附近的「牡蠣小屋」，看著碩大飽滿的牡蠣在火爐上嘶嘶作響，鮮甜香氣將成為旅行最深刻的味覺記憶。",
                 info: "📍 地址：宮城縣宮城郡松島町松島町內<br>⏰ 開放時間：全天開放（五大堂至 16:00；觀瀾亭 08:30 - 17:00）<br>💰 是否收費：區域參觀免費；觀瀾亭入內 200 日圓（餐點另計）"
             },
             {
@@ -368,8 +368,8 @@
                 bgClass: "bg-gradient-to-br from-pink-400 via-rose-300 to-purple-400",
                 cardClass: "border-pink-400 bg-pink-50/70",
                 bgDecor: "🌉 🌸 🌿 🍥",
-                desc: "如果說松島海岸是熱鬧的舞台，那麼「福浦島」就是一座漂浮在海上的私人花園。這座島嶼透過長達 252 公尺的紅色大橋「福浦橋」與陸地相連。被譽為「相遇之橋」。特別邀請宮城縣官方在地觀光擔當「呆呆獸」共同前行！對於體力好的人來說，福浦島提供了一種完全沉浸的森林步行感受，遠離嘈雜。",
-                highlight: "• 福浦橋 (Fukuura Bridge)：這是不搭船也能近距離觀測松島灣的最佳方式。走在橋上，左右兩側完全無遮蔽，那種海天一色的開闊感非常壯觀。<br>• 見晴台 (Miharashi Pavilion)：島上有數個高低錯落的展望點。必看亮點是位於島嶼南側的見晴台，從這裡望去，可以平視松島灣最核心的島嶼群，視野完全不輸給觀光船。<br>• 環島健行：島上擁有超過 250 種植物。必做體驗是完成一圈約 40-50 分鐘的環島徒步。路徑多為修整良好的木棧道或土徑，非常適合喜歡走路、親近自然的人。",
+                desc: "如果說松島海岸是熱鬧的舞台，那麼「福浦島」就是一座漂浮在海上的私人花園。這座島嶼透過長達 252 公尺的紅色大橋「福浦橋」與陸地相連。被譽為「相遇之橋」。特別邀請宮城縣官方在地觀光擔當「呆呆獸」共同前行！福浦島提供了一種完全沉浸的森林步行感受，遠離嘈雜。",
+                highlight: "• 福浦橋 (Fukuura Bridge)：這是不搭船也能近距離觀測松島灣的最佳方式。走在橋上，左右兩側完全無遮蔽，那種海天一色的開闊感非常壯觀。<br>• 見晴台 (Miharashi Pavilion)：島上有數個高低錯落的展望點。必看亮點是位於島嶼南側的見晴台，從這裡望去，可以平視松島灣最核心的島嶼群，視野完全不輸給觀光船。<br>• 環島健行：島上擁有超過 250 種植物。必做體驗是完成一圈約 40-40 分鐘的環島徒步。路徑多為修整良好的木棧道或土徑。",
                 info: "📍 地址：宮城縣宮城郡松島町松島仙隨 30-1<br>⏰ 開放時間：08:00 - 17:00 (11月至2月至 16:30)<br>💰 是否收費：200 日圓 (成人通行費)"
             },
             {
@@ -434,7 +434,7 @@
                 bgClass: "bg-gradient-to-br from-emerald-500 via-teal-400 to-cyan-600",
                 cardClass: "border-emerald-400 bg-emerald-50/60",
                 bgDecor: "🛶 🧗‍♂️ 🏞️ 🟢",
-                desc: "名列日本百景之一，是由北上川支流砂鐵川侵蝕絕壁而形成的巨大峽谷。兩岸延伸達2公里的奇岩怪石與高聳絕壁非常壯麗。這裡最著名的是完全依賴人力、不用馬達的「純人工傳統搖櫓船」。讓常在溪流暢游的烏波陪在清澈無比的溪水中前行，體驗丟好運玉的樂趣！",
+                desc: "名列日本百景之一，是由北上川支流砂鐵川侵蝕絕壁而形成的巨大峽谷。兩岸延伸達2公里的奇岩怪石與高聳絕壁非常壯麗。這裡最著名的是完全依賴人力、不用馬達的「純人工傳統搖櫓船」。讓常在溪流暢游的烏波陪伴在清澈無比的溪水中前行，體驗丟好運玉的樂趣！",
                 highlight: "• 必看亮點：高達百公尺的垂直巨大絕壁景觀，以及形似龍鼻子的「大龍鼻」奇岩。<br>• 必做體驗：當船隻抵達終點停靠時，下船步行至對岸，購買刻有財、福、戀等字樣的「運玉」（幸運石），並嘗試將其精準投進崖壁的神奇洞穴中，投中願望即會成真！",
                 info: "📍 地址：岩手縣一關市東山町長坂字町467<br>⏰ 開放時間：08:30 - 16:00（船班時刻依季節略有變動）<br>💰 是否收費：往返乘船票成人約 1,800 日圓"
             },
@@ -509,6 +509,13 @@
             renderItinerary();
         }
 
+        function toggleItineraryDetails(idx) {
+            const detailsDiv = document.getElementById(`details-${idx}`);
+            if (detailsDiv) {
+                detailsDiv.classList.toggle('hidden');
+            }
+        }
+
         function renderItinerary() {
             initItineraryTabs();
             const container = document.getElementById("itineraryContainer");
@@ -522,21 +529,9 @@
                     }
                     itineraries[day].forEach(p => {
                         container.innerHTML += `
-                            <div class="bg-white p-4 rounded-xl border border-slate-100 shadow-sm space-y-2">
-                                <div class="flex justify-between items-center border-b pb-1">
-                                    <div class="flex items-center gap-2 flex-wrap">
-                                        <span class="bg-red-50 text-red-600 text-[10px] px-1.5 py-0.5 rounded font-bold">${p.time || '—'}</span>
-                                        <span class="bg-blue-50 text-blue-600 text-[10px] px-1.5 py-0.5 rounded font-bold">${p.category || '—'}</span>
-                                        <span class="font-black text-slate-700 text-sm">${p.name}</span>
-                                    </div>
-                                    <button class="btn-pika text-[11px] py-1 px-2.5 shrink-0" onclick="openMap(${p.lat}, ${p.lng})">🧭 導航</button>
-                                </div>
-                                <div class="text-[11px] text-slate-500 space-y-1">
-                                    <p><span class="font-bold text-slate-400">📍 地址:</span> ${p.address || '—'}</p>
-                                    <p><span class="font-bold text-slate-400">⏰ 開放時間:</span> ${p.openHours || '—'}</p>
-                                    <p><span class="font-bold text-slate-400">💰 費用:</span> <span class="text-amber-600 font-bold">${p.cost || '—'}</span> (${p.costDesc || '—'})</p>
-                                    <p class="bg-yellow-50/50 p-1.5 rounded text-slate-700 font-bold border border-yellow-100/50"><span class="text-amber-700">💡 備註:</span> ${p.remarks || '—'}</p>
-                                </div>
+                            <div class="bg-white p-3 rounded-xl border border-slate-100 shadow-sm flex items-center gap-3 text-sm mb-2">
+                                <span class="bg-red-50 text-red-600 text-[11px] px-1.5 py-0.5 rounded font-bold">${p.time || '—'}</span>
+                                <span class="font-black text-slate-700">${p.name}</span>
                             </div>`;
                     });
                 });
@@ -551,18 +546,24 @@
 
             currentItems.forEach((p, idx) => {
                 container.innerHTML += `
-                    <div class="itinerary-drag-item bg-white p-5 rounded-2xl border-2 border-slate-100 shadow-sm hover:border-yellow-300 transition-all cursor-move space-y-3" data-index="${idx}">
-                        <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-2 border-b pb-2 border-slate-100">
-                            <div class="flex items-center gap-2 flex-wrap">
+                    <div class="itinerary-drag-item bg-white p-4 rounded-2xl border-2 border-slate-100 shadow-sm hover:border-yellow-300 transition-all cursor-move space-y-2" data-index="${idx}">
+                        <div class="flex justify-between items-center gap-2">
+                            <div class="flex items-center gap-2 flex-wrap cursor-pointer select-none" onclick="toggleItineraryDetails(${idx})">
                                 <span class="w-6 h-6 rounded-full bg-yellow-400 text-slate-800 font-black flex items-center justify-center text-xs shadow-sm">${idx + 1}</span>
                                 <span class="bg-red-100 text-red-700 text-[11px] px-2 py-0.5 rounded-md font-bold">${p.time || '—'}</span>
-                                <span class="bg-blue-100 text-blue-700 text-[11px] px-2 py-0.5 rounded-md font-bold">${p.category || '—'}</span>
-                                <h4 class="font-black text-slate-800 tracking-wide text-base">${p.name}</h4>
+                                <h4 class="font-black text-slate-800 tracking-wide text-base flex items-center gap-1 hover:text-amber-600">
+                                    <span>${p.name}</span>
+                                    <span class="text-slate-400 text-xs font-normal"> (點擊查看詳情)</span>
+                                </h4>
                             </div>
-                            <button class="btn-pika text-xs py-1 px-3 self-end sm:self-auto shrink-0" onclick="openMap(${p.lat}, ${p.lng})">🧭 地圖導航</button>
+                            <button class="btn-pika text-xs py-1 px-3 shrink-0" onclick="openMap(${p.lat}, ${p.lng})">🧭 導航</button>
                         </div>
                         
-                        <div class="grid grid-cols-1 md:grid-cols-2 gap-3 text-xs text-slate-600">
+                        <div id="details-${idx}" class="hidden grid grid-cols-1 md:grid-cols-2 gap-3 text-xs text-slate-600 border-t pt-3 mt-2 border-slate-100">
+                            <div>
+                                <p class="font-bold text-slate-400 mb-0.5">🏷️ 行程分類</p>
+                                <p class="text-slate-700 font-medium"><span class="bg-blue-100 text-blue-700 text-[11px] px-2 py-0.5 rounded-md font-bold">${p.category || '—'}</span></p>
+                            </div>
                             <div>
                                 <p class="font-bold text-slate-400 mb-0.5">📍 詳細地址</p>
                                 <p class="text-slate-700 select-all font-medium">${p.address || '—'}</p>
@@ -575,7 +576,7 @@
                                 <p class="font-bold text-slate-400 mb-0.5">💰 預估費用 & 說明</p>
                                 <p class="text-slate-700 font-medium"><span class="text-amber-600 font-bold">${p.cost || '—'}</span> <span class="text-slate-400">(${p.costDesc || '—'})</span></p>
                             </div>
-                            <div>
+                            <div class="md:col-span-2">
                                 <p class="font-bold text-slate-400 mb-0.5">💡 備註與貼心提醒</p>
                                 <p class="text-slate-700 font-bold bg-yellow-50 p-1.5 rounded-lg border border-yellow-100">${p.remarks || '—'}</p>
                             </div>
