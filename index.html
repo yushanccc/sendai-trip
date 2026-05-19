@@ -335,7 +335,7 @@ body.font-large-mode button {
 
                 <div id="weatherWidget" class="bg-white/90 backdrop-blur-sm px-3 py-2 rounded-2xl border-2 border-sky-200 shadow-md max-w-full md:max-w-[360px]">
                     <div class="flex items-center gap-2">
-                        <div class="text-xs font-black text-sky-700 shrink-0">☀️ 仙台天氣</div>
+                        <button class="text-xs font-black text-sky-700 shrink-0" onclick="loadWeather()" title="重新整理天氣">☀️ 仙台天氣</button>
                         <div id="weatherContent" class="weather-mini-strip">
                             <div class="weather-mini-pill">載入中...</div>
                         </div>
@@ -858,46 +858,43 @@ body.font-large-mode button {
             window.open(url, '_blank');
         }
 
-        // 仙台天氣自動載入（Open-Meteo）
+        const weatherCodeMap = {
+            0:'☀️ 晴',1:'🌤️ 晴時多雲',2:'⛅ 多雲',3:'☁️ 陰',
+            45:'🌫️ 霧',48:'🌫️ 霧',
+            51:'🌦️ 毛毛雨',53:'🌦️ 毛毛雨',55:'🌦️ 毛毛雨',
+            61:'🌧️ 小雨',63:'🌧️ 雨',65:'🌧️ 大雨',
+            80:'🌦️ 陣雨',81:'🌦️ 陣雨',82:'⛈️ 強陣雨',95:'⛈️ 雷雨'
+        };
+
         async function loadWeather() {
+            const box = document.getElementById('weatherContent');
+            if (!box) return;
+            box.innerHTML = '<div class="weather-mini-pill">更新中...</div>';
             try {
-                const res = await fetch('https://api.open-meteo.com/v1/forecast?latitude=38.2682&longitude=140.8694&daily=weathercode,temperature_2m_max,temperature_2m_min&timezone=Asia%2FTokyo');
+                const url = 'https://api.open-meteo.com/v1/forecast?latitude=38.2682&longitude=140.8694&current=temperature_2m,weather_code&daily=weather_code,temperature_2m_max,temperature_2m_min&forecast_days=5&timezone=Asia%2FTokyo';
+                const res = await fetch(url, { cache: 'no-store' });
+                if (!res.ok) throw new Error('weather api failed');
                 const data = await res.json();
+                if (!data.daily || !data.daily.time) throw new Error('weather data missing');
 
-                const weatherMap = {
-                    0:'☀️ 晴天',
-                    1:'🌤️ 多雲',
-                    2:'⛅ 陰天',
-                    3:'☁️ 陰',
-                    61:'🌧️ 小雨',
-                    63:'🌧️ 雨天',
-                    45:'🌫️ 霧',
-                    51:'🌦️ 毛毛雨',
-                    53:'🌦️ 毛毛雨',
-                    55:'🌧️ 毛毛雨',
-                    65:'🌧️ 大雨',
-                    71:'🌨️ 小雪',
-                    80:'🌦️ 陣雨',
-                    81:'🌦️ 陣雨',
-                    82:'⛈️ 強陣雨'
-                };
+                const now = data.current
+                    ? `<div class="weather-mini-pill">現在 ${weatherCodeMap[data.current.weather_code] || '🌥️'} ${Math.round(data.current.temperature_2m)}°</div>`
+                    : '';
 
-                const weatherHTML = data.daily.time.slice(0,5).map((day, idx) => {
+                const daily = data.daily.time.slice(0,5).map((day, idx) => {
                     const date = day.substring(5).replace('-', '/');
-                    const code = data.daily.weathercode[idx];
-                    return `
-                        <div class="weather-mini-pill">
-                            ${date}　${weatherMap[code] || '🌥️'}　${Math.round(data.daily.temperature_2m_max[idx])}°/${Math.round(data.daily.temperature_2m_min[idx])}°
-                        </div>
-                    `;
+                    const code = data.daily.weather_code[idx];
+                    const high = Math.round(data.daily.temperature_2m_max[idx]);
+                    const low = Math.round(data.daily.temperature_2m_min[idx]);
+                    return `<div class="weather-mini-pill">${date} ${weatherCodeMap[code] || '🌥️'} ${high}°/${low}°</div>`;
                 }).join('');
 
-                document.getElementById('weatherContent').innerHTML = weatherHTML;
+                box.innerHTML = now + daily;
             } catch (e) {
-                document.getElementById('weatherContent').innerHTML =
-                    '<div class="bg-white px-4 py-2 rounded-xl border border-red-200 text-red-500">天氣資料載入失敗</div>';
+                box.innerHTML = '<button class="weather-mini-pill" onclick="loadWeather()">天氣暫時無法載入，點我重試</button>';
             }
         }
+
 
 
         window.addEventListener('DOMContentLoaded', () => {
