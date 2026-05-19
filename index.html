@@ -186,9 +186,115 @@
     }
 }
 
+
+.drag-handle{
+    min-width:32px;
+    min-height:32px;
+    align-items:center;
+    justify-content:center;
+    border-radius:999px;
+    background:#f8fafc;
+    border:1px solid #e2e8f0;
+    touch-action:none;
+}
+.sortable-chosen .drag-handle{background:#fef3c7;}
+
+
+.shopping-price-note{
+    font-size:11px;
+    color:#94a3b8;
+}
+
+
+/* 字體大小切換：手機也保持乾淨不亂版 */
+body.font-normal-mode { font-size: 16px; }
+body.font-large-mode { font-size: 18px; }
+body.font-large-mode .text-xs,
+body.font-large-mode .text-[10px],
+body.font-large-mode .text-[11px] { font-size: 0.82rem !important; }
+body.font-large-mode .text-sm { font-size: 1rem !important; }
+body.font-large-mode .text-base { font-size: 1.08rem !important; }
+body.font-large-mode .btn-pika,
+body.font-large-mode input,
+body.font-large-mode select,
+body.font-large-mode textarea,
+body.font-large-mode button {
+    min-height: 38px;
+}
+@media (max-width: 767px) {
+    body.font-large-mode { font-size: 17px; }
+    body.font-large-mode .card { padding: 16px; }
+    body.font-large-mode h1 { font-size: 1.75rem !important; line-height: 1.25 !important; }
+    body.font-large-mode h2 { font-size: 1.25rem !important; }
+    body.font-large-mode .nav-tab { padding: 9px 13px; }
+    body.font-large-mode .btn-pika { padding: 7px 12px; }
+}
+.today-highlight-card{
+    background: linear-gradient(135deg,#fff7cc,#fffef0);
+    border: 3px solid #FDD835;
+    border-radius: 24px;
+    padding: 18px;
+    box-shadow: 0 8px 24px rgba(253,216,53,.16);
+}
+.today-highlight-grid{
+    display:grid;
+    grid-template-columns: repeat(2,minmax(0,1fr));
+    gap:10px;
+}
+@media (min-width:768px){
+    .today-highlight-grid{ grid-template-columns: repeat(4,minmax(0,1fr)); }
+}
+.today-highlight-item{
+    background:white;
+    border:1px solid #fde68a;
+    border-radius:16px;
+    padding:10px 12px;
+}
+.font-toggle-wrap{
+    display:flex;
+    gap:6px;
+    background:white;
+    border:2px solid #fde68a;
+    border-radius:16px;
+    padding:4px;
+}
+.font-toggle-btn{
+    border-radius:12px;
+    padding:6px 10px;
+    font-size:12px;
+    font-weight:900;
+}
+.font-toggle-btn.active{
+    background:#FDD835;
+    box-shadow:1px 1px 0 #334155;
+}
+.todo-category-card{
+    background:#fff;
+    border:2px solid #fee2e2;
+    border-radius:20px;
+    overflow:hidden;
+}
+.todo-category-head{
+    background:#fff7ed;
+    border-bottom:1px solid #fed7aa;
+    padding:12px 14px;
+    font-weight:900;
+}
+.ntd-sub{
+    color:#64748b;
+    font-size:12px;
+    font-weight:800;
+}
+.exchange-box{
+    background:#ecfdf5;
+    border:2px solid #bbf7d0;
+    border-radius:18px;
+    padding:12px;
+}
+
 </style>
 </head>
-<body class="text-slate-800 pb-12 copyable">
+<body class="text-slate-800 pb-12 copyable font-normal-mode">
     <div class="max-w-6xl mx-auto p-4 space-y-6">
         
         <div class="card relative overflow-hidden bg-gradient-to-r from-amber-100 via-yellow-50 to-orange-100 border-4 border-yellow-400 flex flex-col md:flex-row justify-between items-center p-6 gap-6 shadow-lg">
@@ -237,7 +343,23 @@
                 </div>
             </div>
         </div>
-<div class="flex gap-2 overflow-x-auto pb-2 -mx-4 px-4 md:mx-0 md:px-0 scrollbar-none">
+
+        <div id="todayHighlight" class="today-highlight-card">
+            <div class="flex flex-wrap items-center justify-between gap-3 mb-3">
+                <div>
+                    <h2 class="text-xl font-black text-slate-900">📌 今日重點</h2>
+                    <p class="text-xs text-slate-500 font-bold">給媽媽快速看的每日摘要</p>
+                </div>
+                <div class="font-toggle-wrap">
+                    <button id="fontNormalBtn" class="font-toggle-btn active" onclick="setFontMode('normal')">一般字</button>
+                    <button id="fontLargeBtn" class="font-toggle-btn" onclick="setFontMode('large')">大字模式</button>
+                </div>
+            </div>
+            <div id="todayHighlightContent" class="today-highlight-grid"></div>
+        </div>
+
+
+        <div class="flex gap-2 overflow-x-auto pb-2 -mx-4 px-4 md:mx-0 md:px-0 scrollbar-none">
             <button class="nav-tab active" onclick="switchMainTab('itinerary', this)">🗺️ 每日行程</button>
             <button class="nav-tab" onclick="switchMainTab('shopping', this)">🛍️ 購物清單</button>
             <button class="nav-tab" onclick="switchMainTab('todo', this)">📝 待辦事項</button>
@@ -269,23 +391,29 @@
 
         <div id="section-shopping" class="main-section space-y-4 hidden">
             <div class="card relative bg-white border-2 border-orange-200">
-                <h2 class="text-xl font-black mb-4 flex items-center gap-2 text-slate-800">🛍️ 我的敲可愛採購清單</h2>
-                <div class="flex gap-2 mb-4">
-                    <input id="shopInput" type="text" class="form-input flex-1 border border-slate-300 rounded-xl px-4 focus:outline-yellow-400 text-sm" placeholder="填入想買的限定商品或伴手禮...">
+                <h2 class="text-xl font-black mb-2 flex items-center gap-2 text-slate-800">🛍️ 日本熱門購物清單</h2><p class="text-xs text-slate-500 mb-4">已按彩妝、保養、零食、仙台特色商品、保健食品、家電、調味料、日用品與其他推薦分類整理。</p>
+                <div class="grid grid-cols-1 sm:grid-cols-[180px_1fr_auto] gap-2 mb-4">
+                    <select id="shopCategorySelect" class="border border-slate-300 rounded-xl px-3 py-2 bg-white text-sm focus:outline-yellow-400"></select>
+                    <input id="shopInput" type="text" class="form-input border border-slate-300 rounded-xl px-4 py-2 focus:outline-yellow-400 text-sm" placeholder="填入想買的限定商品或伴手禮...">
                     <button class="btn-pika text-sm" onclick="addShopItem()">新增項目</button>
                 </div>
-                <div id="shopList" class="divide-y divide-slate-100 max-h-[500px] overflow-y-auto pr-2"></div>
+                <div id="shopList" class="grid grid-cols-1 md:grid-cols-2 gap-4 max-h-[620px] overflow-y-auto pr-2"></div>
             </div>
         </div>
 
         <div id="section-todo" class="main-section space-y-4 hidden">
             <div class="card relative bg-white border-2 border-red-200">
                 <h2 class="text-xl font-black mb-4 flex items-center gap-2 text-slate-800">📝 出發前/旅途中待辦事項</h2>
-                <div class="flex gap-2 mb-4">
-                    <input id="todoInput" type="text" class="form-input flex-1 border border-slate-300 rounded-xl px-4 focus:outline-yellow-400 text-sm" placeholder="例如：填寫 Visit Japan Web、護照確認...">
+                <div class="grid grid-cols-1 sm:grid-cols-[150px_1fr_auto] gap-2 mb-4">
+                    <select id="todoCategorySelect" class="border border-slate-300 rounded-xl px-3 py-2 bg-white text-sm focus:outline-yellow-400">
+                        <option value="before">出發前</option>
+                        <option value="during">旅途中</option>
+                        <option value="return">回國前</option>
+                    </select>
+                    <input id="todoInput" type="text" class="form-input border border-slate-300 rounded-xl px-4 py-2 focus:outline-yellow-400 text-sm" placeholder="例如：填寫 Visit Japan Web、護照確認...">
                     <button class="btn-pika text-sm" onclick="addTodoItem()">確認新增</button>
                 </div>
-                <div id="todoList" class="space-y-2 max-h-[500px] overflow-y-auto pr-2"></div>
+                <div id="todoList" class="grid grid-cols-1 lg:grid-cols-3 gap-4 max-h-[560px] overflow-y-auto pr-2"></div>
             </div>
         </div>
 
@@ -307,7 +435,7 @@
 
         <div id="section-expense" class="main-section space-y-4 hidden">
             <div class="card relative bg-white border-2 border-green-200">
-                <h2 class="text-xl font-black mb-4 flex items-center gap-2 text-slate-800">💰 旅程流水帳記帳簿</h2>
+                <h2 class="text-xl font-black mb-4 flex items-center gap-2 text-slate-800">💰 旅程流水帳記帳簿</h2><div class="exchange-box mb-4 text-sm font-bold text-emerald-800">💱 台幣換算：暫以 ¥1 ≈ NT$0.21 估算，實際匯率以刷卡或換匯當日為準。</div>
                 <div class="grid grid-cols-1 sm:grid-cols-3 gap-3 bg-slate-50 p-4 rounded-2xl mb-6 border border-slate-100">
                     <div>
                         <label class="block text-xs font-bold mb-1 text-slate-500">選擇消費日期</label>
@@ -337,7 +465,7 @@
                         <h3 class="font-black text-lg text-amber-900 flex items-center gap-1">⚡ 總花費統計大盤點</h3>
                         <div class="bg-white p-4 rounded-xl text-center border border-amber-200">
                             <p class="text-xs text-slate-400 font-bold tracking-wider">累計總支出</p>
-                            <p class="text-3xl font-black text-amber-600 mt-1" id="grandTotalDisplay">¥0</p>
+                            <p class="text-3xl font-black text-amber-600 mt-1" id="grandTotalDisplay">¥0</p><p class="ntd-sub mt-1" id="grandTotalTwdDisplay">約 NT$0</p>
                         </div>
                     </div>
                 </div>
@@ -354,6 +482,61 @@
     </div>
 
     <script>
+
+        const JPY_TO_TWD = 0.21;
+
+        function yenToTwd(amount) {
+            return Math.round((Number(amount) || 0) * JPY_TO_TWD);
+        }
+
+        function formatTwd(amount) {
+            return `NT$${yenToTwd(amount).toLocaleString()}`;
+        }
+
+        function setFontMode(mode) {
+            const body = document.body;
+            body.classList.toggle('font-large-mode', mode === 'large');
+            body.classList.toggle('font-normal-mode', mode !== 'large');
+            localStorage.setItem('pika_font_mode', mode);
+            document.getElementById('fontNormalBtn')?.classList.toggle('active', mode !== 'large');
+            document.getElementById('fontLargeBtn')?.classList.toggle('active', mode === 'large');
+        }
+
+        function initFontMode() {
+            setFontMode(localStorage.getItem('pika_font_mode') || 'normal');
+        }
+
+        function renderTodayHighlight() {
+            const box = document.getElementById('todayHighlightContent');
+            if (!box) return;
+
+            const dayData = itineraries[currentDay] || [];
+            const first = dayData[0];
+            const lunch = dayData.find(i => (i.time || '').startsWith('12') || (i.category || '').includes('餐廳'));
+            const dinner = dayData.find(i => (i.time || '').startsWith('18') || (i.time || '').startsWith('19'));
+            const hotel = dayData.find(i => (i.category || '').includes('飯店')) || dayData.find(i => (i.name || '').includes('Hotel'));
+            const note = notes[currentDay] || '今天照行程慢慢玩，記得補水與休息。';
+
+            box.innerHTML = `
+                <div class="today-highlight-item">
+                    <div class="text-xs text-slate-400 font-black">📅 日期</div>
+                    <div class="font-black text-slate-800 mt-1">${currentDay}</div>
+                </div>
+                <div class="today-highlight-item">
+                    <div class="text-xs text-slate-400 font-black">⏰ 出發重點</div>
+                    <div class="font-black text-slate-800 mt-1">${first ? `${first.time} ${first.name}` : '查看每日行程'}</div>
+                </div>
+                <div class="today-highlight-item">
+                    <div class="text-xs text-slate-400 font-black">🍽️ 餐食提醒</div>
+                    <div class="font-black text-slate-800 mt-1">${lunch ? `${lunch.time} ${lunch.name}` : dinner ? `${dinner.time} ${dinner.name}` : '彈性安排'}</div>
+                </div>
+                <div class="today-highlight-item">
+                    <div class="text-xs text-slate-400 font-black">🏨 住宿 / 注意</div>
+                    <div class="font-black text-slate-800 mt-1">${hotel ? hotel.name : note}</div>
+                </div>
+            `;
+        }
+
         // 日期定義
         const datesArr = ["2026/05/21", "2026/05/22", "2026/05/23", "2026/05/24", "2026/05/25"];
         
@@ -432,17 +615,41 @@
             ]
         };
 
-        let todos = JSON.parse(localStorage.getItem("pika_todo")) || [
-            { text: "確認護照效期大於六個月", done: true },
-            { text: "投保旅遊平安險與不便險", done: false },
-            { text: "填寫 Visit Japan Web 並截圖 QR Code", done: false }
-        ];
+        
+        let todos = JSON.parse(localStorage.getItem("pika_todo")) || {
+            before: [
+                { text: "確認護照效期大於六個月", done: true },
+                { text: "投保旅遊平安險與不便險", done: false },
+                { text: "填寫 Visit Japan Web 並截圖 QR Code", done: false },
+                { text: "確認星宇航空航班與行李額度", done: false },
+                { text: "準備日幣現金與信用卡", done: false }
+            ],
+            during: [
+                { text: "每天出門前確認行動電源與交通卡", done: false },
+                { text: "晚上回飯店記帳與整理購物清單", done: false },
+                { text: "確認隔天交通時間與天氣", done: false }
+            ],
+            return: [
+                { text: "確認回程 JX863 報到時間", done: false },
+                { text: "S-PAL 伴手禮最後補貨", done: false },
+                { text: "確認液體、電池與托運限制", done: false }
+            ]
+        };
+        if (Array.isArray(todos)) {
+            todos = { before: todos, during: [], return: [] };
+            localStorage.setItem("pika_todo", JSON.stringify(todos));
+        }
 
-        let shops = JSON.parse(localStorage.getItem("pika_shop")) || [
-            { text: "仙台寶可夢中心限定皮卡丘娃娃", done: false },
-            { text: "毛豆泥麻糬禮盒", done: false },
-            { text: "白謙蒲鉾店 魚板", done: false }
-        ];
+
+        
+        const defaultShopCategories = [{"category": "💄 彩妝", "image": "data:image/svg+xml;charset=UTF-8,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20width%3D%22320%22%20height%3D%22210%22%3E%0A%3Crect%20width%3D%22100%25%22%20height%3D%22100%25%22%20rx%3D%2228%22%20fill%3D%22%23fff7cc%22/%3E%0A%3Ccircle%20cx%3D%22260%22%20cy%3D%2250%22%20r%3D%2236%22%20fill%3D%22%23FDD835%22/%3E%0A%3Ctext%20x%3D%2250%25%22%20y%3D%2242%25%22%20dominant-baseline%3D%22middle%22%20text-anchor%3D%22middle%22%20font-size%3D%2258%22%3E%F0%9F%92%84%3C/text%3E%0A%3Ctext%20x%3D%2250%25%22%20y%3D%2268%25%22%20dominant-baseline%3D%22middle%22%20text-anchor%3D%22middle%22%20font-size%3D%2224%22%20font-family%3D%22Arial%22%20font-weight%3D%22700%22%20fill%3D%22%23334155%22%3E%E5%BD%A9%E5%A6%9D%3C/text%3E%0A%3C/svg%3E", "items": [{"text": "CANMAKE 棉花糖蜜粉餅", "done": false, "price": 1034}, {"text": "CEZANNE 皮脂控油妝前隔離乳", "done": false, "price": 770}, {"text": "KATE Lip Monster 口紅", "done": false, "price": 1540}, {"text": "excel 四色眼影盤", "done": false, "price": 1650}, {"text": "rom&nd 日本限定唇彩", "done": false, "price": 1320}]}, {"category": "🧴 保養", "image": "data:image/svg+xml;charset=UTF-8,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20width%3D%22320%22%20height%3D%22210%22%3E%0A%3Crect%20width%3D%22100%25%22%20height%3D%22100%25%22%20rx%3D%2228%22%20fill%3D%22%23fff7cc%22/%3E%0A%3Ccircle%20cx%3D%22260%22%20cy%3D%2250%22%20r%3D%2236%22%20fill%3D%22%23FDD835%22/%3E%0A%3Ctext%20x%3D%2250%25%22%20y%3D%2242%25%22%20dominant-baseline%3D%22middle%22%20text-anchor%3D%22middle%22%20font-size%3D%2258%22%3E%F0%9F%A7%B4%3C/text%3E%0A%3Ctext%20x%3D%2250%25%22%20y%3D%2268%25%22%20dominant-baseline%3D%22middle%22%20text-anchor%3D%22middle%22%20font-size%3D%2224%22%20font-family%3D%22Arial%22%20font-weight%3D%22700%22%20fill%3D%22%23334155%22%3E%E4%BF%9D%E9%A4%8A%3C/text%3E%0A%3C/svg%3E", "items": [{"text": "肌研 極潤化妝水", "done": false, "price": 980}, {"text": "MINON Amino Moist 面膜", "done": false, "price": 1320}, {"text": "Curel 潤浸保濕乳霜", "done": false, "price": 2750}, {"text": "suisai 酵素洗顏粉", "done": false, "price": 1980}, {"text": "AQUALABEL 金色凝膠霜", "done": false, "price": 1980}]}, {"category": "🍘 零食", "image": "data:image/svg+xml;charset=UTF-8,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20width%3D%22320%22%20height%3D%22210%22%3E%0A%3Crect%20width%3D%22100%25%22%20height%3D%22100%25%22%20rx%3D%2228%22%20fill%3D%22%23fff7cc%22/%3E%0A%3Ccircle%20cx%3D%22260%22%20cy%3D%2250%22%20r%3D%2236%22%20fill%3D%22%23FDD835%22/%3E%0A%3Ctext%20x%3D%2250%25%22%20y%3D%2242%25%22%20dominant-baseline%3D%22middle%22%20text-anchor%3D%22middle%22%20font-size%3D%2258%22%3E%F0%9F%8D%98%3C/text%3E%0A%3Ctext%20x%3D%2250%25%22%20y%3D%2268%25%22%20dominant-baseline%3D%22middle%22%20text-anchor%3D%22middle%22%20font-size%3D%2224%22%20font-family%3D%22Arial%22%20font-weight%3D%22700%22%20fill%3D%22%23334155%22%3E%E9%9B%B6%E9%A3%9F%3C/text%3E%0A%3C/svg%3E", "items": [{"text": "Calbee じゃがポックル", "done": false, "price": 1100}, {"text": "Royce 巧克力洋芋片", "done": false, "price": 864}, {"text": "KitKat 日本限定口味", "done": false, "price": 980}, {"text": "Tokyo Banana 或地方限定蛋糕", "done": false, "price": 1296}, {"text": "UHA 味覺糖 Kororo 軟糖", "done": false, "price": 180}]}, {"category": "🎁 仙台特色商品", "image": "data:image/svg+xml;charset=UTF-8,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20width%3D%22320%22%20height%3D%22210%22%3E%0A%3Crect%20width%3D%22100%25%22%20height%3D%22100%25%22%20rx%3D%2228%22%20fill%3D%22%23fff7cc%22/%3E%0A%3Ccircle%20cx%3D%22260%22%20cy%3D%2250%22%20r%3D%2236%22%20fill%3D%22%23FDD835%22/%3E%0A%3Ctext%20x%3D%2250%25%22%20y%3D%2242%25%22%20dominant-baseline%3D%22middle%22%20text-anchor%3D%22middle%22%20font-size%3D%2258%22%3E%F0%9F%8E%81%3C/text%3E%0A%3Ctext%20x%3D%2250%25%22%20y%3D%2268%25%22%20dominant-baseline%3D%22middle%22%20text-anchor%3D%22middle%22%20font-size%3D%2224%22%20font-family%3D%22Arial%22%20font-weight%3D%22700%22%20fill%3D%22%23334155%22%3E%E4%BB%99%E5%8F%B0%E7%89%B9%E8%89%B2%E5%95%86%E5%93%81%3C/text%3E%0A%3C/svg%3E", "items": [{"text": "菓匠三全 萩之月", "done": false, "price": 1500}, {"text": "毛豆泥麻糬／ずんだ餅", "done": false, "price": 900}, {"text": "白謙蒲鉾店 笹かまぼこ", "done": false, "price": 1200}, {"text": "牛舌辣油／陣中牛たん仙台ラー油", "done": false, "price": 900}, {"text": "喜久水庵 喜久福", "done": false, "price": 1200}]}, {"category": "💊 保健食品", "image": "data:image/svg+xml;charset=UTF-8,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20width%3D%22320%22%20height%3D%22210%22%3E%0A%3Crect%20width%3D%22100%25%22%20height%3D%22100%25%22%20rx%3D%2228%22%20fill%3D%22%23fff7cc%22/%3E%0A%3Ccircle%20cx%3D%22260%22%20cy%3D%2250%22%20r%3D%2236%22%20fill%3D%22%23FDD835%22/%3E%0A%3Ctext%20x%3D%2250%25%22%20y%3D%2242%25%22%20dominant-baseline%3D%22middle%22%20text-anchor%3D%22middle%22%20font-size%3D%2258%22%3E%F0%9F%92%8A%3C/text%3E%0A%3Ctext%20x%3D%2250%25%22%20y%3D%2268%25%22%20dominant-baseline%3D%22middle%22%20text-anchor%3D%22middle%22%20font-size%3D%2224%22%20font-family%3D%22Arial%22%20font-weight%3D%22700%22%20fill%3D%22%23334155%22%3E%E4%BF%9D%E5%81%A5%E9%A3%9F%E5%93%81%3C/text%3E%0A%3C/svg%3E", "items": [{"text": "DHC 維他命C", "done": false, "price": 450}, {"text": "DHC 藍莓精華", "done": false, "price": 1180}, {"text": "FANCL 大人綜合維他命", "done": false, "price": 2200}, {"text": "ORIHIRO 蒟蒻果凍", "done": false, "price": 280}, {"text": "龍角散喉糖／粉包", "done": false, "price": 380}]}, {"category": "🔌 家電", "image": "data:image/svg+xml;charset=UTF-8,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20width%3D%22320%22%20height%3D%22210%22%3E%0A%3Crect%20width%3D%22100%25%22%20height%3D%22100%25%22%20rx%3D%2228%22%20fill%3D%22%23fff7cc%22/%3E%0A%3Ccircle%20cx%3D%22260%22%20cy%3D%2250%22%20r%3D%2236%22%20fill%3D%22%23FDD835%22/%3E%0A%3Ctext%20x%3D%2250%25%22%20y%3D%2242%25%22%20dominant-baseline%3D%22middle%22%20text-anchor%3D%22middle%22%20font-size%3D%2258%22%3E%F0%9F%94%8C%3C/text%3E%0A%3Ctext%20x%3D%2250%25%22%20y%3D%2268%25%22%20dominant-baseline%3D%22middle%22%20text-anchor%3D%22middle%22%20font-size%3D%2224%22%20font-family%3D%22Arial%22%20font-weight%3D%22700%22%20fill%3D%22%23334155%22%3E%E5%AE%B6%E9%9B%BB%3C/text%3E%0A%3C/svg%3E", "items": [{"text": "Panasonic 奈米水離子吹風機", "done": false, "price": 32000}, {"text": "ReFa 美容儀／吹風機", "done": false, "price": 38000}, {"text": "SALONIA 直髮夾", "done": false, "price": 3500}, {"text": "YAMAN 美容儀", "done": false, "price": 28000}, {"text": "象印／Tiger 保溫杯", "done": false, "price": 3000}]}, {"category": "🧂 調味料", "image": "data:image/svg+xml;charset=UTF-8,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20width%3D%22320%22%20height%3D%22210%22%3E%0A%3Crect%20width%3D%22100%25%22%20height%3D%22100%25%22%20rx%3D%2228%22%20fill%3D%22%23fff7cc%22/%3E%0A%3Ccircle%20cx%3D%22260%22%20cy%3D%2250%22%20r%3D%2236%22%20fill%3D%22%23FDD835%22/%3E%0A%3Ctext%20x%3D%2250%25%22%20y%3D%2242%25%22%20dominant-baseline%3D%22middle%22%20text-anchor%3D%22middle%22%20font-size%3D%2258%22%3E%F0%9F%A7%82%3C/text%3E%0A%3Ctext%20x%3D%2250%25%22%20y%3D%2268%25%22%20dominant-baseline%3D%22middle%22%20text-anchor%3D%22middle%22%20font-size%3D%2224%22%20font-family%3D%22Arial%22%20font-weight%3D%22700%22%20fill%3D%22%23334155%22%3E%E8%AA%BF%E5%91%B3%E6%96%99%3C/text%3E%0A%3C/svg%3E", "items": [{"text": "久世福商店 萬能高湯包", "done": false, "price": 700}, {"text": "茅乃舎 高湯包", "done": false, "price": 1944}, {"text": "S&B 柚子胡椒", "done": false, "price": 250}, {"text": "七味唐辛子", "done": false, "price": 500}, {"text": "宮城味噌／仙台味噌", "done": false, "price": 700}]}, {"category": "🧻 日用品", "image": "data:image/svg+xml;charset=UTF-8,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20width%3D%22320%22%20height%3D%22210%22%3E%0A%3Crect%20width%3D%22100%25%22%20height%3D%22100%25%22%20rx%3D%2228%22%20fill%3D%22%23fff7cc%22/%3E%0A%3Ccircle%20cx%3D%22260%22%20cy%3D%2250%22%20r%3D%2236%22%20fill%3D%22%23FDD835%22/%3E%0A%3Ctext%20x%3D%2250%25%22%20y%3D%2242%25%22%20dominant-baseline%3D%22middle%22%20text-anchor%3D%22middle%22%20font-size%3D%2258%22%3E%F0%9F%A7%BB%3C/text%3E%0A%3Ctext%20x%3D%2250%25%22%20y%3D%2268%25%22%20dominant-baseline%3D%22middle%22%20text-anchor%3D%22middle%22%20font-size%3D%2224%22%20font-family%3D%22Arial%22%20font-weight%3D%22700%22%20fill%3D%22%23334155%22%3E%E6%97%A5%E7%94%A8%E5%93%81%3C/text%3E%0A%3C/svg%3E", "items": [{"text": "休足時間 足部貼片", "done": false, "price": 600}, {"text": "蒸氣眼罩", "done": false, "price": 500}, {"text": "獅王牙膏", "done": false, "price": 350}, {"text": "花王洗衣槽清潔粉", "done": false, "price": 500}, {"text": "無印良品旅行收納袋", "done": false, "price": 990}]}, {"category": "✨ 其他推薦", "image": "data:image/svg+xml;charset=UTF-8,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20width%3D%22320%22%20height%3D%22210%22%3E%0A%3Crect%20width%3D%22100%25%22%20height%3D%22100%25%22%20rx%3D%2228%22%20fill%3D%22%23fff7cc%22/%3E%0A%3Ccircle%20cx%3D%22260%22%20cy%3D%2250%22%20r%3D%2236%22%20fill%3D%22%23FDD835%22/%3E%0A%3Ctext%20x%3D%2250%25%22%20y%3D%2242%25%22%20dominant-baseline%3D%22middle%22%20text-anchor%3D%22middle%22%20font-size%3D%2258%22%3E%E2%9C%A8%3C/text%3E%0A%3Ctext%20x%3D%2250%25%22%20y%3D%2268%25%22%20dominant-baseline%3D%22middle%22%20text-anchor%3D%22middle%22%20font-size%3D%2224%22%20font-family%3D%22Arial%22%20font-weight%3D%22700%22%20fill%3D%22%23334155%22%3E%E5%85%B6%E4%BB%96%E6%8E%A8%E8%96%A6%3C/text%3E%0A%3C/svg%3E", "items": [{"text": "寶可夢中心仙台限定周邊", "done": false, "price": 2500}, {"text": "LoFT 文具貼紙", "done": false, "price": 500}, {"text": "扭蛋小物", "done": false, "price": 400}, {"text": "日本限定環保袋", "done": false, "price": 1200}, {"text": "藥妝店退稅補貨包", "done": false, "price": 3000}]}];
+
+        let shops = JSON.parse(localStorage.getItem("pika_shop")) || defaultShopCategories;
+        if (Array.isArray(shops) && shops.length && !shops[0].category) {
+            shops = defaultShopCategories;
+            localStorage.setItem("pika_shop", JSON.stringify(shops));
+        }
+
 
         let notes = JSON.parse(localStorage.getItem("pika_notes")) || {
             "2026/05/21": "桃園機場搭 JX862，下飛機後先去拿 Access 線車票。飯店 Check-in 之後直奔 AER 展望台看夕陽。",
@@ -701,6 +908,8 @@
             renderNotes();
             renderExpense();
             renderAttractions();
+            initFontMode();
+            renderTodayHighlight();
             updateGlobalWidgets();
             loadWeather();
         });
@@ -756,6 +965,7 @@
                     currentDay = d;
                     renderDayTabs();
                     renderItinerary();
+                    renderTodayHighlight();
                 };
                 itiTabs.appendChild(btnI);
 
@@ -831,8 +1041,7 @@ const listWrapper = document.createElement('div');
                 });
                 container.appendChild(listWrapper);
 
-                if (window.matchMedia('(min-width: 768px)').matches) {
-                    new Sortable(listWrapper, {
+                new Sortable(listWrapper, {
                         animation: 150,
                         ghostClass: 'bg-yellow-50',
                         handle: '.drag-handle',
@@ -846,7 +1055,6 @@ const listWrapper = document.createElement('div');
                             renderItinerary();
                         }
                     });
-                }
             } else {
                 datesArr.forEach(d => {
                     const dayHeader = document.createElement('div');
@@ -888,7 +1096,7 @@ const listWrapper = document.createElement('div');
 
             let innerHTML = `
                 <div class="flex justify-between items-center flex-wrap gap-2">
-                    <div class="flex items-center gap-2 flex-wrap"><span class="drag-handle hidden md:inline-flex text-slate-300 text-sm" title="拖曳排序">☰</span>
+                    <div class="flex items-center gap-2 flex-wrap"><span class="drag-handle inline-flex text-slate-400 text-sm" title="拖曳排序">☰</span>
                         <span class="bg-amber-400 text-slate-900 font-black px-2.5 py-0.5 rounded-lg text-xs">${item.time}</span>
                         <span class="${typeBadgeColor} px-2 py-0.5 rounded-lg text-xs font-bold">${item.category}</span>
                         <h4 class="font-black text-slate-900 text-base group-hover:text-amber-600 transition-colors">${item.name}</h4>
@@ -971,41 +1179,130 @@ const listWrapper = document.createElement('div');
             window.open(url, '_blank');
         }
 
+
+
+        function normalizeShopData() {
+            let changed = false;
+            shops.forEach(cat => {
+                cat.items.forEach(item => {
+                    if (item.price === undefined) {
+                        item.price = 0;
+                        changed = true;
+                    }
+                });
+            });
+            if (changed) localStorage.setItem("pika_shop", JSON.stringify(shops));
+        }
+
+        function syncShoppingExpense(catIdx, itemIdx) {
+            const item = shops[catIdx].items[itemIdx];
+            const syncKey = `shop-${catIdx}-${itemIdx}-${item.text}`;
+
+            expenses = expenses.filter(exp => exp.syncKey !== syncKey);
+
+            if (item.done && Number(item.price) > 0) {
+                expenses.push({
+                    date: currentDay || datesArr[0],
+                    item: `購物｜${item.text}`,
+                    amount: Number(item.price),
+                    category: '購物',
+                    syncKey
+                });
+            }
+
+            localStorage.setItem("pika_expenses", JSON.stringify(expenses));
+            renderExpense();
+            updateGlobalWidgets();
+        }
+
+        function updateShopPrice(catIdx, itemIdx, value) {
+            const amount = Math.max(0, Number(value) || 0);
+            shops[catIdx].items[itemIdx].price = amount;
+            localStorage.setItem("pika_shop", JSON.stringify(shops));
+
+            if (shops[catIdx].items[itemIdx].done) {
+                syncShoppingExpense(catIdx, itemIdx);
+            }
+            renderShopping();
+        }
+
+
         // 購物清單系統
         function renderShopping() {
+            normalizeShopData();
             const list = document.getElementById('shopList');
+            const select = document.getElementById('shopCategorySelect');
+            if (!list) return;
+
+            if (select) {
+                select.innerHTML = shops.map((cat, idx) => `<option value="${idx}">${cat.category}</option>`).join('');
+            }
+
             list.innerHTML = '';
-            shops.forEach((item, idx) => {
-                const div = document.createElement('div');
-                div.className = "flex items-center justify-between py-3 gap-2";
-                div.innerHTML = `
-                    <div class="flex items-center gap-3">
-                        <input type="checkbox" ${item.done ? 'checked' : ''} onchange="toggleShopItem(${idx})" class="w-4 h-4 text-amber-500 rounded focus:ring-yellow-400">
-                        <span class="text-sm font-medium ${item.done ? 'line-through text-slate-400' : 'text-slate-700'}">${item.text}</span>
+            shops.forEach((cat, catIdx) => {
+                const card = document.createElement('div');
+                card.className = "bg-white border-2 border-yellow-100 rounded-2xl overflow-hidden shadow-sm";
+                const doneCount = cat.items.filter(i => i.done).length;
+                card.innerHTML = `
+                    <div class="flex gap-3 p-3 bg-yellow-50/60 border-b border-yellow-100">
+                        <img src="${cat.image}" alt="${cat.category}" class="w-20 h-16 object-cover rounded-xl border border-yellow-200 shrink-0">
+                        <div class="flex-1">
+                            <div class="font-black text-slate-800">${cat.category}</div>
+                            <div class="text-xs text-slate-500 mt-1">已買 ${doneCount}/${cat.items.length}</div>
+                        </div>
                     </div>
-                    <button onclick="deleteShopItem(${idx})" class="text-xs font-bold text-red-500 hover:underline">刪除</button>
+                    <div class="divide-y divide-slate-100">
+                        ${cat.items.map((item, itemIdx) => `
+                            <div class="py-2.5 px-3 space-y-2">
+                                <div class="flex items-center justify-between gap-2">
+                                    <label class="flex items-center gap-2 min-w-0">
+                                        <input type="checkbox" ${item.done ? 'checked' : ''} onchange="toggleShopItem(${catIdx}, ${itemIdx})" class="w-4 h-4 text-amber-500 rounded focus:ring-yellow-400 shrink-0">
+                                        <span class="text-sm font-medium ${item.done ? 'line-through text-slate-400' : 'text-slate-700'}">${item.text}</span>
+                                    </label>
+                                    <button onclick="deleteShopItem(${catIdx}, ${itemIdx})" class="text-xs font-bold text-red-500 hover:underline shrink-0">刪除</button>
+                                </div>
+                                <div class="flex items-center gap-2 pl-6">
+                                    <span class="text-xs font-bold text-slate-500">¥</span>
+                                    <input type="number" min="0" value="${item.price || 0}" onchange="updateShopPrice(${catIdx}, ${itemIdx}, this.value)" class="w-28 border border-slate-200 rounded-lg px-2 py-1 text-xs focus:outline-yellow-400">
+                                    <span class="text-[11px] text-slate-400">勾選後自動同步到記帳</span>
+                                </div>
+                            </div>
+                        `).join('')}
+                    </div>
                 `;
-                list.appendChild(div);
+                list.appendChild(card);
             });
         }
+
         function addShopItem() {
             const input = document.getElementById('shopInput');
+            const select = document.getElementById('shopCategorySelect');
             if(!input.value.trim()) return;
-            shops.push({ text: input.value.trim(), done: false });
+            const catIdx = select ? parseInt(select.value || '0') : 0;
+            shops[catIdx].items.push({ text: input.value.trim(), done: false, price: 0 });
             input.value = '';
             localStorage.setItem("pika_shop", JSON.stringify(shops));
             renderShopping();
         }
-        function toggleShopItem(idx) {
-            shops[idx].done = !shops[idx].done;
+        function toggleShopItem(catIdx, itemIdx) {
+            shops[catIdx].items[itemIdx].done = !shops[catIdx].items[itemIdx].done;
             localStorage.setItem("pika_shop", JSON.stringify(shops));
+            syncShoppingExpense(catIdx, itemIdx);
             renderShopping();
         }
-        function deleteShopItem(idx) {
-            shops.splice(idx, 1);
+        function deleteShopItem(catIdx, itemIdx) {
+            const item = shops[catIdx].items[itemIdx];
+            const syncKey = `shop-${catIdx}-${itemIdx}-${item.text}`;
+            expenses = expenses.filter(exp => exp.syncKey !== syncKey);
+            localStorage.setItem("pika_expenses", JSON.stringify(expenses));
+
+            shops[catIdx].items.splice(itemIdx, 1);
             localStorage.setItem("pika_shop", JSON.stringify(shops));
             renderShopping();
+            renderExpense();
+            updateGlobalWidgets();
         }
+
 
         // 待辦事項系統
         function renderTodo() {
