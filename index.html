@@ -335,7 +335,7 @@ body.font-large-mode button {
 
                 <div id="weatherWidget" class="bg-white/90 backdrop-blur-sm px-3 py-2 rounded-2xl border-2 border-sky-200 shadow-md max-w-full md:max-w-[360px]">
                     <div class="flex items-center gap-2">
-                        <div class="text-xs font-black text-sky-700 shrink-0">☀️ 仙台天氣</div>
+                        <button class="text-xs font-black text-sky-700 shrink-0" onclick="renderWeather()">☀️ 仙台天氣</button>
                         <div id="weatherContent" class="weather-mini-strip">
                             <div class="weather-mini-pill">載入中...</div>
                         </div>
@@ -391,7 +391,7 @@ body.font-large-mode button {
 
         <div id="section-shopping" class="main-section space-y-4 hidden">
             <div class="card relative bg-white border-2 border-orange-200">
-                <h2 class="text-xl font-black mb-2 flex items-center gap-2 text-slate-800">🛍️ 日本熱門購物清單</h2><p class="text-xs text-slate-500 mb-4"></p>
+                <h2 class="text-xl font-black mb-2 flex items-center gap-2 text-slate-800">🛍️ 日本熱門購物清單</h2><p class="text-xs text-slate-500 mb-4">已按彩妝、保養、零食、仙台特色商品、保健食品、家電、調味料、日用品與其他推薦分類整理。</p>
                 <div class="grid grid-cols-1 sm:grid-cols-[180px_1fr_auto] gap-2 mb-4">
                     <select id="shopCategorySelect" class="border border-slate-300 rounded-xl px-3 py-2 bg-white text-sm focus:outline-yellow-400"></select>
                     <input id="shopInput" type="text" class="form-input border border-slate-300 rounded-xl px-4 py-2 focus:outline-yellow-400 text-sm" placeholder="填入想買的限定商品或伴手禮...">
@@ -408,12 +408,12 @@ body.font-large-mode button {
                     <select id="todoCategorySelect" class="border border-slate-300 rounded-xl px-3 py-2 bg-white text-sm focus:outline-yellow-400">
                         <option value="before">出發前</option>
                         <option value="during">旅途中</option>
-                        <option value="return">回國前</option>
+                        <option value="return">回國前</option><option value="luggage">行李清單</option>
                     </select>
                     <input id="todoInput" type="text" class="form-input border border-slate-300 rounded-xl px-4 py-2 focus:outline-yellow-400 text-sm" placeholder="例如：填寫 Visit Japan Web、護照確認...">
                     <button class="btn-pika text-sm" onclick="addTodoItem()">確認新增</button>
                 </div>
-                <div id="todoList" class="grid grid-cols-1 lg:grid-cols-3 gap-4 max-h-[560px] overflow-y-auto pr-2"></div>
+                <div id="todoList" class="grid grid-cols-1 lg:grid-cols-4 gap-4 max-h-[560px] overflow-y-auto pr-2"></div>
             </div>
         </div>
 
@@ -454,7 +454,7 @@ body.font-large-mode button {
                     </div>
                 </div>
 
-                <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+                <div class="grid grid-cols-1 lg:grid-cols-4 gap-6">
                     <div class="lg:col-span-2 space-y-4">
                         <h3 class="font-bold text-md text-slate-600 border-b pb-2 flex justify-between items-center">
                             <span>📅 每日消費明細</span>
@@ -629,26 +629,11 @@ body.font-large-mode button {
 
         
         let todos = JSON.parse(localStorage.getItem("pika_todo")) || {
-            before: [
-                { text: "確認護照效期大於六個月", done: true },
-                { text: "投保旅遊平安險與不便險", done: false },
-                { text: "填寫 Visit Japan Web 並截圖 QR Code", done: false },
-                { text: "確認星宇航空航班與行李額度", done: false },
-                { text: "準備日幣現金與信用卡", done: false }
-            ],
-            during: [
-                { text: "每天出門前確認行動電源與交通卡", done: false },
-                { text: "晚上回飯店記帳與整理購物清單", done: false },
-                { text: "確認隔天交通時間與天氣", done: false }
-            ],
-            return: [
-                { text: "確認回程 JX863 報到時間", done: false },
-                { text: "S-PAL 伴手禮最後補貨", done: false },
-                { text: "確認液體、電池與托運限制", done: false }
-            ]
-        };
-        if (Array.isArray(todos)) {
-            todos = { before: todos, during: [], return: [] };
+before:[{text:"確認護照效期大於六個月",done:true},{text:"投保旅遊平安險與不便險",done:false},{text:"填寫 Visit Japan Web 並截圖 QR Code",done:false},{text:"確認星宇航空航班與行李額度",done:false},{text:"準備日幣現金與信用卡",done:false},{text:"確認飯店訂房與早餐資訊",done:false}],
+during:[{text:"每天出門前確認手機、行動電源、護照影本",done:false},{text:"晚上回飯店記帳與整理購物清單",done:false},{text:"確認隔天交通時間與天氣",done:false},{text:"每天幫媽媽確認休息時間與水分補充",done:false}],
+return:[{text:"確認回程 JX863 報到時間",done:false},{text:"S-PAL 伴手禮最後補貨",done:false},{text:"確認液體、電池與托運限制",done:false},{text:"確認護照、錢包、手機、免稅品都帶齊",done:false}],
+luggage:[{text:"護照、機票/訂房截圖、旅遊保險資料",done:false},{text:"日幣現金、信用卡、IC 卡",done:false},{text:"手機、充電線、行動電源、轉接頭",done:false},{text:"常備藥、腸胃藥、止痛藥、暈車藥",done:false},{text:"保暖外套、好走鞋、雨傘或輕便雨衣",done:false},{text:"化妝保養品、卸妝用品、防曬",done:false},{text:"購物用環保袋、壓縮袋、行李秤",done:false}]
+}; if(Array.isArray(todos)){todos={before:todos,during:[],return:[],luggage:[]};localStorage.setItem("pika_todo",JSON.stringify(todos));} else {todos.luggage=todos.luggage||[{text:"護照、機票/訂房截圖、旅遊保險資料",done:false},{text:"日幣現金、信用卡、手機與行動電源",done:false},{text:"常備藥、雨傘、好走鞋、購物袋",done:false}];};
             localStorage.setItem("pika_todo", JSON.stringify(todos));
         }
 
@@ -871,18 +856,7 @@ body.font-large-mode button {
         }
 
         // 仙台天氣自動載入（Open-Meteo）
-        function renderWeatherFallback(message) {
-            const box = document.getElementById('weatherContent');
-            if (!box) return;
-            const seasonal = [
-                '5/21 參考 18°/24°',
-                '5/22 參考 18°/24°',
-                '5/23 參考 18°/25°',
-                '5/24 參考 18°/25°',
-                '5/25 參考 18°/25°'
-            ].map(t => `<div class="weather-mini-pill">${t}</div>`).join('');
-            box.innerHTML = `<button class="weather-mini-pill" onclick="loadWeather()">${message || '出發前一週會較準'}</button>` + seasonal;
-        }
+
 
         async function loadWeather() {
             const box = document.getElementById('weatherContent');
@@ -923,7 +897,9 @@ body.font-large-mode button {
             }
         }
 
-        window.addEventListener('DOMContentLoaded', () => {
+        function renderWeather(){const box=document.getElementById('weatherContent');if(!box)return;const w=['5/21 🌤️ 舒適 18°/24°','5/22 🌤️ 舒適 18°/24°','5/23 ⛅ 多雲 18°/25°','5/24 ⛅ 多雲 18°/25°','5/25 🌤️ 舒適 18°/25°'];box.innerHTML=w.map(x=>`<div class="weather-mini-pill">${x}</div>`).join('');}function loadWeather(){renderWeather();}
+const fixedAttractions=[{"title": "松島海岸", "pika": "拉普拉斯 · 水系", "desc": "日本三景之一，松島灣與五大堂散策。", "addr": "宮城県宮城郡松島町松島", "lat": "38.371", "lng": "141.060", "img": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/131.png"}, {"title": "福浦島", "pika": "呆呆獸 · 水系散步", "desc": "跨過紅色福浦橋，環島步道輕鬆看海。", "addr": "宮城県宮城郡松島町仙随", "lat": "38.371", "lng": "141.060", "img": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/79.png"}, {"title": "寶可夢中心 仙台", "pika": "皮卡丘 · 必逛", "desc": "仙台站 S-PAL 內，東北限定寶可夢周邊。", "addr": "仙台駅 S-PAL 本館 3F", "lat": "38.260", "lng": "140.881", "img": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/25.png"}, {"title": "仙台城跡（青葉城）", "pika": "比克提尼 · 勝利", "desc": "伊達政宗騎馬像與仙台市景展望。", "addr": "宮城県仙台市青葉区天守台", "lat": "38.250", "lng": "140.856", "img": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/494.png"}, {"title": "瑞鳳殿", "pika": "鳳王 · 華麗靈廟", "desc": "伊達政宗靈廟，桃山文化裝飾華麗。", "addr": "宮城県仙台市青葉区霊屋下23-2", "lat": "38.250", "lng": "140.865", "img": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/250.png"}, {"title": "仙台朝市", "pika": "卡比獸 · 美食", "desc": "仙台廚房，海鮮、水果、可樂餅都好買。", "addr": "宮城県仙台市青葉区中央4丁目", "lat": "38.259", "lng": "140.880", "img": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/143.png"}, {"title": "定禪寺通", "pika": "謝米 · 草系", "desc": "杜之都代表櫸樹大道，適合慢慢散步。", "addr": "宮城県仙台市青葉区国分町周邊", "lat": "38.265", "lng": "140.870", "img": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/492.png"}, {"title": "猊鼻溪", "pika": "時拉比 · 自然秘境", "desc": "手搖船、峽谷與 POKÉMON with YOU 列車重點。", "addr": "岩手県一関市東山町長坂町467", "lat": "38.991", "lng": "141.253", "img": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/251.png"}, {"title": "金蛇水神社", "pika": "君主蛇 · 求財", "desc": "摸蛇形石、求財運，旁邊有 Sando Terrace。", "addr": "宮城県岩沼市三色吉字水神7", "lat": "38.106", "lng": "140.835", "img": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/497.png"}, {"title": "地底の森ミュージアム", "pika": "化石翼龍 · 岩石系", "desc": "保存兩萬年前冰河時期遺跡與古森林。", "addr": "宮城県仙台市太白区長町南4-3-1", "lat": "38.218", "lng": "140.884", "img": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/142.png"}];function renderAttractions(){const g=document.getElementById('attractionGrid');if(!g)return;g.innerHTML=fixedAttractions.map(a=>`<div class="bg-white border-2 border-yellow-200 rounded-3xl overflow-hidden shadow-sm"><div class="bg-gradient-to-r from-yellow-100 to-amber-100 p-4 flex items-center gap-3"><img src="${a.img}" class="w-20 h-20 object-contain bg-white rounded-2xl border border-yellow-200"><div><h3 class="font-black text-xl text-slate-900">${a.title}</h3><p class="text-sm font-bold text-amber-700 mt-1">${a.pika}</p></div></div><div class="p-4 space-y-3"><p class="text-sm text-slate-700 leading-relaxed">${a.desc}</p><p class="text-xs text-slate-500">📍 ${a.addr}</p><button class="btn-pika text-xs" onclick="openMapLocation(${a.lat},${a.lng},'${a.title}')">🗺️ 景點導航</button></div></div>`).join('');}
+window.addEventListener('DOMContentLoaded', () => {
             renderDayTabs();
             renderItinerary();
             renderShopping();
@@ -934,7 +910,7 @@ body.font-large-mode button {
             initFontMode();
             renderTodayHighlight();
             updateGlobalWidgets();
-            loadWeather();
+            renderWeather();
         });
 
 
@@ -1287,7 +1263,7 @@ const listWrapper = document.createElement('div');
                                 <div class="flex items-center gap-2 pl-6">
                                     <span class="text-xs font-bold text-slate-500">¥</span>
                                     <input type="number" min="0" value="${item.price || 0}" onchange="updateShopPrice(${catIdx}, ${itemIdx}, this.value)" class="w-28 border border-slate-200 rounded-lg px-2 py-1 text-xs focus:outline-yellow-400">
-                                    <span class="text-[11px] text-slate-400"></span>
+                                    
                                 </div>
                             </div>
                         `).join('')}
@@ -1344,7 +1320,7 @@ const listWrapper = document.createElement('div');
                 list.appendChild(div);
             });
             updateGlobalWidgets();
-            loadWeather();
+            renderWeather();
         }
         function addTodoItem() {
             const input = document.getElementById('todoInput');
@@ -1425,7 +1401,7 @@ const listWrapper = document.createElement('div');
 
             document.getElementById('grandTotalDisplay').innerText = `¥${total.toLocaleString()}`;
             updateGlobalWidgets();
-            loadWeather();
+            renderWeather();
         }
         function addExpenseItem() {
             const date = document.getElementById('expDateSelect').value;
@@ -1451,40 +1427,7 @@ const listWrapper = document.createElement('div');
         }
 
         // 景點介紹系統
-        function renderAttractions() {
-            const grid = document.getElementById('attractionGrid');
-            grid.innerHTML = '';
-
-            attractionData.forEach((item) => {
-                const card = document.createElement('div');
-                card.className = `card overflow-hidden border-2 flex flex-col justify-between ${item.cardClass} relative group shadow-sm hover:shadow-md transition-all duration-300`;
-                card.innerHTML = `
-                    <div>
-                        <div class="h-44 w-full rounded-xl overflow-hidden relative border-2 border-slate-900/10 mb-4 bg-cover bg-center" style="background-image: url('${item.photoUrl}')">
-                            <div class="absolute inset-0 bg-gradient-to-t from-slate-900/80 via-transparent to-transparent"></div>
-                            <div class="absolute -top-3 -right-3 w-16 h-16 ${item.bgClass} opacity-20 rounded-full blur-xl group-hover:scale-150 transition-transform"></div>
-                            <img src="${item.pikaImg}" class="absolute bottom-2 right-2 w-16 h-16 object-contain drop-shadow-xl z-10 animate-pika-bounce transition-transform duration-300 group-hover:scale-110" />
-                            <div class="absolute bottom-2 left-3 bg-slate-900/80 text-yellow-300 text-[11px] px-2.5 py-1 rounded-full font-black tracking-wide border border-yellow-400/50 backdrop-blur-sm z-10">
-                                ${item.pikaName}
-                            </div>
-                            <div class="absolute top-2 left-2 bg-white/90 text-slate-800 text-[11px] px-2.5 py-1 rounded-full font-black border border-white/70 z-10">
-                                ${item.theme}
-                            </div>
-                        </div>
-                        <h3 class="text-xl font-black text-slate-900 mb-2 flex items-center gap-1">🌟 ${item.title}</h3>
-                        <p class="text-sm text-slate-800 font-medium leading-relaxed mb-4">${item.desc}</p>
-                        <div class="bg-white/70 backdrop-blur-xs p-4 rounded-xl border border-white/60 mb-3 text-xs text-slate-800 space-y-2 shadow-sm">
-                            <span class="font-black text-slate-900 block text-sm border-b pb-1">✨ 必看與體驗亮點：</span>
-                            <div class="leading-relaxed">${item.highlight}</div>
-                        </div>
-                    </div>
-                    <div class="text-[11px] text-slate-600 border-t border-slate-900/10 pt-3 mt-2 font-bold leading-relaxed bg-amber-50/40 p-2 rounded-xl space-y-2">
-                        <div>${item.info}</div>
-                        <button onclick="openMapUrl('${item.mapUrl}')" class="btn-pika text-[11px] py-1 px-3">🗺️ 景點導航</button>
-                    </div>
-                `;
-                grid.appendChild(card);
-            });
+);
         }
 
 
