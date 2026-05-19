@@ -483,6 +483,23 @@ body.font-large-mode button {
 
     <script>
 
+
+        const todayMainPoints = {
+            "2026/05/21": "前往仙台看夜景",
+            "2026/05/22": "仙台朝市、地底之森博物館、仙台市區景點及逛街",
+            "2026/05/23": "金蛇水神社、松島、仙台駅前逛街",
+            "2026/05/24": "POKÉMON with YOU 列車",
+            "2026/05/25": "定禪寺通"
+        };
+
+        const todayMealNotes = {
+            "2026/05/21": "晚餐-地酒和鮮 蔵の庄",
+            "2026/05/22": "早餐-飯店、午餐-梅の花、晚餐-仙台駅",
+            "2026/05/23": "早餐-飯店、午餐-松島吃牡蠣、晚餐-仙台駅",
+            "2026/05/24": "早餐-仙台駅、午餐-蕎麥麵、晚餐-商店街",
+            "2026/05/25": "看心情😊"
+        };
+
         const JPY_TO_TWD = 0.21;
 
         function yenToTwd(amount) {
@@ -506,16 +523,16 @@ body.font-large-mode button {
             setFontMode(localStorage.getItem('pika_font_mode') || 'normal');
         }
 
+
         function renderTodayHighlight() {
             const box = document.getElementById('todayHighlightContent');
             if (!box) return;
 
             const dayData = itineraries[currentDay] || [];
-            const first = dayData[0];
-            const lunch = dayData.find(i => (i.time || '').startsWith('12') || (i.category || '').includes('餐廳'));
-            const dinner = dayData.find(i => (i.time || '').startsWith('18') || (i.time || '').startsWith('19'));
             const hotel = dayData.find(i => (i.category || '').includes('飯店')) || dayData.find(i => (i.name || '').includes('Hotel'));
             const note = notes[currentDay] || '今天照行程慢慢玩，記得補水與休息。';
+            const mainPoint = todayMainPoints[currentDay] || '查看每日行程';
+            const mealNote = todayMealNotes[currentDay] || '依行程彈性安排';
 
             box.innerHTML = `
                 <div class="today-highlight-item">
@@ -523,12 +540,12 @@ body.font-large-mode button {
                     <div class="font-black text-slate-800 mt-1">${currentDay}</div>
                 </div>
                 <div class="today-highlight-item">
-                    <div class="text-xs text-slate-400 font-black">⏰ 出發重點</div>
-                    <div class="font-black text-slate-800 mt-1">${first ? `${first.time} ${first.name}` : '查看每日行程'}</div>
+                    <div class="text-xs text-slate-400 font-black">⭐ 行程重點</div>
+                    <div class="font-black text-slate-800 mt-1">${mainPoint}</div>
                 </div>
                 <div class="today-highlight-item">
                     <div class="text-xs text-slate-400 font-black">🍽️ 餐食提醒</div>
-                    <div class="font-black text-slate-800 mt-1">${lunch ? `${lunch.time} ${lunch.name}` : dinner ? `${dinner.time} ${dinner.name}` : '彈性安排'}</div>
+                    <div class="font-black text-slate-800 mt-1">${mealNote}</div>
                 </div>
                 <div class="today-highlight-item">
                     <div class="text-xs text-slate-400 font-black">🏨 住宿 / 注意</div>
@@ -537,7 +554,8 @@ body.font-large-mode button {
             `;
         }
 
-        // 日期定義
+
+// 日期定義
         const datesArr = ["2026/05/21", "2026/05/22", "2026/05/23", "2026/05/24", "2026/05/25"];
         
         let currentDay = datesArr[0];
@@ -857,37 +875,7 @@ body.font-large-mode button {
             const url = `https://www.google.com/maps/search/?api=1&query=${lat},${lng}`;
             window.open(url, '_blank');
         }
-
-        const weatherCodeMap = {
-            0:'☀️ 晴',1:'🌤️ 晴時多雲',2:'⛅ 多雲',3:'☁️ 陰',
-            45:'🌫️ 霧',48:'🌫️ 霧',
-            51:'🌦️ 毛毛雨',53:'🌦️ 毛毛雨',55:'🌦️ 毛毛雨',
-            61:'🌧️ 小雨',63:'🌧️ 雨',65:'🌧️ 大雨',
-            80:'🌦️ 陣雨',81:'🌦️ 陣雨',82:'⛈️ 強陣雨',95:'⛈️ 雷雨'
-        };
-
-        async function loadWeather() {
-            const box = document.getElementById('weatherContent');
-            if (!box) return;
-            box.innerHTML = '<div class="weather-mini-pill">更新中...</div>';
-            try {
-                const url = 'https://api.open-meteo.com/v1/forecast?latitude=38.2682&longitude=140.8694&current=temperature_2m,weather_code&daily=weather_code,temperature_2m_max,temperature_2m_min&forecast_days=5&timezone=Asia%2FTokyo';
-                const res = await fetch(url, { cache: 'no-store' });
-                if (!res.ok) throw new Error('weather api failed');
-                const data = await res.json();
-                if (!data.daily || !data.daily.time) throw new Error('weather data missing');
-
-                const now = data.current
-                    ? `<div class="weather-mini-pill">現在 ${weatherCodeMap[data.current.weather_code] || '🌥️'} ${Math.round(data.current.temperature_2m)}°</div>`
-                    : '';
-
-                const daily = data.daily.time.slice(0,5).map((day, idx) => {
-                    const date = day.substring(5).replace('-', '/');
-                    const code = data.daily.weather_code[idx];
-                    const high = Math.round(data.daily.temperature_2m_max[idx]);
-                    const low = Math.round(data.daily.temperature_2m_min[idx]);
-                    return `<div class="weather-mini-pill">${date} ${weatherCodeMap[code] || '🌥️'} ${high}°/${low}°</div>`;
-                }).join('');
+).join('');
 
                 box.innerHTML = now + daily;
             } catch (e) {
@@ -895,6 +883,64 @@ body.font-large-mode button {
             }
         }
 
+
+
+
+        const weatherCodeMap = {
+            0:'☀️ 晴', 1:'🌤️ 晴時多雲', 2:'⛅ 多雲', 3:'☁️ 陰',
+            45:'🌫️ 霧', 48:'🌫️ 霧',
+            51:'🌦️ 毛毛雨', 53:'🌦️ 毛毛雨', 55:'🌦️ 毛毛雨',
+            61:'🌧️ 小雨', 63:'🌧️ 雨', 65:'🌧️ 大雨',
+            80:'🌦️ 陣雨', 81:'🌦️ 陣雨', 82:'⛈️ 強陣雨', 95:'⛈️ 雷雨'
+        };
+
+        function renderWeatherFallback(message) {
+            const box = document.getElementById('weatherContent');
+            if (!box) return;
+            const seasonal = [
+                '5/21 參考 18°/24°',
+                '5/22 參考 18°/24°',
+                '5/23 參考 18°/25°',
+                '5/24 參考 18°/25°',
+                '5/25 參考 18°/25°'
+            ].map(t => `<div class="weather-mini-pill">${t}</div>`).join('');
+            box.innerHTML = `<button class="weather-mini-pill" onclick="loadWeather()">${message || '天氣暫無即時資料，點我重試'}</button>` + seasonal;
+        }
+
+        async function loadWeather() {
+            const box = document.getElementById('weatherContent');
+            if (!box) return;
+
+            // 先顯示內容，避免任何網路或 API 問題讓畫面永遠停在「載入中」
+            renderWeatherFallback('出發前一週會較準');
+
+            const timeout = new Promise((_, reject) => setTimeout(() => reject(new Error('timeout')), 7000));
+
+            try {
+                const api = 'https://api.open-meteo.com/v1/forecast?latitude=38.2682&longitude=140.8694&current_weather=true&daily=weathercode,temperature_2m_max,temperature_2m_min&forecast_days=5&timezone=Asia%2FTokyo';
+                const res = await Promise.race([fetch(api, { cache: 'no-store' }), timeout]);
+                if (!res.ok) throw new Error('weather api failed');
+                const data = await res.json();
+
+                if (!data.daily || !Array.isArray(data.daily.time)) throw new Error('weather data missing');
+
+                const now = data.current_weather
+                    ? `<div class="weather-mini-pill">現在 ${weatherCodeMap[data.current_weather.weathercode] || '🌥️'} ${Math.round(data.current_weather.temperature)}°</div>`
+                    : '';
+
+                const daily = data.daily.time.slice(0,5).map((day, idx) => {
+                    const date = day.substring(5).replace('-', '/');
+                    const code = data.daily.weathercode[idx];
+                    const high = Math.round(data.daily.temperature_2m_max[idx]);
+                    const low = Math.round(data.daily.temperature_2m_min[idx]);
+                    return `<div class="weather-mini-pill">${date} ${weatherCodeMap[code] || '🌥️'} ${high}°/${low}°</div>`;
+                }).join('');
+
+                box.innerHTML = now + daily;
+            } catch (error) {
+                renderWeatherFallback('天氣連線失敗，點我重試');
+            }
+        }
 
 
         window.addEventListener('DOMContentLoaded', () => {
