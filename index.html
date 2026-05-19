@@ -391,7 +391,7 @@ body.font-large-mode button {
 
         <div id="section-shopping" class="main-section space-y-4 hidden">
             <div class="card relative bg-white border-2 border-orange-200">
-                <h2 class="text-xl font-black mb-2 flex items-center gap-2 text-slate-800">🛍️ 日本熱門購物清單</h2><p class="text-xs text-slate-500 mb-4">已按彩妝、保養、零食、仙台特色商品、保健食品、家電、調味料、日用品與其他推薦分類整理。</p>
+                <h2 class="text-xl font-black mb-2 flex items-center gap-2 text-slate-800">🛍️ 日本熱門購物清單</h2><p class="text-xs text-slate-500 mb-4"></p>
                 <div class="grid grid-cols-1 sm:grid-cols-[180px_1fr_auto] gap-2 mb-4">
                     <select id="shopCategorySelect" class="border border-slate-300 rounded-xl px-3 py-2 bg-white text-sm focus:outline-yellow-400"></select>
                     <input id="shopInput" type="text" class="form-input border border-slate-300 rounded-xl px-4 py-2 focus:outline-yellow-400 text-sm" placeholder="填入想買的限定商品或伴手禮...">
@@ -1287,7 +1287,7 @@ const listWrapper = document.createElement('div');
                                 <div class="flex items-center gap-2 pl-6">
                                     <span class="text-xs font-bold text-slate-500">¥</span>
                                     <input type="number" min="0" value="${item.price || 0}" onchange="updateShopPrice(${catIdx}, ${itemIdx}, this.value)" class="w-28 border border-slate-200 rounded-lg px-2 py-1 text-xs focus:outline-yellow-400">
-                                    <span class="text-[11px] text-slate-400">勾選後自動同步到記帳</span>
+                                    <span class="text-[11px] text-slate-400"></span>
                                 </div>
                             </div>
                         `).join('')}
